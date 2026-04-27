@@ -337,8 +337,12 @@
   </main>
 
   <script>
-    const API_LOGIN = "http://127.0.0.1:8000/api/auth/login";
-    const API_SESSIONS = "http://127.0.0.1:8000/api/admin/sessions";
+    const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
+    const PROD_API_BASE_URL = "https://paddockar.onrender.com";
+    const IS_LOCAL = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
+    const API_BASE_URL = IS_LOCAL ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
+    const API_LOGIN = `${API_BASE_URL}/api/auth/login`;
+    const API_SESSIONS = `${API_BASE_URL}/api/admin/sessions`;
     const TOKEN_KEY = "paddockar_admin_token";
 
     const loginPanel = document.querySelector("#loginPanel");

@@ -348,7 +348,11 @@
   </main>
 
   <script>
-    const API_BASE = "http://127.0.0.1:8000/api/events";
+    const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
+    const PROD_API_BASE_URL = "https://paddockar.onrender.com";
+    const IS_LOCAL = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
+    const API_BASE_URL = IS_LOCAL ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
+    const API_EVENTS = `${API_BASE_URL}/api/events`;
     const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
 
     const categoryColors = {
@@ -470,7 +474,7 @@
       }
 
       try {
-        const response = await fetch(`${API_BASE}/${id}`);
+        const response = await fetch(`${API_EVENTS}/${id}`);
 
         if (!response.ok) {
           throw new Error(`API ${response.status}`);
