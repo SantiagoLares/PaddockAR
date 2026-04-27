@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaddockAR Admin | Sesiones</title>
+  <style>
+    :root {
+      --bg: #08090b;
+      --surface: #111318;
+      --surface-soft: #161a20;
+      --line: #252a33;
+      --line-soft: #1d222b;
+      --text: #e8edf3;
+      --muted: #98a3b3;
+      --faint: #687386;
+      --accent: #4db8ff;
+      --red: #e5484d;
+      --green: #30a46c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .mono { font-family: Consolas, "Roboto Mono", monospace; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 9, 11, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner,
+    main {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 12px;
+    }
+
+    .logo {
+      color: #f8fafc;
+      font-family: Consolas, "Roboto Mono", monospace;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .admin-label {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    main { padding: 14px 12px 36px; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .state {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .top-actions {
+      display: grid;
+      gap: 6px;
+      justify-items: end;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    select,
+    input {
+      width: 100%;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: #0d0f13;
+      color: var(--text);
+      font: inherit;
+      padding: 5px 8px;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: #3a4352;
+      outline: none;
+    }
+
+    .login-panel {
+      max-width: 380px;
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--faint);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .login-panel .field { margin-bottom: 8px; }
+
+    .sessions {
+      display: grid;
+      gap: 8px;
+      padding-top: 12px;
+    }
+
+    .session-card {
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .session-head {
+      display: grid;
+      grid-template-columns: 70px 1fr 110px;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line-soft);
+      background: #0c0e12;
+    }
+
+    .cat {
+      color: #f8fafc;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .event-name {
+      overflow: hidden;
+      color: #f8fafc;
+      font-size: 13px;
+      font-weight: 800;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .session-id {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .edit-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr 1fr 1fr 130px 90px;
+      gap: 8px;
+      align-items: end;
+      padding: 10px;
+    }
+
+    .save-button,
+    .logout-button {
+      height: 30px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .save-button {
+      border: 1px solid rgba(77, 184, 255, 0.38);
+      background: rgba(77, 184, 255, 0.12);
+      color: #d7efff;
+    }
+
+    .save-button:hover { background: rgba(77, 184, 255, 0.18); }
+
+    .logout-button {
+      border: 1px solid var(--line);
+      background: #0d0f13;
+      color: var(--muted);
+    }
+
+    .logout-button:hover {
+      border-color: #3a4352;
+      background: var(--surface-soft);
+      color: #f8fafc;
+    }
+
+    .message {
+      margin-top: 12px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .message.ok {
+      border-color: rgba(48, 164, 108, 0.35);
+      color: #b8e7cb;
+    }
+
+    .message.error {
+      border-color: rgba(229, 72, 77, 0.35);
+      color: #ffb3b6;
+    }
+
+    .empty {
+      margin-top: 12px;
+      padding: 16px 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 900px) {
+      .summary,
+      .filters,
+      .session-head,
+      .edit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-actions,
+      .state,
+      .session-id {
+        justify-items: start;
+        text-align: left;
+      }
+
+      .event-name { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">PADDOCK<span>AR</span></div>
+      <div class="admin-label mono">Admin sesiones</div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="summary">
+      <div>
+        <h1>Sesiones</h1>
+        <div class="subtitle">Edición básica de horarios y estados.</div>
+      </div>
+      <div class="top-actions">
+        <div id="state" class="state mono">Conectando API</div>
+        <button id="logoutButton" class="logout-button mono" type="button" hidden>Salir</button>
+      </div>
+    </section>
+
+    <section id="loginPanel" class="login-panel" hidden>
+      <div class="field">
+        <label class="mono">Usuario</label>
+        <input id="username" autocomplete="username">
+      </div>
+      <div class="field">
+        <label class="mono">Contraseña</label>
+        <input id="password" type="password" autocomplete="current-password">
+      </div>
+      <button id="loginButton" class="save-button mono" type="button">Ingresar</button>
+    </section>
+
+    <section id="adminPanel" hidden>
+      <section class="filters">
+        <select id="categoryFilter" aria-label="Filtrar por categoría">
+          <option value="all">Todas las categorías</option>
+        </select>
+        <select id="eventFilter" aria-label="Filtrar por evento">
+          <option value="all">Todos los eventos</option>
+        </select>
+      </section>
+
+      <section id="sessions" class="sessions" aria-live="polite"></section>
+    </section>
+
+    <div id="message"></div>
+  </main>
+
+  <script>
+    const API_LOGIN = "http://127.0.0.1:8000/api/auth/login";
+    const API_SESSIONS = "http://127.0.0.1:8000/api/admin/sessions";
+    const TOKEN_KEY = "paddockar_admin_token";
+
+    const loginPanel = document.querySelector("#loginPanel");
+    const adminPanel = document.querySelector("#adminPanel");
+    const usernameInput = document.querySelector("#username");
+    const passwordInput = document.querySelector("#password");
+    const loginButton = document.querySelector("#loginButton");
+    const logoutButton = document.querySelector("#logoutButton");
+    const sessionsContainer = document.querySelector("#sessions");
+    const state = document.querySelector("#state");
+    const message = document.querySelector("#message");
+    const categoryFilter = document.querySelector("#categoryFilter");
+    const eventFilter = document.querySelector("#eventFilter");
+
+    let allSessions = [];
+
+    function getToken() {
+      return localStorage.getItem(TOKEN_KEY);
+    }
+
+    function setToken(token) {
+      localStorage.setItem(TOKEN_KEY, token);
+    }
+
+    function clearToken() {
+      localStorage.removeItem(TOKEN_KEY);
+    }
+
+    function authHeaders() {
+      return { Authorization: `Bearer ${getToken()}` };
+    }
+
+    function showLogin() {
+      loginPanel.hidden = false;
+      adminPanel.hidden = true;
+      logoutButton.hidden = true;
+      state.textContent = "Login requerido";
+    }
+
+    function showAdmin() {
+      loginPanel.hidden = true;
+      adminPanel.hidden = false;
+      logoutButton.hidden = false;
+    }
+
+    function toDateTimeLocal(value) {
+      if (!value) return "";
+
+      const date = new Date(value);
+      const pad = (number) => String(number).padStart(2, "0");
+      return [
+        date.getFullYear(),
+        pad(date.getMonth() + 1),
+        pad(date.getDate())
+      ].join("-") + `T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    }
+
+    function fromDateTimeLocal(value) {
+      return value ? value : null;
+    }
+
+    function showMessage(text, type = "") {
+      message.innerHTML = text ? `<div class="message ${type}">${text}</div>` : "";
+    }
+
+    function fillFilters() {
+      const categories = [...new Map(allSessions.map((session) => [
+        session.event.category.short_name,
+        session.event.category
+      ])).values()];
+
+      const events = [...new Map(allSessions.map((session) => [
+        session.event.id,
+        session.event
+      ])).values()];
+
+      categoryFilter.innerHTML = '<option value="all">Todas las categorías</option>' + categories
+        .map((category) => `<option value="${category.short_name}">${category.short_name}</option>`)
+        .join("");
+
+      eventFilter.innerHTML = '<option value="all">Todos los eventos</option>' + events
+        .map((event) => `<option value="${event.id}">${event.name}</option>`)
+        .join("");
+    }
+
+    function filteredSessions() {
+      return allSessions.filter((session) => {
+        const matchesCategory = categoryFilter.value === "all"
+          || session.event.category.short_name === categoryFilter.value;
+        const matchesEvent = eventFilter.value === "all"
+          || String(session.event.id) === eventFilter.value;
+
+        return matchesCategory && matchesEvent;
+      });
+    }
+
+    function renderSessions() {
+      const sessions = filteredSessions();
+      state.textContent = `${sessions.length}/${allSessions.length} sesiones`;
+
+      if (!sessions.length) {
+        sessionsContainer.innerHTML = '<div class="empty">No hay sesiones para los filtros seleccionados.</div>';
+        return;
+      }
+
+      sessionsContainer.innerHTML = sessions.map((session) => `
+        <article class="session-card" data-session-id="${session.id}">
+          <header class="session-head">
+            <div class="cat mono">${session.event.category.short_name}</div>
+            <div class="event-name">${session.event.name}</div>
+            <div class="session-id mono">ID ${session.id}</div>
+          </header>
+          <div class="edit-grid">
+            <div class="field">
+              <label class="mono">Nombre</label>
+              <input data-field="name" value="${session.name}">
+            </div>
+            <div class="field">
+              <label class="mono">Tipo</label>
+              <input data-field="session_type" value="${session.session_type}">
+            </div>
+            <div class="field">
+              <label class="mono">Inicio</label>
+              <input data-field="starts_at" type="datetime-local" value="${toDateTimeLocal(session.starts_at)}">
+            </div>
+            <div class="field">
+              <label class="mono">Fin</label>
+              <input data-field="ends_at" type="datetime-local" value="${toDateTimeLocal(session.ends_at)}">
+            </div>
+            <div class="field">
+              <label class="mono">Estado</label>
+              <select data-field="status">
+                <option value="scheduled" ${session.status === "scheduled" ? "selected" : ""}>scheduled</option>
+                <option value="live" ${session.status === "live" ? "selected" : ""}>live</option>
+                <option value="finished" ${session.status === "finished" ? "selected" : ""}>finished</option>
+                <option value="cancelled" ${session.status === "cancelled" ? "selected" : ""}>cancelled</option>
+              </select>
+            </div>
+            <button class="save-button mono" type="button" data-save>Guardar</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    async function loadSessions() {
+      state.textContent = "Cargando";
+      showMessage("");
+
+      try {
+        const response = await fetch(API_SESSIONS, { headers: authHeaders() });
+
+        if (response.status === 401) {
+          clearToken();
+          showLogin();
+          showMessage("Sesión vencida o inválida.", "error");
+          return;
+        }
+
+        if (!response.ok) throw new Error(`API ${response.status}`);
+
+        allSessions = await response.json();
+        showAdmin();
+        fillFilters();
+        renderSessions();
+      } catch (error) {
+        sessionsContainer.innerHTML = '<div class="empty">No se pudo cargar la API admin.</div>';
+        state.textContent = "API sin conexión";
+      }
+    }
+
+    async function saveSession(card) {
+      const id = card.dataset.sessionId;
+      const payload = {};
+
+      card.querySelectorAll("[data-field]").forEach((field) => {
+        const key = field.dataset.field;
+        payload[key] = key === "starts_at" || key === "ends_at"
+          ? fromDateTimeLocal(field.value)
+          : field.value;
+      });
+
+      try {
+        const response = await fetch(`${API_SESSIONS}/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            ...authHeaders()
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.status === 401) {
+          clearToken();
+          showLogin();
+          showMessage("Sesión vencida o inválida.", "error");
+          return;
+        }
+
+        if (!response.ok) throw new Error(`API ${response.status}`);
+
+        const updated = await response.json();
+        allSessions = allSessions.map((session) => session.id === updated.id ? updated : session);
+        showMessage(`Sesión ${id} guardada correctamente.`, "ok");
+        renderSessions();
+      } catch (error) {
+        showMessage(`No se pudo guardar la sesión ${id}.`, "error");
+      }
+    }
+
+    async function login() {
+      showMessage("");
+      state.textContent = "Validando";
+
+      try {
+        const response = await fetch(API_LOGIN, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: usernameInput.value,
+            password: passwordInput.value
+          })
+        });
+
+        if (!response.ok) throw new Error(`API ${response.status}`);
+
+        const data = await response.json();
+        setToken(data.access_token);
+        passwordInput.value = "";
+        showMessage("Login correcto.", "ok");
+        loadSessions();
+      } catch (error) {
+        showLogin();
+        showMessage("Usuario o contraseña incorrectos.", "error");
+      }
+    }
+
+    sessionsContainer.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-save]");
+      if (!button) return;
+      saveSession(button.closest(".session-card"));
+    });
+
+    categoryFilter.addEventListener("change", renderSessions);
+    eventFilter.addEventListener("change", renderSessions);
+    loginButton.addEventListener("click", login);
+    passwordInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") login();
+    });
+    logoutButton.addEventListener("click", () => {
+      clearToken();
+      allSessions = [];
+      sessionsContainer.innerHTML = "";
+      showLogin();
+      showMessage("Sesión cerrada.", "ok");
+    });
+
+    if (getToken()) {
+      loadSessions();
+    } else {
+      showLogin();
+    }
+  </script>
+</body>
+</html>

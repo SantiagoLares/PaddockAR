@@ -1,0 +1,462 @@
+{
+  "metadata": {
+    "source": "mvp_manual_seed_corrected",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "season_year": 2026,
+    "source_note": "Calendario chico corregido para eventos cercanos al 27 de abril de 2026. Horarios exactos solo cuando hay referencia confiable; el resto queda marcado como tentative_schedule."
+  },
+  "categories": [
+    {
+      "name": "Formula 1",
+      "slug": "formula-1",
+      "short_name": "F1",
+      "color": "#e10600"
+    },
+    {
+      "name": "MotoGP",
+      "slug": "motogp",
+      "short_name": "MotoGP",
+      "color": "#c80502"
+    },
+    {
+      "name": "Formula 2",
+      "slug": "formula-2",
+      "short_name": "F2",
+      "color": "#0090d0"
+    },
+    {
+      "name": "World Endurance Championship",
+      "slug": "wec",
+      "short_name": "WEC",
+      "color": "#00a19c"
+    },
+    {
+      "name": "Turismo Carretera",
+      "slug": "turismo-carretera",
+      "short_name": "TC",
+      "color": "#f59e0b"
+    },
+    {
+      "name": "Turismo Nacional",
+      "slug": "turismo-nacional",
+      "short_name": "TN",
+      "color": "#22c55e"
+    }
+  ],
+  "events": [
+    {
+      "category_slug": "formula-1",
+      "season_year": 2026,
+      "round_number": 4,
+      "name": "GP de Miami",
+      "slug": "gp-de-miami-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y sede confirmadas por calendario oficial F1. Horarios de sesiones cargados como tentativos para Argentina.",
+      "data_quality": "confirmed_event_tentative_schedule",
+      "circuit": {
+        "name": "Miami International Autodrome",
+        "slug": "miami-international-autodrome",
+        "country": "Estados Unidos",
+        "city": "Miami",
+        "timezone": "America/New_York"
+      },
+      "sessions": [
+        {
+          "name": "Practica Libre 1",
+          "session_type": "practice",
+          "starts_at": "2026-05-01T13:00:00-03:00",
+          "ends_at": "2026-05-01T14:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Clasificacion Sprint",
+          "session_type": "sprint_qualifying",
+          "starts_at": "2026-05-01T17:30:00-03:00",
+          "ends_at": "2026-05-01T18:15:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Sprint",
+          "session_type": "sprint",
+          "starts_at": "2026-05-02T13:00:00-03:00",
+          "ends_at": "2026-05-02T14:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Clasificacion",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-02T17:00:00-03:00",
+          "ends_at": "2026-05-02T18:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Carrera",
+          "session_type": "race",
+          "starts_at": "2026-05-03T17:00:00-03:00",
+          "ends_at": "2026-05-03T19:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 5,
+          "is_feature": true,
+          "data_quality": "tentative_schedule"
+        }
+      ]
+    },
+    {
+      "category_slug": "formula-2",
+      "season_year": 2026,
+      "round_number": 2,
+      "name": "F2 Miami",
+      "slug": "f2-miami-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y sede confirmadas por calendario oficial FIA/F2 revisado. Horarios de sesiones cargados como tentativos para Argentina.",
+      "data_quality": "confirmed_event_tentative_schedule",
+      "circuit": {
+        "name": "Miami International Autodrome",
+        "slug": "miami-international-autodrome",
+        "country": "Estados Unidos",
+        "city": "Miami",
+        "timezone": "America/New_York"
+      },
+      "sessions": [
+        {
+          "name": "Practica Libre",
+          "session_type": "practice",
+          "starts_at": "2026-05-01T10:05:00-03:00",
+          "ends_at": "2026-05-01T10:50:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Clasificacion",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-01T15:00:00-03:00",
+          "ends_at": "2026-05-01T15:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Sprint Race",
+          "session_type": "sprint",
+          "starts_at": "2026-05-02T12:00:00-03:00",
+          "ends_at": "2026-05-02T13:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Feature Race",
+          "session_type": "race",
+          "starts_at": "2026-05-03T11:00:00-03:00",
+          "ends_at": "2026-05-03T12:15:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": true,
+          "data_quality": "tentative_schedule"
+        }
+      ]
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 6,
+      "name": "GP de Francia",
+      "slug": "gp-de-francia-motogp-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y sede confirmadas para el GP de Francia en Le Mans. Horarios MotoGP convertidos de hora local de Francia a Argentina y marcados como tentativos por posible cambio.",
+      "data_quality": "confirmed_event_tentative_schedule",
+      "circuit": {
+        "name": "Bugatti Circuit",
+        "slug": "bugatti-circuit-le-mans",
+        "country": "Francia",
+        "city": "Le Mans",
+        "timezone": "Europe/Paris"
+      },
+      "sessions": [
+        {
+          "name": "Practica Libre 1",
+          "session_type": "practice",
+          "starts_at": "2026-05-08T05:45:00-03:00",
+          "ends_at": "2026-05-08T06:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Practica",
+          "session_type": "practice",
+          "starts_at": "2026-05-08T10:00:00-03:00",
+          "ends_at": "2026-05-08T11:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Clasificacion",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-09T05:50:00-03:00",
+          "ends_at": "2026-05-09T06:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Sprint",
+          "session_type": "sprint",
+          "starts_at": "2026-05-09T10:00:00-03:00",
+          "ends_at": "2026-05-09T10:45:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Carrera",
+          "session_type": "race",
+          "starts_at": "2026-05-10T09:00:00-03:00",
+          "ends_at": "2026-05-10T10:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 5,
+          "is_feature": true,
+          "data_quality": "tentative_schedule"
+        }
+      ]
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 3,
+      "name": "6 Horas de Spa-Francorchamps",
+      "slug": "6-horas-de-spa-francorchamps-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y cronograma base tomados del programa oficial FIA WEC y convertidos de hora local de Belgica a Argentina.",
+      "data_quality": "official_schedule",
+      "circuit": {
+        "name": "Circuit de Spa-Francorchamps",
+        "slug": "circuit-de-spa-francorchamps",
+        "country": "Belgica",
+        "city": "Stavelot",
+        "timezone": "Europe/Brussels"
+      },
+      "sessions": [
+        {
+          "name": "Practica Libre 1",
+          "session_type": "practice",
+          "starts_at": "2026-05-07T06:00:00-03:00",
+          "ends_at": "2026-05-07T07:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Practica Libre 2",
+          "session_type": "practice",
+          "starts_at": "2026-05-07T10:40:00-03:00",
+          "ends_at": "2026-05-07T12:10:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Practica Libre 3",
+          "session_type": "practice",
+          "starts_at": "2026-05-08T05:10:00-03:00",
+          "ends_at": "2026-05-08T06:10:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Clasificacion LMGT3",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-08T09:30:00-03:00",
+          "ends_at": "2026-05-08T09:45:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Hyperpole LMGT3",
+          "session_type": "hyperpole",
+          "starts_at": "2026-05-08T09:55:00-03:00",
+          "ends_at": "2026-05-08T10:10:00-03:00",
+          "status": "scheduled",
+          "order_index": 5,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Clasificacion Hypercar",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-08T10:20:00-03:00",
+          "ends_at": "2026-05-08T10:35:00-03:00",
+          "status": "scheduled",
+          "order_index": 6,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Hyperpole Hypercar",
+          "session_type": "hyperpole",
+          "starts_at": "2026-05-08T10:45:00-03:00",
+          "ends_at": "2026-05-08T11:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 7,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Carrera",
+          "session_type": "race",
+          "starts_at": "2026-05-09T09:00:00-03:00",
+          "ends_at": "2026-05-09T15:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 8,
+          "is_feature": true,
+          "data_quality": "official_schedule"
+        }
+      ]
+    },
+    {
+      "category_slug": "turismo-carretera",
+      "season_year": 2026,
+      "round_number": 5,
+      "name": "TC Termas de Rio Hondo",
+      "slug": "tc-termas-de-rio-hondo-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y sede confirmadas en calendario TC 2026 publicado. Horarios cargados como tentativos hasta contar con cronograma oficial de fin de semana.",
+      "data_quality": "confirmed_event_tentative_schedule",
+      "circuit": {
+        "name": "Autodromo Internacional de Termas de Rio Hondo",
+        "slug": "autodromo-internacional-termas-de-rio-hondo",
+        "country": "Argentina",
+        "city": "Termas de Rio Hondo",
+        "timezone": "America/Argentina/Buenos_Aires"
+      },
+      "sessions": [
+        {
+          "name": "Entrenamiento",
+          "session_type": "practice",
+          "starts_at": "2026-05-09T10:00:00-03:00",
+          "ends_at": "2026-05-09T11:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Clasificacion",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-09T15:00:00-03:00",
+          "ends_at": "2026-05-09T16:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Series",
+          "session_type": "heat",
+          "starts_at": "2026-05-10T10:00:00-03:00",
+          "ends_at": "2026-05-10T11:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Final",
+          "session_type": "race",
+          "starts_at": "2026-05-10T13:30:00-03:00",
+          "ends_at": "2026-05-10T15:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": true,
+          "data_quality": "tentative_schedule"
+        }
+      ]
+    },
+    {
+      "category_slug": "turismo-nacional",
+      "season_year": 2026,
+      "round_number": 4,
+      "name": "TN San Juan Villicum",
+      "slug": "tn-san-juan-villicum-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y sede confirmadas por calendario APAT 2026. Horarios cargados como tentativos hasta contar con cronograma oficial de fin de semana.",
+      "data_quality": "confirmed_event_tentative_schedule",
+      "circuit": {
+        "name": "Circuito San Juan Villicum",
+        "slug": "circuito-san-juan-villicum",
+        "country": "Argentina",
+        "city": "Albardon",
+        "timezone": "America/Argentina/Buenos_Aires"
+      },
+      "sessions": [
+        {
+          "name": "Entrenamiento",
+          "session_type": "practice",
+          "starts_at": "2026-05-02T09:30:00-03:00",
+          "ends_at": "2026-05-02T10:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Clasificacion",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-02T15:00:00-03:00",
+          "ends_at": "2026-05-02T16:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Series",
+          "session_type": "heat",
+          "starts_at": "2026-05-03T09:30:00-03:00",
+          "ends_at": "2026-05-03T11:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "tentative_schedule"
+        },
+        {
+          "name": "Final",
+          "session_type": "race",
+          "starts_at": "2026-05-03T13:00:00-03:00",
+          "ends_at": "2026-05-03T14:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": true,
+          "data_quality": "tentative_schedule"
+        }
+      ]
+    }
+  ]
+}

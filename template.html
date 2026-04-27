@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paddock AR — Motor en Tiempo Real</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --celeste:#38BDF8; --rojo:#EF4444; --amarillo:#FACC15; --naranja:#F59E0B; --azul-tcr:#1D4ED8;
+      --gris:#94A3B8; --fondo:#020617; --fila:#0F172A; --hover:#1E293B; --borde:#1E293B;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--fondo); color:#CBD5E1; font-family:'IBM Plex Sans Condensed',sans-serif; font-size:14px; min-height:100vh; }
+    .container { max-width:860px; margin:0 auto; padding: 0 10px; }
+    .nav-bar { background: rgba(2, 6, 23, 0.98); border-bottom: 2px solid var(--borde); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+    .nav-content { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
+    .logo { font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; letter-spacing:-1px; color:#F1F5F9; }
+    .logo span { color:var(--celeste); }
+    .section-header { padding:20px 20px 8px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; text-transform:uppercase; color:#475569; border-bottom:1px solid #0F172A; }
+    details { border-bottom:1px solid var(--borde); border-left:3px solid #475569; }
+    details.arg-ext { border-left:3px solid var(--celeste); }
+    summary { list-style:none; cursor:pointer; display:grid; grid-template-columns:40px 1fr auto auto; align-items:center; gap:15px; padding:14px 20px; background:var(--fila); outline:none; }
+    summary:hover { background:var(--hover); }
+    details[open] > summary { background:#131F35; border-bottom: 1px solid var(--borde); }
+    .cat-logo { width:32px; height:32px; border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:700; text-align:center; color:white; }
+    .logo-f1 { background:#DC2626; } 
+    .logo-f2 { background:#2563EB; } 
+    .logo-f3 { background:#7C3AED; } 
+    .pilot-chip { font-size:10px; background:rgba(56,189,248,0.12); color:var(--celeste); border:1px solid rgba(56,189,248,0.25); border-radius:3px; padding:2px 6px; font-family:'IBM Plex Mono',monospace; }
+    .badge { font-family:'IBM Plex Mono',monospace; font-size:10px; padding:4px 10px; border-radius:3px; text-transform:uppercase; font-weight: 600; }
+    .badge-next { background:rgba(56,189,248,0.15); color:#7DD3FC; border:1px solid rgba(56,189,248,0.3); }
+    .schedule-wrap { padding:15px 20px 20px 75px; background: rgba(15, 23, 42, 0.5); }
+    .sched-table { width:100%; border-collapse:collapse; }
+    .sched-table td { padding:8px 10px 8px 0; font-size:13px; border-bottom:1px solid rgba(30,41,59,0.4); color:#94A3B8; }
+    .page-footer { padding:40px 20px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#334155; border-top:1px solid var(--borde); margin-top:40px; }
+    .dot-live { width:8px; height:8px; border-radius:50%; background:#EF4444; animation:blink 1s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .chevron { color:#334155; font-size:11px; transition:transform 0.3s; }
+    details[open] .chevron { transform:rotate(90deg); color:var(--celeste); }
+  </style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <div class="nav-content">
+    <div class="logo">PADDOCK<span>AR</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Inicio</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header style="padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size:18px; font-weight:700; color:white;">Temporada 2026</div>
+    <div style="font-family:'IBM Plex Mono'; font-size:13px; color:var(--gris); display:flex; align-items:center; gap:8px;">
+      <div class="dot-live"></div> <span id="reloj">—</span> <span style="color:#334155">ARG</span>
+    </div>
+  </header>
+
+  <div id="wrapper">
+    
+    {# --- SECCIÓN F1 --- #}
+    {% if calendario_f1 %}
+    <div class="section-header">🏎️ &nbsp;Fórmula 1</div>
+    {% for gp in calendario_f1 %}
+      {% if gp.estado != 'finalizado' %}
+      <details class="arg-ext f1-card" data-cat="f1 arg" {{ 'open' if loop.first else '' }}>
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">{{ gp.sede }}</div>
+            <div style="font-size:11px;color:var(--gris)">{{ gp.circuito }} · <span class="pilot-chip">{{ gp.piloto }}</span></div>
+          </div>
+          <span class="badge {{ 'badge-next' if gp.estado == 'proximo' else '' }}">{{ 'CANCELADO' if gp.estado == 'cancelado' else gp.sesiones[0].dia }}</span>
+          <span class="chevron">▶</span>
+        </summary>
+        {% if gp.estado != 'cancelado' %}
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            {% for s in gp.sesiones %}
+            <tr class="{{ 'text-slate-100 font-bold' if s.is_feature else '' }}">
+              <td>{{ s.dia }}</td><td>{{ s.hora }}</td><td>{{ s.actividad }}</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+      </details>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {# --- SECCIÓN F2 --- #}
+    {% if calendario_f2 %}
+    <div class="section-header">🏁 &nbsp;FIA Fórmula 2</div>
+    {% for gp in calendario_f2 %}
+      {% if gp.estado != 'finalizado' %}
+      <details class="arg-ext f2-card" data-cat="f2 arg" {{ 'open' if loop.first else '' }}>
+        <summary>
+          <div class="cat-logo logo-f2">F2</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">{{ gp.sede }}</div>
+            <div style="font-size:11px;color:var(--gris)">{{ gp.circuito }} · <span class="pilot-chip">{{ gp.piloto }}</span></div>
+          </div>
+          <span class="badge {{ 'badge-next' if gp.estado == 'proximo' else '' }}">{{ 'CANCELADO' if gp.estado == 'cancelado' else gp.sesiones[0].dia }}</span>
+          <span class="chevron">▶</span>
+        </summary>
+        {% if gp.estado != 'cancelado' %}
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            {% for s in gp.sesiones %}
+            <tr class="{{ 'text-slate-100 font-bold' if s.is_feature else '' }}">
+              <td>{{ s.dia }}</td><td>{{ s.hora }}</td><td>{{ s.actividad }}</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+      </details>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {# --- SECCIÓN F3 --- #}
+    {% if calendario_f3 %}
+    <div class="section-header">🏁 &nbsp;FIA Fórmula 3</div>
+    {% for gp in calendario_f3 %}
+      {% if gp.estado != 'finalizado' %}
+      <details class="arg-ext f3-card" data-cat="f3 arg" {{ 'open' if loop.first else '' }}>
+        <summary>
+          <div class="cat-logo logo-f3">F3</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">{{ gp.sede }}</div>
+            <div style="font-size:11px;color:var(--gris)">{{ gp.circuito }} · <span class="pilot-chip">{{ gp.piloto }}</span></div>
+          </div>
+          <span class="badge {{ 'badge-next' if gp.estado == 'proximo' else '' }}">{{ 'CANCELADO' if gp.estado == 'cancelado' else gp.sesiones[0].dia }}</span>
+          <span class="chevron">▶</span>
+        </summary>
+        {% if gp.estado != 'cancelado' %}
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            {% for s in gp.sesiones %}
+            <tr class="{{ 'text-slate-100 font-bold' if s.is_feature else '' }}">
+              <td>{{ s.dia }}</td><td>{{ s.hora }}</td><td>{{ s.actividad }}</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+      </details>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+
+  </div>
+
+  <footer class="page-footer">PADDOCK AR · v2.3 · Motor-Promiedos · Actualizado: {{ metadata.ultima_actualizacion }}</footer>
+</div>
+
+<script>
+  function actualizarReloj() { document.getElementById('reloj').textContent = new Date().toLocaleTimeString('es-AR',{timeZone:'America/Argentina/Buenos_Aires',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}); }
+  actualizarReloj(); setInterval(actualizarReloj, 1000);
+</script>
+</body>
+</html>

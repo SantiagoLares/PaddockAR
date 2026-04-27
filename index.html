@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paddock AR — Motor en Tiempo Real</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --celeste:#38BDF8; --rojo:#EF4444; --amarillo:#FACC15; --naranja:#F59E0B; --azul-tcr:#1D4ED8;
+      --gris:#94A3B8; --fondo:#020617; --fila:#0F172A; --hover:#1E293B; --borde:#1E293B;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--fondo); color:#CBD5E1; font-family:'IBM Plex Sans Condensed',sans-serif; font-size:14px; min-height:100vh; }
+    .container { max-width:860px; margin:0 auto; padding: 0 10px; }
+    .nav-bar { background: rgba(2, 6, 23, 0.98); border-bottom: 2px solid var(--borde); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+    .nav-content { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
+    .logo { font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; letter-spacing:-1px; color:#F1F5F9; }
+    .logo span { color:var(--celeste); }
+    .section-header { padding:20px 20px 8px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; text-transform:uppercase; color:#475569; border-bottom:1px solid #0F172A; }
+    details { border-bottom:1px solid var(--borde); border-left:3px solid #475569; }
+    details.arg-ext { border-left:3px solid var(--celeste); }
+    summary { list-style:none; cursor:pointer; display:grid; grid-template-columns:40px 1fr auto auto; align-items:center; gap:15px; padding:14px 20px; background:var(--fila); outline:none; }
+    summary:hover { background:var(--hover); }
+    details[open] > summary { background:#131F35; border-bottom: 1px solid var(--borde); }
+    .cat-logo { width:32px; height:32px; border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:700; text-align:center; color:white; }
+    .logo-f1 { background:#DC2626; } 
+    .logo-f2 { background:#2563EB; } 
+    .logo-f3 { background:#7C3AED; } 
+    .pilot-chip { font-size:10px; background:rgba(56,189,248,0.12); color:var(--celeste); border:1px solid rgba(56,189,248,0.25); border-radius:3px; padding:2px 6px; font-family:'IBM Plex Mono',monospace; }
+    .badge { font-family:'IBM Plex Mono',monospace; font-size:10px; padding:4px 10px; border-radius:3px; text-transform:uppercase; font-weight: 600; }
+    .badge-next { background:rgba(56,189,248,0.15); color:#7DD3FC; border:1px solid rgba(56,189,248,0.3); }
+    .schedule-wrap { padding:15px 20px 20px 75px; background: rgba(15, 23, 42, 0.5); }
+    .sched-table { width:100%; border-collapse:collapse; }
+    .sched-table td { padding:8px 10px 8px 0; font-size:13px; border-bottom:1px solid rgba(30,41,59,0.4); color:#94A3B8; }
+    .page-footer { padding:40px 20px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#334155; border-top:1px solid var(--borde); margin-top:40px; }
+    .dot-live { width:8px; height:8px; border-radius:50%; background:#EF4444; animation:blink 1s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .chevron { color:#334155; font-size:11px; transition:transform 0.3s; }
+    details[open] .chevron { transform:rotate(90deg); color:var(--celeste); }
+  </style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <div class="nav-content">
+    <div class="logo">PADDOCK<span>AR</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Inicio</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header style="padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size:18px; font-weight:700; color:white;">Temporada 2026</div>
+    <div style="font-family:'IBM Plex Mono'; font-size:13px; color:var(--gris); display:flex; align-items:center; gap:8px;">
+      <div class="dot-live"></div> <span id="reloj">—</span> <span style="color:#334155">ARG</span>
+    </div>
+  </header>
+
+  <div id="wrapper">
+    
+    
+    
+    <div class="section-header">🏎️ &nbsp;Fórmula 1</div>
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" open>
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Sakhir</div>
+            <div style="font-size:11px;color:var(--gris)">Sakhir · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">10/04</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>10/04</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>10/04</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>11/04</td><td>09:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>11/04</td><td>13:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>12/04</td><td>12:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Jeddah</div>
+            <div style="font-size:11px;color:var(--gris)">Jeddah · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">17/04</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>17/04</td><td>10:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>17/04</td><td>14:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>18/04</td><td>10:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>18/04</td><td>14:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>19/04</td><td>14:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Miami Gardens</div>
+            <div style="font-size:11px;color:var(--gris)">Miami · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">01/05</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>01/05</td><td>13:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>01/05</td><td>17:30</td><td>Sprint Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>02/05</td><td>13:00</td><td>Sprint</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>02/05</td><td>17:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>03/05</td><td>17:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Montréal</div>
+            <div style="font-size:11px;color:var(--gris)">Montreal · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">22/05</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>22/05</td><td>13:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>22/05</td><td>17:30</td><td>Sprint Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>23/05</td><td>13:00</td><td>Sprint</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>23/05</td><td>17:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>24/05</td><td>17:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Monte Carlo</div>
+            <div style="font-size:11px;color:var(--gris)">Monte Carlo · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">05/06</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>05/06</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>05/06</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>06/06</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>06/06</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>07/06</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Barcelona</div>
+            <div style="font-size:11px;color:var(--gris)">Catalunya · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">12/06</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>12/06</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>12/06</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>13/06</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>13/06</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>14/06</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Spielberg</div>
+            <div style="font-size:11px;color:var(--gris)">Spielberg · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">26/06</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>26/06</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>26/06</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>27/06</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>27/06</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>28/06</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Silverstone</div>
+            <div style="font-size:11px;color:var(--gris)">Silverstone · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">03/07</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>03/07</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>03/07</td><td>12:30</td><td>Sprint Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>04/07</td><td>08:00</td><td>Sprint</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>04/07</td><td>12:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>05/07</td><td>11:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Spa-Francorchamps</div>
+            <div style="font-size:11px;color:var(--gris)">Spa-Francorchamps · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">17/07</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>17/07</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>17/07</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>18/07</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>18/07</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>19/07</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Budapest</div>
+            <div style="font-size:11px;color:var(--gris)">Hungaroring · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">24/07</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>24/07</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>24/07</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>25/07</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>25/07</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>26/07</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Zandvoort</div>
+            <div style="font-size:11px;color:var(--gris)">Zandvoort · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">21/08</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>21/08</td><td>07:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>21/08</td><td>11:30</td><td>Sprint Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>22/08</td><td>07:00</td><td>Sprint</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>22/08</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>23/08</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Monza</div>
+            <div style="font-size:11px;color:var(--gris)">Monza · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">04/09</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>04/09</td><td>07:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>04/09</td><td>11:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>05/09</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>05/09</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>06/09</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Madrid</div>
+            <div style="font-size:11px;color:var(--gris)">Madring · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">11/09</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>11/09</td><td>08:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>11/09</td><td>12:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>12/09</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>12/09</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>13/09</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Baku</div>
+            <div style="font-size:11px;color:var(--gris)">Baku · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">24/09</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>24/09</td><td>05:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>24/09</td><td>09:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>25/09</td><td>05:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>25/09</td><td>09:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>26/09</td><td>08:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Marina Bay</div>
+            <div style="font-size:11px;color:var(--gris)">Singapore · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">09/10</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>09/10</td><td>05:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>09/10</td><td>09:30</td><td>Sprint Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>10/10</td><td>06:00</td><td>Sprint</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>10/10</td><td>10:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>11/10</td><td>09:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Austin</div>
+            <div style="font-size:11px;color:var(--gris)">Austin · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">23/10</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>23/10</td><td>14:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>23/10</td><td>18:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>24/10</td><td>14:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>24/10</td><td>18:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>25/10</td><td>17:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Mexico City</div>
+            <div style="font-size:11px;color:var(--gris)">Mexico City · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">30/10</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>30/10</td><td>15:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>30/10</td><td>19:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>31/10</td><td>14:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>31/10</td><td>18:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>01/11</td><td>17:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">São Paulo</div>
+            <div style="font-size:11px;color:var(--gris)">Interlagos · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">06/11</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>06/11</td><td>12:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>06/11</td><td>16:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>07/11</td><td>11:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>07/11</td><td>15:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>08/11</td><td>14:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Las Vegas</div>
+            <div style="font-size:11px;color:var(--gris)">Las Vegas · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">19/11</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>19/11</td><td>21:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>20/11</td><td>01:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>20/11</td><td>21:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>21/11</td><td>01:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>22/11</td><td>01:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Lusail</div>
+            <div style="font-size:11px;color:var(--gris)">Lusail · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">27/11</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>27/11</td><td>10:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>27/11</td><td>14:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>28/11</td><td>11:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>28/11</td><td>15:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>29/11</td><td>13:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+      
+      <details class="arg-ext f1-card" data-cat="f1 arg" >
+        <summary>
+          <div class="cat-logo logo-f1">F1</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Yas Marina</div>
+            <div style="font-size:11px;color:var(--gris)">Yas Marina Circuit · <span class="pilot-chip">F. Colapinto</span></div>
+          </div>
+          <span class="badge badge-next">04/12</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>04/12</td><td>06:30</td><td>Practice 1</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>04/12</td><td>10:00</td><td>Practice 2</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>05/12</td><td>07:30</td><td>Practice 3</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="">
+              <td>05/12</td><td>11:00</td><td>Qualifying</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>06/12</td><td>10:00</td><td>Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+    
+
+    
+    
+    <div class="section-header">🏁 &nbsp;FIA Fórmula 2</div>
+    
+      
+      <details class="arg-ext f2-card" data-cat="f2 arg" open>
+        <summary>
+          <div class="cat-logo logo-f2">F2</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Imola</div>
+            <div style="font-size:11px;color:var(--gris)">Enzo e Dino Ferrari · <span class="pilot-chip">N. Varrone</span></div>
+          </div>
+          <span class="badge badge-next">15/05</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>15/05</td><td>11:00</td><td>Sprint Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>17/05</td><td>05:00</td><td>Feature Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+    
+
+    
+    
+    <div class="section-header">🏁 &nbsp;FIA Fórmula 3</div>
+    
+      
+      <details class="arg-ext f3-card" data-cat="f3 arg" open>
+        <summary>
+          <div class="cat-logo logo-f3">F3</div>
+          <div class="event-info">
+            <div class="font-bold text-slate-100">Imola</div>
+            <div style="font-size:11px;color:var(--gris)">Enzo e Dino Ferrari · <span class="pilot-chip">M. Colnaghi</span></div>
+          </div>
+          <span class="badge badge-next">16/05</span>
+          <span class="chevron">▶</span>
+        </summary>
+        
+        <div class="schedule-wrap">
+          <table class="sched-table">
+            
+            <tr class="">
+              <td>16/05</td><td>04:30</td><td>Sprint Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+            <tr class="text-slate-100 font-bold">
+              <td>17/05</td><td>03:15</td><td>Feature Race</td><td style="text-align:right">PRÓXIMO</td>
+            </tr>
+            
+          </table>
+        </div>
+        
+      </details>
+      
+    
+    
+
+  </div>
+
+  <footer class="page-footer">PADDOCK AR · v2.3 · Motor-Promiedos · Actualizado: 01/04/2026 13:30</footer>
+</div>
+
+<script>
+  function actualizarReloj() { document.getElementById('reloj').textContent = new Date().toLocaleTimeString('es-AR',{timeZone:'America/Argentina/Buenos_Aires',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}); }
+  actualizarReloj(); setInterval(actualizarReloj, 1000);
+</script>
+</body>
+</html>

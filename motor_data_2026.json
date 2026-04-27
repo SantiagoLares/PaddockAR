@@ -1,0 +1,1035 @@
+{
+  "metadata": {
+    "ultima_actualizacion": "01/04/2026 13:30",
+    "fuente": "OpenF1 API / FIA Live Timing"
+  },
+  "f1": [
+    {
+      "sede": "Bahrain",
+      "circuito": "Sakhir",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "11/02",
+          "hora": "04:00",
+          "actividad": "Day 1",
+          "is_feature": false
+        },
+        {
+          "dia": "12/02",
+          "hora": "04:00",
+          "actividad": "Day 2",
+          "is_feature": false
+        },
+        {
+          "dia": "13/02",
+          "hora": "04:00",
+          "actividad": "Day 3",
+          "is_feature": false
+        },
+        {
+          "dia": "18/02",
+          "hora": "04:00",
+          "actividad": "Day 1",
+          "is_feature": false
+        },
+        {
+          "dia": "19/02",
+          "hora": "04:00",
+          "actividad": "Day 2",
+          "is_feature": false
+        },
+        {
+          "dia": "20/02",
+          "hora": "04:00",
+          "actividad": "Day 3",
+          "is_feature": false
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Melbourne",
+      "circuito": "Melbourne",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "05/03",
+          "hora": "22:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "06/03",
+          "hora": "02:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "06/03",
+          "hora": "22:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "07/03",
+          "hora": "02:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "08/03",
+          "hora": "01:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Shanghai",
+      "circuito": "Shanghai",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "13/03",
+          "hora": "00:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "13/03",
+          "hora": "04:30",
+          "actividad": "Sprint Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "14/03",
+          "hora": "00:00",
+          "actividad": "Sprint",
+          "is_feature": false
+        },
+        {
+          "dia": "14/03",
+          "hora": "04:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "15/03",
+          "hora": "04:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Suzuka",
+      "circuito": "Suzuka",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "26/03",
+          "hora": "23:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "27/03",
+          "hora": "03:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "27/03",
+          "hora": "23:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "28/03",
+          "hora": "03:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "29/03",
+          "hora": "02:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Sakhir",
+      "circuito": "Sakhir",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "10/04",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "10/04",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "11/04",
+          "hora": "09:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "11/04",
+          "hora": "13:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "12/04",
+          "hora": "12:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Jeddah",
+      "circuito": "Jeddah",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "17/04",
+          "hora": "10:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "17/04",
+          "hora": "14:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "18/04",
+          "hora": "10:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "18/04",
+          "hora": "14:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "19/04",
+          "hora": "14:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Miami Gardens",
+      "circuito": "Miami",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "01/05",
+          "hora": "13:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "01/05",
+          "hora": "17:30",
+          "actividad": "Sprint Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "02/05",
+          "hora": "13:00",
+          "actividad": "Sprint",
+          "is_feature": false
+        },
+        {
+          "dia": "02/05",
+          "hora": "17:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "03/05",
+          "hora": "17:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Montréal",
+      "circuito": "Montreal",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "22/05",
+          "hora": "13:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "22/05",
+          "hora": "17:30",
+          "actividad": "Sprint Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "23/05",
+          "hora": "13:00",
+          "actividad": "Sprint",
+          "is_feature": false
+        },
+        {
+          "dia": "23/05",
+          "hora": "17:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "24/05",
+          "hora": "17:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Monte Carlo",
+      "circuito": "Monte Carlo",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "05/06",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "05/06",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "06/06",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "06/06",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "07/06",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Barcelona",
+      "circuito": "Catalunya",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "12/06",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "12/06",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "13/06",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "13/06",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "14/06",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Spielberg",
+      "circuito": "Spielberg",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "26/06",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "26/06",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "27/06",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "27/06",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "28/06",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Silverstone",
+      "circuito": "Silverstone",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "03/07",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "03/07",
+          "hora": "12:30",
+          "actividad": "Sprint Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "04/07",
+          "hora": "08:00",
+          "actividad": "Sprint",
+          "is_feature": false
+        },
+        {
+          "dia": "04/07",
+          "hora": "12:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "05/07",
+          "hora": "11:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Spa-Francorchamps",
+      "circuito": "Spa-Francorchamps",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "17/07",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "17/07",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "18/07",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "18/07",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "19/07",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Budapest",
+      "circuito": "Hungaroring",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "24/07",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "24/07",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "25/07",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "25/07",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "26/07",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Zandvoort",
+      "circuito": "Zandvoort",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "21/08",
+          "hora": "07:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "21/08",
+          "hora": "11:30",
+          "actividad": "Sprint Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "22/08",
+          "hora": "07:00",
+          "actividad": "Sprint",
+          "is_feature": false
+        },
+        {
+          "dia": "22/08",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "23/08",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Monza",
+      "circuito": "Monza",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "04/09",
+          "hora": "07:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "04/09",
+          "hora": "11:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "05/09",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "05/09",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "06/09",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Madrid",
+      "circuito": "Madring",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "11/09",
+          "hora": "08:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "11/09",
+          "hora": "12:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "12/09",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "12/09",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "13/09",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Baku",
+      "circuito": "Baku",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "24/09",
+          "hora": "05:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "24/09",
+          "hora": "09:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "25/09",
+          "hora": "05:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "25/09",
+          "hora": "09:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "26/09",
+          "hora": "08:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Marina Bay",
+      "circuito": "Singapore",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "09/10",
+          "hora": "05:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "09/10",
+          "hora": "09:30",
+          "actividad": "Sprint Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "10/10",
+          "hora": "06:00",
+          "actividad": "Sprint",
+          "is_feature": false
+        },
+        {
+          "dia": "10/10",
+          "hora": "10:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "11/10",
+          "hora": "09:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Austin",
+      "circuito": "Austin",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "23/10",
+          "hora": "14:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "23/10",
+          "hora": "18:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "24/10",
+          "hora": "14:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "24/10",
+          "hora": "18:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "25/10",
+          "hora": "17:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Mexico City",
+      "circuito": "Mexico City",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "30/10",
+          "hora": "15:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "30/10",
+          "hora": "19:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "31/10",
+          "hora": "14:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "31/10",
+          "hora": "18:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "01/11",
+          "hora": "17:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "São Paulo",
+      "circuito": "Interlagos",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "06/11",
+          "hora": "12:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "06/11",
+          "hora": "16:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "07/11",
+          "hora": "11:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "07/11",
+          "hora": "15:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "08/11",
+          "hora": "14:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Las Vegas",
+      "circuito": "Las Vegas",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "19/11",
+          "hora": "21:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "20/11",
+          "hora": "01:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "20/11",
+          "hora": "21:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "21/11",
+          "hora": "01:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "22/11",
+          "hora": "01:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Lusail",
+      "circuito": "Lusail",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "27/11",
+          "hora": "10:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "27/11",
+          "hora": "14:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "28/11",
+          "hora": "11:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "28/11",
+          "hora": "15:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "29/11",
+          "hora": "13:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    },
+    {
+      "sede": "Yas Marina",
+      "circuito": "Yas Marina Circuit",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "04/12",
+          "hora": "06:30",
+          "actividad": "Practice 1",
+          "is_feature": false
+        },
+        {
+          "dia": "04/12",
+          "hora": "10:00",
+          "actividad": "Practice 2",
+          "is_feature": false
+        },
+        {
+          "dia": "05/12",
+          "hora": "07:30",
+          "actividad": "Practice 3",
+          "is_feature": false
+        },
+        {
+          "dia": "05/12",
+          "hora": "11:00",
+          "actividad": "Qualifying",
+          "is_feature": false
+        },
+        {
+          "dia": "06/12",
+          "hora": "10:00",
+          "actividad": "Race",
+          "is_feature": true
+        }
+      ],
+      "categoria": "F1",
+      "piloto": "F. Colapinto"
+    }
+  ],
+  "f2": [
+    {
+      "categoria": "F2",
+      "piloto": "N. Varrone",
+      "sede": "Imola",
+      "circuito": "Enzo e Dino Ferrari",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "15/05",
+          "hora": "11:00",
+          "actividad": "Sprint Race",
+          "is_feature": false
+        },
+        {
+          "dia": "17/05",
+          "hora": "05:00",
+          "actividad": "Feature Race",
+          "is_feature": true
+        }
+      ]
+    }
+  ],
+  "f3": [
+    {
+      "categoria": "F3",
+      "piloto": "M. Colnaghi",
+      "sede": "Imola",
+      "circuito": "Enzo e Dino Ferrari",
+      "estado": "proximo",
+      "sesiones": [
+        {
+          "dia": "16/05",
+          "hora": "04:30",
+          "actividad": "Sprint Race",
+          "is_feature": false
+        },
+        {
+          "dia": "17/05",
+          "hora": "03:15",
+          "actividad": "Feature Race",
+          "is_feature": true
+        }
+      ]
+    }
+  ]
+}
