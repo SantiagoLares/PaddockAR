@@ -1,9 +1,10 @@
 (function () {
   const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
   const PROD_API_BASE_URL = "https://paddockar.onrender.com";
-  const IS_LOCAL = location.protocol !== "file:" && ["localhost", "127.0.0.1"].includes(location.hostname);
-  const API_BASE_URL = IS_LOCAL ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
-  const LOG_ENABLED = IS_LOCAL || localStorage.getItem("paddockar_debug") === "1";
+  const USE_LOCAL_API = new URLSearchParams(window.location.search).get("api") === "local";
+  const API_BASE_URL = USE_LOCAL_API ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
+  const IS_LOCAL_FRONTEND = location.protocol !== "file:" && ["localhost", "127.0.0.1"].includes(location.hostname);
+  const LOG_ENABLED = USE_LOCAL_API || IS_LOCAL_FRONTEND || localStorage.getItem("paddockar_debug") === "1";
   const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
   const ASSET_BASE_URL = location.pathname.includes("/admin/") ? "../assets" : "assets";
 
@@ -189,6 +190,9 @@
 
   window.PaddockARCommon = {
     API_BASE_URL,
+    LOCAL_API_BASE_URL,
+    PROD_API_BASE_URL,
+    USE_LOCAL_API,
     ARG_TIMEZONE,
     categoryColors,
     categoryCode,

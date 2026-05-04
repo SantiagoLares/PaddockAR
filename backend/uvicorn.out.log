@@ -9,3 +9,547 @@ INFO:     127.0.0.1:52539 - "GET /api/events HTTP/1.1" 200 OK
 2026-05-04 18:37:28,995 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
 2026-05-04 18:37:28,998 INFO [app.main] GET /api/standings/category/f1 -> 200 11.16ms
 INFO:     127.0.0.1:52539 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:37:44,111 INFO [app.main] GET /api/categories -> 200 10.98ms
+INFO:     127.0.0.1:56574 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:37:44,192 INFO [app.main] GET /api/events -> 200 91.59ms
+INFO:     127.0.0.1:52838 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:37:44,194 INFO [app.main] GET /api/health -> 200 19.39ms
+INFO:     127.0.0.1:59628 - "GET /api/health HTTP/1.1" 200 OK
+2026-05-04 18:37:44,278 INFO [app.main] GET /api/categories -> 200 103.96ms
+INFO:     127.0.0.1:51564 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:37:44,287 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:37:44,289 INFO [app.main] GET /api/sessions -> 200 115.16ms
+INFO:     127.0.0.1:51731 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:37:44,292 INFO [app.main] GET /api/events -> 200 76.75ms
+INFO:     127.0.0.1:56574 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:37:44,314 INFO [app.main] GET /api/standings/category/f1 -> 200 96.23ms
+INFO:     127.0.0.1:59631 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:37:44,348 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:37:44,412 INFO [app.main] GET /api/standings/category/f1 -> 200 73.18ms
+INFO:     127.0.0.1:56574 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:37:44,421 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:37:44,423 INFO [app.main] GET /api/standings/category/f1 -> 200 9.19ms
+INFO:     127.0.0.1:51731 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:38:04,427 INFO [app.main] GET /api/categories -> 200 7.91ms
+INFO:     127.0.0.1:50412 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:38:04,453 INFO [app.main] GET /api/events -> 200 33.74ms
+INFO:     127.0.0.1:56929 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:38:04,480 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:38:04,484 INFO [app.main] GET /api/standings/category/f1 -> 200 9.92ms
+INFO:     127.0.0.1:56929 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:38:14,546 INFO [app.main] GET /api/sessions -> 200 29.31ms
+INFO:     127.0.0.1:60141 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:38:44,552 INFO [app.main] GET /api/sessions -> 200 40.11ms
+INFO:     127.0.0.1:65343 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:39:14,535 INFO [app.main] GET /api/sessions -> 200 25.84ms
+INFO:     127.0.0.1:62101 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:39:44,552 INFO [app.main] GET /api/sessions -> 200 28.99ms
+INFO:     127.0.0.1:54873 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:40:14,547 INFO [app.main] GET /api/sessions -> 200 26.18ms
+INFO:     127.0.0.1:59641 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:40:44,545 INFO [app.main] GET /api/sessions -> 200 26.44ms
+INFO:     127.0.0.1:57538 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:41:25,545 INFO [app.main] GET /api/sessions -> 200 26.18ms
+INFO:     127.0.0.1:61693 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:42:06,579 INFO [app.main] GET /api/categories -> 200 8.91ms
+INFO:     127.0.0.1:61602 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:42:06,604 INFO [app.main] GET /api/events -> 200 34.17ms
+INFO:     127.0.0.1:49670 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:42:06,650 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:42:06,653 INFO [app.main] GET /api/standings/category/f1 -> 200 10.43ms
+INFO:     127.0.0.1:49670 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:42:25,559 INFO [app.main] GET /api/sessions -> 200 34.00ms
+INFO:     127.0.0.1:50863 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:43:25,551 INFO [app.main] GET /api/sessions -> 200 28.01ms
+INFO:     127.0.0.1:49978 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:44:25,551 INFO [app.main] GET /api/sessions -> 200 30.67ms
+INFO:     127.0.0.1:55407 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:45:25,547 INFO [app.main] GET /api/sessions -> 200 31.26ms
+INFO:     127.0.0.1:64041 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:46:25,555 INFO [app.main] GET /api/sessions -> 200 35.67ms
+INFO:     127.0.0.1:52585 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:47:25,562 INFO [app.main] GET /api/sessions -> 200 35.25ms
+INFO:     127.0.0.1:64103 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:48:25,565 INFO [app.main] GET /api/sessions -> 200 41.80ms
+INFO:     127.0.0.1:52340 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:49:20,894 INFO [app.main] GET /api/sessions -> 200 32.03ms
+INFO:     127.0.0.1:49994 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:49:25,576 INFO [app.main] GET /api/sessions -> 200 52.94ms
+INFO:     127.0.0.1:49994 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:49:51,537 INFO [app.main] GET /api/sessions -> 200 26.05ms
+INFO:     127.0.0.1:63125 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:50:19,426 INFO [app.main] GET /api/sessions -> 200 41.94ms
+INFO:     127.0.0.1:54573 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:50:19,807 INFO [app.main] GET /api/sessions -> 200 42.87ms
+INFO:     127.0.0.1:54573 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:50:49,427 INFO [app.main] GET /api/sessions -> 200 40.90ms
+INFO:     127.0.0.1:65529 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:50:50,497 INFO [app.main] GET /api/categories -> 200 7.42ms
+INFO:     127.0.0.1:65529 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:50:50,518 INFO [app.main] GET /api/events -> 200 27.89ms
+INFO:     127.0.0.1:53099 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:50:50,547 INFO [app.main] GET /api/sessions -> 200 25.79ms
+INFO:     127.0.0.1:65529 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:50:50,615 INFO [app.api.routes.standings] Public standings requested for category slug=f2 rows=33
+2026-05-04 18:50:50,618 INFO [app.main] GET /api/standings/category/f2 -> 200 11.86ms
+INFO:     127.0.0.1:65529 - "GET /api/standings/category/f2 HTTP/1.1" 200 OK
+2026-05-04 18:51:20,541 INFO [app.main] GET /api/sessions -> 200 25.13ms
+INFO:     127.0.0.1:61518 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:51:50,533 INFO [app.main] GET /api/sessions -> 200 25.93ms
+INFO:     127.0.0.1:53539 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:52:20,542 INFO [app.main] GET /api/sessions -> 200 26.27ms
+INFO:     127.0.0.1:60956 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:52:50,549 INFO [app.main] GET /api/sessions -> 200 26.80ms
+INFO:     127.0.0.1:56169 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:53:20,549 INFO [app.main] GET /api/sessions -> 200 27.56ms
+INFO:     127.0.0.1:60308 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:53:50,544 INFO [app.main] GET /api/sessions -> 200 27.28ms
+INFO:     127.0.0.1:65198 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:54:20,542 INFO [app.main] GET /api/sessions -> 200 35.53ms
+INFO:     127.0.0.1:64083 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:54:50,550 INFO [app.main] GET /api/sessions -> 200 28.13ms
+INFO:     127.0.0.1:56365 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:55:19,837 INFO [app.main] GET /api/sessions -> 200 53.15ms
+INFO:     127.0.0.1:64831 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:55:49,815 INFO [app.main] GET /api/sessions -> 200 36.14ms
+INFO:     127.0.0.1:63338 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:56:19,817 INFO [app.main] GET /api/sessions -> 200 34.06ms
+INFO:     127.0.0.1:62722 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:56:50,554 INFO [app.main] GET /api/sessions -> 200 35.42ms
+INFO:     127.0.0.1:56419 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:57:20,542 INFO [app.main] GET /api/sessions -> 200 30.66ms
+INFO:     127.0.0.1:49713 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:57:50,545 INFO [app.main] GET /api/sessions -> 200 30.60ms
+INFO:     127.0.0.1:60528 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:58:20,545 INFO [app.main] GET /api/sessions -> 200 26.66ms
+INFO:     127.0.0.1:57878 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:58:50,540 INFO [app.main] GET /api/sessions -> 200 32.30ms
+INFO:     127.0.0.1:59305 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:59:02,819 INFO [app.main] GET /api/sessions -> 200 42.15ms
+INFO:     127.0.0.1:55275 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:59:02,838 INFO [app.main] GET /api/categories -> 200 7.24ms
+INFO:     127.0.0.1:55275 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:59:02,872 INFO [app.main] GET /api/events -> 200 39.50ms
+INFO:     127.0.0.1:57967 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:59:03,194 INFO [app.api.routes.standings] Public standings requested for category slug=f2 rows=33
+2026-05-04 18:59:03,197 INFO [app.main] GET /api/standings/category/f2 -> 200 10.21ms
+INFO:     127.0.0.1:57967 - "GET /api/standings/category/f2 HTTP/1.1" 200 OK
+2026-05-04 18:59:19,006 INFO [app.main] GET /api/sessions -> 200 33.60ms
+INFO:     127.0.0.1:49576 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:59:21,361 INFO [app.main] GET /api/categories -> 200 7.40ms
+INFO:     127.0.0.1:49576 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:59:21,395 INFO [app.main] GET /api/events -> 200 39.27ms
+INFO:     127.0.0.1:62873 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:59:21,417 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:59:21,419 INFO [app.main] GET /api/standings/category/f1 -> 200 8.62ms
+INFO:     127.0.0.1:62873 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 18:59:33,543 INFO [app.main] GET /api/sessions -> 200 26.33ms
+INFO:     127.0.0.1:64784 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:59:52,707 INFO [app.main] GET /api/circuits -> 200 8.81ms
+INFO:     127.0.0.1:58873 - "GET /api/circuits HTTP/1.1" 200 OK
+2026-05-04 18:59:52,708 INFO [app.main] GET /api/categories -> 200 10.36ms
+INFO:     127.0.0.1:59319 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:59:53,145 INFO [app.main] OPTIONS /api/admin/events -> 200 0.23ms
+INFO:     127.0.0.1:59319 - "OPTIONS /api/admin/events HTTP/1.1" 200 OK
+2026-05-04 18:59:53,157 INFO [app.api.routes.admin_events] Admin listed 106 events
+2026-05-04 18:59:53,161 INFO [app.main] GET /api/admin/events -> 200 14.01ms
+INFO:     127.0.0.1:59319 - "GET /api/admin/events HTTP/1.1" 200 OK
+2026-05-04 19:00:03,546 INFO [app.main] GET /api/sessions -> 200 26.90ms
+INFO:     127.0.0.1:57158 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:00:24,291 INFO [app.main] OPTIONS /api/admin/sessions -> 200 0.22ms
+INFO:     127.0.0.1:54793 - "OPTIONS /api/admin/sessions HTTP/1.1" 200 OK
+2026-05-04 19:00:24,314 INFO [app.api.routes.admin_sessions] Admin listed 303 sessions
+2026-05-04 19:00:24,704 INFO [app.main] GET /api/admin/sessions -> 200 410.67ms
+INFO:     127.0.0.1:54793 - "GET /api/admin/sessions HTTP/1.1" 200 OK
+2026-05-04 19:00:33,533 INFO [app.main] GET /api/sessions -> 200 26.23ms
+INFO:     127.0.0.1:51555 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:01:03,542 INFO [app.main] GET /api/sessions -> 200 28.65ms
+INFO:     127.0.0.1:55631 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:01:05,779 INFO [app.main] GET /api/sessions -> 200 26.73ms
+INFO:     127.0.0.1:55631 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:01:33,545 INFO [app.main] GET /api/sessions -> 200 28.34ms
+INFO:     127.0.0.1:60655 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:01:36,536 INFO [app.main] GET /api/sessions -> 200 27.18ms
+INFO:     127.0.0.1:60655 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:01:51,320 INFO [app.main] GET /api/sessions -> 200 30.11ms
+INFO:     127.0.0.1:56061 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:03,553 INFO [app.main] GET /api/sessions -> 200 25.54ms
+INFO:     127.0.0.1:57051 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:06,546 INFO [app.main] GET /api/sessions -> 200 26.37ms
+INFO:     127.0.0.1:57051 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:21,324 INFO [app.main] GET /api/sessions -> 200 26.99ms
+INFO:     127.0.0.1:57503 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:23,691 INFO [app.main] GET /api/categories -> 200 8.13ms
+INFO:     127.0.0.1:57503 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:02:23,720 INFO [app.main] GET /api/events -> 200 36.66ms
+INFO:     127.0.0.1:60047 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:02:23,752 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 19:02:23,754 INFO [app.main] GET /api/standings/category/f1 -> 200 9.09ms
+INFO:     127.0.0.1:60047 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 19:02:32,629 INFO [app.main] GET /api/sessions -> 200 29.00ms
+INFO:     127.0.0.1:54724 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:33,245 INFO [app.main] GET /api/categories -> 200 8.90ms
+INFO:     127.0.0.1:54724 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:02:33,274 INFO [app.main] GET /api/events -> 200 37.33ms
+INFO:     127.0.0.1:63828 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:02:33,354 INFO [app.api.routes.standings] Public standings requested for category slug=f2 rows=33
+2026-05-04 19:02:33,356 INFO [app.main] GET /api/standings/category/f2 -> 200 8.08ms
+INFO:     127.0.0.1:63828 - "GET /api/standings/category/f2 HTTP/1.1" 200 OK
+2026-05-04 19:02:36,042 INFO [app.main] GET /api/sessions -> 200 42.16ms
+INFO:     127.0.0.1:63828 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:36,538 INFO [app.main] GET /api/sessions -> 200 31.23ms
+INFO:     127.0.0.1:63828 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:02:37,600 INFO [app.main] GET /api/categories -> 200 8.42ms
+INFO:     127.0.0.1:63828 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:02:37,638 INFO [app.main] GET /api/events -> 200 45.39ms
+INFO:     127.0.0.1:54724 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:02:37,729 INFO [app.api.routes.standings] Public standings requested for category slug=tc rows=0
+2026-05-04 19:02:37,732 INFO [app.main] GET /api/standings/category/tc -> 200 8.84ms
+INFO:     127.0.0.1:54724 - "GET /api/standings/category/tc HTTP/1.1" 200 OK
+2026-05-04 19:03:06,547 INFO [app.main] GET /api/sessions -> 200 28.09ms
+INFO:     127.0.0.1:58671 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:03:14,543 INFO [app.main] GET /api/sessions -> 200 27.62ms
+INFO:     127.0.0.1:53602 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:03:25,549 INFO [app.main] GET /api/sessions -> 200 28.60ms
+INFO:     127.0.0.1:50452 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:03:36,540 INFO [app.main] GET /api/sessions -> 200 28.13ms
+INFO:     127.0.0.1:58127 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:03:44,533 INFO [app.main] GET /api/sessions -> 200 26.66ms
+INFO:     127.0.0.1:51665 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:04:06,538 INFO [app.main] GET /api/sessions -> 200 27.66ms
+INFO:     127.0.0.1:50270 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:04:14,532 INFO [app.main] GET /api/sessions -> 200 25.84ms
+INFO:     127.0.0.1:50137 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:04:25,545 INFO [app.main] GET /api/sessions -> 200 30.62ms
+INFO:     127.0.0.1:49440 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:04:44,541 INFO [app.main] GET /api/sessions -> 200 26.05ms
+INFO:     127.0.0.1:61028 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:05:14,545 INFO [app.main] GET /api/sessions -> 200 26.38ms
+INFO:     127.0.0.1:55550 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:05:25,540 INFO [app.main] GET /api/sessions -> 200 26.50ms
+INFO:     127.0.0.1:63015 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:05:25,568 INFO [app.main] GET /api/sessions -> 200 25.83ms
+INFO:     127.0.0.1:52511 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:05:44,542 INFO [app.main] GET /api/sessions -> 200 27.47ms
+INFO:     127.0.0.1:60078 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:06:25,549 INFO [app.main] GET /api/sessions -> 200 29.00ms
+INFO:     127.0.0.1:60602 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:06:25,621 INFO [app.main] GET /api/sessions -> 200 44.79ms
+INFO:     127.0.0.1:61606 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:06:25,649 INFO [app.main] GET /api/sessions -> 200 25.51ms
+INFO:     127.0.0.1:60602 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:06:36,557 INFO [app.main] GET /api/sessions -> 200 29.93ms
+INFO:     127.0.0.1:53943 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:06:36,589 INFO [app.main] GET /api/sessions -> 200 29.43ms
+INFO:     127.0.0.1:62867 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:07:25,547 INFO [app.main] GET /api/sessions -> 200 25.58ms
+INFO:     127.0.0.1:59839 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:07:25,578 INFO [app.main] GET /api/sessions -> 200 28.01ms
+INFO:     127.0.0.1:61155 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:07:25,612 INFO [app.main] GET /api/sessions -> 200 32.81ms
+INFO:     127.0.0.1:59839 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:07:48,952 INFO [app.main] GET /api/sessions -> 200 29.02ms
+INFO:     127.0.0.1:61785 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:07:50,701 INFO [app.main] GET /api/sessions -> 200 57.80ms
+INFO:     127.0.0.1:61785 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:07:52,678 INFO [app.main] GET /api/categories -> 200 7.02ms
+INFO:     127.0.0.1:61785 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:07:52,701 INFO [app.main] GET /api/events -> 200 28.60ms
+INFO:     127.0.0.1:60409 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:07:54,560 INFO [app.main] GET /api/sessions -> 200 40.95ms
+INFO:     127.0.0.1:60409 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:03,702 INFO [app.main] GET /api/sessions -> 200 42.11ms
+INFO:     127.0.0.1:51951 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:04,099 INFO [app.main] GET /api/sessions -> 200 50.27ms
+INFO:     127.0.0.1:51951 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:04,106 INFO [app.main] GET /api/categories -> 200 10.31ms
+INFO:     127.0.0.1:62909 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:08:04,109 INFO [app.main] GET /api/circuits -> 200 12.96ms
+INFO:     127.0.0.1:55439 - "GET /api/circuits HTTP/1.1" 200 OK
+2026-05-04 19:08:04,211 INFO [app.main] GET /api/sessions -> 200 45.09ms
+INFO:     127.0.0.1:55439 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:04,629 INFO [app.api.routes.admin_events] Admin listed 106 events
+2026-05-04 19:08:04,634 INFO [app.main] GET /api/admin/events -> 200 15.27ms
+INFO:     127.0.0.1:55439 - "GET /api/admin/events HTTP/1.1" 200 OK
+2026-05-04 19:08:33,696 INFO [app.main] GET /api/sessions -> 200 34.25ms
+INFO:     127.0.0.1:50309 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:34,564 INFO [app.main] GET /api/sessions -> 200 42.74ms
+INFO:     127.0.0.1:50309 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:34,591 INFO [app.main] GET /api/sessions -> 200 24.91ms
+INFO:     127.0.0.1:63141 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:08:53,918 INFO [app.main] GET /api/events/3 -> 200 15.26ms
+INFO:     127.0.0.1:59411 - "GET /api/events/3 HTTP/1.1" 200 OK
+2026-05-04 19:09:04,544 INFO [app.main] GET /api/sessions -> 200 25.44ms
+INFO:     127.0.0.1:59047 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:09:04,574 INFO [app.main] GET /api/sessions -> 200 27.70ms
+INFO:     127.0.0.1:58155 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:09:24,837 INFO [app.main] GET /api/sessions -> 200 26.99ms
+INFO:     127.0.0.1:59956 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:09:34,547 INFO [app.main] GET /api/sessions -> 200 27.88ms
+INFO:     127.0.0.1:55896 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:09:34,579 INFO [app.main] GET /api/sessions -> 200 29.67ms
+INFO:     127.0.0.1:54296 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:09:54,267 INFO [app.main] GET /api/categories -> 200 9.10ms
+INFO:     127.0.0.1:62895 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:09:54,301 INFO [app.main] GET /api/events -> 200 42.18ms
+INFO:     127.0.0.1:49429 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:09:54,389 INFO [app.api.routes.standings] Public standings requested for category slug=f3 rows=42
+2026-05-04 19:09:54,392 INFO [app.main] GET /api/standings/category/f3 -> 200 10.33ms
+INFO:     127.0.0.1:49429 - "GET /api/standings/category/f3 HTTP/1.1" 200 OK
+2026-05-04 19:10:04,536 INFO [app.main] GET /api/sessions -> 200 25.34ms
+INFO:     127.0.0.1:56319 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:10:04,570 INFO [app.main] GET /api/sessions -> 200 31.70ms
+INFO:     127.0.0.1:57482 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:10:34,543 INFO [app.main] GET /api/sessions -> 200 26.32ms
+INFO:     127.0.0.1:63014 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:10:34,570 INFO [app.main] GET /api/sessions -> 200 24.57ms
+INFO:     127.0.0.1:51541 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:04,534 INFO [app.main] GET /api/sessions -> 200 24.77ms
+INFO:     127.0.0.1:49207 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:04,566 INFO [app.main] GET /api/sessions -> 200 29.86ms
+INFO:     127.0.0.1:53281 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:05,605 INFO [app.main] GET /api/sessions -> 200 38.13ms
+INFO:     127.0.0.1:53281 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:35,625 INFO [app.main] GET /api/sessions -> 200 50.01ms
+INFO:     127.0.0.1:61658 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:54,679 INFO [app.main] GET /api/events/4 -> 200 8.14ms
+INFO:     127.0.0.1:50168 - "GET /api/events/4 HTTP/1.1" 200 OK
+2026-05-04 19:11:55,352 INFO [app.main] GET /api/sessions -> 200 31.13ms
+INFO:     127.0.0.1:50168 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:56,889 INFO [app.main] GET /api/sessions -> 200 32.58ms
+INFO:     127.0.0.1:50168 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:11:59,044 INFO [app.main] GET /api/sessions -> 200 28.54ms
+INFO:     127.0.0.1:50168 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:12:06,968 INFO [app.main] GET /api/sessions -> 200 36.00ms
+INFO:     127.0.0.1:64567 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:12:11,366 INFO [app.main] GET /api/categories -> 200 7.15ms
+INFO:     127.0.0.1:64567 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:12:11,367 INFO [app.main] GET /api/circuits -> 200 7.28ms
+INFO:     127.0.0.1:60166 - "GET /api/circuits HTTP/1.1" 200 OK
+2026-05-04 19:12:11,794 INFO [app.main] OPTIONS /api/admin/events -> 200 0.21ms
+INFO:     127.0.0.1:60166 - "OPTIONS /api/admin/events HTTP/1.1" 200 OK
+2026-05-04 19:12:11,804 INFO [app.api.routes.admin_events] Admin listed 106 events
+2026-05-04 19:12:11,808 INFO [app.main] GET /api/admin/events -> 200 12.03ms
+INFO:     127.0.0.1:60166 - "GET /api/admin/events HTTP/1.1" 200 OK
+2026-05-04 19:12:15,555 INFO [app.main] GET /api/categories -> 200 6.05ms
+INFO:     127.0.0.1:52413 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:12:15,585 INFO [app.main] GET /api/events -> 200 27.72ms
+INFO:     127.0.0.1:52414 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:12:37,550 INFO [app.main] GET /api/sessions -> 200 28.94ms
+INFO:     127.0.0.1:65448 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:12:38,074 INFO [app.main] OPTIONS /api/admin/events -> 200 0.19ms
+INFO:     127.0.0.1:65448 - "OPTIONS /api/admin/events HTTP/1.1" 200 OK
+2026-05-04 19:12:38,079 INFO [app.main] POST /api/admin/events -> 422 3.28ms
+INFO:     127.0.0.1:65448 - "POST /api/admin/events HTTP/1.1" 422 Unprocessable Content
+2026-05-04 19:12:43,763 INFO [app.main] POST /api/admin/events -> 422 1.78ms
+INFO:     127.0.0.1:59059 - "POST /api/admin/events HTTP/1.1" 422 Unprocessable Content
+2026-05-04 19:12:45,859 INFO [app.main] POST /api/admin/events -> 422 1.66ms
+INFO:     127.0.0.1:59059 - "POST /api/admin/events HTTP/1.1" 422 Unprocessable Content
+2026-05-04 19:12:47,852 INFO [app.main] OPTIONS /api/admin/sessions -> 200 0.44ms
+INFO:     127.0.0.1:59059 - "OPTIONS /api/admin/sessions HTTP/1.1" 200 OK
+2026-05-04 19:12:47,870 INFO [app.api.routes.admin_sessions] Admin listed 303 sessions
+2026-05-04 19:12:48,301 INFO [app.main] GET /api/admin/sessions -> 200 445.45ms
+INFO:     127.0.0.1:59059 - "GET /api/admin/sessions HTTP/1.1" 200 OK
+2026-05-04 19:12:54,411 INFO [app.main] GET /api/categories -> 200 6.72ms
+INFO:     127.0.0.1:57290 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:12:54,462 INFO [app.main] OPTIONS /api/admin/standings -> 200 0.21ms
+INFO:     127.0.0.1:57290 - "OPTIONS /api/admin/standings HTTP/1.1" 200 OK
+2026-05-04 19:12:54,472 INFO [app.api.routes.admin_standings] Admin listed 108 standings
+2026-05-04 19:12:54,476 INFO [app.main] GET /api/admin/standings -> 200 10.77ms
+INFO:     127.0.0.1:57290 - "GET /api/admin/standings HTTP/1.1" 200 OK
+2026-05-04 19:13:00,089 INFO [app.main] GET /api/sessions -> 200 26.57ms
+INFO:     127.0.0.1:63352 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:13:07,550 INFO [app.main] GET /api/sessions -> 200 41.52ms
+INFO:     127.0.0.1:61933 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:13:12,243 INFO [app.main] GET /api/events -> 200 36.95ms
+INFO:     127.0.0.1:51189 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:13:12,367 INFO [app.main] GET /api/categories -> 200 5.65ms
+INFO:     127.0.0.1:51190 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:13:25,285 INFO [app.main] GET /api/sessions -> 200 30.56ms
+INFO:     127.0.0.1:57727 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:13:27,189 INFO [app.main] GET /api/categories -> 200 7.35ms
+INFO:     127.0.0.1:57727 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:13:27,213 INFO [app.main] GET /api/events -> 200 30.61ms
+INFO:     127.0.0.1:63810 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:13:27,237 INFO [app.api.routes.standings] Public standings requested for category slug=f3 rows=42
+2026-05-04 19:13:27,240 INFO [app.main] GET /api/standings/category/f3 -> 200 8.51ms
+INFO:     127.0.0.1:63810 - "GET /api/standings/category/f3 HTTP/1.1" 200 OK
+2026-05-04 19:13:37,556 INFO [app.main] GET /api/sessions -> 200 50.64ms
+INFO:     127.0.0.1:58555 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:14:07,546 INFO [app.main] GET /api/sessions -> 200 34.89ms
+INFO:     127.0.0.1:58325 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:14:37,549 INFO [app.main] GET /api/sessions -> 200 37.46ms
+INFO:     127.0.0.1:61891 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:15:07,545 INFO [app.main] GET /api/sessions -> 200 28.07ms
+INFO:     127.0.0.1:54273 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:15:39,371 INFO [app.main] GET /api/sessions -> 200 35.98ms
+INFO:     127.0.0.1:61961 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:15:52,101 INFO [app.main] GET /api/categories -> 200 7.73ms
+INFO:     127.0.0.1:51543 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:15:52,156 INFO [app.main] GET /api/events -> 200 60.96ms
+INFO:     127.0.0.1:50370 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:15:52,174 INFO [app.api.routes.standings] Public standings requested for category slug=f3 rows=42
+2026-05-04 19:15:52,177 INFO [app.main] GET /api/standings/category/f3 -> 200 9.64ms
+INFO:     127.0.0.1:50370 - "GET /api/standings/category/f3 HTTP/1.1" 200 OK
+2026-05-04 19:16:02,056 INFO [app.main] GET /api/sessions -> 200 35.92ms
+INFO:     127.0.0.1:57145 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:16:25,537 INFO [app.main] GET /api/sessions -> 200 29.48ms
+INFO:     127.0.0.1:59011 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:16:32,540 INFO [app.main] GET /api/sessions -> 200 28.65ms
+INFO:     127.0.0.1:56408 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:16:36,967 INFO [app.main] GET /api/sessions -> 200 27.98ms
+INFO:     127.0.0.1:56408 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:17:02,537 INFO [app.main] GET /api/sessions -> 200 27.79ms
+INFO:     127.0.0.1:61428 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:17:06,965 INFO [app.main] GET /api/sessions -> 200 28.37ms
+INFO:     127.0.0.1:61428 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:17:32,546 INFO [app.main] GET /api/sessions -> 200 29.36ms
+INFO:     127.0.0.1:50212 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:17:36,993 INFO [app.main] GET /api/sessions -> 200 52.25ms
+INFO:     127.0.0.1:50212 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:18:02,541 INFO [app.main] GET /api/sessions -> 200 27.32ms
+INFO:     127.0.0.1:54168 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:18:06,974 INFO [app.main] GET /api/sessions -> 200 26.94ms
+INFO:     127.0.0.1:54168 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:18:32,539 INFO [app.main] GET /api/sessions -> 200 27.17ms
+INFO:     127.0.0.1:64752 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:18:36,967 INFO [app.main] GET /api/sessions -> 200 26.80ms
+INFO:     127.0.0.1:64752 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:19:02,544 INFO [app.main] GET /api/sessions -> 200 29.52ms
+INFO:     127.0.0.1:50158 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:19:06,962 INFO [app.main] GET /api/sessions -> 200 28.15ms
+INFO:     127.0.0.1:50158 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:19:36,979 INFO [app.main] GET /api/sessions -> 200 35.35ms
+INFO:     127.0.0.1:54340 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:20:06,964 INFO [app.main] GET /api/sessions -> 200 27.29ms
+INFO:     127.0.0.1:59776 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:20:25,539 INFO [app.main] GET /api/sessions -> 200 28.00ms
+INFO:     127.0.0.1:57525 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:20:37,543 INFO [app.main] GET /api/sessions -> 200 29.22ms
+INFO:     127.0.0.1:55513 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:20:58,656 INFO [app.main] GET /api/sessions -> 200 43.91ms
+INFO:     127.0.0.1:63769 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:21:02,567 INFO [app.main] GET /api/sessions -> 200 49.09ms
+INFO:     127.0.0.1:63769 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:21:07,549 INFO [app.main] GET /api/sessions -> 200 36.41ms
+INFO:     127.0.0.1:63769 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:21:32,550 INFO [app.main] GET /api/sessions -> 200 30.61ms
+INFO:     127.0.0.1:59793 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:21:37,556 INFO [app.main] GET /api/sessions -> 200 35.92ms
+INFO:     127.0.0.1:59793 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:02,417 INFO [app.main] GET /api/sessions -> 200 36.63ms
+INFO:     127.0.0.1:63651 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:03,702 INFO [app.main] GET /api/sessions -> 200 34.21ms
+INFO:     127.0.0.1:63651 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:07,549 INFO [app.main] GET /api/sessions -> 200 36.76ms
+INFO:     127.0.0.1:63651 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:14,611 INFO [app.main] GET /api/sessions -> 200 40.57ms
+INFO:     127.0.0.1:58196 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:37,551 INFO [app.main] GET /api/sessions -> 200 29.51ms
+INFO:     127.0.0.1:64500 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:44,611 INFO [app.main] GET /api/sessions -> 200 29.96ms
+INFO:     127.0.0.1:63338 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:22:56,922 INFO [app.main] GET /api/categories -> 200 8.16ms
+INFO:     127.0.0.1:54345 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:22:56,953 INFO [app.main] GET /api/events -> 200 37.59ms
+INFO:     127.0.0.1:53698 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:22:57,034 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 19:22:57,036 INFO [app.main] GET /api/standings/category/f1 -> 200 8.28ms
+INFO:     127.0.0.1:53698 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK
+2026-05-04 19:23:06,165 INFO [app.main] GET /api/sessions -> 200 74.61ms
+INFO:     127.0.0.1:55692 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:23:07,068 INFO [app.main] GET /api/categories -> 200 8.17ms
+INFO:     127.0.0.1:55692 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:23:07,094 INFO [app.main] GET /api/events -> 200 32.98ms
+INFO:     127.0.0.1:63853 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:23:07,170 INFO [app.api.routes.standings] Public standings requested for category slug=f2 rows=33
+2026-05-04 19:23:07,174 INFO [app.main] GET /api/standings/category/f2 -> 200 9.57ms
+INFO:     127.0.0.1:63853 - "GET /api/standings/category/f2 HTTP/1.1" 200 OK
+2026-05-04 19:23:09,402 INFO [app.main] GET /api/sessions -> 200 31.24ms
+INFO:     127.0.0.1:63853 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:23:10,252 INFO [app.main] GET /api/categories -> 200 6.99ms
+INFO:     127.0.0.1:63853 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:23:10,279 INFO [app.main] GET /api/events -> 200 33.83ms
+INFO:     127.0.0.1:55692 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:23:10,319 INFO [app.api.routes.standings] Public standings requested for category slug=f3 rows=42
+2026-05-04 19:23:10,322 INFO [app.main] GET /api/standings/category/f3 -> 200 9.05ms
+INFO:     127.0.0.1:55692 - "GET /api/standings/category/f3 HTTP/1.1" 200 OK
+2026-05-04 19:23:13,446 INFO [app.main] GET /api/sessions -> 200 48.30ms
+INFO:     127.0.0.1:55692 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:23:16,507 INFO [app.main] GET /api/categories -> 200 6.82ms
+INFO:     127.0.0.1:55692 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 19:23:16,530 INFO [app.main] GET /api/events -> 200 29.84ms
+INFO:     127.0.0.1:57180 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:23:16,597 INFO [app.api.routes.standings] Public standings requested for category slug=motogp rows=0
+2026-05-04 19:23:16,600 INFO [app.main] GET /api/standings/category/motogp -> 200 15.95ms
+INFO:     127.0.0.1:57180 - "GET /api/standings/category/motogp HTTP/1.1" 200 OK
+2026-05-04 19:23:25,558 INFO [app.main] GET /api/sessions -> 200 38.29ms
+INFO:     127.0.0.1:56866 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:23:26,273 INFO [app.main] GET /api/events -> 200 39.37ms
+INFO:     127.0.0.1:56866 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 19:23:37,013 INFO [app.main] GET /api/sessions -> 200 33.98ms
+INFO:     127.0.0.1:50123 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:24:07,047 INFO [app.main] GET /api/sessions -> 200 31.45ms
+INFO:     127.0.0.1:57703 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:24:25,553 INFO [app.main] GET /api/sessions -> 200 34.39ms
+INFO:     127.0.0.1:58390 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:24:37,013 INFO [app.main] GET /api/sessions -> 200 28.98ms
+INFO:     127.0.0.1:60047 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:25:07,038 INFO [app.main] GET /api/sessions -> 200 49.34ms
+INFO:     127.0.0.1:49557 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:25:25,547 INFO [app.main] GET /api/sessions -> 200 29.37ms
+INFO:     127.0.0.1:54799 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:25:37,534 INFO [app.main] GET /api/sessions -> 200 28.04ms
+INFO:     127.0.0.1:64165 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:26:07,542 INFO [app.main] GET /api/sessions -> 200 29.30ms
+INFO:     127.0.0.1:57368 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:26:25,544 INFO [app.main] GET /api/sessions -> 200 30.33ms
+INFO:     127.0.0.1:64617 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:26:37,541 INFO [app.main] GET /api/sessions -> 200 28.10ms
+INFO:     127.0.0.1:54253 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:27:25,543 INFO [app.main] GET /api/sessions -> 200 27.99ms
+INFO:     127.0.0.1:54983 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:27:25,574 INFO [app.main] GET /api/sessions -> 200 28.91ms
+INFO:     127.0.0.1:62511 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:27:48,261 INFO [app.main] GET /api/sessions -> 200 35.40ms
+INFO:     127.0.0.1:61092 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:27:53,818 INFO [app.main] GET /api/sessions -> 200 29.66ms
+INFO:     127.0.0.1:57339 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:28:07,455 INFO [app.main] GET /api/sessions -> 200 38.07ms
+INFO:     127.0.0.1:58314 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:28:07,551 INFO [app.main] GET /api/sessions -> 200 40.12ms
+INFO:     127.0.0.1:58314 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:28:37,560 INFO [app.main] GET /api/sessions -> 200 45.13ms
+INFO:     127.0.0.1:52720 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:28:37,597 INFO [app.main] GET /api/sessions -> 200 34.80ms
+INFO:     127.0.0.1:58428 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:29:07,538 INFO [app.main] GET /api/sessions -> 200 29.82ms
+INFO:     127.0.0.1:57390 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:29:25,553 INFO [app.main] GET /api/sessions -> 200 30.12ms
+INFO:     127.0.0.1:59687 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:30:25,573 INFO [app.main] GET /api/sessions -> 200 47.03ms
+INFO:     127.0.0.1:49900 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:30:25,611 INFO [app.main] GET /api/sessions -> 200 35.29ms
+INFO:     127.0.0.1:53136 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:30:36,976 INFO [app.main] GET /api/sessions -> 200 28.88ms
+INFO:     127.0.0.1:50509 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:31:06,970 INFO [app.main] GET /api/sessions -> 200 27.24ms
+INFO:     127.0.0.1:56553 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:31:25,552 INFO [app.main] GET /api/sessions -> 200 28.35ms
+INFO:     127.0.0.1:62874 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:31:36,970 INFO [app.main] GET /api/sessions -> 200 28.14ms
+INFO:     127.0.0.1:52760 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:32:07,540 INFO [app.main] GET /api/sessions -> 200 27.89ms
+INFO:     127.0.0.1:50594 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:32:25,553 INFO [app.main] GET /api/sessions -> 200 34.45ms
+INFO:     127.0.0.1:62557 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:32:37,553 INFO [app.main] GET /api/sessions -> 200 44.85ms
+INFO:     127.0.0.1:56820 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:33:25,561 INFO [app.main] GET /api/sessions -> 200 37.91ms
+INFO:     127.0.0.1:50781 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:33:25,601 INFO [app.main] GET /api/sessions -> 200 36.37ms
+INFO:     127.0.0.1:57549 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:34:25,546 INFO [app.main] GET /api/sessions -> 200 30.25ms
+INFO:     127.0.0.1:61966 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 19:34:25,578 INFO [app.main] GET /api/sessions -> 200 29.61ms
+INFO:     127.0.0.1:63344 - "GET /api/sessions HTTP/1.1" 200 OK
