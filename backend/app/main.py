@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 import logging
 import time
 
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
