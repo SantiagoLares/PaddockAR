@@ -1,0 +1,142 @@
+.top-actions {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+}
+
+.filters {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.login-panel,
+.create-panel,
+.session-meta {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.login-panel {
+  max-width: 380px;
+}
+
+.login-panel .field {
+  margin-bottom: 8px;
+}
+
+.session-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.session-meta-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-cat {
+  min-width: 58px;
+  padding: 4px 7px;
+}
+
+.session-meta-main {
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.session-meta-sub {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.results {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.result-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.result-head {
+  display: grid;
+  grid-template-columns: 70px 1fr 90px;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line-soft);
+  background: #0c0e12;
+}
+
+.result-pos {
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.result-driver {
+  overflow: hidden;
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.result-id {
+  color: var(--faint);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.edit-grid {
+  display: grid;
+  grid-template-columns: 80px 1.1fr 1fr 160px 80px 90px 90px;
+  gap: 8px;
+  align-items: end;
+  padding: 10px;
+}
+
+.create-grid {
+  grid-template-columns: 80px 1.1fr 1fr 160px 80px 90px;
+}
+
+.delete-button {
+  min-height: 32px;
+  border: 1px solid rgba(229, 72, 77, 0.32);
+  border-radius: 3px;
+  background: rgba(229, 72, 77, 0.1);
+  color: #ffd4d7;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+  .summary,
+  .result-head,
+  .edit-grid,
+  .create-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-actions,
+  .state,
+  .result-id {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .result-driver {
+    white-space: normal;
+  }
+}

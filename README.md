@@ -1,6 +1,37 @@
 # PaddockAR
 
-Web local de automovilismo con FastAPI, PostgreSQL y frontend HTML/CSS/JavaScript.
+PaddockAR es una agenda compacta de automovilismo enfocada en horarios de Argentina. Permite consultar la actividad del fin de semana, carreras destacadas, categorias, eventos, sesiones, estados en vivo y resultados desde un frontend liviano conectado a una API en FastAPI.
+
+Proyecto independiente. Los datos estan sujetos a cambios.
+
+## Demo
+
+- Frontend: https://paddockar.onrender.com
+- API health: https://paddockar.onrender.com/api/health
+
+## Stack
+
+- Backend: FastAPI, SQLAlchemy, Pydantic, Uvicorn
+- Base de datos: PostgreSQL
+- Frontend: HTML, CSS, JavaScript vanilla
+- Infra local: Docker Compose
+- Deploy: Render
+
+## Funcionalidades
+
+- Agenda del fin de semana con sesiones agrupadas por dia y evento
+- Categorias principales: F1, F2, MotoGP, WEC, TC y Turismo Nacional
+- Estados dinamicos: proximo, en vivo, finalizado y cancelado
+- Destacado de sesiones en vivo y bloque "Ahora"
+- Countdown de proxima carrera
+- Sidebar de categorias con filtro persistente en URL
+- Calendario por categoria
+- Vista de categoria y detalle de evento
+- Panel admin para sesiones, eventos y resultados
+- Resultados por sesion
+- Auto refresh en la home
+- Skeleton loading, empty states y errores con reintento
+- Favicon y meta tags basicos para compartir
 
 ## Estructura
 
@@ -8,39 +39,44 @@ Web local de automovilismo con FastAPI, PostgreSQL y frontend HTML/CSS/JavaScrip
 backend/
   app/
     api/routes/        Endpoints publicos, auth y admin
-    core/              Configuracion, DB y auth
+    core/              Configuracion, base de datos y auth
     models/            Modelos SQLAlchemy
     schemas/           Schemas Pydantic
-    seeds/             Seed inicial
-    services/          Logica de estado de sesiones
+    seeds/             Seed inicial y datos fuente
+    services/          Logica de negocio
   requirements.txt
+  start.py
+  .env.example
 
 frontend/
-  index.html           Home del fin de semana
-  calendar.html        Calendario por categoria
-  event.html           Detalle de evento
-  admin/sessions.html  Admin simple de sesiones
+  index.html
+  calendar.html
+  category.html
+  event.html
+  admin/
+  assets/
+    css/
+    img/
+    js/
 
-legacy/                Prototipo anterior y datos viejos
-docker-compose.yml     PostgreSQL local
+docker-compose.yml
+README.md
 ```
 
-## Requisitos
+## Como correr local
+
+### Requisitos
 
 - Python 3.11+
 - Docker Desktop
 
-## PostgreSQL
+### 1. Levantar PostgreSQL
 
 ```powershell
 docker compose up -d postgres
 ```
 
-PostgreSQL queda publicado en:
-
-```txt
-127.0.0.1:5433
-```
+La base local queda publicada en `127.0.0.1:5433`.
 
 Credenciales locales:
 
@@ -50,122 +86,151 @@ user: paddockar
 password: paddockar_pass
 ```
 
-URL local:
-
-```txt
-postgresql+psycopg2://paddockar:paddockar_pass@127.0.0.1:5433/paddockar
-```
-
-## Backend
-
-Instalar dependencias:
+### 2. Instalar dependencias
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
 ```
 
-Levantar FastAPI:
+### 3. Variables de entorno
+
+Podes cargar estas variables o crear un `.env` compatible con `backend/.env.example`:
+
+```txt
+DATABASE_URL=postgresql+psycopg2://paddockar:paddockar_pass@127.0.0.1:5433/paddockar
+PORT=8000
+LOG_LEVEL=INFO
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin
+ADMIN_TOKEN_SECRET=change-this-secret
+```
+
+### 4. Levantar API
 
 ```powershell
 cd backend
-..\.venv\Scripts\uvicorn app.main:app --reload
+..\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
 ```
 
-Tambien se puede levantar con el entrypoint de produccion:
-
-```powershell
-.\.venv\Scripts\python.exe backend\start.py
-```
-
-Healthcheck:
+Health check local:
 
 ```txt
 http://127.0.0.1:8000/api/health
 ```
 
-## Seed
+### 5. Abrir frontend
+
+Servir la carpeta `frontend`:
+
+```powershell
+.\.venv\Scripts\python.exe -m http.server 8080 --bind 127.0.0.1 -d frontend
+```
+
+Abrir:
+
+```txt
+http://127.0.0.1:8080/index.html
+```
+
+## Seeds
 
 El seed carga categorias, circuitos, eventos y sesiones desde:
 
 ```txt
-backend/app/seeds/data/initial_events.json
+backend/app/seeds/data/categories.json
+backend/app/seeds/data/calendars/*.json
 ```
 
-Ejecutar desde la raiz:
+Ejecutar desde la raiz del proyecto:
 
 ```powershell
 .\.venv\Scripts\python.exe backend\app\seeds\seed_initial_data.py
 ```
 
-## Frontend
+Cargar una categoria puntual:
 
-Abrir directamente en el navegador:
-
-```txt
-frontend/index.html
-frontend/calendar.html
-frontend/event.html?id=1
+```powershell
+.\.venv\Scripts\python.exe backend\app\seeds\seed_initial_data.py --calendar f1_2026
 ```
 
-## Admin
+## Import manual de standings F1
 
-Admin de sesiones:
+El importador de F1 es manual y no toca otras categorias. Por defecto usa el fallback JSON:
+
+```powershell
+cd backend
+python -m app.scripts.import_f1_standings
+```
+
+Archivo fallback:
+
+```txt
+backend/app/seeds/data/standings/f1_2026.json
+```
+
+Opcionalmente, el script ya deja preparado un modo `official` o `auto` para intentar parsear Formula1.com mas adelante.
+
+## Import manual de standings F2
+
+El importador de F2 es manual y no toca otras categorias. Por defecto usa el fallback JSON:
+
+```powershell
+cd backend
+python -m app.scripts.import_f2_standings
+```
+
+Archivo fallback:
+
+```txt
+backend/app/seeds/data/standings/f2_2026.json
+```
+
+Opcionalmente, el script deja preparados los modos `official` y `auto`, pero el flujo estable sigue siendo `fallback`.
+
+## Import manual de standings F3
+
+El importador de F3 es manual y no toca otras categorias. Por defecto usa el fallback JSON:
+
+```powershell
+cd backend
+python -m app.scripts.import_f3_standings
+```
+
+Archivo fallback:
+
+```txt
+backend/app/seeds/data/standings/f3_2026.json
+```
+
+Opcionalmente, el script deja preparados los modos `official` y `auto`, pero el flujo estable sigue siendo `fallback`.
+
+## Admin local
+
+Credenciales por defecto:
+
+```txt
+usuario: admin
+password: admin
+```
+
+Paneles:
 
 ```txt
 frontend/admin/sessions.html
+frontend/admin/events.html
+frontend/admin/results.html
 ```
 
-Variables de entorno para login:
+## Roadmap
 
-```txt
-ADMIN_USERNAME
-ADMIN_PASSWORD
-ADMIN_TOKEN_SECRET
-```
+- Mejorar fuentes de datos y automatizar actualizaciones
+- Busqueda global de eventos, circuitos y categorias
+- Permisos admin mas granulares
+- Mejoras en resultados y estadisticas
+- Optimizacion de cache y consultas
+- Mas categorias y campeonatos
+- Mejoras de SEO y previews sociales
 
-Defaults locales si no se configuran:
+## Nota
 
-```txt
-admin / admin
-```
-
-Endpoints admin protegidos:
-
-```txt
-POST /api/auth/login
-GET /api/admin/sessions
-PUT /api/admin/sessions/{id}
-```
-
-## Deploy En Render
-
-El backend esta preparado para correr sin `docker-compose` en produccion. Docker queda solo para PostgreSQL local.
-
-Configurar el servicio Render como Web Service apuntando al backend.
-
-Build command:
-
-```bash
-pip install -r backend/requirements.txt
-```
-
-Start command:
-
-```bash
-cd backend && python start.py
-```
-
-Variables de entorno requeridas:
-
-```txt
-DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DATABASE
-ADMIN_USERNAME=...
-ADMIN_PASSWORD=...
-ADMIN_TOKEN_SECRET=...
-```
-
-Render inyecta `PORT` automaticamente. Si no existe, el backend usa `8000`.
-
-Para PostgreSQL externo, `DATABASE_URL` no debe usar `localhost`; debe apuntar al host publico/privado del proveedor de base de datos.
-
-Tambien se aceptan URLs `postgres://` o `postgresql://`; el backend las normaliza a `postgresql+psycopg2://`.
+PaddockAR es un proyecto independiente. No esta afiliado oficialmente con campeonatos, equipos ni organizadores. Los horarios y datos pueden cambiar.

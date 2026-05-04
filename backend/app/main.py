@@ -1,17 +1,41 @@
 from contextlib import asynccontextmanager
+import logging
+import time
 
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.api.routes import admin_sessions, auth, categories, events, sessions
+from app.api.routes import admin_events, admin_results, admin_sessions, admin_standings, auth, categories, circuits, events, results, sessions, standings
 from app.core.config import settings
 from app.core.database import create_tables, ping_database
+from app.core.logging import setup_logging
+
+setup_logging()
+logger = logging.getLogger(__name__)
+
+
+class RequestLoggingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        start_time = time.perf_counter()
+        response = await call_next(request)
+        duration_ms = (time.perf_counter() - start_time) * 1000
+        logger.info(
+            "%s %s -> %s %.2fms",
+            request.method,
+            request.url.path,
+            response.status_code,
+            duration_ms,
+        )
+        return response
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    logger.info("Starting %s v%s", settings.app_name, settings.app_version)
     create_tables()
     yield
+    logger.info("Stopping %s", settings.app_name)
 
 app = FastAPI(
     title=settings.app_name,
@@ -23,14 +47,21 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "PUT"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
+app.add_middleware(RequestLoggingMiddleware)
 
 app.include_router(categories.router)
+app.include_router(circuits.router)
 app.include_router(events.router)
+app.include_router(results.router)
 app.include_router(sessions.router)
+app.include_router(standings.router)
+app.include_router(admin_events.router)
+app.include_router(admin_results.router)
 app.include_router(admin_sessions.router)
+app.include_router(admin_standings.router)
 app.include_router(auth.router)
 
 

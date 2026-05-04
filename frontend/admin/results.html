@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaddockAR Admin | Resultados</title>
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components/topbar.css" />
+  <link rel="stylesheet" href="../assets/css/components/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components/summary.css" />
+  <link rel="stylesheet" href="../assets/css/components/filters.css" />
+  <link rel="stylesheet" href="../assets/css/components/badges.css" />
+  <link rel="stylesheet" href="../assets/css/components/forms.css" />
+  <link rel="stylesheet" href="../assets/css/admin-results.css" />
+</head>
+<body class="page-shell-1180">
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <a class="logo-link" href="../index.html" aria-label="Ir a inicio">
+        <div class="logo">PADDOCK<span>AR</span></div>
+      </a>
+      <div class="nav-links mono" aria-label="Admin navegacion">
+        <a href="sessions.html">Sesiones</a>
+        <a href="events.html">Eventos</a>
+        <a class="active" href="results.html">Resultados</a>
+        <a href="standings.html">Standings</a>
+      </div>
+      <div class="admin-label mono">Admin resultados</div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="summary">
+      <div>
+        <h1>Resultados</h1>
+        <div class="subtitle">Carga y edicion basica por sesion.</div>
+      </div>
+      <div class="top-actions">
+        <div id="state" class="state mono">Conectando API</div>
+        <button id="logoutButton" class="logout-button mono" type="button" hidden>Salir</button>
+      </div>
+    </section>
+
+    <section id="loginPanel" class="login-panel" hidden>
+      <div class="field">
+        <label class="mono">Usuario</label>
+        <input id="username" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label class="mono">Contrasena</label>
+        <input id="password" type="password" autocomplete="current-password" />
+      </div>
+      <button id="loginButton" class="save-button mono" type="button">Ingresar</button>
+    </section>
+
+    <section id="adminPanel" hidden>
+      <section class="filters">
+        <select id="sessionFilter" aria-label="Seleccionar sesion">
+          <option value="">Selecciona una sesion</option>
+        </select>
+      </section>
+
+      <section id="sessionMeta" class="session-meta" hidden></section>
+
+      <section class="create-panel">
+        <div class="section-title mono">Nuevo resultado</div>
+        <div class="edit-grid create-grid">
+          <div class="field">
+            <label class="mono">Pos</label>
+            <input id="newPosition" type="number" min="1" />
+          </div>
+          <div class="field">
+            <label class="mono">Piloto</label>
+            <input id="newDriverName" />
+          </div>
+          <div class="field">
+            <label class="mono">Equipo</label>
+            <input id="newTeamName" />
+          </div>
+          <div class="field">
+            <label class="mono">Tiempo / Dif</label>
+            <input id="newTimeOrGap" />
+          </div>
+          <div class="field">
+            <label class="mono">Pts</label>
+            <input id="newPoints" type="number" min="0" />
+          </div>
+          <button id="createButton" class="save-button mono" type="button">Crear</button>
+        </div>
+      </section>
+
+      <section id="results" class="results" aria-live="polite"></section>
+    </section>
+
+    <div id="message"></div>
+  </main>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/dom.js"></script>
+  <script src="../assets/js/admin-results.js"></script>
+</body>
+</html>

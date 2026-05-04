@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Formula 1",
+    "slug": "formula-1",
+    "short_name": "F1",
+    "color": "#e10600"
+  },
+  {
+    "name": "MotoGP",
+    "slug": "motogp",
+    "short_name": "MotoGP",
+    "color": "#c80502"
+  },
+  {
+    "name": "Formula 2",
+    "slug": "formula-2",
+    "short_name": "F2",
+    "color": "#0090d0"
+  },
+  {
+    "name": "Formula 3",
+    "slug": "f3",
+    "short_name": "F3",
+    "color": "#4657d9"
+  },
+  {
+    "name": "World Endurance Championship",
+    "slug": "wec",
+    "short_name": "WEC",
+    "color": "#00a19c"
+  },
+  {
+    "name": "Turismo Carretera",
+    "slug": "turismo-carretera",
+    "short_name": "TC",
+    "color": "#f59e0b"
+  },
+  {
+    "name": "Turismo Nacional Clase 2",
+    "slug": "turismo-nacional-clase-2",
+    "short_name": "TN C2",
+    "color": "#16a34a"
+  },
+  {
+    "name": "Turismo Nacional Clase 3",
+    "slug": "turismo-nacional-clase-3",
+    "short_name": "TN C3",
+    "color": "#22c55e"
+  }
+]

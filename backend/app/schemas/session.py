@@ -3,6 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 
 from app.schemas.event import EventRead
+from app.schemas.result import ResultRead
 
 
 class SessionRead(BaseModel):
@@ -16,6 +17,7 @@ class SessionRead(BaseModel):
     order_index: int
     is_feature: bool
     event: EventRead
+    results: list[ResultRead] = []
 
     model_config = ConfigDict(from_attributes=True)
 

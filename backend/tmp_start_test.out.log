@@ -1,0 +1,2 @@
+2026-04-28 16:11:45,951 INFO [app.main] Starting PaddockAR API v0.1.0
+2026-04-28 16:11:45,961 INFO [app.core.database] Creating database tables if needed

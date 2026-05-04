@@ -17,13 +17,14 @@ def _session_query():
     return select(EventSession).options(
         joinedload(EventSession.event).joinedload(Event.category),
         joinedload(EventSession.event).joinedload(Event.circuit),
+        joinedload(EventSession.results),
     )
 
 
 @router.get("/api/sessions", response_model=list[SessionRead])
 def list_sessions(db: Session = Depends(get_db)):
     statement = _session_query().order_by(EventSession.starts_at, EventSession.id)
-    sessions = db.scalars(statement).all()
+    sessions = db.scalars(statement).unique().all()
     return apply_dynamic_status(sessions)
 
 
@@ -41,5 +42,5 @@ def list_weekend_sessions(db: Session = Depends(get_db)):
         .order_by(EventSession.starts_at, EventSession.id)
         .limit(50)
     )
-    sessions = db.scalars(statement).all()
+    sessions = db.scalars(statement).unique().all()
     return apply_dynamic_status(sessions)

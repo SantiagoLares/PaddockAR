@@ -1,10 +1,13 @@
 from collections.abc import Generator
+import logging
 
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from app.core.config import settings
+
+logger = logging.getLogger(__name__)
 
 
 class Base(DeclarativeBase):
@@ -37,10 +40,12 @@ def ping_database() -> bool:
             connection.execute(text("SELECT 1"))
         return True
     except SQLAlchemyError:
+        logger.exception("Database ping failed")
         return False
 
 
 def create_tables() -> None:
     from app import models  # noqa: F401
 
+    logger.info("Creating database tables if needed")
     Base.metadata.create_all(bind=engine)

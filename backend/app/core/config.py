@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     database_url: str = "postgresql+psycopg2://paddockar:paddockar_pass@127.0.0.1:5433/paddockar"
     port: int = 8000
+    log_level: str = "INFO"
     admin_username: str = "admin"
     admin_password: str = "admin"
     admin_token_secret: str = "paddockar-local-admin-secret"

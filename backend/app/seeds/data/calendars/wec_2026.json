@@ -1,0 +1,232 @@
+{
+  "category_slug": "wec",
+  "season_year": 2026,
+  "source_note": "Calendario 2026 de FIA WEC basado en la publicacion oficial de fiawec.com del 13.06.2025. Las fechas y sedes de los eventos son oficiales. Solo Spa-Francorchamps incluye cronograma detallado confirmado en este archivo; el resto queda cargado a nivel evento hasta sumar horarios confiables.",
+  "events": [
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 1,
+      "name": "Qatar 1812 Km",
+      "slug": "qatar-1812-km-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-28",
+      "circuit": {
+        "name": "Lusail International Circuit",
+        "slug": "lusail-international-circuit",
+        "country": "Qatar",
+        "city": "Lusail",
+        "timezone": "Asia/Qatar"
+      }
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 2,
+      "name": "6 Horas de Imola",
+      "slug": "6-horas-de-imola-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-04-17",
+      "end_date": "2026-04-19",
+      "circuit": {
+        "name": "Autodromo Internazionale Enzo e Dino Ferrari",
+        "slug": "autodromo-internazionale-enzo-e-dino-ferrari",
+        "country": "Italia",
+        "city": "Imola",
+        "timezone": "Europe/Rome"
+      }
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 3,
+      "name": "6 Horas de Spa-Francorchamps",
+      "slug": "6-horas-de-spa-francorchamps-2026",
+      "status": "scheduled",
+      "source_note": "Fecha y cronograma base tomados del programa oficial FIA WEC y convertidos de hora local de Belgica a Argentina.",
+      "data_quality": "official_schedule",
+      "circuit": {
+        "name": "Circuit de Spa-Francorchamps",
+        "slug": "circuit-de-spa-francorchamps",
+        "country": "Belgica",
+        "city": "Stavelot",
+        "timezone": "Europe/Brussels"
+      },
+      "sessions": [
+        {
+          "name": "Práctica 1",
+          "session_type": "practice",
+          "starts_at": "2026-05-07T06:00:00-03:00",
+          "ends_at": "2026-05-07T07:30:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Práctica 2",
+          "session_type": "practice",
+          "starts_at": "2026-05-07T10:40:00-03:00",
+          "ends_at": "2026-05-07T12:10:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Práctica 3",
+          "session_type": "practice",
+          "starts_at": "2026-05-08T05:10:00-03:00",
+          "ends_at": "2026-05-08T06:10:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Clasificación LMGT3",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-08T09:30:00-03:00",
+          "ends_at": "2026-05-08T09:45:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Hyperpole LMGT3",
+          "session_type": "hyperpole",
+          "starts_at": "2026-05-08T09:55:00-03:00",
+          "ends_at": "2026-05-08T10:10:00-03:00",
+          "status": "scheduled",
+          "order_index": 5,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Clasificación Hypercar",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-08T10:20:00-03:00",
+          "ends_at": "2026-05-08T10:35:00-03:00",
+          "status": "scheduled",
+          "order_index": 6,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Hyperpole Hypercar",
+          "session_type": "hyperpole",
+          "starts_at": "2026-05-08T10:45:00-03:00",
+          "ends_at": "2026-05-08T11:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 7,
+          "is_feature": false,
+          "data_quality": "official_schedule"
+        },
+        {
+          "name": "Carrera",
+          "session_type": "race",
+          "starts_at": "2026-05-09T09:00:00-03:00",
+          "ends_at": "2026-05-09T15:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 8,
+          "is_feature": true,
+          "data_quality": "official_schedule"
+        }
+      ]
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 4,
+      "name": "24 Horas de Le Mans",
+      "slug": "24-horas-de-le-mans-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-06-10",
+      "end_date": "2026-06-14",
+      "circuit": {
+        "name": "Circuit de la Sarthe",
+        "slug": "circuit-de-la-sarthe",
+        "country": "Francia",
+        "city": "Le Mans",
+        "timezone": "Europe/Paris"
+      }
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 5,
+      "name": "6 Horas de Sao Paulo",
+      "slug": "6-horas-de-sao-paulo-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-07-10",
+      "end_date": "2026-07-12",
+      "circuit": {
+        "name": "Autodromo Jose Carlos Pace",
+        "slug": "autodromo-jose-carlos-pace",
+        "country": "Brasil",
+        "city": "Sao Paulo",
+        "timezone": "America/Sao_Paulo"
+      }
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 6,
+      "name": "Lone Star Le Mans",
+      "slug": "lone-star-le-mans-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-09-04",
+      "end_date": "2026-09-06",
+      "circuit": {
+        "name": "Circuit of the Americas",
+        "slug": "circuit-of-the-americas",
+        "country": "Estados Unidos",
+        "city": "Austin",
+        "timezone": "America/Chicago"
+      }
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 7,
+      "name": "6 Horas de Fuji",
+      "slug": "6-horas-de-fuji-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "circuit": {
+        "name": "Fuji Speedway",
+        "slug": "fuji-speedway",
+        "country": "Japon",
+        "city": "Oyama",
+        "timezone": "Asia/Tokyo"
+      }
+    },
+    {
+      "category_slug": "wec",
+      "season_year": 2026,
+      "round_number": 8,
+      "name": "8 Horas de Bahrain",
+      "slug": "8-horas-de-bahrain-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_event_only",
+      "start_date": "2026-11-05",
+      "end_date": "2026-11-07",
+      "circuit": {
+        "name": "Bahrain International Circuit",
+        "slug": "bahrain-international-circuit",
+        "country": "Bahrein",
+        "city": "Sakhir",
+        "timezone": "Asia/Bahrain"
+      }
+    }
+  ]
+}

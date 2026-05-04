@@ -1,0 +1,11 @@
+2026-05-04 18:37:28,677 INFO [app.main] Starting PaddockAR API v0.1.0
+2026-05-04 18:37:28,678 INFO [app.core.database] Creating database tables if needed
+2026-05-04 18:37:28,879 INFO [app.main] GET /api/categories -> 200 20.46ms
+INFO:     127.0.0.1:52539 - "GET /api/categories HTTP/1.1" 200 OK
+2026-05-04 18:37:28,946 INFO [app.main] GET /api/sessions -> 200 87.68ms
+INFO:     127.0.0.1:53865 - "GET /api/sessions HTTP/1.1" 200 OK
+2026-05-04 18:37:28,976 INFO [app.main] GET /api/events -> 200 32.25ms
+INFO:     127.0.0.1:52539 - "GET /api/events HTTP/1.1" 200 OK
+2026-05-04 18:37:28,995 INFO [app.api.routes.standings] Public standings requested for category slug=f1 rows=33
+2026-05-04 18:37:28,998 INFO [app.main] GET /api/standings/category/f1 -> 200 11.16ms
+INFO:     127.0.0.1:52539 - "GET /api/standings/category/f1 HTTP/1.1" 200 OK

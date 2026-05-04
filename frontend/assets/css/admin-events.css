@@ -1,0 +1,103 @@
+.top-actions {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+}
+
+.filters {
+  grid-template-columns: 170px 170px;
+  gap: 8px;
+}
+
+.login-panel,
+.create-panel {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.login-panel {
+  max-width: 380px;
+}
+
+.login-panel .field {
+  margin-bottom: 8px;
+}
+
+.events {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.event-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.event-head {
+  display: grid;
+  grid-template-columns: 70px 1fr 110px 90px;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line-soft);
+  background: #0c0e12;
+}
+
+.admin-cat {
+  min-width: 58px;
+  padding: 4px 7px;
+}
+
+.event-name {
+  overflow: hidden;
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-meta,
+.event-id {
+  color: var(--faint);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.edit-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) 180px 180px 110px 90px 130px 130px 130px 90px;
+  gap: 8px;
+  align-items: end;
+  padding: 10px;
+}
+
+.create-grid {
+  grid-template-columns: minmax(220px, 1.4fr) 180px 180px 110px 90px 130px 130px 130px 90px;
+}
+
+@media (max-width: 980px) {
+  .summary,
+  .filters,
+  .event-head,
+  .edit-grid,
+  .create-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-actions,
+  .state,
+  .event-meta,
+  .event-id {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .event-name {
+    white-space: normal;
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaddockAR Admin | Standings</title>
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components/topbar.css" />
+  <link rel="stylesheet" href="../assets/css/components/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components/summary.css" />
+  <link rel="stylesheet" href="../assets/css/components/filters.css" />
+  <link rel="stylesheet" href="../assets/css/components/badges.css" />
+  <link rel="stylesheet" href="../assets/css/components/forms.css" />
+  <link rel="stylesheet" href="../assets/css/admin-standings.css" />
+</head>
+<body class="page-shell-1180">
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <a class="logo-link" href="../index.html" aria-label="Ir a inicio">
+        <div class="logo">PADDOCK<span>AR</span></div>
+      </a>
+      <div class="nav-links mono" aria-label="Admin navegacion">
+        <a href="sessions.html">Sesiones</a>
+        <a href="events.html">Eventos</a>
+        <a href="results.html">Resultados</a>
+        <a class="active" href="standings.html">Standings</a>
+      </div>
+      <div class="admin-label mono">Admin standings</div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="summary">
+      <div>
+        <h1>Standings</h1>
+        <div class="subtitle">Carga y edicion de campeonatos por categoria.</div>
+      </div>
+      <div class="top-actions">
+        <div id="state" class="state mono">Conectando API</div>
+        <button id="logoutButton" class="logout-button mono" type="button" hidden>Salir</button>
+      </div>
+    </section>
+
+    <section id="loginPanel" class="login-panel" hidden>
+      <div class="field">
+        <label class="mono">Usuario</label>
+        <input id="username" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label class="mono">Contrasena</label>
+        <input id="password" type="password" autocomplete="current-password" />
+      </div>
+      <button id="loginButton" class="save-button mono" type="button">Ingresar</button>
+    </section>
+
+    <section id="adminPanel" hidden>
+      <section class="create-panel">
+        <div class="section-title mono">Nueva posicion</div>
+        <div class="edit-grid create-grid">
+          <div class="field">
+            <label class="mono">Categoria</label>
+            <select id="newCategoryId"></select>
+          </div>
+          <div class="field">
+            <label class="mono">Tipo</label>
+            <select id="newStandingType">
+              <option value="drivers">drivers</option>
+              <option value="constructors">constructors</option>
+              <option value="general">general</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="mono">Pos</label>
+            <input id="newPosition" type="number" min="1" />
+          </div>
+          <div class="field">
+            <label class="mono">Nombre</label>
+            <input id="newName" />
+          </div>
+          <div class="field">
+            <label class="mono">Equipo</label>
+            <input id="newTeamName" />
+          </div>
+          <div class="field">
+            <label class="mono">Pts</label>
+            <input id="newPoints" type="number" min="0" />
+          </div>
+          <div class="field">
+            <label class="mono">Wins</label>
+            <input id="newWins" type="number" min="0" />
+          </div>
+          <button id="createButton" class="save-button mono" type="button">Crear</button>
+        </div>
+      </section>
+
+      <section class="filters">
+        <select id="categoryFilter" aria-label="Filtrar por categoria">
+          <option value="all">Todas las categorias</option>
+        </select>
+        <select id="typeFilter" aria-label="Filtrar por tipo">
+          <option value="all">Todos los tipos</option>
+          <option value="drivers">drivers</option>
+          <option value="constructors">constructors</option>
+          <option value="general">general</option>
+        </select>
+      </section>
+
+      <section id="standings" class="standings" aria-live="polite"></section>
+    </section>
+
+    <div id="message"></div>
+  </main>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/dom.js"></script>
+  <script src="../assets/js/admin-standings.js"></script>
+</body>
+</html>

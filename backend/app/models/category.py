@@ -17,3 +17,8 @@ class Category(Base):
         back_populates="category",
         cascade="all, delete-orphan",
     )
+    standings: Mapped[list["Standing"]] = relationship(
+        back_populates="category",
+        cascade="all, delete-orphan",
+        order_by="Standing.position",
+    )

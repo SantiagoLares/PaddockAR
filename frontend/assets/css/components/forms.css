@@ -1,0 +1,62 @@
+select,
+input {
+  width: 100%;
+  min-height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #0d0f13;
+  color: var(--text);
+  font: inherit;
+  padding: 5px 8px;
+}
+
+select:focus,
+input:focus {
+  border-color: #3a4352;
+  outline: none;
+}
+
+.field label,
+.label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--faint);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.save-button {
+  height: 30px;
+  border: 1px solid rgba(77, 184, 255, 0.38);
+  border-radius: 3px;
+  background: rgba(77, 184, 255, 0.12);
+  color: #d7efff;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.save-button:hover {
+  background: rgba(77, 184, 255, 0.18);
+}
+
+.message {
+  margin-top: 12px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.message.ok {
+  border-color: rgba(48, 164, 108, 0.35);
+  color: #b8e7cb;
+}
+
+.message.error {
+  border-color: rgba(229, 72, 77, 0.35);
+  color: #ffb3b6;
+}

@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session, joinedload
@@ -9,6 +11,7 @@ from app.models.session import Session as EventSession
 from app.schemas.session import SessionRead, SessionUpdate
 
 router = APIRouter(prefix="/api/admin/sessions", tags=["admin sessions"])
+logger = logging.getLogger(__name__)
 
 VALID_STATUSES = {"scheduled", "live", "finished", "cancelled"}
 
@@ -26,7 +29,9 @@ def list_admin_sessions(
         )
         .order_by(EventSession.starts_at, EventSession.id)
     )
-    return db.scalars(statement).all()
+    sessions = db.scalars(statement).all()
+    logger.info("Admin listed %s sessions", len(sessions))
+    return sessions
 
 
 @router.put("/{session_id}", response_model=SessionRead)
@@ -47,6 +52,7 @@ def update_admin_session(
     event_session = db.scalars(statement).one_or_none()
 
     if event_session is None:
+        logger.warning("Admin tried to update missing session id=%s", session_id)
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Session not found",
@@ -55,6 +61,7 @@ def update_admin_session(
     update_data = payload.model_dump(exclude_unset=True)
 
     if "status" in update_data and update_data["status"] not in VALID_STATUSES:
+        logger.warning("Admin sent invalid status for session id=%s", session_id)
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="Invalid session status",
@@ -65,4 +72,5 @@ def update_admin_session(
 
     db.commit()
     db.refresh(event_session)
+    logger.info("Admin updated session id=%s fields=%s", session_id, sorted(update_data.keys()))
     return event_session

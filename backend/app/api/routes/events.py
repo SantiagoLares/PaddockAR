@@ -4,23 +4,28 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.core.database import get_db
 from app.models.event import Event
-from app.schemas.event import EventDetailRead, EventRead
+from app.models.session import Session as EventSession
+from app.schemas.event import EventDetailRead
 from app.services.session_status import apply_dynamic_status
 
 router = APIRouter(prefix="/api/events", tags=["events"])
 
 
-@router.get("", response_model=list[EventRead])
+@router.get("", response_model=list[EventDetailRead])
 def list_events(db: Session = Depends(get_db)):
     statement = (
         select(Event)
         .options(
             joinedload(Event.category),
             joinedload(Event.circuit),
+            joinedload(Event.sessions).joinedload(EventSession.results),
         )
         .order_by(Event.start_date, Event.id)
     )
-    return db.scalars(statement).all()
+    events = db.scalars(statement).unique().all()
+    for event in events:
+        event.sessions = apply_dynamic_status(list(event.sessions))
+    return events
 
 
 @router.get("/{event_id}", response_model=EventDetailRead)
@@ -30,7 +35,7 @@ def get_event(event_id: int, db: Session = Depends(get_db)):
         .options(
             joinedload(Event.category),
             joinedload(Event.circuit),
-            joinedload(Event.sessions),
+            joinedload(Event.sessions).joinedload(EventSession.results),
         )
         .where(Event.id == event_id)
     )

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, String, UniqueConstraint
+from sqlalchemy import Boolean, DateTime, ForeignKey, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
@@ -21,5 +21,12 @@ class Session(Base):
     status: Mapped[str] = mapped_column(String(30), nullable=False, default="scheduled")
     order_index: Mapped[int] = mapped_column(nullable=False, default=0)
     is_feature: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    data_quality: Mapped[str] = mapped_column(String(80), nullable=True)
+    source_note: Mapped[str] = mapped_column(Text, nullable=True)
 
     event: Mapped["Event"] = relationship(back_populates="sessions")
+    results: Mapped[list["Result"]] = relationship(
+        back_populates="session",
+        cascade="all, delete-orphan",
+        order_by="Result.position",
+    )

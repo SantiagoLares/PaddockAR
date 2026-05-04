@@ -1,0 +1,425 @@
+{
+  "category_slug": "motogp",
+  "season_year": 2026,
+  "source_note": "Calendario 2026 de MotoGP basado en motogp.com/news/2026/01/01/2026-motogp-calendar/755478 y motogp.com/calendar/2026. Las fechas de evento son oficiales; los horarios de sesiones se generan como tentativos en hora de Argentina usando una plantilla estandar de fin de semana.",
+  "events": [
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 1,
+      "name": "GP de Tailandia",
+      "slug": "gp-de-tailandia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-02-27",
+      "end_date": "2026-03-01",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Chang International Circuit",
+        "slug": "chang-international-circuit",
+        "country": "Tailandia",
+        "city": "Buriram",
+        "timezone": "Asia/Bangkok"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 2,
+      "name": "GP de Brasil",
+      "slug": "gp-de-brasil-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-03-20",
+      "end_date": "2026-03-22",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Autodromo Internacional Ayrton Senna",
+        "slug": "autodromo-internacional-ayrton-senna-goiania",
+        "country": "Brasil",
+        "city": "Goiania",
+        "timezone": "America/Sao_Paulo"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 3,
+      "name": "GP de las Americas",
+      "slug": "gp-de-las-americas-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-03-27",
+      "end_date": "2026-03-29",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Circuit of the Americas",
+        "slug": "circuit-of-the-americas",
+        "country": "Estados Unidos",
+        "city": "Austin",
+        "timezone": "America/Chicago"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 4,
+      "name": "GP de Espana",
+      "slug": "gp-de-espana-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-04-24",
+      "end_date": "2026-04-26",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Circuito de Jerez - Angel Nieto",
+        "slug": "circuito-de-jerez-angel-nieto",
+        "country": "Espana",
+        "city": "Jerez",
+        "timezone": "Europe/Madrid"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 5,
+      "name": "GP de Francia",
+      "slug": "gp-de-francia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-05-08",
+      "end_date": "2026-05-10",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Bugatti Circuit",
+        "slug": "bugatti-circuit-le-mans",
+        "country": "Francia",
+        "city": "Le Mans",
+        "timezone": "Europe/Paris"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 6,
+      "name": "GP de Cataluna",
+      "slug": "gp-de-cataluna-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-05-15",
+      "end_date": "2026-05-17",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Circuit de Barcelona-Catalunya",
+        "slug": "circuit-de-barcelona-catalunya",
+        "country": "Espana",
+        "city": "Montmelo",
+        "timezone": "Europe/Madrid"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 7,
+      "name": "GP de Italia",
+      "slug": "gp-de-italia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-05-29",
+      "end_date": "2026-05-31",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Autodromo Internazionale del Mugello",
+        "slug": "autodromo-internazionale-del-mugello",
+        "country": "Italia",
+        "city": "Scarperia e San Piero",
+        "timezone": "Europe/Rome"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 8,
+      "name": "GP de Hungria",
+      "slug": "gp-de-hungria-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-06-05",
+      "end_date": "2026-06-07",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Balaton Park Circuit",
+        "slug": "balaton-park-circuit",
+        "country": "Hungria",
+        "city": "Balatonfokajar",
+        "timezone": "Europe/Budapest"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 9,
+      "name": "GP de Chequia",
+      "slug": "gp-de-chequia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-06-19",
+      "end_date": "2026-06-21",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Automotodrom Brno",
+        "slug": "automotodrom-brno",
+        "country": "Chequia",
+        "city": "Brno",
+        "timezone": "Europe/Prague"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 10,
+      "name": "GP de Paises Bajos",
+      "slug": "gp-de-paises-bajos-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "TT Circuit Assen",
+        "slug": "tt-circuit-assen",
+        "country": "Paises Bajos",
+        "city": "Assen",
+        "timezone": "Europe/Amsterdam"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 11,
+      "name": "GP de Alemania",
+      "slug": "gp-de-alemania-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-07-10",
+      "end_date": "2026-07-12",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Sachsenring",
+        "slug": "sachsenring",
+        "country": "Alemania",
+        "city": "Hohenstein-Ernstthal",
+        "timezone": "Europe/Berlin"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 12,
+      "name": "GP de Gran Bretana",
+      "slug": "gp-de-gran-bretana-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-08-07",
+      "end_date": "2026-08-09",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Silverstone Circuit",
+        "slug": "silverstone-circuit",
+        "country": "Gran Bretana",
+        "city": "Silverstone",
+        "timezone": "Europe/London"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 13,
+      "name": "GP de Aragon",
+      "slug": "gp-de-aragon-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-30",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "MotorLand Aragon",
+        "slug": "motorland-aragon",
+        "country": "Espana",
+        "city": "Alcaniz",
+        "timezone": "Europe/Madrid"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 14,
+      "name": "GP de San Marino",
+      "slug": "gp-de-san-marino-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-09-11",
+      "end_date": "2026-09-13",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Misano World Circuit Marco Simoncelli",
+        "slug": "misano-world-circuit-marco-simoncelli",
+        "country": "Italia",
+        "city": "Misano Adriatico",
+        "timezone": "Europe/Rome"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 15,
+      "name": "GP de Austria",
+      "slug": "gp-de-austria-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-20",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Red Bull Ring",
+        "slug": "red-bull-ring",
+        "country": "Austria",
+        "city": "Spielberg",
+        "timezone": "Europe/Vienna"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 16,
+      "name": "GP de Japon",
+      "slug": "gp-de-japon-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-04",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Mobility Resort Motegi",
+        "slug": "mobility-resort-motegi",
+        "country": "Japon",
+        "city": "Motegi",
+        "timezone": "Asia/Tokyo"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 17,
+      "name": "GP de Indonesia",
+      "slug": "gp-de-indonesia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-11",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Pertamina Mandalika International Circuit",
+        "slug": "mandalika-international-circuit",
+        "country": "Indonesia",
+        "city": "Mandalika",
+        "timezone": "Asia/Makassar"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 18,
+      "name": "GP de Australia",
+      "slug": "gp-de-australia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-25",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Phillip Island Grand Prix Circuit",
+        "slug": "phillip-island-grand-prix-circuit",
+        "country": "Australia",
+        "city": "Phillip Island",
+        "timezone": "Australia/Melbourne"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 19,
+      "name": "GP de Malasia",
+      "slug": "gp-de-malasia-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-01",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Sepang International Circuit",
+        "slug": "sepang-international-circuit",
+        "country": "Malasia",
+        "city": "Sepang",
+        "timezone": "Asia/Kuala_Lumpur"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 20,
+      "name": "GP de Qatar",
+      "slug": "gp-de-qatar-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Lusail International Circuit",
+        "slug": "lusail-international-circuit",
+        "country": "Qatar",
+        "city": "Lusail",
+        "timezone": "Asia/Qatar"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 21,
+      "name": "GP de Portugal",
+      "slug": "gp-de-portugal-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-22",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Autodromo Internacional do Algarve",
+        "slug": "autodromo-internacional-do-algarve",
+        "country": "Portugal",
+        "city": "Portimao",
+        "timezone": "Europe/Lisbon"
+      }
+    },
+    {
+      "category_slug": "motogp",
+      "season_year": 2026,
+      "round_number": 22,
+      "name": "GP de la Comunidad Valenciana",
+      "slug": "gp-de-la-comunidad-valenciana-motogp-2026",
+      "status": "scheduled",
+      "data_quality": "official_calendar_tentative_schedule",
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-29",
+      "session_template": "motogp_standard",
+      "circuit": {
+        "name": "Circuit Ricardo Tormo",
+        "slug": "circuit-ricardo-tormo",
+        "country": "Espana",
+        "city": "Cheste",
+        "timezone": "Europe/Madrid"
+      }
+    }
+  ]
+}

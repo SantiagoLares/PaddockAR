@@ -3,490 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR | Evento</title>
-  <style>
-    :root {
-      --bg: #08090b;
-      --surface: #111318;
-      --surface-soft: #161a20;
-      --line: #252a33;
-      --line-soft: #1d222b;
-      --text: #e8edf3;
-      --muted: #98a3b3;
-      --faint: #687386;
-      --accent: #4db8ff;
-      --red: #e5484d;
-      --green: #30a46c;
-      --f1: #e10600;
-      --motogp: #c80502;
-      --f2: #1488cc;
-      --wec: #00a19c;
-      --tc: #d8941a;
-      --tn: #2fa866;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 13px;
-    }
-
-    .mono {
-      font-family: Consolas, "Roboto Mono", monospace;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(8, 9, 11, 0.96);
-      backdrop-filter: blur(10px);
-    }
-
-    .topbar-inner,
-    main {
-      width: min(860px, 100%);
-      margin: 0 auto;
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 11px 12px;
-    }
-
-    .logo {
-      color: #f8fafc;
-      font-family: Consolas, "Roboto Mono", monospace;
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .back-link {
-      height: 28px;
-      padding: 0 10px;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      background: #0d0f13;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .back-link:hover {
-      border-color: #3a4352;
-      background: var(--surface-soft);
-      color: #f8fafc;
-    }
-
-    main {
-      padding: 14px 12px 36px;
-    }
-
-    .hero {
-      border: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .hero-head {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px;
-      align-items: center;
-      padding: 12px;
-      border-bottom: 1px solid var(--line);
-      background: #0c0e12;
-    }
-
-    .cat-badge {
-      min-width: 58px;
-      padding: 5px 8px;
-      border-left: 4px solid var(--accent);
-      background: #08090b;
-      color: #f8fafc;
-      font-size: 12px;
-      font-weight: 900;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.15;
-      font-weight: 850;
-    }
-
-    .category-name {
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .info-item {
-      min-width: 0;
-      padding: 10px 12px;
-      border-right: 1px solid var(--line-soft);
-    }
-
-    .info-item:last-child {
-      border-right: 0;
-    }
-
-    .label {
-      color: var(--faint);
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .value {
-      overflow: hidden;
-      margin-top: 3px;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 750;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .section-title {
-      margin: 16px 0 8px;
-      color: #f8fafc;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .sessions {
-      border: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .session-row {
-      display: grid;
-      grid-template-columns: 112px 1fr 112px;
-      gap: 10px;
-      align-items: center;
-      min-height: 42px;
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .session-row:last-child {
-      border-bottom: 0;
-    }
-
-    .date-time {
-      color: #dce5ef;
-      font-size: 12px;
-      font-weight: 900;
-      line-height: 1.35;
-    }
-
-    .date-time span {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .session-name {
-      overflow: hidden;
-      color: #dce5ef;
-      font-size: 13px;
-      font-weight: 750;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .status {
-      justify-self: end;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      min-width: 96px;
-      height: 24px;
-      padding: 0 8px;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      background: #0c0e12;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .status.scheduled {
-      color: #9bd5ff;
-      border-color: rgba(77, 184, 255, 0.28);
-    }
-
-    .status.live {
-      color: #ffb3b6;
-      border-color: rgba(229, 72, 77, 0.38);
-      background: rgba(229, 72, 77, 0.08);
-    }
-
-    .status.finished {
-      color: #9fe2bc;
-      border-color: rgba(48, 164, 108, 0.32);
-    }
-
-    .status.cancelled {
-      color: #a8b0bd;
-      border-color: rgba(124, 135, 152, 0.32);
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-      animation: blink 1s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.25;
-      }
-    }
-
-    .empty,
-    .error {
-      padding: 16px 10px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .error {
-      border-color: rgba(229, 72, 77, 0.35);
-      color: #ffb3b6;
-    }
-
-    @media (max-width: 700px) {
-      .hero-head,
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cat-badge {
-        width: max-content;
-      }
-
-      .info-item {
-        border-right: 0;
-        border-bottom: 1px solid var(--line-soft);
-      }
-
-      .info-item:last-child {
-        border-bottom: 0;
-      }
-
-      .session-row {
-        grid-template-columns: 84px 1fr;
-        gap: 5px 8px;
-      }
-
-      .status {
-        grid-column: 2;
-        justify-self: start;
-      }
-
-      .session-name,
-      .value {
-        white-space: normal;
-      }
-    }
-  </style>
+  <title>PaddockAR | Agenda motor</title>
+  <meta name="description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta name="theme-color" content="#0B0F14" />
+  <meta property="og:title" content="PaddockAR | Agenda motor" />
+  <meta property="og:description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/base.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/topbar.css" />
+  <link rel="stylesheet" href="assets/css/components/layout.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/summary.css" />
+  <link rel="stylesheet" href="assets/css/components/badges.css" />
+  <link rel="stylesheet" href="assets/css/components/status.css" />
+  <link rel="stylesheet" href="assets/css/components/forms.css" />
+  <link rel="stylesheet" href="assets/css/event.css" />
 </head>
-<body>
+<body class="page-shell-860">
   <nav class="topbar">
     <div class="topbar-inner">
-      <div class="logo">PADDOCK<span>AR</span></div>
+      <a class="logo-link" href="index.html" aria-label="Ir a inicio">
+        <div class="logo">PADDOCK<span>AR</span></div>
+      </a>
       <a class="back-link mono" href="index.html">Volver</a>
     </div>
   </nav>
 
   <main id="app">
-    <div class="empty">Cargando evento...</div>
+    <section class="skeleton-stack">
+      <div class="skeleton-card skeleton-card-lg">
+        <div class="skeleton-card-head">
+          <span class="skeleton skeleton-line" style="--skeleton-width:72px"></span>
+          <span class="skeleton skeleton-line" style="--skeleton-width:48%"></span>
+        </div>
+        <div class="skeleton-info-grid">
+          <span class="skeleton skeleton-line"></span>
+          <span class="skeleton skeleton-line"></span>
+          <span class="skeleton skeleton-line"></span>
+          <span class="skeleton skeleton-line"></span>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
-    const PROD_API_BASE_URL = "https://paddockar.onrender.com";
-    const IS_LOCAL = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
-    const API_BASE_URL = IS_LOCAL ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
-    const API_EVENTS = `${API_BASE_URL}/api/events`;
-    const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
-
-    const categoryColors = {
-      F1: "var(--f1)",
-      MotoGP: "var(--motogp)",
-      F2: "var(--f2)",
-      WEC: "var(--wec)",
-      TC: "var(--tc)",
-      TN: "var(--tn)"
-    };
-
-    const statusLabels = {
-      scheduled: "PRÓXIMO",
-      live: "EN VIVO",
-      finished: "FINALIZADO",
-      cancelled: "CANCELADO"
-    };
-
-    const app = document.querySelector("#app");
-
-    function getEventId() {
-      return new URLSearchParams(window.location.search).get("id");
-    }
-
-    function formatDate(value) {
-      return new Intl.DateTimeFormat("es-AR", {
-        timeZone: ARG_TIMEZONE,
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-      }).format(new Date(`${value}T00:00:00-03:00`));
-    }
-
-    function formatSessionDate(value) {
-      const date = new Date(value);
-      return {
-        date: new Intl.DateTimeFormat("es-AR", {
-          timeZone: ARG_TIMEZONE,
-          weekday: "short",
-          day: "2-digit",
-          month: "2-digit"
-        }).format(date),
-        time: new Intl.DateTimeFormat("es-AR", {
-          timeZone: ARG_TIMEZONE,
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false
-        }).format(date)
-      };
-    }
-
-    function statusMarkup(status) {
-      const label = statusLabels[status] || status.toUpperCase();
-      const dot = status === "live" ? '<span class="live-dot"></span>' : "";
-      return `<span class="status mono ${status}">${dot}${label}</span>`;
-    }
-
-    function renderEvent(event) {
-      const category = event.category;
-      const circuit = event.circuit;
-      const color = categoryColors[category.short_name] || category.color || "var(--accent)";
-      const sessions = [...event.sessions].sort((a, b) => new Date(a.starts_at) - new Date(b.starts_at));
-
-      const sessionRows = sessions.map((session) => {
-        const date = formatSessionDate(session.starts_at);
-
-        return `
-          <div class="session-row">
-            <div class="date-time mono">${date.time}<span>${date.date}</span></div>
-            <div class="session-name">${session.name}</div>
-            ${statusMarkup(session.status || "scheduled")}
-          </div>
-        `;
-      }).join("");
-
-      app.innerHTML = `
-        <section class="hero">
-          <header class="hero-head">
-            <div class="cat-badge mono" style="border-left-color:${color}">${category.short_name}</div>
-            <div>
-              <h1>${event.name}</h1>
-              <div class="category-name">${category.name}</div>
-            </div>
-          </header>
-
-          <div class="info-grid">
-            <div class="info-item">
-              <div class="label mono">Circuito</div>
-              <div class="value">${circuit.name}</div>
-            </div>
-            <div class="info-item">
-              <div class="label mono">Ubicación</div>
-              <div class="value">${circuit.city ? `${circuit.city}, ${circuit.country}` : circuit.country}</div>
-            </div>
-            <div class="info-item">
-              <div class="label mono">Inicio</div>
-              <div class="value mono">${formatDate(event.start_date)}</div>
-            </div>
-            <div class="info-item">
-              <div class="label mono">Fin</div>
-              <div class="value mono">${formatDate(event.end_date)}</div>
-            </div>
-          </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__grid">
+        <section class="site-footer__column">
+          <div class="site-footer__brand">PaddockAR</div>
+          <p class="site-footer__text">Agenda compacta de automovilismo.</p>
+          <p class="site-footer__text">Horarios en Argentina.</p>
         </section>
-
-        <div class="section-title mono">Sesiones</div>
-        <section class="sessions">
-          ${sessionRows || '<div class="empty">No hay sesiones cargadas.</div>'}
+        <section class="site-footer__column">
+          <div class="site-footer__title">Producto</div>
+          <nav class="site-footer__links" aria-label="Producto">
+            <a href="index.html">Inicio</a>
+            <a href="calendar.html">Calendario</a>
+            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer">Estado API</a>
+          </nav>
         </section>
-      `;
-    }
+        <section class="site-footer__column">
+          <div class="site-footer__title">Proyecto</div>
+          <nav class="site-footer__links" aria-label="Proyecto">
+            <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="#">Contacto</a>
+            <span>Datos sujetos a cambios</span>
+          </nav>
+        </section>
+      </div>
+      <div class="site-footer__bottom mono">
+        &copy; 2026 PaddockAR. Proyecto independiente.
+      </div>
+    </div>
+  </footer>
 
-    async function loadEvent() {
-      const id = getEventId();
-
-      if (!id) {
-        app.innerHTML = '<div class="error">Falta el id del evento.</div>';
-        return;
-      }
-
-      try {
-        const response = await fetch(`${API_EVENTS}/${id}`);
-
-        if (!response.ok) {
-          throw new Error(`API ${response.status}`);
-        }
-
-        renderEvent(await response.json());
-      } catch (error) {
-        app.innerHTML = '<div class="error">No se pudo cargar el evento.</div>';
-      }
-    }
-
-    loadEvent();
-  </script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/dom.js?v=20260504"></script>
+  <script src="assets/js/event.js?v=20260504"></script>
 </body>
 </html>

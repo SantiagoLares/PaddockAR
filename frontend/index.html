@@ -3,491 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR | Fin de semana</title>
-  <style>
-    :root {
-      --bg: #08090b;
-      --surface: #111318;
-      --surface-soft: #161a20;
-      --line: #252a33;
-      --line-soft: #1d222b;
-      --text: #e8edf3;
-      --muted: #98a3b3;
-      --faint: #687386;
-      --accent: #4db8ff;
-      --red: #e5484d;
-      --green: #30a46c;
-      --grey: #7c8798;
-      --f1: #e10600;
-      --motogp: #c80502;
-      --f2: #1488cc;
-      --wec: #00a19c;
-      --tc: #d8941a;
-      --tn: #2fa866;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 13px;
-    }
-
-    .mono {
-      font-family: Consolas, "Roboto Mono", monospace;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(8, 9, 11, 0.96);
-      backdrop-filter: blur(10px);
-    }
-
-    .topbar-inner,
-    main {
-      width: min(940px, 100%);
-      margin: 0 auto;
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 11px 12px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .logo {
-      color: #f8fafc;
-      font-family: Consolas, "Roboto Mono", monospace;
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .tagline {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .clock {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      height: 26px;
-      padding: 0 8px;
-      border: 1px solid transparent;
-      border-radius: 3px;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-color: #3a4352;
-      background: var(--surface-soft);
-      color: #f8fafc;
-    }
-
-    .pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-    }
-
-    main {
-      padding: 14px 12px 36px;
-    }
-
-    .summary {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: end;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.15;
-      text-transform: uppercase;
-    }
-
-    .subtitle {
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .api-state {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 700;
-      text-align: right;
-      text-transform: uppercase;
-    }
-
-    .filters {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .filter-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .filter-button {
-      height: 28px;
-      padding: 0 9px;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      background: #0d0f13;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .filter-button:hover,
-    .filter-button.active {
-      border-color: #3a4352;
-      background: var(--surface-soft);
-      color: #f8fafc;
-    }
-
-    .board {
-      display: grid;
-      gap: 12px;
-      padding-top: 12px;
-    }
-
-    .day-block {
-      border: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .day-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line);
-      background: #0c0e12;
-      color: #f8fafc;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .day-count {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .event-card {
-      display: block;
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .event-card:last-child {
-      border-bottom: 0;
-    }
-
-    .event-card:hover {
-      background: rgba(255, 255, 255, 0.015);
-    }
-
-    .event-card:hover .event-name {
-      color: #ffffff;
-    }
-
-    .event-head {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 9px;
-      align-items: center;
-      padding: 9px 10px 7px;
-      background: #12151b;
-    }
-
-    .cat-badge {
-      min-width: 48px;
-      padding: 4px 7px;
-      border-left: 4px solid var(--accent);
-      background: #0b0d11;
-      color: #f8fafc;
-      font-size: 11px;
-      font-weight: 900;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .event-meta {
-      min-width: 0;
-    }
-
-    .event-name {
-      overflow: hidden;
-      color: #f8fafc;
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.2;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .circuit {
-      overflow: hidden;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 12px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .event-total {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .session-row {
-      display: grid;
-      grid-template-columns: 64px 1fr 112px;
-      gap: 10px;
-      align-items: center;
-      min-height: 38px;
-      padding: 7px 10px;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .session-row.feature {
-      background: rgba(255, 255, 255, 0.018);
-      box-shadow: inset 3px 0 0 rgba(77, 184, 255, 0.35);
-    }
-
-    .session-row.feature .time,
-    .session-row.feature .session-name {
-      color: #f8fafc;
-      font-weight: 900;
-    }
-
-    .time {
-      color: #dce5ef;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .session-name {
-      overflow: hidden;
-      color: #cbd3df;
-      font-size: 13px;
-      font-weight: 650;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .status {
-      justify-self: end;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      min-width: 96px;
-      height: 24px;
-      padding: 0 8px;
-      border: 1px solid transparent;
-      border-radius: 3px;
-      background: #151922;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .status.scheduled {
-      border-color: rgba(124, 135, 152, 0.2);
-      background: #171b22;
-      color: #b1bbc9;
-    }
-
-    .status.live {
-      color: #ffe5e7;
-      border-color: rgba(229, 72, 77, 0.38);
-      background: rgba(229, 72, 77, 0.2);
-    }
-
-    .status.finished {
-      color: #b8e7cb;
-      border-color: rgba(48, 164, 108, 0.32);
-      background: rgba(48, 164, 108, 0.1);
-    }
-
-    .status.cancelled {
-      color: #8f98a6;
-      border-color: rgba(124, 135, 152, 0.18);
-      background: #101216;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-      animation: blink 1s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.25;
-      }
-    }
-
-    .empty,
-    .error {
-      margin-top: 12px;
-      padding: 16px 10px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .error {
-      border-color: rgba(229, 72, 77, 0.35);
-      color: #ffb3b6;
-    }
-
-    @media (max-width: 720px) {
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 7px;
-      }
-
-      .brand {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .topbar-inner {
-        gap: 8px;
-      }
-
-      .nav-links {
-        margin-left: 0;
-      }
-
-      .tagline {
-        display: none;
-      }
-
-      .summary,
-      .filters {
-        grid-template-columns: 1fr;
-      }
-
-      .api-state {
-        text-align: left;
-      }
-
-      .event-head {
-        grid-template-columns: auto 1fr;
-      }
-
-      .event-total {
-        grid-column: 2;
-      }
-
-      .session-row {
-        grid-template-columns: 52px 1fr;
-        gap: 5px 8px;
-        align-items: start;
-      }
-
-      .status {
-        grid-column: 2;
-        justify-self: start;
-      }
-
-      .event-name,
-      .circuit,
-      .session-name {
-        white-space: normal;
-      }
-    }
-  </style>
+  <title>PaddockAR | Agenda motor</title>
+  <meta name="description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta name="theme-color" content="#0B0F14" />
+  <meta property="og:title" content="PaddockAR | Agenda motor" />
+  <meta property="og:description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/base.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/topbar.css?v=20260501" />
+  <link rel="stylesheet" href="assets/css/components/layout.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/summary.css?v=20260501" />
+  <link rel="stylesheet" href="assets/css/components/filters.css?v=20260501" />
+  <link rel="stylesheet" href="assets/css/components/badges.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/status.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/index.css?v=20260504" />
 </head>
-<body>
+<body class="page-shell-940 home-with-sidebar">
+  <aside id="sideNav" class="side-nav sidebar" aria-label="Categorias">
+    <div class="side-nav-head">
+      <div class="side-nav-title">Categorias</div>
+      <button class="side-nav-close mono" type="button" data-sidebar-close aria-label="Cerrar menu">x</button>
+    </div>
+    <button class="side-nav-item mono active" type="button" data-side-category="all" title="Todas las categorias">
+      <span class="side-nav-item-label">Todos</span>
+      <span class="side-nav-indicator" data-side-indicator></span>
+    </button>
+    <div class="side-nav-section">
+      <button class="side-nav-section-toggle mono" type="button" aria-expanded="true">
+        <span>DESTACADO</span>
+        <span class="side-nav-chevron">v</span>
+      </button>
+      <div class="side-nav-section-body">
+        <button class="side-nav-item mono" type="button" data-side-category="F1" title="Formula 1">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="f1">F1</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+        <button class="side-nav-item mono" type="button" data-side-category="MotoGP" title="MotoGP">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="motogp">MotoGP</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+        <button class="side-nav-item mono" type="button" data-side-category="WEC" title="World Endurance Championship">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="wec">WEC</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+      </div>
+    </div>
+    <div class="side-nav-section">
+      <button class="side-nav-section-toggle mono" type="button" aria-expanded="true">
+        <span>ARGENTINA</span>
+        <span class="side-nav-chevron">v</span>
+      </button>
+      <div class="side-nav-section-body">
+        <button class="side-nav-item mono" type="button" data-side-category="TC" title="Turismo Carretera">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="tc">TC</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+        <button class="side-nav-item mono" type="button" data-side-category="TN C3" title="Turismo Nacional Clase 3">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="tn">TN</span><span>Clase 3</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+        <button class="side-nav-item mono" type="button" data-side-category="TN C2" title="Turismo Nacional Clase 2">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="tn">TN</span><span>Clase 2</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+      </div>
+    </div>
+    <div class="side-nav-section">
+      <button class="side-nav-section-toggle mono" type="button" aria-expanded="true">
+        <span>INTERNACIONAL</span>
+        <span class="side-nav-chevron">v</span>
+      </button>
+      <div class="side-nav-section-body">
+        <button class="side-nav-item mono" type="button" data-side-category="F2" title="Formula 2">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="f2">F2</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+        <button class="side-nav-item mono" type="button" data-side-category="F3" title="Formula 3">
+          <span class="side-nav-item-label"><span class="category-wordmark" data-category-code="f3">F3</span></span>
+          <span class="side-nav-indicator" data-side-indicator></span>
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div id="sideNavBackdrop" class="side-nav-backdrop overlay" data-sidebar-close></div>
   <nav class="topbar">
     <div class="topbar-inner">
+      <button id="sideNavToggle" class="side-nav-toggle mono" type="button" aria-controls="sideNav" aria-expanded="false" aria-label="Abrir categorias">
+        <span class="hamburger-lines" aria-hidden="true"></span>
+      </button>
       <div class="brand">
-        <div class="logo">PADDOCK<span>AR</span></div>
+        <a class="logo-link" href="index.html" aria-label="Ir a inicio">
+          <div class="logo">PADDOCK<span>AR</span></div>
+        </a>
         <div class="tagline">agenda motor</div>
       </div>
-      <div class="nav-links mono" aria-label="Navegación">
+      <div class="nav-links mono" aria-label="Navegacion">
         <a class="active" href="index.html">Inicio</a>
         <a href="calendar.html">Calendario</a>
       </div>
@@ -505,8 +116,13 @@
         <h1>Fin de semana</h1>
         <div class="subtitle">Horarios en Argentina. Calendario compacto de automovilismo.</div>
       </div>
-      <div id="apiState" class="api-state mono">Conectando API</div>
+      <div class="summary-status mono">
+        <div id="apiState" class="api-state">Conectando API</div>
+        <div id="lastUpdated" class="last-updated" aria-live="polite">Esperando datos</div>
+      </div>
     </section>
+
+    <section id="raceSpotlight" class="race-spotlight" aria-live="polite"></section>
 
     <section class="filters" aria-label="Filtros">
       <div class="filter-group" id="categoryFilters">
@@ -514,259 +130,59 @@
         <button class="filter-button mono" type="button" data-category="F1">F1</button>
         <button class="filter-button mono" type="button" data-category="MotoGP">MotoGP</button>
         <button class="filter-button mono" type="button" data-category="F2">F2</button>
+        <button class="filter-button mono" type="button" data-category="F3">F3</button>
         <button class="filter-button mono" type="button" data-category="WEC">WEC</button>
         <button class="filter-button mono" type="button" data-category="TC">TC</button>
         <button class="filter-button mono" type="button" data-category="TN">TN</button>
+        <button class="filter-button mono" type="button" data-category="TN C2">TN C2</button>
+        <button class="filter-button mono" type="button" data-category="TN C3">TN C3</button>
       </div>
       <div class="filter-group" id="statusFilters">
-        <button class="filter-button mono active" type="button" data-status="upcoming">Próximas</button>
+        <button class="filter-button mono active" type="button" data-status="all">Todos</button>
+        <button class="filter-button mono" type="button" data-status="upcoming">Proximas</button>
         <button class="filter-button mono" type="button" data-status="live">En vivo</button>
         <button class="filter-button mono" type="button" data-status="finished">Finalizadas</button>
       </div>
     </section>
 
+    <section id="nextRaces" class="next-races" aria-live="polite"></section>
     <section id="sessionList" class="board" aria-live="polite"></section>
   </main>
 
-  <script>
-    const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
-    const PROD_API_BASE_URL = "https://paddockar.onrender.com";
-    const IS_LOCAL = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
-    const API_BASE_URL = IS_LOCAL ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
-    const API_WEEKEND = `${API_BASE_URL}/api/weekend`;
-    const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__grid">
+        <section class="site-footer__column">
+          <div class="site-footer__brand">PaddockAR</div>
+          <p class="site-footer__text">Agenda compacta de automovilismo.</p>
+          <p class="site-footer__text">Horarios en Argentina.</p>
+        </section>
+        <section class="site-footer__column">
+          <div class="site-footer__title">Producto</div>
+          <nav class="site-footer__links" aria-label="Producto">
+            <a href="index.html">Inicio</a>
+            <a href="calendar.html">Calendario</a>
+            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer">Estado API</a>
+          </nav>
+        </section>
+        <section class="site-footer__column">
+          <div class="site-footer__title">Proyecto</div>
+          <nav class="site-footer__links" aria-label="Proyecto">
+            <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="#">Contacto</a>
+            <span>Datos sujetos a cambios</span>
+          </nav>
+        </section>
+      </div>
+      <div class="site-footer__bottom mono">
+        &copy; 2026 PaddockAR. Proyecto independiente.
+      </div>
+    </div>
+  </footer>
 
-    const categoryColors = {
-      F1: "var(--f1)",
-      MotoGP: "var(--motogp)",
-      F2: "var(--f2)",
-      WEC: "var(--wec)",
-      TC: "var(--tc)",
-      TN: "var(--tn)"
-    };
-
-    const statusLabels = {
-      scheduled: "PRÓXIMO",
-      live: "EN VIVO",
-      finished: "FINALIZADO",
-      cancelled: "CANCELADO"
-    };
-
-    const dayOrder = ["viernes", "sabado", "domingo"];
-    const clock = document.querySelector("#clock");
-    const apiState = document.querySelector("#apiState");
-    const sessionList = document.querySelector("#sessionList");
-    const categoryFilters = document.querySelector("#categoryFilters");
-    const statusFilters = document.querySelector("#statusFilters");
-
-    let allSessions = [];
-    let activeCategory = "all";
-    let activeStatus = "upcoming";
-
-    function updateClock() {
-      clock.textContent = new Intl.DateTimeFormat("es-AR", {
-        timeZone: ARG_TIMEZONE,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
-      }).format(new Date());
-    }
-
-    function dateParts(value) {
-      const date = new Date(value);
-      const weekday = new Intl.DateTimeFormat("es-AR", {
-        timeZone: ARG_TIMEZONE,
-        weekday: "long"
-      }).format(date).toLowerCase();
-      const label = new Intl.DateTimeFormat("es-AR", {
-        timeZone: ARG_TIMEZONE,
-        weekday: "long",
-        day: "2-digit",
-        month: "2-digit"
-      }).format(date);
-      const time = new Intl.DateTimeFormat("es-AR", {
-        timeZone: ARG_TIMEZONE,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      }).format(date);
-
-      return { weekday, label, time };
-    }
-
-    function groupByDayAndEvent(sessions) {
-      const days = new Map();
-
-      sessions.forEach((session) => {
-        const parts = dateParts(session.starts_at);
-        const event = session.event;
-        const dayKey = parts.weekday;
-        const eventKey = `${event.category.short_name}-${event.slug}-${event.id}`;
-
-        if (!days.has(dayKey)) {
-          days.set(dayKey, {
-            key: dayKey,
-            label: parts.label,
-            sessions: 0,
-            events: new Map()
-          });
-        }
-
-        const day = days.get(dayKey);
-        day.sessions += 1;
-
-        if (!day.events.has(eventKey)) {
-          day.events.set(eventKey, {
-            event,
-            sessions: []
-          });
-        }
-
-        day.events.get(eventKey).sessions.push({
-          ...session,
-          displayTime: parts.time
-        });
-      });
-
-      return Array.from(days.values()).sort((a, b) => {
-        const aIndex = dayOrder.indexOf(a.key);
-        const bIndex = dayOrder.indexOf(b.key);
-
-        if (aIndex === -1 || bIndex === -1) {
-          return a.label.localeCompare(b.label);
-        }
-
-        return aIndex - bIndex;
-      });
-    }
-
-    function statusMarkup(status) {
-      const label = statusLabels[status] || status.toUpperCase();
-      const dot = status === "live" ? '<span class="live-dot"></span>' : "";
-      return `<span class="status mono ${status}">${dot}${label}</span>`;
-    }
-
-    function renderSessions(sessions) {
-      if (!sessions.length) {
-        sessionList.innerHTML = '<div class="empty">No hay sesiones para los filtros seleccionados.</div>';
-        return;
-      }
-
-      const days = groupByDayAndEvent(sessions);
-
-      sessionList.innerHTML = days.map((day) => {
-        const eventCards = Array.from(day.events.values()).map(({ event, sessions: eventSessions }) => {
-          const category = event.category;
-          const circuit = event.circuit;
-          const color = categoryColors[category.short_name] || category.color || "var(--accent)";
-
-          const rows = eventSessions.map((session) => {
-            const isFeature = session.is_feature || session.session_type === "race";
-
-            return `
-            <div class="session-row ${isFeature ? "feature" : ""}">
-              <div class="time mono">${session.displayTime}</div>
-              <div class="session-name">${session.name}</div>
-              ${statusMarkup(session.status || "scheduled")}
-            </div>
-          `;
-          }).join("");
-
-          return `
-            <a class="event-card" href="event.html?id=${event.id}" aria-label="Ver detalle de ${event.name}">
-              <header class="event-head">
-                <div class="cat-badge mono" style="border-left-color:${color}">${category.short_name}</div>
-                <div class="event-meta">
-                  <div class="event-name">${event.name}</div>
-                  <div class="circuit">${circuit.name} · ${circuit.city || circuit.country}</div>
-                </div>
-                <div class="event-total mono">${eventSessions.length} sesiones</div>
-              </header>
-              ${rows}
-            </a>
-          `;
-        }).join("");
-
-        return `
-          <section class="day-block">
-            <header class="day-title">
-              <span>${day.label}</span>
-              <span class="day-count mono">${day.sessions} sesiones</span>
-            </header>
-            ${eventCards}
-          </section>
-        `;
-      }).join("");
-    }
-
-    function applyFilters() {
-      const filtered = allSessions.filter((session) => {
-        const categoryCode = session.event.category.short_name;
-        const status = session.status || "scheduled";
-        const matchesCategory = activeCategory === "all" || categoryCode === activeCategory;
-        const matchesStatus = activeStatus === "upcoming"
-          ? status === "scheduled"
-          : status === activeStatus;
-
-        return matchesCategory && matchesStatus;
-      });
-
-      renderSessions(filtered);
-      apiState.textContent = `${filtered.length}/${allSessions.length} sesiones`;
-    }
-
-    function setActiveButton(group, selector) {
-      group.querySelectorAll(".filter-button").forEach((button) => {
-        button.classList.toggle("active", button.matches(selector));
-      });
-    }
-
-    categoryFilters.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-category]");
-
-      if (!button) {
-        return;
-      }
-
-      activeCategory = button.dataset.category;
-      setActiveButton(categoryFilters, `[data-category="${activeCategory}"]`);
-      applyFilters();
-    });
-
-    statusFilters.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-status]");
-
-      if (!button) {
-        return;
-      }
-
-      activeStatus = button.dataset.status;
-      setActiveButton(statusFilters, `[data-status="${activeStatus}"]`);
-      applyFilters();
-    });
-
-    async function loadWeekend() {
-      apiState.textContent = "Cargando";
-
-      try {
-        const response = await fetch(API_WEEKEND);
-
-        if (!response.ok) {
-          throw new Error(`API ${response.status}`);
-        }
-
-        allSessions = await response.json();
-        applyFilters();
-      } catch (error) {
-        sessionList.innerHTML = '<div class="error">No se pudo conectar con la API local.</div>';
-        apiState.textContent = "API sin conexion";
-      }
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
-    loadWeekend();
-  </script>
+  <script src="assets/js/common.js?v=20260504"></script>
+  <script src="assets/js/api.js?v=20260501"></script>
+  <script src="assets/js/dom.js?v=20260504"></script>
+  <script src="assets/js/index.js?v=20260504"></script>
 </body>
 </html>

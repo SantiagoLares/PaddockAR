@@ -3,334 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR | Calendario</title>
-  <style>
-    :root {
-      --bg: #08090b;
-      --surface: #111318;
-      --surface-soft: #161a20;
-      --line: #252a33;
-      --line-soft: #1d222b;
-      --text: #e8edf3;
-      --muted: #98a3b3;
-      --faint: #687386;
-      --accent: #4db8ff;
-      --red: #e5484d;
-      --f1: #e10600;
-      --motogp: #c80502;
-      --f2: #1488cc;
-      --wec: #00a19c;
-      --tc: #d8941a;
-      --tn: #2fa866;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 13px;
-    }
-
-    .mono {
-      font-family: Consolas, "Roboto Mono", monospace;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(8, 9, 11, 0.96);
-      backdrop-filter: blur(10px);
-    }
-
-    .topbar-inner,
-    main {
-      width: min(940px, 100%);
-      margin: 0 auto;
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 11px 12px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .logo {
-      color: #f8fafc;
-      font-family: Consolas, "Roboto Mono", monospace;
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .tagline {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      height: 26px;
-      padding: 0 8px;
-      border: 1px solid transparent;
-      border-radius: 3px;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-color: #3a4352;
-      background: var(--surface-soft);
-      color: #f8fafc;
-    }
-
-    main {
-      padding: 14px 12px 36px;
-    }
-
-    .summary {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: end;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.15;
-      text-transform: uppercase;
-    }
-
-    .subtitle {
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .api-state {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 700;
-      text-align: right;
-      text-transform: uppercase;
-    }
-
-    .calendar-board {
-      display: grid;
-      gap: 12px;
-      padding-top: 12px;
-    }
-
-    .category-block {
-      border: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .category-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line);
-      background: #0c0e12;
-    }
-
-    .category-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .cat-badge {
-      min-width: 52px;
-      padding: 4px 7px;
-      border-left: 4px solid var(--accent);
-      background: #08090b;
-      color: #f8fafc;
-      font-size: 11px;
-      font-weight: 900;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .category-name {
-      overflow: hidden;
-      color: #f8fafc;
-      font-size: 12px;
-      font-weight: 900;
-      text-overflow: ellipsis;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .category-count {
-      color: var(--faint);
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .event-row {
-      display: grid;
-      grid-template-columns: 140px 1fr 160px;
-      gap: 12px;
-      align-items: center;
-      min-height: 48px;
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line-soft);
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .event-row:last-child {
-      border-bottom: 0;
-    }
-
-    .event-row:hover {
-      background: rgba(255, 255, 255, 0.015);
-    }
-
-    .date-range {
-      color: #dce5ef;
-      font-size: 12px;
-      font-weight: 900;
-      line-height: 1.35;
-    }
-
-    .event-name {
-      overflow: hidden;
-      color: #f8fafc;
-      font-size: 14px;
-      font-weight: 800;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .circuit {
-      overflow: hidden;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 12px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .country {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 750;
-      text-align: right;
-    }
-
-    .empty,
-    .error {
-      margin-top: 12px;
-      padding: 16px 10px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .error {
-      border-color: rgba(229, 72, 77, 0.35);
-      color: #ffb3b6;
-    }
-
-    @media (max-width: 720px) {
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .brand {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .tagline {
-        display: none;
-      }
-
-      .nav-links {
-        margin-left: 0;
-      }
-
-      .summary {
-        grid-template-columns: 1fr;
-      }
-
-      .api-state {
-        text-align: left;
-      }
-
-      .event-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
-
-      .country {
-        text-align: left;
-      }
-
-      .event-name,
-      .circuit,
-      .category-name {
-        white-space: normal;
-      }
-    }
-  </style>
+  <title>PaddockAR | Agenda motor</title>
+  <meta name="description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta name="theme-color" content="#0B0F14" />
+  <meta property="og:title" content="PaddockAR | Agenda motor" />
+  <meta property="og:description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/base.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/topbar.css" />
+  <link rel="stylesheet" href="assets/css/components/layout.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/summary.css" />
+  <link rel="stylesheet" href="assets/css/components/badges.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/calendar.css?v=20260504" />
 </head>
-<body>
+<body class="page-shell-940">
   <nav class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo">PADDOCK<span>AR</span></div>
+        <a class="logo-link" href="index.html" aria-label="Ir a inicio">
+          <div class="logo">PADDOCK<span>AR</span></div>
+        </a>
         <div class="tagline">agenda motor</div>
       </div>
-      <div class="nav-links mono" aria-label="Navegación">
+      <div class="nav-links mono" aria-label="Navegacion">
         <a href="index.html">Inicio</a>
         <a class="active" href="calendar.html">Calendario</a>
       </div>
@@ -341,7 +37,7 @@
     <section class="summary">
       <div>
         <h1>Calendario</h1>
-        <div class="subtitle">Próximos eventos por categoría.</div>
+        <div class="subtitle">Proximos eventos por categoria.</div>
       </div>
       <div id="apiState" class="api-state mono">Conectando API</div>
     </section>
@@ -349,116 +45,40 @@
     <section id="calendarBoard" class="calendar-board" aria-live="polite"></section>
   </main>
 
-  <script>
-    const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
-    const PROD_API_BASE_URL = "https://paddockar.onrender.com";
-    const IS_LOCAL = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
-    const API_BASE_URL = IS_LOCAL ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
-    const API_EVENTS = `${API_BASE_URL}/api/events`;
-    const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__grid">
+        <section class="site-footer__column">
+          <div class="site-footer__brand">PaddockAR</div>
+          <p class="site-footer__text">Agenda compacta de automovilismo.</p>
+          <p class="site-footer__text">Horarios en Argentina.</p>
+        </section>
+        <section class="site-footer__column">
+          <div class="site-footer__title">Producto</div>
+          <nav class="site-footer__links" aria-label="Producto">
+            <a href="index.html">Inicio</a>
+            <a href="calendar.html">Calendario</a>
+            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer">Estado API</a>
+          </nav>
+        </section>
+        <section class="site-footer__column">
+          <div class="site-footer__title">Proyecto</div>
+          <nav class="site-footer__links" aria-label="Proyecto">
+            <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="#">Contacto</a>
+            <span>Datos sujetos a cambios</span>
+          </nav>
+        </section>
+      </div>
+      <div class="site-footer__bottom mono">
+        &copy; 2026 PaddockAR. Proyecto independiente.
+      </div>
+    </div>
+  </footer>
 
-    const categoryColors = {
-      F1: "var(--f1)",
-      MotoGP: "var(--motogp)",
-      F2: "var(--f2)",
-      WEC: "var(--wec)",
-      TC: "var(--tc)",
-      TN: "var(--tn)"
-    };
-
-    const categoryOrder = ["F1", "F2", "MotoGP", "WEC", "TC", "TN"];
-    const apiState = document.querySelector("#apiState");
-    const calendarBoard = document.querySelector("#calendarBoard");
-
-    function formatDate(value) {
-      return new Intl.DateTimeFormat("es-AR", {
-        timeZone: ARG_TIMEZONE,
-        day: "2-digit",
-        month: "2-digit"
-      }).format(new Date(`${value}T00:00:00-03:00`));
-    }
-
-    function groupByCategory(events) {
-      const groups = new Map();
-
-      events.forEach((event) => {
-        const code = event.category.short_name;
-
-        if (!groups.has(code)) {
-          groups.set(code, {
-            category: event.category,
-            events: []
-          });
-        }
-
-        groups.get(code).events.push(event);
-      });
-
-      return Array.from(groups.values()).sort((a, b) => {
-        const aIndex = categoryOrder.indexOf(a.category.short_name);
-        const bIndex = categoryOrder.indexOf(b.category.short_name);
-        return (aIndex === -1 ? 99 : aIndex) - (bIndex === -1 ? 99 : bIndex);
-      });
-    }
-
-    function renderCalendar(events) {
-      if (!events.length) {
-        calendarBoard.innerHTML = '<div class="empty">No hay eventos cargados.</div>';
-        return;
-      }
-
-      const sorted = [...events].sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-      const groups = groupByCategory(sorted);
-
-      calendarBoard.innerHTML = groups.map((group) => {
-        const category = group.category;
-        const color = categoryColors[category.short_name] || category.color || "var(--accent)";
-        const rows = group.events.map((event) => `
-          <a class="event-row" href="event.html?id=${event.id}">
-            <div class="date-range mono">${formatDate(event.start_date)} - ${formatDate(event.end_date)}</div>
-            <div>
-              <div class="event-name">${event.name}</div>
-              <div class="circuit">${event.circuit.name}</div>
-            </div>
-            <div class="country">${event.circuit.city ? `${event.circuit.city}, ${event.circuit.country}` : event.circuit.country}</div>
-          </a>
-        `).join("");
-
-        return `
-          <section class="category-block">
-            <header class="category-title">
-              <div class="category-left">
-                <div class="cat-badge mono" style="border-left-color:${color}">${category.short_name}</div>
-                <div class="category-name">${category.name}</div>
-              </div>
-              <div class="category-count mono">${group.events.length} eventos</div>
-            </header>
-            ${rows}
-          </section>
-        `;
-      }).join("");
-    }
-
-    async function loadCalendar() {
-      apiState.textContent = "Cargando";
-
-      try {
-        const response = await fetch(API_EVENTS);
-
-        if (!response.ok) {
-          throw new Error(`API ${response.status}`);
-        }
-
-        const events = await response.json();
-        renderCalendar(events);
-        apiState.textContent = `${events.length} eventos`;
-      } catch (error) {
-        calendarBoard.innerHTML = '<div class="error">No se pudo conectar con la API local.</div>';
-        apiState.textContent = "API sin conexion";
-      }
-    }
-
-    loadCalendar();
-  </script>
+  <script src="assets/js/common.js?v=20260504"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/dom.js?v=20260504"></script>
+  <script src="assets/js/calendar.js?v=20260504"></script>
 </body>
 </html>
