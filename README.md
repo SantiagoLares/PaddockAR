@@ -153,6 +153,15 @@ Cargar una categoria puntual:
 .\.venv\Scripts\python.exe backend\app\seeds\seed_initial_data.py --calendar f1_2026
 ```
 
+## Upgrade manual de schema en produccion
+
+Si Render quedo apuntando a una base con schema viejo, podes ejecutar un upgrade seguro que crea tablas faltantes y agrega columnas nuevas en `sessions` sin borrar datos:
+
+```powershell
+cd backend
+python -m app.scripts.upgrade_production_schema
+```
+
 ## Import manual de standings F1
 
 El importador de F1 es manual y no toca otras categorias. Por defecto usa el fallback JSON:

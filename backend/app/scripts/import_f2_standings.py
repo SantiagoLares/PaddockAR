@@ -13,6 +13,7 @@ from app.models.standing import Standing
 
 DRIVERS_URL = "https://www.fiaformula2.com/Standings/Driver?seasonid=183"
 CONSTRUCTORS_URL = "https://www.fiaformula2.com/Standings/Team?seasonid=183"
+RESULTS_URL = "https://www.fiaformula2.com/Results?raceid={race_id}"
 DEFAULT_JSON_PATH = Path(__file__).resolve().parents[1] / "seeds" / "data" / "standings" / "f2_2026.json"
 USER_AGENT = "PaddockAR/0.1 manual importer"
 F2_CATEGORY_SLUGS = {"f2", "formula-2"}
@@ -74,9 +75,69 @@ def extract_embedded_page_data(html: str) -> dict:
     return json.loads(json_blob)["props"]["pageProps"]["pageData"]
 
 
+def fetch_embedded_page_data(url: str) -> dict:
+    return extract_embedded_page_data(fetch_page(url))
+
+
+def build_completed_race_ids(page_data: dict) -> list[int]:
+    standings = page_data.get("Standings", [])
+    season_races = page_data.get("SeasonRaces", [])
+    if not standings or not season_races:
+        return []
+
+    completed: list[int] = []
+    for index, race in enumerate(season_races):
+        race_has_points = any(
+            index < len(row.get("RacePoints", []))
+            and any(value is not None for value in row.get("RacePoints", [])[index])
+            for row in standings
+        )
+        if race_has_points:
+            completed.append(race["RaceId"])
+    return completed
+
+
+def collect_wins_from_results(race_ids: list[int]) -> tuple[dict[str, int], dict[str, int]]:
+    driver_wins: dict[str, int] = {}
+    team_wins: dict[str, int] = {}
+
+    for race_id in race_ids:
+        page_data = fetch_embedded_page_data(RESULTS_URL.format(race_id=race_id))
+        for session in page_data.get("SessionResults", []):
+            session_name = normalize_name(session.get("SessionName"))
+            if session_name not in {"Sprint Race", "Feature Race"}:
+                continue
+
+            winner_name = normalize_name(session.get("WinnerFullName") or session.get("WinnerName"))
+            results = session.get("Results") or []
+            winner_team = normalize_name(results[0].get("TeamName")) if results else ""
+
+            if winner_name:
+                driver_wins[winner_name] = driver_wins.get(winner_name, 0) + 1
+            if winner_team:
+                team_wins[winner_team] = team_wins.get(winner_team, 0) + 1
+
+    return driver_wins, team_wins
+
+
+def derive_team_wins_from_drivers(drivers: list[dict], constructors: list[dict]) -> None:
+    wins_by_team: dict[str, int] = {}
+    for row in drivers:
+        team_name = normalize_name(row.get("team_name"))
+        if not team_name:
+            continue
+        wins_by_team[team_name] = wins_by_team.get(team_name, 0) + normalize_points(row.get("wins", 0))
+
+    for row in constructors:
+        team_name = normalize_name(row.get("team_name") or row.get("name"))
+        row["wins"] = wins_by_team.get(team_name, normalize_points(row.get("wins", 0)))
+
+
 def parse_official_payload() -> dict:
-    drivers_page_data = extract_embedded_page_data(fetch_page(DRIVERS_URL))
-    constructors_page_data = extract_embedded_page_data(fetch_page(CONSTRUCTORS_URL))
+    drivers_page_data = fetch_embedded_page_data(DRIVERS_URL)
+    constructors_page_data = fetch_embedded_page_data(CONSTRUCTORS_URL)
+    completed_race_ids = build_completed_race_ids(drivers_page_data)
+    driver_wins, team_wins = collect_wins_from_results(completed_race_ids)
 
     drivers = [
         {
@@ -84,7 +145,7 @@ def parse_official_payload() -> dict:
             "name": normalize_name(row.get("FullName") or row.get("DisplayName")),
             "team_name": normalize_name(row.get("TeamName")),
             "points": normalize_points(row.get("TotalPoints")),
-            "wins": 0,
+            "wins": driver_wins.get(normalize_name(row.get("FullName") or row.get("DisplayName")), 0),
         }
         for row in drivers_page_data.get("Standings", [])
     ]
@@ -94,7 +155,7 @@ def parse_official_payload() -> dict:
             "name": normalize_name(row.get("FullName") or row.get("DisplayName")),
             "team_name": normalize_name(row.get("FullName") or row.get("DisplayName")),
             "points": normalize_points(row.get("TotalPoints")),
-            "wins": 0,
+            "wins": team_wins.get(normalize_name(row.get("FullName") or row.get("DisplayName")), 0),
         }
         for row in constructors_page_data.get("Standings", [])
     ]
@@ -106,7 +167,7 @@ def parse_official_payload() -> dict:
         "category_slug": "f2",
         "season_year": 2026,
         "source": "official_fia_formula2",
-        "source_note": "Importado desde FIA Formula 2 con parser best-effort sobre el JSON embebido.",
+        "source_note": "Importado desde FIA Formula 2 con parser best-effort sobre el JSON embebido. Las victorias se calculan desde las paginas oficiales de resultados Sprint Race y Feature Race para las rondas completadas.",
         "source_urls": {
             "drivers": DRIVERS_URL,
             "constructors": CONSTRUCTORS_URL,
@@ -207,6 +268,7 @@ def upsert_rows(db, category: Category, rows: list[dict]) -> tuple[int, int]:
 def import_f2_standings(source: str = "fallback", file_path: Path = DEFAULT_JSON_PATH) -> None:
     create_tables()
     payload, resolved_source = load_payload(source, file_path)
+    derive_team_wins_from_drivers(payload.get("drivers", []), payload.get("constructors", []))
     drivers = validate_rows(payload.get("drivers", []), "drivers")
     constructors = validate_rows(payload.get("constructors", []), "constructors")
 

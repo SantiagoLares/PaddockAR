@@ -19,13 +19,26 @@
   --green: #30a46c;
   --grey: #7c8798;
   --f1: #e10600;
-  --motogp: #c80502;
+  --motogp: #d9e1ea;
   --f2: #1488cc;
-  --f3: #4657d9;
-  --wec: #00a19c;
-  --tc: #d8941a;
-  --tn-c2: #0ea5a4;
-  --tn: #39b86f;
+  --f3: #1488cc;
+  --wec: #31d7e2;
+  --tc: #4db8ff;
+  --tcp: #4db8ff;
+  --tcm: #4db8ff;
+  --tcpm: #4db8ff;
+  --tcpu: #4db8ff;
+  --tcppu: #4db8ff;
+  --tc2000: #2f8cff;
+  --tr: #7c3aed;
+  --t4000: #a855f7;
+  --bora: #facc15;
+  --tp: #27d3c3;
+  --tp-c3: #27d3c3;
+  --tp-c2: #27d3c3;
+  --tp-c1: #27d3c3;
+  --tn-c2: #30a46c;
+  --tn: #30a46c;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -272,8 +285,10 @@ button {
 }
 
 .winner-icon {
-  font-size: 12px;
-  line-height: 1;
+  width: 14px;
+  height: 14px;
+  color: #ffd26f;
+  flex: 0 0 auto;
 }
 
 .winner-label {
@@ -289,6 +304,42 @@ button {
   min-width: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.ui-inline-icon {
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+
+.ui-icon-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ui-meta-row {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ui-icon-label .ui-inline-icon {
+  color: #9edcff;
+}
+
+.ui-icon-label span:last-child {
+  min-width: 0;
+}
+
+.status-icon {
+  width: 12px;
+  height: 12px;
+  color: currentColor;
 }
 
 @media (max-width: 720px) {

@@ -9,7 +9,7 @@
     "name": "MotoGP",
     "slug": "motogp",
     "short_name": "MotoGP",
-    "color": "#c80502"
+    "color": "#d9e1ea"
   },
   {
     "name": "Formula 2",
@@ -21,30 +21,102 @@
     "name": "Formula 3",
     "slug": "f3",
     "short_name": "F3",
-    "color": "#4657d9"
+    "color": "#1488cc"
   },
   {
     "name": "World Endurance Championship",
     "slug": "wec",
     "short_name": "WEC",
-    "color": "#00a19c"
+    "color": "#31d7e2"
   },
   {
     "name": "Turismo Carretera",
     "slug": "turismo-carretera",
     "short_name": "TC",
-    "color": "#f59e0b"
+    "color": "#4db8ff"
+  },
+  {
+    "name": "TC Pista",
+    "slug": "tc-pista",
+    "short_name": "TCP",
+    "color": "#4db8ff"
+  },
+  {
+    "name": "TC Mouras",
+    "slug": "tc-mouras",
+    "short_name": "TCM",
+    "color": "#4db8ff"
+  },
+  {
+    "name": "TC Pista Mouras",
+    "slug": "tc-pista-mouras",
+    "short_name": "TCPM",
+    "color": "#4db8ff"
+  },
+  {
+    "name": "TC Pick Up",
+    "slug": "tc-pick-up",
+    "short_name": "TCPK",
+    "color": "#4db8ff"
+  },
+  {
+    "name": "TC Pista Pick Up",
+    "slug": "tc-pista-pick-up",
+    "short_name": "TCPPK",
+    "color": "#4db8ff"
+  },
+  {
+    "name": "TC2000",
+    "slug": "tc2000",
+    "short_name": "TC2000",
+    "color": "#2f8cff"
+  },
+  {
+    "name": "Top Race",
+    "slug": "top-race",
+    "short_name": "TR",
+    "color": "#7c3aed"
+  },
+  {
+    "name": "Turismo 4000 Argentino",
+    "slug": "turismo-4000-argentino",
+    "short_name": "T4000",
+    "color": "#7c3aed"
+  },
+  {
+    "name": "Copa Bora",
+    "slug": "copa-bora",
+    "short_name": "BORA",
+    "color": "#7c3aed"
+  },
+  {
+    "name": "Turismo Pista Clase 3",
+    "slug": "turismo-pista-c3",
+    "short_name": "TP C3",
+    "color": "#27d3c3"
+  },
+  {
+    "name": "Turismo Pista Clase 2",
+    "slug": "turismo-pista-c2",
+    "short_name": "TP C2",
+    "color": "#27d3c3"
+  },
+  {
+    "name": "Turismo Pista Clase 1",
+    "slug": "turismo-pista-c1",
+    "short_name": "TP C1",
+    "color": "#27d3c3"
   },
   {
     "name": "Turismo Nacional Clase 2",
     "slug": "turismo-nacional-clase-2",
     "short_name": "TN C2",
-    "color": "#16a34a"
+    "color": "#30a46c"
   },
   {
     "name": "Turismo Nacional Clase 3",
     "slug": "turismo-nacional-clase-3",
     "short_name": "TN C3",
-    "color": "#22c55e"
+    "color": "#30a46c"
   }
 ]

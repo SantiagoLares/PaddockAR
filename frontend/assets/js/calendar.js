@@ -1,10 +1,12 @@
 const {
-  ARG_TIMEZONE,
   categoryHref,
   categoryFamilyKey,
   categoryFamilyLabel,
   eventDisplayName,
-  renderCategoryLogo,
+  formatDate,
+  renderIcon,
+  renderIconLabel,
+  renderCategoryBadge,
   getPrimaryEventSession,
   getSessionWinner,
   renderWinnerLine,
@@ -14,7 +16,7 @@ const { getJson } = window.PaddockARApi;
 const { setHTML, setText, renderEmpty, renderError, renderSkeleton } = window.PaddockARDom;
 const logger = createLogger("PaddockAR");
 
-const categoryOrder = ["F1", "F2", "F3", "MotoGP", "WEC", "TC", "TN"];
+const categoryOrder = ["F1", "F2", "F3", "MotoGP", "WEC", "TC", "TCP", "TCM", "TCPM", "TCPK", "TCPPK", "TC2000", "TR", "T4000", "BORA", "TP", "TN"];
 const apiState = document.querySelector("#apiState");
 const calendarBoard = document.querySelector("#calendarBoard");
 
@@ -26,14 +28,6 @@ function renderLoadError() {
     }),
   );
   setText(apiState, "Error de API");
-}
-
-function formatDate(value) {
-  return new Intl.DateTimeFormat("es-AR", {
-    timeZone: ARG_TIMEZONE,
-    day: "2-digit",
-    month: "2-digit",
-  }).format(new Date(`${value}T00:00:00-03:00`));
 }
 
 function categoryPanelId(category) {
@@ -53,6 +47,14 @@ function getGroupHeaderCategory(group) {
       name: "Turismo Nacional",
       short_name: "TN",
       slug: "turismo-nacional",
+    };
+  }
+  if (group.key === "TP" && group.categories.size > 1) {
+    return {
+      ...group.events[0].category,
+      name: "Turismo Pista",
+      short_name: "TP",
+      slug: "turismo-pista",
     };
   }
   if (group.categories.size === 1) return group.events[0].category;
@@ -104,16 +106,16 @@ function renderCalendar(events) {
         .map(
           (event) => `
           <a class="event-row" href="event.html?id=${event.id}">
-            <div class="date-range mono">${formatDate(event.start_date)} - ${formatDate(event.end_date)}</div>
+            <div class="date-range mono">${renderIconLabel("calendar", `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`, { iconSize: 13, className: "date-range-label" })}</div>
             <div class="event-main">
               <div class="event-line">
-                ${renderCategoryLogo(event.category, { tag: "span", extraClass: "event-category-logo" })}
+                ${renderCategoryBadge(event.category, { tag: "span", extraClass: "event-category-logo", size: "compact" })}
                 <div class="event-name">${eventDisplayName(event)}</div>
               </div>
               ${renderEventWinner(event)}
               <div class="circuit">${event.circuit.name}</div>
             </div>
-            <div class="country">${event.circuit.city ? `${event.circuit.city}, ${event.circuit.country}` : event.circuit.country}</div>
+            <div class="country">${renderIconLabel("map-pin", event.circuit.city ? `${event.circuit.city}, ${event.circuit.country}` : event.circuit.country, { iconSize: 13, className: "country-label" })}</div>
           </a>
         `,
         )
@@ -126,18 +128,19 @@ function renderCalendar(events) {
                 ${group.categories.size === 1
             ? `
                     <a class="category-link" href="${categoryHref(primaryCategory)}" aria-label="Ver categoria ${primaryCategory.name}">
-                      ${renderCategoryLogo(primaryCategory, {
+                      ${renderCategoryBadge(primaryCategory, {
                 tag: "span",
                 extraClass: "category-header-logo",
+                size: "compact",
               })}
                     </a>
                   `
-            : renderCategoryLogo(primaryCategory, { tag: "span", extraClass: "category-header-logo" })}
+            : renderCategoryBadge(primaryCategory, { tag: "span", extraClass: "category-header-logo", size: "compact" })}
                 <div class="category-name">${group.label}</div>
                 <div class="category-count mono">${group.events.length} eventos</div>
               </div>
               <div class="category-right">
-                <span class="category-chevron mono" aria-hidden="true">+</span>
+                <span class="category-chevron mono" aria-hidden="true">${renderIcon("chevron-down", { size: 16, className: "category-chevron-icon" })}</span>
               </div>
             </div>
             <div id="${panelId}" class="category-panel" aria-hidden="true">
@@ -187,7 +190,7 @@ calendarBoard.addEventListener("click", (event) => {
   toggle.closest(".category-block")?.classList.toggle("is-open", !expanded);
   panel.setAttribute("aria-hidden", String(expanded));
   const chevron = toggle.querySelector(".category-chevron");
-  if (chevron) chevron.textContent = expanded ? "+" : "-";
+  if (chevron) chevron.innerHTML = renderIcon(expanded ? "chevron-down" : "chevron-up", { size: 16, className: "category-chevron-icon" });
 });
 
 calendarBoard.addEventListener("keydown", (event) => {

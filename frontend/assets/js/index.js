@@ -3,7 +3,12 @@ const {
   categoryCode,
   categoryFamilyLabel,
   categoryHref,
+  formatDate,
+  formatRelative,
+  formatTime,
   matchesCategoryFilter,
+  renderIcon,
+  renderIconLabel,
   statusLabels,
   renderCategoryBadge,
   isPrimarySession,
@@ -38,6 +43,18 @@ const CATEGORY_TO_QUERY = {
   MotoGP: "motogp",
   WEC: "wec",
   TC: "tc",
+  TCP: "tc-pista",
+  TCM: "tc-mouras",
+  TCPM: "tc-pista-mouras",
+  TCPK: "tc-pick-up",
+  TCPPK: "tc-pista-pick-up",
+  TC2000: "tc2000",
+  TR: "top-race",
+  T4000: "turismo-4000-argentino",
+  BORA: "copa-bora",
+  "TP C3": "turismo-pista-c3",
+  "TP C2": "turismo-pista-c2",
+  "TP C1": "turismo-pista-c1",
   TN: "tn",
   "TN C2": "tn-c2",
   "TN C3": "tn-c3",
@@ -64,13 +81,16 @@ function renderLoadError() {
   setText(apiState, "Error de API");
 }
 
-function formatUpdateTime(value) {
-  return new Intl.DateTimeFormat("es-AR", {
-    timeZone: ARG_TIMEZONE,
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(value);
+function renderDateTimeMeta(value, { dateOnly = false, className = "" } = {}) {
+  const dateLabel = formatDate(value, { weekday: "short", dateOnly: false });
+  const timeLabel = dateOnly ? "" : formatTime(value);
+
+  return `
+    <span class="ui-meta-row ${className}">
+      ${renderIconLabel("calendar", dateLabel, { iconSize: 13 })}
+      ${timeLabel ? renderIconLabel("clock-3", `${timeLabel} ARG`, { iconSize: 13 }) : ""}
+    </span>
+  `;
 }
 
 function updateLastUpdatedLabel(state = "ok") {
@@ -85,7 +105,7 @@ function updateLastUpdatedLabel(state = "ok") {
 
   if (state === "error") {
     lastUpdated.textContent = lastUpdatedAt
-      ? `Sin conexion. Ultima actualizacion: ${formatUpdateTime(lastUpdatedAt)}`
+      ? `Sin conexion. Actualizado ${formatRelative(lastUpdatedAt)}`
       : "No se pudo actualizar";
     return;
   }
@@ -95,19 +115,11 @@ function updateLastUpdatedLabel(state = "ok") {
     return;
   }
 
-  const elapsedSeconds = Math.max(0, Math.floor((Date.now() - lastUpdatedAt.getTime()) / 1000));
-  lastUpdated.textContent =
-    elapsedSeconds < 10 ? "Actualizado hace unos segundos" : `Ultima actualizacion: ${formatUpdateTime(lastUpdatedAt)}`;
+  lastUpdated.textContent = `Actualizado ${formatRelative(lastUpdatedAt)}`;
 }
 
 function updateClock() {
-  clock.textContent = new Intl.DateTimeFormat("es-AR", {
-    timeZone: ARG_TIMEZONE,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  }).format(new Date());
+  clock.textContent = formatTime(new Date(), { withSeconds: true });
 }
 
 function dateParts(value) {
@@ -306,7 +318,7 @@ function getSortedEventGroups(events) {
 
 function statusMarkup(status) {
   const label = statusLabels[status] || status.toUpperCase();
-  const dot = status === "live" ? '<span class="live-dot"></span>' : "";
+  const dot = status === "live" ? `${renderIcon("radio", { size: 12, className: "status-icon" })}<span class="live-dot"></span>` : "";
   return `<span class="status mono ${status}">${dot}${label}</span>`;
 }
 
@@ -331,27 +343,6 @@ function renderFinishedSessionWinner(session) {
   return renderWinnerLine(getSessionWinner(session), { compact: true });
 }
 
-function formatSpotlightDate(value) {
-  return new Intl.DateTimeFormat("es-AR", {
-    timeZone: ARG_TIMEZONE,
-    weekday: "short",
-    day: "2-digit",
-    month: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(new Date(value));
-}
-
-function formatUpcomingCategoryDate(value) {
-  return new Intl.DateTimeFormat("es-AR", {
-    timeZone: ARG_TIMEZONE,
-    weekday: "short",
-    day: "2-digit",
-    month: "2-digit",
-  }).format(new Date(value));
-}
-
 function formatCountdown(value) {
   const totalSeconds = Math.max(0, Math.floor(value / 1000));
   const days = Math.floor(totalSeconds / 86400);
@@ -359,6 +350,34 @@ function formatCountdown(value) {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
   return `${String(days).padStart(2, "0")}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+}
+
+function getCountdownMeta(value) {
+  const startsAt = new Date(value).getTime();
+  if (!Number.isFinite(startsAt)) return null;
+
+  const diff = startsAt - Date.now();
+  const relative = formatRelative(value);
+
+  if (diff <= 0) {
+    return {
+      relative: "Ahora",
+      countdown: "En vivo o por comenzar",
+    };
+  }
+
+  return {
+    relative: relative ? `Empieza ${relative}` : "Proxima sesion",
+    countdown: formatCountdown(diff),
+    diff,
+  };
+}
+
+function getSpotlightTimingText(value) {
+  const meta = getCountdownMeta(value);
+  if (!meta) return "";
+  if (meta.relative === "Ahora") return "En vivo o por comenzar";
+  return meta.diff <= 48 * 60 * 60 * 1000 ? meta.countdown : meta.relative;
 }
 
 function getPrimarySessions(sessions) {
@@ -373,6 +392,28 @@ function getFeaturedTagLabel(session) {
   const type = String(session?.session_type || "").toLowerCase();
   const name = String(session?.name || "").toLowerCase();
   return type === "sprint" || name.includes("sprint") ? "SPRINT" : "CARRERA";
+}
+
+function normalizeSessionName(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function shouldHideSessionName(session) {
+  const normalized = normalizeSessionName(session?.name);
+  return normalized === "carrera" || normalized === "race";
+}
+
+function getSessionSecondaryLabel(session) {
+  return shouldHideSessionName(session) ? "" : String(session?.name || "").trim();
+}
+
+function formatEventSessionTitle(eventName, session) {
+  const secondary = getSessionSecondaryLabel(session);
+  return secondary ? `${eventName} - ${secondary}` : eventName;
 }
 
 function getSpotlightSession(sessions) {
@@ -435,7 +476,7 @@ function renderRaceSpotlight(sessions) {
 
   const category = session.event.category;
   const status = getSessionStatus(session);
-  const countdown = status === "live" ? "EN VIVO" : `Empieza en ${formatCountdown(new Date(session.starts_at).getTime() - Date.now())}`;
+  const timingText = status === "live" ? "En vivo ahora" : getSpotlightTimingText(session.starts_at);
 
   setHTML(
     raceSpotlight,
@@ -447,11 +488,11 @@ function renderRaceSpotlight(sessions) {
         </div>
         <div class="race-spotlight-main">
           <div class="race-spotlight-meta">
-            ${renderCategoryBadge(category, { tag: "span" })}
-            <span class="race-spotlight-time mono">${formatSpotlightDate(session.starts_at)}</span>
+            ${renderCategoryBadge(category, { tag: "span", size: "compact" })}
+            ${renderDateTimeMeta(session.starts_at, { className: "race-spotlight-time mono" })}
           </div>
-          <div class="race-spotlight-event">${session.event.name} - ${session.name}</div>
-          <div class="race-spotlight-countdown mono">${countdown}</div>
+          <div class="race-spotlight-event">${formatEventSessionTitle(session.event.name, session)}</div>
+          ${timingText ? `<div class="race-spotlight-timing mono">${timingText}</div>` : ""}
         </div>
       </a>
     `,
@@ -492,15 +533,16 @@ function renderNextRaces(sessions, spotlightSession = null) {
       <div class="next-races-list">
         ${primaryUpcoming
           .map((session) => {
-            const parts = dateParts(session.starts_at);
             const code = categoryCode(session.event.category);
             const status = getSessionStatus(session);
             return `
               <a class="next-race-item ${status === "live" ? "is-live" : ""}" href="event.html?id=${session.event.id}" data-category-code="${code}">
-                <div class="next-race-time mono">${parts.label} ${parts.time}</div>
+                <div class="next-race-time mono">
+                  ${renderDateTimeMeta(session.starts_at, { className: "next-race-time-stack" })}
+                </div>
                 <div class="next-race-main">
                   <div class="next-race-event">${session.event.name}</div>
-                  <div class="next-race-session">${session.name}</div>
+                  ${getSessionSecondaryLabel(session) ? `<div class="next-race-session">${getSessionSecondaryLabel(session)}</div>` : ""}
                 </div>
                 ${status === "live" ? statusMarkup("live") : `<span class="session-primary-tag mono">${getFeaturedTagLabel(session)}</span>`}
               </a>
@@ -532,13 +574,12 @@ function renderLiveNowBlock(sessions) {
           .map((session) => {
             const category = session.event.category;
             const code = categoryCode(category);
-            const parts = dateParts(session.starts_at);
             return `
               <a class="live-now-item" href="event.html?id=${session.event.id}" data-category-code="${code}">
-                <div class="live-now-time mono">${parts.time}</div>
+                <div class="live-now-time mono">${renderIconLabel("clock-3", `${formatTime(session.starts_at)} ARG`, { iconSize: 12 })}</div>
                 <div class="live-now-main">
-                  ${renderCategoryBadge(category, { tag: "span" })}
-                  <span class="live-now-event">${session.event.name} - ${session.name}</span>
+                  ${renderCategoryBadge(category, { tag: "span", size: "compact" })}
+                  <span class="live-now-event">${formatEventSessionTitle(session.event.name, session)}</span>
                 </div>
                 ${statusMarkup("live")}
               </a>
@@ -587,7 +628,7 @@ function renderSessions(sessions) {
               <div class="time mono">${session.displayTime}</div>
               <div class="session-name">
                 ${isFeature ? '<span class="session-marker" aria-hidden="true"></span><span class="session-primary-tag mono">CARRERA</span>' : ""}
-                <span>${session.name}</span>
+                ${getSessionSecondaryLabel(session) ? `<span>${getSessionSecondaryLabel(session)}</span>` : ""}
               </div>
               ${statusMarkup(status)}
             </div>
@@ -601,7 +642,8 @@ function renderSessions(sessions) {
               <header class="event-head">
                 ${renderCategoryBadge(category, {
                   tag: "span",
-                  extraClass: "cat-badge-link",
+                  size: "compact",
+                  extraClass: "category-badge-link",
                   attrs: `data-category-link data-category-href="${categoryHref(category)}" role="link" tabindex="0" aria-label="Ver categoria ${category.name}"`,
                 })}
                 <div class="event-meta">
@@ -675,7 +717,7 @@ function updateCategoryUrl(category, { replace = false } = {}) {
 function syncCategoryNavigation() {
   setActiveButton(categoryFilters, `[data-category="${activeCategory}"]`);
   sideNav?.querySelectorAll("[data-side-category]").forEach((button) => {
-    button.classList.toggle("active", button.dataset.sideCategory === "all");
+    button.classList.toggle("active", button.dataset.sideCategory === activeCategory);
   });
 }
 

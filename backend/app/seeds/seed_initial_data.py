@@ -1,9 +1,9 @@
 import argparse
 import json
 import sys
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from sqlalchemy import select, text
 from sqlalchemy.orm import Session
@@ -34,6 +34,9 @@ SESSION_TEMPLATE_BUILDERS = {
     "f2_monaco": "build_f2_monaco_sessions",
     "f3_standard": "build_f3_standard_sessions",
     "motogp_standard": "build_motogp_standard_sessions",
+    "arg_touring_standard": "build_arg_touring_standard_sessions",
+    "arg_series_standard": "build_arg_series_standard_sessions",
+    "arg_pickup_standard": "build_arg_pickup_standard_sessions",
 }
 
 
@@ -46,8 +49,18 @@ def parse_date(value: str) -> date:
 
 
 def to_argentina_iso(event_date: date, local_time: time, circuit_timezone: str) -> str:
-    circuit_dt = datetime.combine(event_date, local_time, tzinfo=ZoneInfo(circuit_timezone))
-    argentina_dt = circuit_dt.astimezone(ZoneInfo("America/Argentina/Buenos_Aires"))
+    try:
+        circuit_zone = ZoneInfo(circuit_timezone)
+    except ZoneInfoNotFoundError:
+        circuit_zone = timezone(timedelta(hours=-3))
+
+    try:
+        argentina_zone = ZoneInfo("America/Argentina/Buenos_Aires")
+    except ZoneInfoNotFoundError:
+        argentina_zone = timezone(timedelta(hours=-3))
+
+    circuit_dt = datetime.combine(event_date, local_time, tzinfo=circuit_zone)
+    argentina_dt = circuit_dt.astimezone(argentina_zone)
     return argentina_dt.isoformat()
 
 
@@ -134,6 +147,31 @@ def build_motogp_standard_sessions(start_date: date, end_date: date, circuit_tim
         build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=3, name="Clasificación", session_type="qualifying", start_time=time(10, 50), duration_minutes=40),
         build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=4, name="Carrera Sprint", session_type="sprint", start_time=time(15, 0), duration_minutes=45),
         build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=5, name="Carrera", session_type="race", start_time=time(14, 0), duration_minutes=60, is_feature=True),
+    ]
+
+
+def build_arg_touring_standard_sessions(start_date: date, end_date: date, circuit_timezone: str) -> list[dict]:
+    return [
+        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="PrÃ¡ctica", session_type="practice", start_time=time(15, 0), duration_minutes=40),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="ClasificaciÃ³n", session_type="qualifying", start_time=time(11, 0), duration_minutes=25),
+        build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=3, name="Carrera", session_type="race", start_time=time(12, 30), duration_minutes=50, is_feature=True),
+    ]
+
+
+def build_arg_series_standard_sessions(start_date: date, end_date: date, circuit_timezone: str) -> list[dict]:
+    return [
+        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="PrÃ¡ctica", session_type="practice", start_time=time(14, 30), duration_minutes=40),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="ClasificaciÃ³n", session_type="qualifying", start_time=time(10, 30), duration_minutes=20),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=3, name="Serie", session_type="series", start_time=time(15, 0), duration_minutes=20),
+        build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=4, name="Carrera", session_type="race", start_time=time(12, 0), duration_minutes=50, is_feature=True),
+    ]
+
+
+def build_arg_pickup_standard_sessions(start_date: date, end_date: date, circuit_timezone: str) -> list[dict]:
+    return [
+        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="PrÃ¡ctica", session_type="practice", start_time=time(15, 30), duration_minutes=35),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="ClasificaciÃ³n", session_type="qualifying", start_time=time(11, 30), duration_minutes=20),
+        build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=3, name="Carrera", session_type="race", start_time=time(13, 20), duration_minutes=45, is_feature=True),
     ]
 
 
@@ -310,6 +348,7 @@ def load_seed_data(calendar_names: list[str] | None = None) -> dict:
             categories = json.load(file)
 
         events = []
+        calendar_event_slugs: dict[tuple[str, int], set[str]] = {}
         if calendar_names:
             calendar_files = [CALENDAR_DIR / normalize_calendar_name(name) for name in calendar_names]
         else:
@@ -323,6 +362,8 @@ def load_seed_data(calendar_names: list[str] | None = None) -> dict:
             source_note = calendar_data.get("source_note")
             category_slug = calendar_data.get("category_slug")
             season_year = calendar_data.get("season_year")
+            if category_slug and season_year:
+                calendar_event_slugs.setdefault((category_slug, season_year), set())
             for event in calendar_data.get("events", []):
                 event_payload = dict(event)
                 if source_note and not event_payload.get("source_note"):
@@ -331,10 +372,16 @@ def load_seed_data(calendar_names: list[str] | None = None) -> dict:
                     event_payload["category_slug"] = category_slug
                 if season_year and not event_payload.get("season_year"):
                     event_payload["season_year"] = season_year
+                if category_slug and season_year:
+                    calendar_event_slugs[(category_slug, season_year)].add(event_payload["slug"])
                 events.append(event_payload)
 
         events.sort(key=lambda event: (event["season_year"], event.get("round_number") or 999, event["slug"]))
-        return {"categories": categories, "events": events}
+        return {
+            "categories": categories,
+            "events": events,
+            "calendar_event_slugs": calendar_event_slugs,
+        }
 
     with LEGACY_DATA_FILE.open("r", encoding="utf-8") as file:
         return json.load(file)
@@ -378,6 +425,28 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def cleanup_stale_calendar_events(
+    db: Session,
+    category_by_slug: dict[str, Category],
+    calendar_event_slugs: dict[tuple[str, int], set[str]],
+) -> None:
+    for (category_slug, season_year), desired_slugs in calendar_event_slugs.items():
+        category = category_by_slug.get(category_slug)
+        if category is None:
+            continue
+
+        existing_events = db.scalars(
+            select(Event).where(
+                Event.category_id == category.id,
+                Event.season_year == season_year,
+            )
+        ).all()
+
+        for event in existing_events:
+            if event.slug not in desired_slugs:
+                db.delete(event)
+
+
 def seed(calendar_names: list[str] | None = None) -> None:
     create_tables()
     data = load_seed_data(calendar_names)
@@ -392,6 +461,7 @@ def seed(calendar_names: list[str] | None = None) -> None:
             category_by_slug[category.slug] = category
 
         cleanup_legacy_tn_class3_events(db)
+        cleanup_stale_calendar_events(db, category_by_slug, data.get("calendar_event_slugs", {}))
 
         for event_payload in data["events"]:
             category = category_by_slug[event_payload["category_slug"]]

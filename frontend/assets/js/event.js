@@ -1,6 +1,9 @@
 const {
-  ARG_TIMEZONE,
   categoryCode,
+  formatDate,
+  formatTime,
+  renderIcon,
+  renderIconLabel,
   statusLabels,
   renderCategoryBadge,
   isPrimarySession,
@@ -28,37 +31,19 @@ function getEventId() {
   return new URLSearchParams(window.location.search).get("id");
 }
 
-function formatDate(value) {
-  return new Intl.DateTimeFormat("es-AR", {
-    timeZone: ARG_TIMEZONE,
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(new Date(`${value}T00:00:00-03:00`));
-}
-
 function formatSessionDate(value) {
-  const date = new Date(value);
   return {
-    date: new Intl.DateTimeFormat("es-AR", {
-      timeZone: ARG_TIMEZONE,
-      weekday: "short",
-      day: "2-digit",
-      month: "2-digit",
-    }).format(date),
-    time: new Intl.DateTimeFormat("es-AR", {
-      timeZone: ARG_TIMEZONE,
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }).format(date),
+    date: formatDate(value, { weekday: "short", dateOnly: false }),
+    time: formatTime(value),
   };
 }
 
 function statusMarkup(status) {
   const label = statusLabels[status] || status.toUpperCase();
-  const dot = status === "live" ? '<span class="live-dot"></span>' : "";
-  return `<span class="status mono ${status}">${dot}${label}</span>`;
+  const icon = status === "live"
+    ? `${renderIcon("radio", { size: 12, className: "status-icon" })}<span class="live-dot"></span>`
+    : "";
+  return `<span class="status mono ${status}">${icon}${label}</span>`;
 }
 
 function getSessionStatus(session) {
@@ -119,7 +104,10 @@ function renderEvent(event) {
       return `
           <section class="session-block">
             <div class="session-row ${isFeature ? "feature" : ""} ${isLive ? "is-live" : ""}" ${isFeature ? `data-category-code="${code}"` : ""}>
-              <div class="date-time mono">${date.time}<span>${date.date}</span></div>
+              <div class="date-time mono">
+                <span class="date-time-main">${date.time} ARG</span>
+                <span>${date.date}</span>
+              </div>
               <div class="session-name">
                 ${isFeature ? '<span class="session-marker" aria-hidden="true"></span><span class="session-primary-tag mono">CARRERA</span>' : ""}
                 <span>${session.name}</span>
@@ -144,19 +132,19 @@ function renderEvent(event) {
 
           <div class="info-grid">
             <div class="info-item">
-              <div class="label mono">Circuito</div>
+              <div class="label mono">${renderIconLabel("flag", "Circuito", { iconSize: 12 })}</div>
               <div class="value">${circuit.name}</div>
             </div>
             <div class="info-item">
-              <div class="label mono">Ubicacion</div>
+              <div class="label mono">${renderIconLabel("map-pin", "Ubicacion", { iconSize: 12 })}</div>
               <div class="value">${circuit.city ? `${circuit.city}, ${circuit.country}` : circuit.country}</div>
             </div>
             <div class="info-item">
-              <div class="label mono">Inicio</div>
+              <div class="label mono">${renderIconLabel("clock-3", "Inicio", { iconSize: 12 })}</div>
               <div class="value mono">${formatDate(event.start_date)}</div>
             </div>
             <div class="info-item">
-              <div class="label mono">Fin</div>
+              <div class="label mono">${renderIconLabel("clock-3", "Fin", { iconSize: 12 })}</div>
               <div class="value mono">${formatDate(event.end_date)}</div>
             </div>
           </div>

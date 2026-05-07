@@ -1,7 +1,7 @@
 {
   "category_slug": "turismo-nacional-clase-2",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de TN APAT aplicado a TN Clase 2 para mantener separadas las clases en el sistema. En la agenda, los entrenamientos y clasificaciones de TN Clase 2 se muestran agrupados por clase para simplificar la vista y no diferenciar grupos.",
+  "source_note": "Calendario 2026 de TN APAT aplicado a TN Clase 2 y verificado el 2026-05-07 contra el calendario oficial publicado por APAT. Quedaron confirmadas oficialmente las 12 fechas y sus escenarios. En la agenda, los entrenamientos y clasificaciones de TN Clase 2 se muestran agrupados por clase para simplificar la vista y no diferenciar grupos.",
   "events": [
     {
       "category_slug": "turismo-nacional-clase-2",
@@ -204,18 +204,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 7,
-      "name": "TN Clase 2 Fecha 7",
+      "name": "TN Clase 2 San Juan Villicum II",
       "slug": "tn-c2-fecha-7-2026",
       "status": "scheduled",
-      "source_note": "Fecha oficial APAT del 02.08.2026 con escenario aun a confirmar al 30.04.2026.",
-      "data_quality": "official_calendar_tentative_venue",
+      "data_quality": "official_calendar_event_only",
       "start_date": "2026-07-31",
       "end_date": "2026-08-02",
       "circuit": {
-        "name": "Escenario a confirmar",
-        "slug": "escenario-a-confirmar",
+        "name": "Circuito San Juan Villicum",
+        "slug": "circuito-san-juan-villicum",
         "country": "Argentina",
-        "city": null,
+        "city": "Albardon",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },

@@ -1,12 +1,21 @@
 (function () {
   const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
   const PROD_API_BASE_URL = "https://paddockar.onrender.com";
-  const USE_LOCAL_API = new URLSearchParams(window.location.search).get("api") === "local";
+  const apiMode = new URLSearchParams(window.location.search).get("api");
+  const USE_LOCAL_API = apiMode !== "render";
   const API_BASE_URL = USE_LOCAL_API ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
   const IS_LOCAL_FRONTEND = location.protocol !== "file:" && ["localhost", "127.0.0.1"].includes(location.hostname);
   const LOG_ENABLED = USE_LOCAL_API || IS_LOCAL_FRONTEND || localStorage.getItem("paddockar_debug") === "1";
   const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
   const ASSET_BASE_URL = location.pathname.includes("/admin/") ? "../assets" : "assets";
+  const dayjsLib = window.dayjs;
+  const lucideLib = window.lucide;
+
+  if (dayjsLib && window.dayjs_plugin_utc) dayjsLib.extend(window.dayjs_plugin_utc);
+  if (dayjsLib && window.dayjs_plugin_timezone) dayjsLib.extend(window.dayjs_plugin_timezone);
+  if (dayjsLib && window.dayjs_plugin_relativeTime) dayjsLib.extend(window.dayjs_plugin_relativeTime);
+  if (dayjsLib && window.dayjs_plugin_localizedFormat) dayjsLib.extend(window.dayjs_plugin_localizedFormat);
+  if (dayjsLib) dayjsLib.locale("es");
 
   const categoryColors = {
     F1: "var(--f1)",
@@ -15,6 +24,18 @@
     F3: "var(--f3)",
     WEC: "var(--wec)",
     TC: "var(--tc)",
+    TCP: "var(--tcp)",
+    TCM: "var(--tcm)",
+    TCPM: "var(--tcpm)",
+    TCPK: "var(--tcpu)",
+    TCPPK: "var(--tcppu)",
+    TC2000: "var(--tc2000)",
+    TR: "var(--tr)",
+    T4000: "var(--t4000)",
+    BORA: "var(--bora)",
+    "TP C1": "var(--tp-c1)",
+    "TP C2": "var(--tp-c2)",
+    "TP C3": "var(--tp-c3)",
     "TN C2": "var(--tn-c2)",
     "TN C3": "var(--tn)",
     TN: "var(--tn)",
@@ -38,6 +59,31 @@
     wec: "wec",
     "turismo-carretera": "tc",
     tc: "tc",
+    "tc-pista": "tc-pista",
+    tcp: "tc-pista",
+    "tc-mouras": "tc-mouras",
+    tcm: "tc-mouras",
+    "tc-pista-mouras": "tc-pista-mouras",
+    tcpm: "tc-pista-mouras",
+    "tc-pick-up": "tc-pick-up",
+    tcpk: "tc-pick-up",
+    tcpu: "tc-pick-up",
+    "tc-pista-pick-up": "tc-pista-pick-up",
+    tcppk: "tc-pista-pick-up",
+    tcppu: "tc-pista-pick-up",
+    tc2000: "tc2000",
+    "top-race": "top-race",
+    tr: "top-race",
+    "turismo-4000-argentino": "turismo-4000-argentino",
+    t4000: "turismo-4000-argentino",
+    "copa-bora": "copa-bora",
+    bora: "copa-bora",
+    "turismo-pista-c1": "turismo-pista-c1",
+    tpc1: "turismo-pista-c1",
+    "turismo-pista-c2": "turismo-pista-c2",
+    tpc2: "turismo-pista-c2",
+    "turismo-pista-c3": "turismo-pista-c3",
+    tpc3: "turismo-pista-c3",
     "turismo-nacional-clase-2": "tn-c2",
     tnc2: "tn-c2",
     "tn-c2": "tn-c2",
@@ -52,11 +98,21 @@
       .replace(/[^a-z0-9]+/g, "");
   }
 
+  const categoriesWithPrimaryLogos = new Set([
+    "f1",
+    "f2",
+    "motogp",
+    "wec",
+    "tc",
+    "tn",
+  ]);
+
   function getCategoryLogo(slug) {
+    if (!categoriesWithPrimaryLogos.has(slug)) return null;
+
     const map = {
       f1: `${ASSET_BASE_URL}/img/categories/f1.png`,
       f2: `${ASSET_BASE_URL}/img/categories/f2.png`,
-      f3: `${ASSET_BASE_URL}/img/categories/f3.png`,
       motogp: `${ASSET_BASE_URL}/img/categories/motogp.png`,
       wec: `${ASSET_BASE_URL}/img/categories/wec.png`,
       tc: `${ASSET_BASE_URL}/img/categories/tc.png`,
@@ -65,26 +121,18 @@
     return map[slug] || null;
   }
 
-  function categoryLogoSlug(category) {
-    const code = categoryCode(category);
-    const slug = String(category?.slug || "").toLowerCase();
-    const shortName = String(category?.short_name || "").toUpperCase();
-
-    if (code === "tn" || code === "tnc2" || code === "tnc3" || shortName.startsWith("TN")) return "tn";
-    if (code === "formula1" || slug === "formula-1") return "f1";
-    if (code === "formula2" || slug === "formula-2") return "f2";
-    if (code === "formula3" || slug === "formula-3" || slug === "f3") return "f3";
-    return code;
-  }
-
   function categoryFamilyKey(category) {
     const shortName = String(category?.short_name || "").toUpperCase();
     if (shortName === "TN" || shortName.startsWith("TN C")) return "TN";
+    if (shortName === "TP" || shortName.startsWith("TP C")) return "TP";
     return String(category?.short_name || "");
   }
 
   function categoryFamilyLabel(category) {
-    return categoryFamilyKey(category) === "TN" ? "Turismo Nacional" : category?.name || category?.short_name || "";
+    const familyKey = categoryFamilyKey(category);
+    if (familyKey === "TN") return "Turismo Nacional";
+    if (familyKey === "TP") return "Turismo Pista";
+    return category?.name || category?.short_name || "";
   }
 
   function categoryPageSlug(category) {
@@ -122,20 +170,168 @@
     return String(category?.short_name || "") === filterValue;
   }
 
-  function renderCategoryBadge(category, { tag = "div", extraClass = "", attrs = "" } = {}) {
-    const code = categoryCode(category);
-    const classes = ["cat-badge", "has-wordmark", extraClass].filter(Boolean).join(" ");
-    const attributes = attrs ? ` ${attrs}` : "";
-    const label = category?.short_name || category?.name || "";
-    const ariaLabel = attrs.includes("aria-label") ? "" : ` aria-label="${label}"`;
-    const baseLabel = code === "tnc2" || code === "tnc3" ? "TN" : label;
-    const classText = code === "tnc2" ? '<span class="category-class-text">Clase 2</span>' : code === "tnc3" ? '<span class="category-class-text">Clase 3</span>' : "";
-
-    return `<${tag} class="${classes}" data-category-code="${code}"${ariaLabel}${attributes}><span class="category-wordmark">${baseLabel}</span>${classText}</${tag}>`;
+  function getCategoryVisualSlug(category) {
+    const slug = normalizeCategoryParam(category?.slug || category?.short_name || "");
+    if (slug === "turismo-nacional") return "tn";
+    return slug;
   }
 
-  function renderCategoryLogo(category, { tag = "span", extraClass = "", attrs = "" } = {}) {
-    return renderCategoryBadge(category, { tag, extraClass: ["calendar-category-logo", extraClass].filter(Boolean).join(" "), attrs });
+  function getCategoryBadgeText(category) {
+    return String(category?.short_name || category?.name || "CAT").trim();
+  }
+
+  function renderCategoryBadge(category, {
+    tag = "div",
+    extraClass = "",
+    attrs = "",
+    size = "normal",
+    active = false,
+  } = {}) {
+    const code = categoryCode(category);
+    const label = getCategoryBadgeText(category);
+    const classes = [
+      "category-badge",
+      size === "compact" ? "category-badge--compact" : "",
+      size === "large" ? "category-badge--large" : "",
+      active ? "category-badge--active" : "",
+      extraClass,
+    ].filter(Boolean).join(" ");
+    const attributes = attrs ? ` ${attrs}` : "";
+    const ariaLabel = attrs.includes("aria-label") ? "" : ` aria-label="${category?.name || label}"`;
+
+    return `<${tag} class="${classes}" data-category-code="${code}"${ariaLabel}${attributes}><span class="category-badge__text">${label}</span></${tag}>`;
+  }
+
+  function renderCategoryLogo(category, { tag = "span", extraClass = "", attrs = "", size = "normal", active = false } = {}) {
+    return renderCategoryBadge(category, {
+      tag,
+      extraClass,
+      attrs,
+      size,
+      active,
+    });
+  }
+
+  function toDayjs(value, { timezone = ARG_TIMEZONE, dateOnly = false } = {}) {
+    if (!dayjsLib || value == null || value === "") return null;
+    if (dayjsLib.isDayjs?.(value)) return value.tz ? value.tz(timezone) : value;
+
+    if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      const hourSeed = dateOnly ? "12:00:00" : "00:00:00";
+      return dayjsLib.tz(`${value}T${hourSeed}`, timezone);
+    }
+
+    const instance = dayjsLib(value);
+    return instance.tz ? instance.tz(timezone) : instance;
+  }
+
+  function getArgNow() {
+    return dayjsLib?.tz ? dayjsLib.tz(new Date(), ARG_TIMEZONE) : dayjsLib ? dayjsLib() : null;
+  }
+
+  function formatDate(value, {
+    withYear = false,
+    weekday = false,
+    dateOnly = true,
+    timezone = ARG_TIMEZONE,
+    fallback = "",
+  } = {}) {
+    const date = toDayjs(value, { timezone, dateOnly });
+    if (!date?.isValid?.()) return fallback;
+
+    const format = [
+      weekday ? (weekday === "short" ? "ddd" : "dddd") : "",
+      withYear ? "DD/MM/YYYY" : "DD/MM",
+    ].filter(Boolean).join(" ");
+
+    return date.format(format);
+  }
+
+  function formatTime(value, {
+    withSeconds = false,
+    timezone = ARG_TIMEZONE,
+    fallback = "",
+  } = {}) {
+    const date = toDayjs(value, { timezone, dateOnly: false });
+    if (!date?.isValid?.()) return fallback;
+    return date.format(withSeconds ? "HH:mm:ss" : "HH:mm");
+  }
+
+  function formatDateTime(value, {
+    withYear = false,
+    weekday = "short",
+    withSeconds = false,
+    timezone = ARG_TIMEZONE,
+    fallback = "",
+  } = {}) {
+    const date = toDayjs(value, { timezone, dateOnly: false });
+    if (!date?.isValid?.()) return fallback;
+
+    const datePart = formatDate(value, { withYear, weekday, dateOnly: false, timezone });
+    const timePart = formatTime(value, { withSeconds, timezone });
+    return `${datePart} ${timePart}`.trim();
+  }
+
+  function formatRelative(value, {
+    baseValue = null,
+    timezone = ARG_TIMEZONE,
+    withoutSuffix = false,
+    fallback = "",
+  } = {}) {
+    const target = toDayjs(value, { timezone, dateOnly: false });
+    if (!target?.isValid?.()) return fallback;
+
+    const base = baseValue ? toDayjs(baseValue, { timezone, dateOnly: false }) : getArgNow();
+    if (!base?.isValid?.()) return fallback;
+
+    return target.from(base, withoutSuffix);
+  }
+
+  function toLucideExportName(name) {
+    return String(name || "")
+      .split(/[^a-zA-Z0-9]+/)
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join("");
+  }
+
+  function renderIcon(name, {
+    size = 16,
+    className = "",
+    absoluteStrokeWidth = true,
+    attrs = {},
+  } = {}) {
+    if (!lucideLib?.createElement) return "";
+
+    const exportName = toLucideExportName(name);
+    const iconNode = lucideLib.icons?.[exportName] || lucideLib[exportName];
+    if (!iconNode) return "";
+
+    const icon = lucideLib.createElement(iconNode, {
+      width: size,
+      height: size,
+      class: ["ui-inline-icon", className].filter(Boolean).join(" "),
+      "aria-hidden": "true",
+      focusable: "false",
+      ...attrs,
+      ...(absoluteStrokeWidth ? { "absolute-stroke-width": "true" } : {}),
+    });
+    const wrapper = document.createElement("div");
+    wrapper.appendChild(icon);
+    return wrapper.innerHTML;
+  }
+
+  function renderIconLabel(icon, text, {
+    iconSize = 14,
+    className = "",
+    textClassName = "",
+  } = {}) {
+    return `
+      <span class="ui-icon-label ${className}">
+        ${renderIcon(icon, { size: iconSize })}
+        <span class="${textClassName}">${text}</span>
+      </span>
+    `;
   }
 
   function isPrimarySession(session) {
@@ -162,7 +358,7 @@
   function renderWinnerLine(winner, { compact = false } = {}) {
     if (!winner?.driver_name) return "";
     const label = compact ? "Ganador:" : "Ganador";
-    return `<div class="winner-line"><span class="winner-icon" aria-hidden="true">🏆</span><span class="winner-label mono">${label}</span><span class="winner-name">${winner.driver_name}</span></div>`;
+    return `<div class="winner-line">${renderIcon("trophy", { size: 14, className: "winner-icon" })}<span class="winner-label mono">${label}</span><span class="winner-name">${winner.driver_name}</span></div>`;
   }
 
   function isHighlightedRaceSession(session) {
@@ -173,11 +369,13 @@
     if (!session) return false;
     if (String(session.status || "").toLowerCase() === "live") return true;
 
-    const startsAt = session.starts_at ? new Date(session.starts_at).getTime() : NaN;
-    const endsAt = session.ends_at ? new Date(session.ends_at).getTime() : NaN;
-    const now = Date.now();
+    const now = getArgNow();
+    const startsAt = toDayjs(session.starts_at, { dateOnly: false });
+    const endsAt = toDayjs(session.ends_at, { dateOnly: false });
 
-    return Number.isFinite(startsAt) && Number.isFinite(endsAt) && now >= startsAt && now < endsAt;
+    return !!(now?.isValid?.() && startsAt?.isValid?.() && endsAt?.isValid?.()
+      && (now.isAfter(startsAt) || now.isSame(startsAt))
+      && now.isBefore(endsAt));
   }
 
   function createLogger(scope) {
@@ -194,6 +392,7 @@
     PROD_API_BASE_URL,
     USE_LOCAL_API,
     ARG_TIMEZONE,
+    ASSET_BASE_URL,
     categoryColors,
     categoryCode,
     getCategoryLogo,
@@ -208,6 +407,14 @@
     renderCategoryBadge,
     renderCategoryLogo,
     renderCategoryInsignia: renderCategoryBadge,
+    toDayjs,
+    getArgNow,
+    formatDate,
+    formatTime,
+    formatDateTime,
+    formatRelative,
+    renderIcon,
+    renderIconLabel,
     isPrimarySession,
     getPrimaryEventSession,
     getSessionWinner,

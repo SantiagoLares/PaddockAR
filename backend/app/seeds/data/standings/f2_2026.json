@@ -2,20 +2,20 @@
   "category_slug": "f2",
   "season_year": 2026,
   "source": "manual_fallback",
-  "source_note": "Fallback manual armado desde las standings oficiales de FIA Formula 2 revisadas el 2026-05-04.",
+  "source_note": "Fallback manual armado desde las standings oficiales de FIA Formula 2 revisadas el 2026-05-06. Las victorias de pilotos se validaron contra las paginas oficiales de resultados Sprint Race y Feature Race; las victorias de equipos se derivan de esas mismas victorias oficiales.",
   "source_urls": {
     "drivers": "https://www.fiaformula2.com/Standings/Driver?seasonid=183",
     "constructors": "https://www.fiaformula2.com/Standings/Team?seasonid=183"
   },
   "drivers": [
-    { "position": 1, "name": "Nikola Tsolov", "team_name": "Campos Racing", "points": 35, "wins": 0 },
+    { "position": 1, "name": "Nikola Tsolov", "team_name": "Campos Racing", "points": 35, "wins": 2 },
     { "position": 2, "name": "Rafael Camara", "team_name": "Invicta Racing", "points": 34, "wins": 0 },
-    { "position": 3, "name": "Gabriele Mini", "team_name": "MP Motorsport", "points": 34, "wins": 0 },
+    { "position": 3, "name": "Gabriele Mini", "team_name": "MP Motorsport", "points": 34, "wins": 1 },
     { "position": 4, "name": "Laurens van Hoepen", "team_name": "TRIDENT", "points": 26, "wins": 0 },
     { "position": 5, "name": "Ritomo Miyata", "team_name": "Hitech", "points": 22, "wins": 0 },
     { "position": 6, "name": "Dino Beganovic", "team_name": "DAMS Lucas Oil", "points": 21, "wins": 0 },
     { "position": 7, "name": "Noel Leon", "team_name": "Campos Racing", "points": 20, "wins": 0 },
-    { "position": 8, "name": "Joshua Dürksen", "team_name": "Invicta Racing", "points": 16, "wins": 0 },
+    { "position": 8, "name": "Joshua D\u00fcrksen", "team_name": "Invicta Racing", "points": 16, "wins": 1 },
     { "position": 9, "name": "Tasanapol Inthraphuvasak", "team_name": "ART Grand Prix", "points": 13, "wins": 0 },
     { "position": 10, "name": "Oliver Goethe", "team_name": "MP Motorsport", "points": 12, "wins": 0 },
     { "position": 11, "name": "Kush Maini", "team_name": "ART Grand Prix", "points": 12, "wins": 0 },
@@ -32,9 +32,9 @@
     { "position": 22, "name": "Cian Shields", "team_name": "AIX Racing", "points": 0, "wins": 0 }
   ],
   "constructors": [
-    { "position": 1, "name": "Campos Racing", "team_name": "Campos Racing", "points": 55, "wins": 0 },
-    { "position": 2, "name": "Invicta Racing", "team_name": "Invicta Racing", "points": 50, "wins": 0 },
-    { "position": 3, "name": "MP Motorsport", "team_name": "MP Motorsport", "points": 46, "wins": 0 },
+    { "position": 1, "name": "Campos Racing", "team_name": "Campos Racing", "points": 55, "wins": 2 },
+    { "position": 2, "name": "Invicta Racing", "team_name": "Invicta Racing", "points": 50, "wins": 1 },
+    { "position": 3, "name": "MP Motorsport", "team_name": "MP Motorsport", "points": 46, "wins": 1 },
     { "position": 4, "name": "Hitech TGR", "team_name": "Hitech TGR", "points": 32, "wins": 0 },
     { "position": 5, "name": "TRIDENT", "team_name": "TRIDENT", "points": 26, "wins": 0 },
     { "position": 6, "name": "ART Grand Prix", "team_name": "ART Grand Prix", "points": 25, "wins": 0 },

@@ -125,6 +125,12 @@
   font-weight: 700;
 }
 
+.date-time-main {
+  color: #eaf3fd !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+}
+
 .session-name {
   overflow: hidden;
   display: inline-flex;
@@ -175,6 +181,68 @@
   border-left-color: #2f6ea7;
 }
 
+.hero[data-category-code="tcp"],
+.session-row.feature[data-category-code="tcp"] {
+  border-left-color: var(--tcp);
+}
+
+.hero[data-category-code="tcm"],
+.session-row.feature[data-category-code="tcm"] {
+  border-left-color: var(--tcm);
+}
+
+.hero[data-category-code="tcpm"],
+.session-row.feature[data-category-code="tcpm"] {
+  border-left-color: var(--tcpm);
+}
+
+.hero[data-category-code="tcpk"],
+.session-row.feature[data-category-code="tcpk"] {
+  border-left-color: var(--tcpu);
+}
+
+.hero[data-category-code="tcppk"],
+.session-row.feature[data-category-code="tcppk"] {
+  border-left-color: var(--tcppu);
+}
+
+.hero[data-category-code="tc2000"],
+.session-row.feature[data-category-code="tc2000"] {
+  border-left-color: var(--tc2000);
+}
+
+.hero[data-category-code="tr"],
+.session-row.feature[data-category-code="tr"] {
+  border-left-color: var(--tr);
+}
+
+.hero[data-category-code="t4000"],
+.session-row.feature[data-category-code="t4000"] {
+  border-left-color: var(--t4000);
+}
+
+.hero[data-category-code="bora"],
+.session-row.feature[data-category-code="bora"] {
+  border-left-color: var(--bora);
+}
+
+.hero[data-category-code="tp"],
+.session-row.feature[data-category-code="tp"],
+.hero[data-category-code="tpc3"],
+.session-row.feature[data-category-code="tpc3"] {
+  border-left-color: var(--tp-c3);
+}
+
+.hero[data-category-code="tpc2"],
+.session-row.feature[data-category-code="tpc2"] {
+  border-left-color: var(--tp-c2);
+}
+
+.hero[data-category-code="tpc1"],
+.session-row.feature[data-category-code="tpc1"] {
+  border-left-color: var(--tp-c1);
+}
+
 .hero[data-category-code="tnc2"],
 .session-row.feature[data-category-code="tnc2"] {
   border-left-color: var(--tn-c2);
@@ -215,6 +283,67 @@
 .session-row.feature[data-category-code="tc"] .session-marker {
   background: #2f6ea7;
   box-shadow: 0 0 0 3px rgba(47, 110, 167, 0.12);
+}
+
+.session-row.feature[data-category-code="tcp"] .session-marker {
+  background: var(--tcp);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+}
+
+.session-row.feature[data-category-code="tcm"] .session-marker {
+  background: var(--tcm);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.session-row.feature[data-category-code="tcpm"] .session-marker {
+  background: var(--tcpm);
+  box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.12);
+}
+
+.session-row.feature[data-category-code="tcpk"] .session-marker {
+  background: var(--tcpu);
+  box-shadow: 0 0 0 3px rgba(77, 184, 255, 0.12);
+}
+
+.session-row.feature[data-category-code="tcppk"] .session-marker {
+  background: var(--tcppu);
+  box-shadow: 0 0 0 3px rgba(77, 184, 255, 0.12);
+}
+
+.session-row.feature[data-category-code="tc2000"] .session-marker {
+  background: var(--tc2000);
+  box-shadow: 0 0 0 3px rgba(34, 193, 255, 0.12);
+}
+
+.session-row.feature[data-category-code="tr"] .session-marker {
+  background: var(--tr);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.session-row.feature[data-category-code="t4000"] .session-marker {
+  background: var(--t4000);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+}
+
+.session-row.feature[data-category-code="bora"] .session-marker {
+  background: var(--bora);
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.12);
+}
+
+.session-row.feature[data-category-code="tp"] .session-marker,
+.session-row.feature[data-category-code="tpc3"] .session-marker {
+  background: var(--tp-c3);
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.12);
+}
+
+.session-row.feature[data-category-code="tpc2"] .session-marker {
+  background: var(--tp-c2);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+}
+
+.session-row.feature[data-category-code="tpc1"] .session-marker {
+  background: var(--tp-c1);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
 }
 
 .session-row.feature[data-category-code="tnc2"] .session-marker {

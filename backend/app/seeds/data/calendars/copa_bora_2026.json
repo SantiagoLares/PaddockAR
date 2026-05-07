@@ -1,0 +1,10 @@
+{
+  "category_slug": "copa-bora",
+  "season_year": 2026,
+  "source_note": "Cronograma 2026 de Copa Bora verificado el 2026-05-07 contra los resultados oficiales publicados por ACTC en su sistema de tiempos. No se encontro un calendario 2026 completo publicado en una fuente oficial propia, por eso solo se cargan las tres rondas confirmadas y los horarios de sesiones se mantienen tentativos.",
+  "events": [
+    { "round_number": 1, "name": "Copa Bora La Plata I", "slug": "copa-bora-la-plata-i-2026", "status": "scheduled", "data_quality": "official_result_confirmed_event", "start_date": "2026-01-23", "end_date": "2026-01-25", "session_template": "arg_touring_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
+    { "round_number": 2, "name": "Copa Bora Concepcion del Uruguay", "slug": "copa-bora-concepcion-del-uruguay-2026", "status": "scheduled", "data_quality": "official_result_confirmed_event", "start_date": "2026-02-27", "end_date": "2026-03-01", "session_template": "arg_touring_standard", "circuit": { "name": "Autodromo Concepcion del Uruguay", "slug": "autodromo-concepcion-del-uruguay", "country": "Argentina", "city": "Concepcion del Uruguay", "timezone": "America/Argentina/Cordoba" } },
+    { "round_number": 3, "name": "Copa Bora La Plata II", "slug": "copa-bora-la-plata-ii-2026", "status": "scheduled", "data_quality": "official_result_confirmed_event", "start_date": "2026-03-20", "end_date": "2026-03-22", "session_template": "arg_touring_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } }
+  ]
+}
