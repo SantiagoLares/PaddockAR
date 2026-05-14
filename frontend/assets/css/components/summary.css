@@ -1,18 +1,21 @@
 .summary {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 18px;
+  gap: 22px;
   align-items: end;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
+  padding: 32px 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--panel-surface);
+  box-shadow: var(--shadow-subtle);
 }
 
 .subtitle {
-  margin-top: 10px;
+  margin-top: 12px;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.55;
-  max-width: 54ch;
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 52ch;
 }
 
 .api-state,
@@ -20,7 +23,7 @@
   color: var(--faint);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-align: right;
   text-transform: uppercase;
 }
@@ -28,8 +31,8 @@
 .section-title {
   margin: 0;
   color: #f8fafc;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }

@@ -29,7 +29,7 @@ let currentResults = [];
 function renderAdminLoadError() {
   setHTML(
     resultsContainer,
-    renderError("No se pudo cargar el panel de resultados. Revisa la conexion con la API y volve a intentar.", {
+    renderError("No se pudo cargar el panel de resultados. Revisá la conexión con la API y volvé a intentar.", {
       retry: true,
     }),
   );
@@ -123,14 +123,14 @@ function renderResults() {
   const session = currentSession();
   if (!session) {
     setText(state, `${allSessions.length} sesiones disponibles`);
-    setHTML(resultsContainer, renderEmpty("Selecciona una sesion para ver resultados."));
+    setHTML(resultsContainer, renderEmpty("Seleccioná una sesión para ver resultados."));
     return;
   }
 
   setText(state, `${currentResults.length} resultados`);
 
   if (!currentResults.length) {
-    setHTML(resultsContainer, renderEmpty("Todavia no hay resultados cargados para esta sesion."));
+    setHTML(resultsContainer, renderEmpty("Todavía no hay resultados cargados para esta sesión."));
     return;
   }
 
@@ -211,7 +211,7 @@ async function loadSessions() {
   if (response.status === 401) {
     clearToken();
     showLogin();
-    showMessage(messageBox, "Sesion vencida o invalida.", "error");
+    showMessage(messageBox, "Sesión vencida o inválida.", "error");
     return false;
   }
 
@@ -241,7 +241,7 @@ async function loadResults() {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -289,7 +289,7 @@ async function createResult() {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -302,7 +302,7 @@ async function createResult() {
     renderResults();
   } catch (error) {
     logger.error("Create result failed", error);
-    showMessage(messageBox, "No se pudo crear el resultado. Revisa los datos y volve a intentar.", "error");
+    showMessage(messageBox, "No se pudo crear el resultado. Revisá los datos y volvé a intentar.", "error");
   }
 }
 
@@ -320,7 +320,7 @@ async function saveResult(card) {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -351,7 +351,7 @@ async function deleteResult(card) {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -389,7 +389,7 @@ async function login() {
   } catch (error) {
     logger.error("Admin login failed", error);
     showLogin();
-    showMessage(messageBox, "No se pudo iniciar sesion. Revisa los datos o la conexion con la API.", "error");
+    showMessage(messageBox, "No se pudo iniciar sesión. Revisá los datos o la conexión con la API.", "error");
   }
 }
 
@@ -407,7 +407,7 @@ logoutButton.addEventListener("click", () => {
   setHTML(sessionMeta, "");
   sessionMeta.hidden = true;
   showLogin();
-  showMessage(messageBox, "Sesion cerrada.", "ok");
+  showMessage(messageBox, "Sesión cerrada.", "ok");
 });
 
 resultsContainer.addEventListener("click", (event) => {

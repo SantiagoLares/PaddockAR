@@ -1,5 +1,6 @@
 const {
   categoryCode,
+  cleanEventName,
   formatDate,
   formatTime,
   renderIcon,
@@ -21,7 +22,7 @@ const app = document.querySelector("#app");
 function renderLoadError() {
   setHTML(
     app,
-    renderError("No pudimos cargar la informacion", {
+    renderError("No pudimos cargar la información", {
       retry: true,
     }),
   );
@@ -125,7 +126,7 @@ function renderEvent(event) {
           <header class="hero-head">
             ${renderCategoryBadge(category)}
             <div>
-              <h1>${event.name}</h1>
+              <h1>${cleanEventName(event.name)}</h1>
               <div class="category-name">${category.name}</div>
             </div>
           </header>
@@ -152,7 +153,7 @@ function renderEvent(event) {
 
         <div class="section-title mono">Sesiones</div>
         <section class="sessions">
-          ${sessionRows || renderEmpty("Todavia no hay sesiones publicadas", "Cuando el evento tenga cronograma lo vas a ver aca.")}
+          ${sessionRows || renderEmpty("Todavía no hay sesiones publicadas", "Cuando el evento tenga cronograma lo vas a ver acá.")}
         </section>
       `);
 }
@@ -162,7 +163,7 @@ async function loadEvent() {
   logger.info("Loading event detail", id);
 
   if (!id) {
-    setHTML(app, renderEmpty("No pudimos abrir este evento", "El enlace esta incompleto o ya no es valido."));
+    setHTML(app, renderEmpty("No pudimos abrir este evento", "El enlace está incompleto o ya no es válido."));
     return;
   }
 

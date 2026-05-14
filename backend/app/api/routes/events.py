@@ -3,6 +3,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session, joinedload
 
 from app.core.database import get_db
+from app.core.text_normalization import normalize_event
 from app.models.event import Event
 from app.models.session import Session as EventSession
 from app.schemas.event import EventDetailRead
@@ -25,6 +26,7 @@ def list_events(db: Session = Depends(get_db)):
     events = db.scalars(statement).unique().all()
     for event in events:
         event.sessions = apply_dynamic_status(list(event.sessions))
+        normalize_event(event)
     return events
 
 
@@ -48,4 +50,5 @@ def get_event(event_id: int, db: Session = Depends(get_db)):
         )
 
     event.sessions = apply_dynamic_status(list(event.sessions))
+    normalize_event(event)
     return event

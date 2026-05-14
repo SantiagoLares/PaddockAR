@@ -3,17 +3,209 @@
   "season_year": 2026,
   "source_note": "Calendario oficial 2026 de Turismo 4000 Argentino verificado el 2026-05-07 contra turismo4000argentino.com.ar/calendario y la portada oficial de la categoria. Quedaron confirmadas oficialmente las primeras cinco fechas, incluyendo la doble fecha 3/4 en La Plata del 26 de abril de 2026; desde la fecha 6 en adelante la sede sigue a confirmar.",
   "events": [
-    { "round_number": 1, "name": "Turismo 4000 Argentino La Plata I", "slug": "turismo-4000-argentino-la-plata-i-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-02-20", "end_date": "2026-02-22", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 2, "name": "Turismo 4000 Argentino La Plata II", "slug": "turismo-4000-argentino-la-plata-ii-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-03-20", "end_date": "2026-03-22", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 3, "name": "Turismo 4000 Argentino La Plata III", "slug": "turismo-4000-argentino-la-plata-iii-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-04-24", "end_date": "2026-04-26", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 4, "name": "Turismo 4000 Argentino La Plata IV", "slug": "turismo-4000-argentino-la-plata-iv-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-04-24", "end_date": "2026-04-26", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 5, "name": "Turismo 4000 Argentino La Plata V", "slug": "turismo-4000-argentino-la-plata-v-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-15", "end_date": "2026-05-17", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 6, "name": "Turismo 4000 Argentino A Confirmar I", "slug": "turismo-4000-argentino-a-confirmar-i-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-06-26", "end_date": "2026-06-28", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-i", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 7, "name": "Turismo 4000 Argentino A Confirmar II", "slug": "turismo-4000-argentino-a-confirmar-ii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-07-24", "end_date": "2026-07-26", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-ii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 8, "name": "Turismo 4000 Argentino A Confirmar III", "slug": "turismo-4000-argentino-a-confirmar-iii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-08-14", "end_date": "2026-08-16", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-iii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 9, "name": "Turismo 4000 Argentino A Confirmar IV", "slug": "turismo-4000-argentino-a-confirmar-iv-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-25", "end_date": "2026-09-27", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-iv", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 10, "name": "Turismo 4000 Argentino A Confirmar V", "slug": "turismo-4000-argentino-a-confirmar-v-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-16", "end_date": "2026-10-18", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-v", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 11, "name": "Turismo 4000 Argentino A Confirmar VI", "slug": "turismo-4000-argentino-a-confirmar-vi-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-06", "end_date": "2026-11-08", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-vi", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 12, "name": "Turismo 4000 Argentino A Confirmar VII", "slug": "turismo-4000-argentino-a-confirmar-vii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-12-11", "end_date": "2026-12-13", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "turismo-4000-argentino-a-confirmar-vii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } }
+    {
+      "round_number": 1,
+      "name": "Turismo 4000 Argentino La Plata",
+      "slug": "turismo-4000-argentino-la-plata-i-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-02-20",
+      "end_date": "2026-02-22",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 2,
+      "name": "Turismo 4000 Argentino La Plata",
+      "slug": "turismo-4000-argentino-la-plata-ii-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-03-20",
+      "end_date": "2026-03-22",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 3,
+      "name": "Turismo 4000 Argentino La Plata",
+      "slug": "turismo-4000-argentino-la-plata-iii-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-04-24",
+      "end_date": "2026-04-26",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 4,
+      "name": "Turismo 4000 Argentino La Plata",
+      "slug": "turismo-4000-argentino-la-plata-iv-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-04-24",
+      "end_date": "2026-04-26",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 5,
+      "name": "Turismo 4000 Argentino La Plata",
+      "slug": "turismo-4000-argentino-la-plata-v-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-05-15",
+      "end_date": "2026-05-17",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 6,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-i-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-i",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 7,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-ii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-07-24",
+      "end_date": "2026-07-26",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-ii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 8,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-iii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-08-14",
+      "end_date": "2026-08-16",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-iii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 9,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-iv-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-iv",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 10,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-v-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-v",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 11,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-vi-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-vi",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 12,
+      "name": "Turismo 4000 Argentino A Confirmar",
+      "slug": "turismo-4000-argentino-a-confirmar-vii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-13",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "turismo-4000-argentino-a-confirmar-vii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    }
   ]
 }

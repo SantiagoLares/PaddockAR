@@ -150,12 +150,23 @@
     return categoryPageSlugAliases[slug] || slug;
   }
 
+  function stripRomanRoundSuffix(value) {
+    return String(value || "")
+      .trim()
+      .replace(/\s+(?:I|II|III|IV|V|VI|VII|VIII|IX|X)$/i, "")
+      .trim();
+  }
+
+  function cleanEventName(value) {
+    return stripRomanRoundSuffix(value);
+  }
+
   function eventDisplayName(event) {
     const categorySlug = normalizeCategoryParam(event?.category?.slug || event?.category?.short_name || "");
     const city = String(event?.circuit?.city || "").trim();
     const country = String(event?.circuit?.country || "").trim();
     const circuitName = String(event?.circuit?.name || "").trim();
-    const fallbackName = String(event?.name || "").trim();
+    const fallbackName = cleanEventName(event?.name);
 
     if (categorySlug === "f1" || categorySlug === "f2") {
       return city || country || circuitName || fallbackName;
@@ -401,6 +412,7 @@
     categoryPageSlug,
     categoryHref,
     normalizeCategoryParam,
+    cleanEventName,
     eventDisplayName,
     matchesCategoryFilter,
     statusLabels,

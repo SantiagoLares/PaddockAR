@@ -5,6 +5,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.orm import Session, joinedload
 
 from app.core.database import get_db
+from app.core.text_normalization import normalize_session
 from app.models.event import Event
 from app.models.session import Session as EventSession
 from app.schemas.session import SessionRead
@@ -25,7 +26,10 @@ def _session_query():
 def list_sessions(db: Session = Depends(get_db)):
     statement = _session_query().order_by(EventSession.starts_at, EventSession.id)
     sessions = db.scalars(statement).unique().all()
-    return apply_dynamic_status(sessions)
+    sessions = apply_dynamic_status(sessions)
+    for session in sessions:
+        normalize_session(session)
+    return sessions
 
 
 @router.get("/api/weekend", response_model=list[SessionRead])
@@ -43,4 +47,7 @@ def list_weekend_sessions(db: Session = Depends(get_db)):
         .limit(50)
     )
     sessions = db.scalars(statement).unique().all()
-    return apply_dynamic_status(sessions)
+    sessions = apply_dynamic_status(sessions)
+    for session in sessions:
+        normalize_session(session)
+    return sessions

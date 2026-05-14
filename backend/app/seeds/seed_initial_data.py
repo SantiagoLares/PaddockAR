@@ -152,16 +152,16 @@ def build_motogp_standard_sessions(start_date: date, end_date: date, circuit_tim
 
 def build_arg_touring_standard_sessions(start_date: date, end_date: date, circuit_timezone: str) -> list[dict]:
     return [
-        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="PrÃ¡ctica", session_type="practice", start_time=time(15, 0), duration_minutes=40),
-        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="ClasificaciÃ³n", session_type="qualifying", start_time=time(11, 0), duration_minutes=25),
+        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="Práctica", session_type="practice", start_time=time(15, 0), duration_minutes=40),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="Clasificación", session_type="qualifying", start_time=time(11, 0), duration_minutes=25),
         build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=3, name="Carrera", session_type="race", start_time=time(12, 30), duration_minutes=50, is_feature=True),
     ]
 
 
 def build_arg_series_standard_sessions(start_date: date, end_date: date, circuit_timezone: str) -> list[dict]:
     return [
-        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="PrÃ¡ctica", session_type="practice", start_time=time(14, 30), duration_minutes=40),
-        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="ClasificaciÃ³n", session_type="qualifying", start_time=time(10, 30), duration_minutes=20),
+        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="Práctica", session_type="practice", start_time=time(14, 30), duration_minutes=40),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="Clasificación", session_type="qualifying", start_time=time(10, 30), duration_minutes=20),
         build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=3, name="Serie", session_type="series", start_time=time(15, 0), duration_minutes=20),
         build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=4, name="Carrera", session_type="race", start_time=time(12, 0), duration_minutes=50, is_feature=True),
     ]
@@ -169,8 +169,8 @@ def build_arg_series_standard_sessions(start_date: date, end_date: date, circuit
 
 def build_arg_pickup_standard_sessions(start_date: date, end_date: date, circuit_timezone: str) -> list[dict]:
     return [
-        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="PrÃ¡ctica", session_type="practice", start_time=time(15, 30), duration_minutes=35),
-        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="ClasificaciÃ³n", session_type="qualifying", start_time=time(11, 30), duration_minutes=20),
+        build_session_payload(event_date=start_date, circuit_timezone=circuit_timezone, order_index=1, name="Práctica", session_type="practice", start_time=time(15, 30), duration_minutes=35),
+        build_session_payload(event_date=start_date + timedelta(days=1), circuit_timezone=circuit_timezone, order_index=2, name="Clasificación", session_type="qualifying", start_time=time(11, 30), duration_minutes=20),
         build_session_payload(event_date=end_date, circuit_timezone=circuit_timezone, order_index=3, name="Carrera", session_type="race", start_time=time(13, 20), duration_minutes=45, is_feature=True),
     ]
 
@@ -414,6 +414,16 @@ def upsert_session(db: Session, payload: dict, event: Event) -> EventSession:
     return session
 
 
+def cleanup_stale_event_sessions(db: Session, event: Event, desired_order_indexes: set[int]) -> None:
+    existing_sessions = db.scalars(
+        select(EventSession).where(EventSession.event_id == event.id)
+    ).all()
+
+    for session in existing_sessions:
+        if session.order_index not in desired_order_indexes:
+            db.delete(session)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Carga datos iniciales de PaddockAR.")
     parser.add_argument(
@@ -471,7 +481,14 @@ def seed(calendar_names: list[str] | None = None) -> None:
             event = upsert_event(db, event_payload, category, circuit)
             db.flush()
 
-            for session_payload in resolve_sessions(event_payload):
+            resolved_sessions = resolve_sessions(event_payload)
+            cleanup_stale_event_sessions(
+                db,
+                event,
+                {session_payload["order_index"] for session_payload in resolved_sessions},
+            )
+
+            for session_payload in resolved_sessions:
                 upsert_session(db, session_payload, event)
 
         db.commit()

@@ -1,17 +1,177 @@
 {
   "category_slug": "turismo-pista-c3",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de Turismo Pista Clase 3 basado en publicaciones oficiales de turismopista.com.ar revisadas el 2026-05-06. Las tres clases comparten fecha y sede; los horarios de sesiones se cargan como tentativos porque no se publica un cronograma horario completo por fecha en la fuente auditada.",
+  "source_note": "Calendario 2026 de Turismo Pista Clase 3 basado en pÃºblicaciones oficiales de turismopista.com.ar revisadas el 2026-05-06. Las tres clases comparten fecha y sede; los horarios de sesiones se cargan como tentativos porque no se pÃºblica un cronograma horario completo por fecha en la fuente auditada.",
   "events": [
-    { "round_number": 1, "name": "Turismo Pista Clase 3 La Plata", "slug": "turismo-pista-c3-la-plata-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-01-30", "end_date": "2026-02-01", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 2, "name": "Turismo Pista Clase 3 Toay", "slug": "turismo-pista-c3-toay-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-02-27", "end_date": "2026-03-01", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Provincia de La Pampa", "slug": "autodromo-provincia-de-la-pampa", "country": "Argentina", "city": "Toay", "timezone": "America/Argentina/Salta" } },
-    { "round_number": 3, "name": "Turismo Pista Clase 3 Concordia", "slug": "turismo-pista-c3-concordia-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-04-10", "end_date": "2026-04-12", "session_template": "arg_series_standard", "circuit": { "name": "Parque Autodromo Ciudad de Concordia", "slug": "parque-autodromo-ciudad-de-concordia", "country": "Argentina", "city": "Concordia", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 4, "name": "Turismo Pista Clase 3 San Jorge", "slug": "turismo-pista-c3-san-jorge-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-05-22", "end_date": "2026-05-24", "session_template": "arg_series_standard", "circuit": { "name": "Parque de la Velocidad", "slug": "parque-de-la-velocidad", "country": "Argentina", "city": "San Jorge", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 5, "name": "Turismo Pista Clase 3 Rosario", "slug": "turismo-pista-c3-rosario-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-06-12", "end_date": "2026-06-14", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Juan Manuel Fangio", "slug": "autodromo-juan-manuel-fangio-rosario", "country": "Argentina", "city": "Rosario", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 6, "name": "Turismo Pista Clase 3 Rio Cuarto", "slug": "turismo-pista-c3-rio-cuarto-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-07-17", "end_date": "2026-07-19", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Parque Ciudad de Rio Cuarto", "slug": "autodromo-parque-ciudad-de-rio-cuarto", "country": "Argentina", "city": "Rio Cuarto", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 7, "name": "Turismo Pista Clase 3 San Nicolas", "slug": "turismo-pista-c3-san-nicolas-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-08-07", "end_date": "2026-08-09", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo San Nicolas Ciudad", "slug": "autodromo-san-nicolas-ciudad", "country": "Argentina", "city": "San Nicolas", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 8, "name": "Turismo Pista Clase 3 Termas de Rio Hondo", "slug": "turismo-pista-c3-termas-de-rio-hondo-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-04", "end_date": "2026-09-06", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Internacional de Termas de Rio Hondo", "slug": "autodromo-internacional-de-termas-de-rio-hondo", "country": "Argentina", "city": "Termas de Rio Hondo", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 9, "name": "Turismo Pista Clase 3 Concepcion del Uruguay", "slug": "turismo-pista-c3-concepcion-del-uruguay-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-16", "end_date": "2026-10-18", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Concepcion del Uruguay", "slug": "autodromo-concepcion-del-uruguay", "country": "Argentina", "city": "Concepcion del Uruguay", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 10, "name": "Turismo Pista Clase 3 Rafaela", "slug": "turismo-pista-c3-rafaela-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-20", "end_date": "2026-11-22", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Ciudad de Rafaela", "slug": "autodromo-ciudad-de-rafaela", "country": "Argentina", "city": "Rafaela", "timezone": "America/Argentina/Cordoba" } }
+    {
+      "round_number": 1,
+      "name": "Turismo Pista Clase 3 La Plata",
+      "slug": "turismo-pista-c3-la-plata-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-01-30",
+      "end_date": "2026-02-01",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 2,
+      "name": "Turismo Pista Clase 3 Toay",
+      "slug": "turismo-pista-c3-toay-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-02-27",
+      "end_date": "2026-03-01",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Provincia de La Pampa",
+        "slug": "autodromo-provincia-de-la-pampa",
+        "country": "Argentina",
+        "city": "Toay",
+        "timezone": "America/Argentina/Salta"
+      }
+    },
+    {
+      "round_number": 3,
+      "name": "Turismo Pista Clase 3 Concordia",
+      "slug": "turismo-pista-c3-concordia-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-04-10",
+      "end_date": "2026-04-12",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Parque Autodromo Ciudad de Concordia",
+        "slug": "parque-autodromo-ciudad-de-concordia",
+        "country": "Argentina",
+        "city": "Concordia",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 4,
+      "name": "Turismo Pista Clase 3 San Jorge",
+      "slug": "turismo-pista-c3-san-jorge-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-05-22",
+      "end_date": "2026-05-24",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Parque de la Velocidad",
+        "slug": "parque-de-la-velocidad",
+        "country": "Argentina",
+        "city": "San Jorge",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 5,
+      "name": "Turismo Pista Clase 3 Rosario",
+      "slug": "turismo-pista-c3-rosario-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-14",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Juan Manuel Fangio",
+        "slug": "autodromo-juan-manuel-fangio-rosario",
+        "country": "Argentina",
+        "city": "Rosario",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 6,
+      "name": "Turismo Pista Clase 3 RÃ­o Cuarto",
+      "slug": "turismo-pista-c3-rio-cuarto-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-07-17",
+      "end_date": "2026-07-19",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Parque Ciudad de RÃ­o Cuarto",
+        "slug": "autodromo-parque-ciudad-de-rio-cuarto",
+        "country": "Argentina",
+        "city": "RÃ­o Cuarto",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 7,
+      "name": "Turismo Pista Clase 3 San NicolÃ¡s",
+      "slug": "turismo-pista-c3-san-nicolas-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-08-07",
+      "end_date": "2026-08-09",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo San NicolÃ¡s Ciudad",
+        "slug": "autodromo-san-nicolas-ciudad",
+        "country": "Argentina",
+        "city": "San NicolÃ¡s",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 8,
+      "name": "Turismo Pista Clase 3 Termas de RÃ­o Hondo",
+      "slug": "turismo-pista-c3-termas-de-rio-hondo-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-04",
+      "end_date": "2026-09-06",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Internacional de Termas de RÃ­o Hondo",
+        "slug": "autodromo-internacional-de-termas-de-rio-hondo",
+        "country": "Argentina",
+        "city": "Termas de RÃ­o Hondo",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 9,
+      "name": "Turismo Pista Clase 3 ConcepciÃ³n del Uruguay",
+      "slug": "turismo-pista-c3-concepcion-del-uruguay-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo ConcepciÃ³n del Uruguay",
+        "slug": "autodromo-concepcion-del-uruguay",
+        "country": "Argentina",
+        "city": "ConcepciÃ³n del Uruguay",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 10,
+      "name": "Turismo Pista Clase 3 Rafaela",
+      "slug": "turismo-pista-c3-rafaela-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-22",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Ciudad de Rafaela",
+        "slug": "autodromo-ciudad-de-rafaela",
+        "country": "Argentina",
+        "city": "Rafaela",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    }
   ]
 }

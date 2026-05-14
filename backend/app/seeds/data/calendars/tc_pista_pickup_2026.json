@@ -1,18 +1,194 @@
 {
   "category_slug": "tc-pista-pick-up",
   "season_year": 2026,
-  "source_note": "Calendario oficial ACTC 2026 de TC Pista Pick Up ajustado segun la auditoria realizada el 2026-05-06. Se mantienen las fechas publicadas y solo se fijan sedes cuando quedaron confirmadas.",
+  "source_note": "Calendario oficial ACTC 2026 de TC Pista Pick Up ajustado seg?n la auditoría realizada el 2026-05-06. Se mantienen las fechas públicadas y solo se fijan sedes cuando quedaron confirmadas.",
   "events": [
-    { "round_number": 1, "name": "TC Pista Pick Up La Plata I", "slug": "tc-pista-pick-up-la-plata-i-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-02-20", "end_date": "2026-02-22", "session_template": "arg_pickup_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 2, "name": "TC Pista Pick Up La Plata II", "slug": "tc-pista-pick-up-la-plata-ii-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-03-20", "end_date": "2026-03-22", "session_template": "arg_pickup_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 3, "name": "TC Pista Pick Up La Plata III", "slug": "tc-pista-pick-up-la-plata-iii-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-04-24", "end_date": "2026-04-26", "session_template": "arg_pickup_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 4, "name": "TC Pista Pick Up La Plata IV", "slug": "tc-pista-pick-up-la-plata-iv-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-15", "end_date": "2026-05-17", "session_template": "arg_pickup_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 5, "name": "TC Pista Pick Up A Confirmar I", "slug": "tc-pista-pick-up-a-confirmar-i-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-06-26", "end_date": "2026-06-28", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-i", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 6, "name": "TC Pista Pick Up A Confirmar II", "slug": "tc-pista-pick-up-a-confirmar-ii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-07-24", "end_date": "2026-07-26", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-ii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 7, "name": "TC Pista Pick Up A Confirmar III", "slug": "tc-pista-pick-up-a-confirmar-iii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-08-14", "end_date": "2026-08-16", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-iii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 8, "name": "TC Pista Pick Up A Confirmar IV", "slug": "tc-pista-pick-up-a-confirmar-iv-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-25", "end_date": "2026-09-27", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-iv", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 9, "name": "TC Pista Pick Up A Confirmar V", "slug": "tc-pista-pick-up-a-confirmar-v-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-16", "end_date": "2026-10-18", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-v", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 10, "name": "TC Pista Pick Up A Confirmar VI", "slug": "tc-pista-pick-up-a-confirmar-vi-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-06", "end_date": "2026-11-08", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-vi", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 11, "name": "TC Pista Pick Up A Confirmar VII", "slug": "tc-pista-pick-up-a-confirmar-vii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-12-11", "end_date": "2026-12-13", "session_template": "arg_pickup_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-pick-up-a-confirmar-vii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } }
+    {
+      "round_number": 1,
+      "name": "TC Pista Pick Up La Plata",
+      "slug": "tc-pista-pick-up-la-plata-i-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-02-20",
+      "end_date": "2026-02-22",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 2,
+      "name": "TC Pista Pick Up La Plata",
+      "slug": "tc-pista-pick-up-la-plata-ii-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-03-20",
+      "end_date": "2026-03-22",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 3,
+      "name": "TC Pista Pick Up La Plata",
+      "slug": "tc-pista-pick-up-la-plata-iii-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-04-24",
+      "end_date": "2026-04-26",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 4,
+      "name": "TC Pista Pick Up La Plata",
+      "slug": "tc-pista-pick-up-la-plata-iv-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-05-15",
+      "end_date": "2026-05-17",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 5,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-i-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-i",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 6,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-ii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-07-24",
+      "end_date": "2026-07-26",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-ii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 7,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-iii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-08-14",
+      "end_date": "2026-08-16",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-iii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 8,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-iv-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-iv",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 9,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-v-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-v",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 10,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-vi-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-vi",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 11,
+      "name": "TC Pista Pick Up A Confirmar",
+      "slug": "tc-pista-pick-up-a-confirmar-vii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-13",
+      "session_template": "arg_pickup_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-pick-up-a-confirmar-vii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    }
   ]
 }

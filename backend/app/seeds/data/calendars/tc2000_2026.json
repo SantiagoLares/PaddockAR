@@ -1,19 +1,211 @@
 {
   "category_slug": "tc2000",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de TC2000 verificado el 2026-05-07 contra publicaciones oficiales vigentes de la categoria. Quedaron confirmadas publicamente las primeras cuatro fechas hasta Salta; desde el 28.06.2026 en adelante se mantienen sedes a confirmar para no promover informacion no cerrada oficialmente.",
+  "source_note": "Calendario 2026 de TC2000 verificado el 2026-05-07 contra pÃºblicaciones oficiales vigentes de la categoria. Quedaron confirmadas pÃºblicamente las primeras cuatro fechas hasta Salta; desde el 28.06.2026 en adelante se mantienen sedes a confirmar para no promover informaciÃ³n no cerrada oficialmente.",
   "events": [
-    { "round_number": 1, "name": "TC2000 Callejero de Buenos Aires", "slug": "tc2000-callejero-buenos-aires-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-03-15", "end_date": "2026-03-15", "session_template": "arg_touring_standard", "circuit": { "name": "Callejero de Buenos Aires", "slug": "callejero-de-buenos-aires", "country": "Argentina", "city": "Buenos Aires", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 2, "name": "TC2000 San Juan", "slug": "tc2000-san-juan-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-04-12", "end_date": "2026-04-12", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito San Juan Villicum", "slug": "circuito-san-juan-villicum", "country": "Argentina", "city": "Albardon", "timezone": "America/Argentina/San_Juan" } },
-    { "round_number": 3, "name": "TC2000 Concordia", "slug": "tc2000-concordia-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-03", "end_date": "2026-05-03", "session_template": "arg_touring_standard", "circuit": { "name": "Parque Autodromo Ciudad de Concordia", "slug": "parque-autodromo-ciudad-de-concordia", "country": "Argentina", "city": "Concordia", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 4, "name": "TC2000 Salta", "slug": "tc2000-salta-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-24", "end_date": "2026-05-24", "session_template": "arg_touring_standard", "circuit": { "name": "Autodromo Martin Miguel de Guemes", "slug": "autodromo-martin-miguel-de-guemes", "country": "Argentina", "city": "Salta", "timezone": "America/Argentina/Salta" } },
-    { "round_number": 5, "name": "TC2000 A Confirmar I", "slug": "tc2000-a-confirmar-i-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-06-28", "end_date": "2026-06-28", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-i", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 6, "name": "TC2000 A Confirmar II", "slug": "tc2000-a-confirmar-ii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-08-09", "end_date": "2026-08-09", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-ii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 7, "name": "TC2000 A Confirmar III", "slug": "tc2000-a-confirmar-iii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-06", "end_date": "2026-09-06", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-iii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 8, "name": "TC2000 A Confirmar IV", "slug": "tc2000-a-confirmar-iv-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-27", "end_date": "2026-09-27", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-iv", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 9, "name": "TC2000 A Confirmar V", "slug": "tc2000-a-confirmar-v-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-18", "end_date": "2026-10-18", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-v", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 10, "name": "TC2000 A Confirmar VI", "slug": "tc2000-a-confirmar-vi-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-08", "end_date": "2026-11-08", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-vi", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 11, "name": "TC2000 A Confirmar VII", "slug": "tc2000-a-confirmar-vii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-22", "end_date": "2026-11-22", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-vii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 12, "name": "TC2000 A Confirmar VIII", "slug": "tc2000-a-confirmar-viii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-12-13", "end_date": "2026-12-13", "session_template": "arg_touring_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc2000-a-confirmar-viii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } }
+    {
+      "round_number": 1,
+      "name": "TC2000 Callejero de Buenos Aires",
+      "slug": "tc2000-callejero-buenos-aires-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-03-15",
+      "end_date": "2026-03-15",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Callejero de Buenos Aires",
+        "slug": "callejero-de-buenos-aires",
+        "country": "Argentina",
+        "city": "Buenos Aires",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 2,
+      "name": "TC2000 San Juan",
+      "slug": "tc2000-san-juan-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-04-12",
+      "end_date": "2026-04-12",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito San Juan Villicum",
+        "slug": "circuito-san-juan-villicum",
+        "country": "Argentina",
+        "city": "AlbardÃ³n",
+        "timezone": "America/Argentina/San_Juan"
+      }
+    },
+    {
+      "round_number": 3,
+      "name": "TC2000 Concordia",
+      "slug": "tc2000-concordia-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-05-03",
+      "end_date": "2026-05-03",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Parque Autodromo Ciudad de Concordia",
+        "slug": "parque-autodromo-ciudad-de-concordia",
+        "country": "Argentina",
+        "city": "Concordia",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 4,
+      "name": "TC2000 Salta",
+      "slug": "tc2000-salta-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-05-24",
+      "end_date": "2026-05-24",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Autodromo Martin Miguel de G?emes",
+        "slug": "autodromo-martin-miguel-de-guemes",
+        "country": "Argentina",
+        "city": "Salta",
+        "timezone": "America/Argentina/Salta"
+      }
+    },
+    {
+      "round_number": 5,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-i-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-06-28",
+      "end_date": "2026-06-28",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-i",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 6,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-ii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-08-09",
+      "end_date": "2026-08-09",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-ii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 7,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-iii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-06",
+      "end_date": "2026-09-06",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-iii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 8,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-iv-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-27",
+      "end_date": "2026-09-27",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-iv",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 9,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-v-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-18",
+      "end_date": "2026-10-18",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-v",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 10,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-vi-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-08",
+      "end_date": "2026-11-08",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-vi",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 11,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-vii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-22",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-vii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 12,
+      "name": "TC2000 A Confirmar",
+      "slug": "tc2000-a-confirmar-viii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-12-13",
+      "end_date": "2026-12-13",
+      "session_template": "arg_touring_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc2000-a-confirmar-viii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    }
   ]
 }

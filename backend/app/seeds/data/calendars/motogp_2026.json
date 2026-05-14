@@ -64,7 +64,7 @@
       "category_slug": "motogp",
       "season_year": 2026,
       "round_number": 4,
-      "name": "GP de Espana",
+      "name": "GP de EspaÃ±a",
       "slug": "gp-de-espana-motogp-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -74,7 +74,7 @@
       "circuit": {
         "name": "Circuito de Jerez - Angel Nieto",
         "slug": "circuito-de-jerez-angel-nieto",
-        "country": "Espana",
+        "country": "EspaÃ±a",
         "city": "Jerez",
         "timezone": "Europe/Madrid"
       }
@@ -112,8 +112,8 @@
       "circuit": {
         "name": "Circuit de Barcelona-Catalunya",
         "slug": "circuit-de-barcelona-catalunya",
-        "country": "Espana",
-        "city": "Montmelo",
+        "country": "EspaÃ±a",
+        "city": "MontmelÃ³",
         "timezone": "Europe/Madrid"
       }
     },
@@ -140,7 +140,7 @@
       "category_slug": "motogp",
       "season_year": 2026,
       "round_number": 8,
-      "name": "GP de Hungria",
+      "name": "GP de HungrÃ­a",
       "slug": "gp-de-hungria-motogp-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -150,7 +150,7 @@
       "circuit": {
         "name": "Balaton Park Circuit",
         "slug": "balaton-park-circuit",
-        "country": "Hungria",
+        "country": "HungrÃ­a",
         "city": "Balatonfokajar",
         "timezone": "Europe/Budapest"
       }
@@ -178,7 +178,7 @@
       "category_slug": "motogp",
       "season_year": 2026,
       "round_number": 10,
-      "name": "GP de Paises Bajos",
+      "name": "GP de PaÃ­ses Bajos",
       "slug": "gp-de-paises-bajos-motogp-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -188,7 +188,7 @@
       "circuit": {
         "name": "TT Circuit Assen",
         "slug": "tt-circuit-assen",
-        "country": "Paises Bajos",
+        "country": "PaÃ­ses Bajos",
         "city": "Assen",
         "timezone": "Europe/Amsterdam"
       }
@@ -216,7 +216,7 @@
       "category_slug": "motogp",
       "season_year": 2026,
       "round_number": 12,
-      "name": "GP de Gran Bretana",
+      "name": "GP de Gran BretaÃ±a",
       "slug": "gp-de-gran-bretana-motogp-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -226,7 +226,7 @@
       "circuit": {
         "name": "Silverstone Circuit",
         "slug": "silverstone-circuit",
-        "country": "Gran Bretana",
+        "country": "Gran BretaÃ±a",
         "city": "Silverstone",
         "timezone": "Europe/London"
       }
@@ -245,7 +245,7 @@
       "circuit": {
         "name": "MotorLand Aragon",
         "slug": "motorland-aragon",
-        "country": "Espana",
+        "country": "EspaÃ±a",
         "city": "Alcaniz",
         "timezone": "Europe/Madrid"
       }
@@ -292,7 +292,7 @@
       "category_slug": "motogp",
       "season_year": 2026,
       "round_number": 16,
-      "name": "GP de Japon",
+      "name": "GP de JapÃ³n",
       "slug": "gp-de-japon-motogp-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -302,7 +302,7 @@
       "circuit": {
         "name": "Mobility Resort Motegi",
         "slug": "mobility-resort-motegi",
-        "country": "Japon",
+        "country": "JapÃ³n",
         "city": "Motegi",
         "timezone": "Asia/Tokyo"
       }
@@ -416,7 +416,7 @@
       "circuit": {
         "name": "Circuit Ricardo Tormo",
         "slug": "circuit-ricardo-tormo",
-        "country": "Espana",
+        "country": "EspaÃ±a",
         "city": "Cheste",
         "timezone": "Europe/Madrid"
       }

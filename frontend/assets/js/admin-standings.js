@@ -31,7 +31,7 @@ let allStandings = [];
 function renderAdminLoadError() {
   setHTML(
     standingsContainer,
-    renderError("No se pudo cargar el panel de standings. Revisa la conexion con la API y volve a intentar.", {
+    renderError("No se pudo cargar el panel de standings. Revisá la conexión con la API y volvé a intentar.", {
       retry: true,
     }),
   );
@@ -69,7 +69,7 @@ function showAdmin() {
 
 function fillCategoryOptions() {
   categoryFilter.innerHTML =
-    '<option value="all">Todas las categorias</option>' +
+    '<option value="all">Todas las categorías</option>' +
     categories.map((category) => `<option value="${category.id}">${category.short_name}</option>`).join("");
 
   newCategorySelect.innerHTML = categories
@@ -127,7 +127,7 @@ function renderStandings() {
             </header>
             <div class="edit-grid">
               <div class="field">
-                <label class="mono">Categoria</label>
+                <label class="mono">Categoría</label>
                 <select data-field="category_id">
                   ${categories
                     .map(
@@ -223,7 +223,7 @@ async function loadStandings() {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -264,7 +264,7 @@ async function createStanding() {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -277,7 +277,7 @@ async function createStanding() {
     renderStandings();
   } catch (error) {
     logger.error("Create standing failed", error);
-    showMessage(messageBox, "No se pudo crear la posicion. Revisa los datos y volve a intentar.", "error");
+    showMessage(messageBox, "No se pudo crear la posición. Revisá los datos y volvé a intentar.", "error");
   }
 }
 
@@ -295,7 +295,7 @@ async function saveStanding(card) {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -324,7 +324,7 @@ async function deleteStanding(card) {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -362,7 +362,7 @@ async function login() {
   } catch (error) {
     logger.error("Admin login failed", error);
     showLogin();
-    showMessage(messageBox, "No se pudo iniciar sesion. Revisa los datos o la conexion con la API.", "error");
+    showMessage(messageBox, "No se pudo iniciar sesión. Revisá los datos o la conexión con la API.", "error");
   }
 }
 
@@ -396,7 +396,7 @@ logoutButton.addEventListener("click", () => {
   allStandings = [];
   setHTML(standingsContainer, "");
   showLogin();
-  showMessage(messageBox, "Sesion cerrada.", "ok");
+  showMessage(messageBox, "Sesión cerrada.", "ok");
 });
 
 if (getToken()) {

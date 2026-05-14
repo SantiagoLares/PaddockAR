@@ -23,7 +23,7 @@ const calendarBoard = document.querySelector("#calendarBoard");
 function renderLoadError() {
   setHTML(
     calendarBoard,
-    renderError("No pudimos cargar la informacion", {
+    renderError("No pudimos cargar la información", {
       retry: true,
     }),
   );
@@ -90,7 +90,7 @@ function renderCalendar(events) {
   if (!events.length) {
     setHTML(
       calendarBoard,
-      renderEmpty("Todavia no hay eventos publicados", "Apenas haya fechas disponibles las vas a ver aca."),
+      renderEmpty("Todavía no hay eventos publicados", "Apenas haya fechas disponibles las vas a ver acá."),
     );
     return;
   }
@@ -127,7 +127,7 @@ function renderCalendar(events) {
               <div class="category-left">
                 ${group.categories.size === 1
             ? `
-                    <a class="category-link" href="${categoryHref(primaryCategory)}" aria-label="Ver categoria ${primaryCategory.name}">
+                    <a class="category-link" href="${categoryHref(primaryCategory)}" aria-label="Ver categoría ${primaryCategory.name}">
                       ${renderCategoryBadge(primaryCategory, {
                 tag: "span",
                 extraClass: "category-header-logo",

@@ -23,14 +23,14 @@
     return renderStateCard("empty", title, description);
   }
 
-  function renderLoading(title = "Cargando agenda", description = "Estamos buscando la informacion mas reciente.") {
+  function renderLoading(title = "Cargando agenda", description = "Estamos buscando la información más reciente.") {
     return renderStateCard("loading", title, description);
   }
 
   function renderError(
     title,
     {
-      description = "Proba nuevamente en unos segundos.",
+      description = "Probá nuevamente en unos segundos.",
       retry = false,
       retryLabel = "Reintentar",
     } = {},

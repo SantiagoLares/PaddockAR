@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="assets/css/components/status.css?v=20260504" />
   <link rel="stylesheet" href="assets/css/index.css?v=20260504" />
 </head>
-<body class="page-shell-940 home-with-sidebar">
+<body class="page-shell-1180 home-with-sidebar home-redline">
   <aside id="sideNav" class="side-nav sidebar" aria-label="Categorias">
     <div class="side-nav-head">
       <div class="side-nav-title">Categorias</div>
@@ -185,42 +185,108 @@
   </nav>
 
   <main>
-    <section class="summary">
-      <div>
-        <h1>Fin de semana</h1>
-        <div class="subtitle">Horarios en Argentina. Calendario compacto de automovilismo.</div>
+    <section class="home-hero">
+      <div class="hero-copy">
+        <div class="hero-kicker mono">Agenda en hora argentina</div>
+        <h1>Agenda motor compacta para Argentina.</h1>
+        <p class="subtitle hero-subtitle">Consulta horarios de automovilismo con una lectura clara, local y enfocada en lo que corre este fin de semana.</p>
+        <div class="hero-actions">
+          <a class="hero-button hero-button--primary" href="#sessionList">Ver proximas sesiones</a>
+          <a class="hero-button hero-button--ghost" href="calendar.html">Abrir calendario</a>
+        </div>
+        <div class="hero-note mono">Formula 1, MotoGP, WEC y categorias nacionales en horario ARG.</div>
       </div>
-      <div class="summary-status mono">
-        <div id="apiState" class="api-state">Conectando API</div>
-        <div id="lastUpdated" class="last-updated" aria-live="polite">Esperando datos</div>
+
+      <div class="hero-stack">
+        <section class="summary">
+          <div>
+            <div class="summary-eyebrow mono">Panel en vivo</div>
+            <div class="summary-title">Proximas sesiones</div>
+          </div>
+          <div class="summary-status mono">
+            <div id="apiState" class="api-state">Conectando API</div>
+            <div id="lastUpdated" class="last-updated" aria-live="polite">Esperando datos</div>
+          </div>
+        </section>
+
+        <section id="raceSpotlight" class="race-spotlight" aria-live="polite"></section>
+        <section id="nextRaces" class="next-races" aria-live="polite"></section>
       </div>
     </section>
 
-    <section id="raceSpotlight" class="race-spotlight" aria-live="polite"></section>
-
-    <section class="filters" aria-label="Filtros">
-      <div class="filter-group" id="categoryFilters">
-        <button class="filter-button mono active" type="button" data-category="all">Todos</button>
-        <button class="filter-button mono" type="button" data-category="F1">F1</button>
-        <button class="filter-button mono" type="button" data-category="MotoGP">MotoGP</button>
-        <button class="filter-button mono" type="button" data-category="F2">F2</button>
-        <button class="filter-button mono" type="button" data-category="F3">F3</button>
-        <button class="filter-button mono" type="button" data-category="WEC">WEC</button>
-        <button class="filter-button mono" type="button" data-category="TC">TC</button>
-        <button class="filter-button mono" type="button" data-category="TN">TN</button>
-        <button class="filter-button mono" type="button" data-category="TN C2">TN C2</button>
-        <button class="filter-button mono" type="button" data-category="TN C3">TN C3</button>
+    <section class="home-categories home-panel" aria-label="Explorar categorias">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker mono">Explorar por categoria</div>
+          <h2 class="section-display">Cobertura principal</h2>
+        </div>
+        <p class="section-caption">Accesos directos a las categorias mas seguidas del calendario.</p>
       </div>
-      <div class="filter-group" id="statusFilters">
-        <button class="filter-button mono active" type="button" data-status="all">Todos</button>
-        <button class="filter-button mono" type="button" data-status="upcoming">Proximas</button>
-        <button class="filter-button mono" type="button" data-status="live">En vivo</button>
-        <button class="filter-button mono" type="button" data-status="finished">Finalizadas</button>
+      <div class="category-pill-groups">
+        <div class="category-pill-group">
+          <div class="category-pill-group-label mono">Internacional</div>
+          <div class="category-pills">
+            <a class="category-pill category-pill--f1 category-pill--active" href="category.html?cat=f1">Formula 1</a>
+            <a class="category-pill category-pill--motogp" href="category.html?cat=motogp">MotoGP</a>
+            <a class="category-pill category-pill--wec" href="category.html?cat=wec">WEC</a>
+            <a class="category-pill category-pill--f2" href="category.html?cat=f2">Formula 2</a>
+            <a class="category-pill category-pill--f3" href="category.html?cat=f3">Formula 3</a>
+          </div>
+        </div>
+        <div class="category-pill-group">
+          <div class="category-pill-group-label mono">Argentina</div>
+          <div class="category-pills">
+            <a class="category-pill category-pill--tc" href="category.html?cat=tc">Turismo Carretera</a>
+            <a class="category-pill category-pill--tn" href="category.html?cat=tn-c3">Turismo Nacional</a>
+            <a class="category-pill category-pill--tc2000" href="category.html?cat=tc2000">TC2000</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="nextRaces" class="next-races" aria-live="polite"></section>
-    <section id="sessionList" class="board" aria-live="polite"></section>
+    <section class="month-context home-panel" aria-label="Calendario del mes">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker mono">Contexto mensual</div>
+          <h2 class="section-display">Calendario</h2>
+        </div>
+        <p class="section-caption">Panorama del mes con fines de semana cargados y acceso rapido al calendario completo.</p>
+      </div>
+      <section id="monthCalendar" class="month-calendar" aria-live="polite"></section>
+    </section>
+
+    <section class="data-stage home-panel">
+      <div class="data-stage-head">
+        <div>
+          <div class="section-kicker mono">Lectura por jornada</div>
+          <h2 class="section-display">Cronograma del fin de semana</h2>
+        </div>
+        <p class="section-caption">Vista compacta por dia, evento y estado de sesion.</p>
+      </div>
+
+      <section class="filters" aria-label="Filtros">
+        <div class="filter-group" id="categoryFilters">
+          <button class="filter-button mono active" type="button" data-category="all">Todos</button>
+          <button class="filter-button mono" type="button" data-category="F1">F1</button>
+          <button class="filter-button mono" type="button" data-category="MotoGP">MotoGP</button>
+          <button class="filter-button mono" type="button" data-category="F2">F2</button>
+          <button class="filter-button mono" type="button" data-category="F3">F3</button>
+          <button class="filter-button mono" type="button" data-category="WEC">WEC</button>
+          <button class="filter-button mono" type="button" data-category="TC">TC</button>
+          <button class="filter-button mono" type="button" data-category="TN">TN</button>
+          <button class="filter-button mono" type="button" data-category="TN C2">TN C2</button>
+          <button class="filter-button mono" type="button" data-category="TN C3">TN C3</button>
+        </div>
+        <div class="filter-group" id="statusFilters">
+          <button class="filter-button mono active" type="button" data-status="all">Todos</button>
+          <button class="filter-button mono" type="button" data-status="upcoming">Proximas</button>
+          <button class="filter-button mono" type="button" data-status="live">En vivo</button>
+          <button class="filter-button mono" type="button" data-status="finished">Finalizadas</button>
+        </div>
+      </section>
+
+      <section id="sessionList" class="board" aria-live="polite"></section>
+    </section>
   </main>
 
   <footer class="site-footer">

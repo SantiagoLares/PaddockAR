@@ -2,47 +2,245 @@
   "category_slug": "f1",
   "season_year": 2026,
   "source": "manual_fallback",
-  "source_note": "Fallback manual armado desde las paginas oficiales de Formula 1 revisadas el 2026-05-04.",
+  "source_note": "Fallback manual armado desde las paginas oficiales de FÃ³rmula 1 revisadas el 2026-05-04.",
   "source_urls": {
     "drivers": "https://www.formula1.com/en/results/2026/drivers",
     "constructors": "https://www.formula1.com/en/results/2026/team",
     "races": "https://www.formula1.com/en/results/2026/races"
   },
   "drivers": [
-    { "position": 1, "name": "Kimi Antonelli", "team_name": "Mercedes", "points": 100, "wins": 3 },
-    { "position": 2, "name": "George Russell", "team_name": "Mercedes", "points": 80, "wins": 1 },
-    { "position": 3, "name": "Charles Leclerc", "team_name": "Ferrari", "points": 59, "wins": 0 },
-    { "position": 4, "name": "Lando Norris", "team_name": "McLaren", "points": 51, "wins": 0 },
-    { "position": 5, "name": "Lewis Hamilton", "team_name": "Ferrari", "points": 51, "wins": 0 },
-    { "position": 6, "name": "Oscar Piastri", "team_name": "McLaren", "points": 43, "wins": 0 },
-    { "position": 7, "name": "Max Verstappen", "team_name": "Red Bull Racing", "points": 26, "wins": 0 },
-    { "position": 8, "name": "Oliver Bearman", "team_name": "Haas F1 Team", "points": 17, "wins": 0 },
-    { "position": 9, "name": "Pierre Gasly", "team_name": "Alpine", "points": 16, "wins": 0 },
-    { "position": 10, "name": "Liam Lawson", "team_name": "Racing Bulls", "points": 10, "wins": 0 },
-    { "position": 11, "name": "Franco Colapinto", "team_name": "Alpine", "points": 7, "wins": 0 },
-    { "position": 12, "name": "Arvid Lindblad", "team_name": "Racing Bulls", "points": 4, "wins": 0 },
-    { "position": 13, "name": "Isack Hadjar", "team_name": "Red Bull Racing", "points": 4, "wins": 0 },
-    { "position": 14, "name": "Carlos Sainz", "team_name": "Williams", "points": 4, "wins": 0 },
-    { "position": 15, "name": "Gabriel Bortoleto", "team_name": "Audi", "points": 2, "wins": 0 },
-    { "position": 16, "name": "Esteban Ocon", "team_name": "Haas F1 Team", "points": 1, "wins": 0 },
-    { "position": 17, "name": "Alexander Albon", "team_name": "Williams", "points": 1, "wins": 0 },
-    { "position": 18, "name": "Nico Hulkenberg", "team_name": "Audi", "points": 0, "wins": 0 },
-    { "position": 19, "name": "Valtteri Bottas", "team_name": "Cadillac", "points": 0, "wins": 0 },
-    { "position": 20, "name": "Sergio Perez", "team_name": "Cadillac", "points": 0, "wins": 0 },
-    { "position": 21, "name": "Fernando Alonso", "team_name": "Aston Martin", "points": 0, "wins": 0 },
-    { "position": 22, "name": "Lance Stroll", "team_name": "Aston Martin", "points": 0, "wins": 0 }
+    {
+      "position": 1,
+      "name": "Kimi Antonelli",
+      "team_name": "Mercedes",
+      "points": 100,
+      "wins": 3
+    },
+    {
+      "position": 2,
+      "name": "George Russell",
+      "team_name": "Mercedes",
+      "points": 80,
+      "wins": 1
+    },
+    {
+      "position": 3,
+      "name": "Charles Leclerc",
+      "team_name": "Ferrari",
+      "points": 59,
+      "wins": 0
+    },
+    {
+      "position": 4,
+      "name": "Lando Norris",
+      "team_name": "McLaren",
+      "points": 51,
+      "wins": 0
+    },
+    {
+      "position": 5,
+      "name": "Lewis Hamilton",
+      "team_name": "Ferrari",
+      "points": 51,
+      "wins": 0
+    },
+    {
+      "position": 6,
+      "name": "Oscar Piastri",
+      "team_name": "McLaren",
+      "points": 43,
+      "wins": 0
+    },
+    {
+      "position": 7,
+      "name": "Max Verstappen",
+      "team_name": "Red Bull Racing",
+      "points": 26,
+      "wins": 0
+    },
+    {
+      "position": 8,
+      "name": "Oliver Bearman",
+      "team_name": "Haas F1 Team",
+      "points": 17,
+      "wins": 0
+    },
+    {
+      "position": 9,
+      "name": "Pierre Gasly",
+      "team_name": "Alpine",
+      "points": 16,
+      "wins": 0
+    },
+    {
+      "position": 10,
+      "name": "Liam Lawson",
+      "team_name": "Racing Bulls",
+      "points": 10,
+      "wins": 0
+    },
+    {
+      "position": 11,
+      "name": "Franco Colapinto",
+      "team_name": "Alpine",
+      "points": 7,
+      "wins": 0
+    },
+    {
+      "position": 12,
+      "name": "Arvid Lindblad",
+      "team_name": "Racing Bulls",
+      "points": 4,
+      "wins": 0
+    },
+    {
+      "position": 13,
+      "name": "Isack Hadjar",
+      "team_name": "Red Bull Racing",
+      "points": 4,
+      "wins": 0
+    },
+    {
+      "position": 14,
+      "name": "Carlos Sainz",
+      "team_name": "Williams",
+      "points": 4,
+      "wins": 0
+    },
+    {
+      "position": 15,
+      "name": "Gabriel Bortoleto",
+      "team_name": "Audi",
+      "points": 2,
+      "wins": 0
+    },
+    {
+      "position": 16,
+      "name": "Esteban Ocon",
+      "team_name": "Haas F1 Team",
+      "points": 1,
+      "wins": 0
+    },
+    {
+      "position": 17,
+      "name": "Alexander Albon",
+      "team_name": "Williams",
+      "points": 1,
+      "wins": 0
+    },
+    {
+      "position": 18,
+      "name": "Nico Hulkenberg",
+      "team_name": "Audi",
+      "points": 0,
+      "wins": 0
+    },
+    {
+      "position": 19,
+      "name": "Valtteri Bottas",
+      "team_name": "Cadillac",
+      "points": 0,
+      "wins": 0
+    },
+    {
+      "position": 20,
+      "name": "Sergio Perez",
+      "team_name": "Cadillac",
+      "points": 0,
+      "wins": 0
+    },
+    {
+      "position": 21,
+      "name": "Fernando Alonso",
+      "team_name": "Aston Martin",
+      "points": 0,
+      "wins": 0
+    },
+    {
+      "position": 22,
+      "name": "Lance Stroll",
+      "team_name": "Aston Martin",
+      "points": 0,
+      "wins": 0
+    }
   ],
   "constructors": [
-    { "position": 1, "name": "Mercedes", "team_name": "Mercedes", "points": 180, "wins": 4 },
-    { "position": 2, "name": "Ferrari", "team_name": "Ferrari", "points": 110, "wins": 0 },
-    { "position": 3, "name": "McLaren", "team_name": "McLaren", "points": 94, "wins": 0 },
-    { "position": 4, "name": "Red Bull Racing", "team_name": "Red Bull Racing", "points": 30, "wins": 0 },
-    { "position": 5, "name": "Alpine", "team_name": "Alpine", "points": 23, "wins": 0 },
-    { "position": 6, "name": "Haas F1 Team", "team_name": "Haas F1 Team", "points": 18, "wins": 0 },
-    { "position": 7, "name": "Racing Bulls", "team_name": "Racing Bulls", "points": 14, "wins": 0 },
-    { "position": 8, "name": "Williams", "team_name": "Williams", "points": 5, "wins": 0 },
-    { "position": 9, "name": "Audi", "team_name": "Audi", "points": 2, "wins": 0 },
-    { "position": 10, "name": "Cadillac", "team_name": "Cadillac", "points": 0, "wins": 0 },
-    { "position": 11, "name": "Aston Martin", "team_name": "Aston Martin", "points": 0, "wins": 0 }
+    {
+      "position": 1,
+      "name": "Mercedes",
+      "team_name": "Mercedes",
+      "points": 180,
+      "wins": 4
+    },
+    {
+      "position": 2,
+      "name": "Ferrari",
+      "team_name": "Ferrari",
+      "points": 110,
+      "wins": 0
+    },
+    {
+      "position": 3,
+      "name": "McLaren",
+      "team_name": "McLaren",
+      "points": 94,
+      "wins": 0
+    },
+    {
+      "position": 4,
+      "name": "Red Bull Racing",
+      "team_name": "Red Bull Racing",
+      "points": 30,
+      "wins": 0
+    },
+    {
+      "position": 5,
+      "name": "Alpine",
+      "team_name": "Alpine",
+      "points": 23,
+      "wins": 0
+    },
+    {
+      "position": 6,
+      "name": "Haas F1 Team",
+      "team_name": "Haas F1 Team",
+      "points": 18,
+      "wins": 0
+    },
+    {
+      "position": 7,
+      "name": "Racing Bulls",
+      "team_name": "Racing Bulls",
+      "points": 14,
+      "wins": 0
+    },
+    {
+      "position": 8,
+      "name": "Williams",
+      "team_name": "Williams",
+      "points": 5,
+      "wins": 0
+    },
+    {
+      "position": 9,
+      "name": "Audi",
+      "team_name": "Audi",
+      "points": 2,
+      "wins": 0
+    },
+    {
+      "position": 10,
+      "name": "Cadillac",
+      "team_name": "Cadillac",
+      "points": 0,
+      "wins": 0
+    },
+    {
+      "position": 11,
+      "name": "Aston Martin",
+      "team_name": "Aston Martin",
+      "points": 0,
+      "wins": 0
+    }
   ]
 }

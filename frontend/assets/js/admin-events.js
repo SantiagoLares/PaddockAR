@@ -33,7 +33,7 @@ let circuits = [];
 function renderAdminLoadError() {
   setHTML(
     eventsContainer,
-    renderError("No se pudo cargar el panel de eventos. Revisa la conexion con la API y volve a intentar.", {
+    renderError("No se pudo cargar el panel de eventos. Revisá la conexión con la API y volvé a intentar.", {
       retry: true,
     }),
   );
@@ -87,7 +87,7 @@ function selectOptions(items, selectedValue, labelKey = "name", emptyLabel = "")
 
 function fillLookups() {
   categoryFilter.innerHTML =
-    '<option value="all">Todas las categorias</option>' +
+    '<option value="all">Todas las categorías</option>' +
     categories.map((category) => `<option value="${category.id}">${category.short_name}</option>`).join("");
 
   newCategorySelect.innerHTML = selectOptions(categories, categories[0]?.id, "name");
@@ -129,7 +129,7 @@ function renderEvents() {
                 <input data-field="name" value="${event.name}" />
               </div>
               <div class="field">
-                <label class="mono">Categoria</label>
+                <label class="mono">Categoría</label>
                 <select data-field="category_id">${selectOptions(categories, event.category_id, "name")}</select>
               </div>
               <div class="field">
@@ -239,7 +239,7 @@ async function loadEvents() {
       logger.info("Admin events rejected with 401");
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -282,7 +282,7 @@ async function createEvent() {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -295,7 +295,7 @@ async function createEvent() {
     renderEvents();
   } catch (error) {
     logger.error("Create event failed", error);
-    showMessage(messageBox, "No se pudo crear el evento. Revisa los datos y volve a intentar.", "error");
+    showMessage(messageBox, "No se pudo crear el evento. Revisá los datos y volvé a intentar.", "error");
   }
 }
 
@@ -314,7 +314,7 @@ async function saveEvent(card) {
     if (response.status === 401) {
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -356,7 +356,7 @@ async function login() {
   } catch (error) {
     logger.error("Admin login failed", error);
     showLogin();
-    showMessage(messageBox, "No se pudo iniciar sesion. Revisa los datos o la conexion con la API.", "error");
+    showMessage(messageBox, "No se pudo iniciar sesión. Revisá los datos o la conexión con la API.", "error");
   }
 }
 
@@ -383,7 +383,7 @@ logoutButton.addEventListener("click", () => {
   allEvents = [];
   setHTML(eventsContainer, "");
   showLogin();
-  showMessage(messageBox, "Sesion cerrada.", "ok");
+  showMessage(messageBox, "Sesión cerrada.", "ok");
 });
 
 if (getToken()) {

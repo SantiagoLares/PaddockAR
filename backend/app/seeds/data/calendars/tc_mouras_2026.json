@@ -3,18 +3,226 @@
   "season_year": 2026,
   "source_note": "Calendario 2026 de TC Mouras verificado el 2026-05-07 contra el calendario oficial ACTC. Quedaron confirmadas oficialmente las primeras cinco fechas; el resto permanece a confirmar.",
   "events": [
-    { "round_number": 1, "name": "TC Mouras La Plata I", "slug": "tc-mouras-la-plata-i-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-01-23", "end_date": "2026-01-25", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 2, "name": "TC Mouras Concepcion del Uruguay", "slug": "tc-mouras-concepcion-del-uruguay-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-02-27", "end_date": "2026-03-01", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Concepcion del Uruguay", "slug": "autodromo-concepcion-del-uruguay", "country": "Argentina", "city": "Concepcion del Uruguay", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 3, "name": "TC Mouras La Plata II", "slug": "tc-mouras-la-plata-ii-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-03-20", "end_date": "2026-03-22", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 4, "name": "TC Mouras La Plata III", "slug": "tc-mouras-la-plata-iii-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-04-24", "end_date": "2026-04-26", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 5, "name": "TC Mouras La Plata IV", "slug": "tc-mouras-la-plata-iv-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-15", "end_date": "2026-05-17", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Roberto Jose Mouras", "slug": "autodromo-roberto-jose-mouras", "country": "Argentina", "city": "La Plata", "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 6, "name": "TC Mouras A Confirmar II", "slug": "tc-mouras-a-confirmar-ii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-06-05", "end_date": "2026-06-07", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-ii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 7, "name": "TC Mouras A Confirmar III", "slug": "tc-mouras-a-confirmar-iii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-06-26", "end_date": "2026-06-28", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-iii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 8, "name": "TC Mouras A Confirmar IV", "slug": "tc-mouras-a-confirmar-iv-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-07-24", "end_date": "2026-07-26", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-iv", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 9, "name": "TC Mouras A Confirmar V", "slug": "tc-mouras-a-confirmar-v-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-08-14", "end_date": "2026-08-16", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-v", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 10, "name": "TC Mouras A Confirmar VI", "slug": "tc-mouras-a-confirmar-vi-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-25", "end_date": "2026-09-27", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-vi", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 11, "name": "TC Mouras A Confirmar VII", "slug": "tc-mouras-a-confirmar-vii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-16", "end_date": "2026-10-18", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-vii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 12, "name": "TC Mouras A Confirmar VIII", "slug": "tc-mouras-a-confirmar-viii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-06", "end_date": "2026-11-08", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-viii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 13, "name": "TC Mouras A Confirmar IX", "slug": "tc-mouras-a-confirmar-ix-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-12-11", "end_date": "2026-12-13", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-mouras-a-confirmar-ix", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } }
+    {
+      "round_number": 1,
+      "name": "TC Mouras La Plata",
+      "slug": "tc-mouras-la-plata-i-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-01-23",
+      "end_date": "2026-01-25",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 2,
+      "name": "TC Mouras ConcepciÃ³n del Uruguay",
+      "slug": "tc-mouras-concepcion-del-uruguay-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-02-27",
+      "end_date": "2026-03-01",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo ConcepciÃ³n del Uruguay",
+        "slug": "autodromo-concepcion-del-uruguay",
+        "country": "Argentina",
+        "city": "ConcepciÃ³n del Uruguay",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 3,
+      "name": "TC Mouras La Plata",
+      "slug": "tc-mouras-la-plata-ii-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-03-20",
+      "end_date": "2026-03-22",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 4,
+      "name": "TC Mouras La Plata",
+      "slug": "tc-mouras-la-plata-iii-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-04-24",
+      "end_date": "2026-04-26",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 5,
+      "name": "TC Mouras La Plata",
+      "slug": "tc-mouras-la-plata-iv-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-05-15",
+      "end_date": "2026-05-17",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Roberto JosÃ© Mouras",
+        "slug": "autodromo-roberto-jose-mouras",
+        "country": "Argentina",
+        "city": "La Plata",
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 6,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-ii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-06-05",
+      "end_date": "2026-06-07",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-ii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 7,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-iii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-iii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 8,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-iv-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-07-24",
+      "end_date": "2026-07-26",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-iv",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 9,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-v-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-08-14",
+      "end_date": "2026-08-16",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-v",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 10,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-vi-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-vi",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 11,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-vii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-vii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 12,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-viii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-viii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 13,
+      "name": "TC Mouras A Confirmar",
+      "slug": "tc-mouras-a-confirmar-ix-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-13",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-mouras-a-confirmar-ix",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    }
   ]
 }

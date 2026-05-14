@@ -50,7 +50,7 @@ function getCategoryDisplayName(category) {
   const shortName = String(category?.short_name || "").toUpperCase();
   if (shortName === "TN C2") return "Turismo Nacional Clase 2";
   if (shortName === "TN C3") return "Turismo Nacional Clase 3";
-  return category?.name || category?.short_name || "Categoria";
+  return category?.name || category?.short_name || "Categoría";
 }
 
 function getCategoryLocation(event) {
@@ -186,8 +186,8 @@ function renderNextEvent(events) {
   if (!nextEvent) {
     return `
       <section class="category-panel category-next-event category-next-event-empty">
-        <div class="section-kicker mono">Proximo evento</div>
-        <div class="category-next-empty">No hay un proximo evento cargado por ahora.</div>
+        <div class="section-kicker mono">Próximo evento</div>
+        <div class="category-next-empty">No hay un próximo evento cargado por ahora.</div>
       </section>
     `;
   }
@@ -205,7 +205,7 @@ function renderNextEvent(events) {
     <section class="category-panel category-next-event">
       <a class="next-event-card" href="event.html?id=${nextEvent.id}" data-category-code="${categoryCode(eventCategory)}">
         <div class="next-event-top">
-          <div class="section-kicker mono">Proximo evento</div>
+          <div class="section-kicker mono">Próximo evento</div>
           <span class="next-event-date mono">${renderIconLabel("calendar", dateLabel, { iconSize: 12 })}</span>
         </div>
         <div class="next-event-name">${eventDisplayName(nextEvent)}</div>
@@ -249,7 +249,7 @@ function renderCategoryHeader(category) {
 function renderLoadError() {
   setHTML(
     categoryBoard,
-    renderError("No pudimos cargar la informacion", {
+    renderError("No pudimos cargar la información", {
       retry: true,
     }),
   );
@@ -262,7 +262,7 @@ function renderCategoryEvents(category, events) {
   if (!events.length) {
     setHTML(
       categoryBoard,
-      renderEmpty("No encontramos eventos para esta categoria", "Proba mas tarde o volve al inicio para ver otras series."),
+      renderEmpty("No encontramos eventos para esta categoría", "Probá más tarde o volvé al inicio para ver otras series."),
     );
     return;
   }
@@ -277,7 +277,7 @@ function renderCategoryEvents(category, events) {
             ${renderCategoryBadge(category)}
             <div>
               <div class="category-label">Calendario</div>
-              <div class="category-supporting-text">Fechas ordenadas por cronologia.</div>
+              <div class="category-supporting-text">Fechas ordenadas por cronología.</div>
             </div>
           </div>
           <div class="category-total mono">${events.length} eventos</div>
@@ -365,7 +365,7 @@ function renderStandings(category, standings) {
             ${renderCategoryBadge(category)}
             <div>
               <div class="category-label">${renderIconLabel("trophy", "Campeonato", { iconSize: 12 })}</div>
-              <div class="category-supporting-text">Posiciones actualizadas por categoria.</div>
+              <div class="category-supporting-text">Posiciones actualizadas por categoría.</div>
             </div>
           </div>
           <div class="category-total mono">${standings.length ? `${standings.length} filas` : "sin datos"}</div>
@@ -378,7 +378,7 @@ function renderStandings(category, standings) {
                 return `
                   <section class="standings-section">
                     <div class="standings-title mono">${label}</div>
-                    <div class="standings-empty">Campeonato aun no cargado</div>
+                    <div class="standings-empty">Campeonato aún no cargado</div>
                   </section>
                 `;
               }
@@ -408,7 +408,7 @@ function renderCategory(category, events, standings) {
 
   document.title = `PaddockAR | ${displayName}`;
   renderCategoryHeader(category);
-  setText(categorySubtitle, "Calendario, proximas carreras y campeonato");
+  setText(categorySubtitle, "Calendario, próximas carreras y campeonato");
   setText(apiState, `${sorted.length} eventos`);
   renderHero(category, sorted);
   renderCategoryEvents(category, sorted);
@@ -419,11 +419,11 @@ async function loadCategory() {
   const slug = getCategorySlug();
 
   if (!slug) {
-    setText(categoryName, "Categoria");
-    setText(categorySubtitle, "Falta el slug de la categoria.");
+    setText(categoryName, "Categoría");
+    setText(categorySubtitle, "Falta el slug de la categoría.");
     setHTML(
       categoryBoard,
-      renderEmpty("No pudimos abrir esta categoria", "El enlace esta incompleto o ya no es valido."),
+      renderEmpty("No pudimos abrir esta categoría", "El enlace está incompleto o ya no es válido."),
     );
     setHTML(categoryHero, "");
     setHTML(categoryStandings, "");
@@ -432,7 +432,7 @@ async function loadCategory() {
   }
 
   setText(categoryName, humanizeSlug(slug));
-  setText(categorySubtitle, "Buscando datos de la categoria.");
+  setText(categorySubtitle, "Buscando datos de la categoría.");
   setText(apiState, "Cargando");
   setHTML(categoryBoard, renderSkeleton("category"));
   setHTML(categoryHero, renderSkeleton("category"));
@@ -452,14 +452,14 @@ async function loadCategory() {
     if (!category) {
       document.title = `PaddockAR | ${humanizeSlug(slug)}`;
       setText(categoryName, humanizeSlug(slug));
-      setText(categorySubtitle, "No encontramos esa categoria.");
+      setText(categorySubtitle, "No encontramos esa categoría.");
       setHTML(categoryHero, "");
       setHTML(categoryStandings, "");
       setHTML(
         categoryBoard,
-        renderEmpty("No encontramos esta categoria", "Volve al inicio para navegar por las categorias disponibles."),
+        renderEmpty("No encontramos esta categoría", "Volvé al inicio para navegar por las categorías disponibles."),
       );
-      setText(apiState, "Categoria invalida");
+      setText(apiState, "Categoría inválida");
       return;
     }
 

@@ -21,7 +21,7 @@ let allSessions = [];
 function renderAdminLoadError() {
   setHTML(
     sessionsContainer,
-    renderError("No se pudo cargar el panel admin. Revisa la conexion con la API y volve a intentar.", {
+    renderError("No se pudo cargar el panel admin. Revisá la conexión con la API y volvé a intentar.", {
       retry: true,
     }),
   );
@@ -83,7 +83,7 @@ function fillFilters() {
   const events = [...new Map(allSessions.map((session) => [session.event.id, session.event])).values()];
 
   categoryFilter.innerHTML =
-    '<option value="all">Todas las categorias</option>' +
+    '<option value="all">Todas las categorías</option>' +
     categories
       .map((category) => `<option value="${category.short_name}">${category.short_name}</option>`)
       .join("");
@@ -167,7 +167,7 @@ async function loadSessions() {
       logger.info("Admin sessions rejected with 401");
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -206,7 +206,7 @@ async function saveSession(card) {
       logger.info("Save session rejected with 401", id);
       clearToken();
       showLogin();
-      showMessage(messageBox, "Sesion vencida o invalida.", "error");
+      showMessage(messageBox, "Sesión vencida o inválida.", "error");
       return;
     }
 
@@ -215,13 +215,13 @@ async function saveSession(card) {
     const updated = await response.json();
     logger.info("Session saved", updated.id);
     allSessions = allSessions.map((session) => (session.id === updated.id ? updated : session));
-    showMessage(messageBox, `Sesion ${id} guardada correctamente.`, "ok");
+    showMessage(messageBox, `Sesión ${id} guardada correctamente.`, "ok");
     renderSessions();
   } catch (error) {
     logger.error("Save session failed", id, error);
     showMessage(
       messageBox,
-      `No se pudo guardar la sesion ${id}. Revisa la conexion con la API y volve a intentar.<br><button class="retry-button mono" type="button" data-retry-save="${id}">Reintentar</button>`,
+      `No se pudo guardar la sesión ${id}. Revisá la conexión con la API y volvé a intentar.<br><button class="retry-button mono" type="button" data-retry-save="${id}">Reintentar</button>`,
       "error",
     );
   }
@@ -254,7 +254,7 @@ async function login() {
     showLogin();
     showMessage(
       messageBox,
-      'No se pudo iniciar sesion. Revisa los datos o la conexion con la API.<br><button class="retry-button mono" type="button" data-retry-login>Reintentar</button>',
+      'No se pudo iniciar sesión. Revisá los datos o la conexión con la API.<br><button class="retry-button mono" type="button" data-retry-login>Reintentar</button>',
       "error",
     );
   }
@@ -295,7 +295,7 @@ logoutButton.addEventListener("click", () => {
   allSessions = [];
   setHTML(sessionsContainer, "");
   showLogin();
-  showMessage(messageBox, "Sesion cerrada.", "ok");
+  showMessage(messageBox, "Sesión cerrada.", "ok");
 });
 
 if (getToken()) {

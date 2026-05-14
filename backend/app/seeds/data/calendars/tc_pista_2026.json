@@ -1,22 +1,324 @@
 {
   "category_slug": "tc-pista",
   "season_year": 2026,
-  "source_note": "Calendario oficial ACTC 2026 de TC Pista corregido segun la auditoria realizada el 2026-05-06. Se mantienen como A confirmar las sedes que la publicacion oficial no cierra todavia.",
+  "source_note": "Calendario oficial ACTC 2026 de TC Pista corregido seg?n la auditoría realizada el 2026-05-06. Se mantienen como A confirmar las sedes que la públicacion oficial no cierra todav?a.",
   "events": [
-    { "round_number": 1, "name": "TC Pista El Calafate", "slug": "tc-pista-el-calafate-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-02-13", "end_date": "2026-02-15", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Enrique Quique Freile", "slug": "autodromo-enrique-quique-freile", "country": "Argentina", "city": "El Calafate", "timezone": "America/Argentina/Rio_Gallegos" } },
-    { "round_number": 2, "name": "TC Pista Viedma", "slug": "tc-pista-viedma-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-03-08", "end_date": "2026-03-08", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Ciudad de Viedma", "slug": "autodromo-ciudad-de-viedma", "country": "Argentina", "city": "Viedma", "timezone": "America/Argentina/Salta" } },
-    { "round_number": 3, "name": "TC Pista Neuquen", "slug": "tc-pista-neuquen-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-03-29", "end_date": "2026-03-29", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Parque Provincia del Neuquen", "slug": "autodromo-parque-provincia-del-neuquen", "country": "Argentina", "city": "Centenario", "timezone": "America/Argentina/Salta" } },
-    { "round_number": 4, "name": "TC Pista Concepcion del Uruguay", "slug": "tc-pista-concepcion-del-uruguay-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-04-19", "end_date": "2026-04-19", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Concepcion del Uruguay", "slug": "autodromo-concepcion-del-uruguay", "country": "Argentina", "city": "Concepcion del Uruguay", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 5, "name": "TC Pista Termas de Rio Hondo", "slug": "tc-pista-termas-de-rio-hondo-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-10", "end_date": "2026-05-10", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Internacional de Termas de Rio Hondo", "slug": "autodromo-internacional-de-termas-de-rio-hondo", "country": "Argentina", "city": "Termas de Rio Hondo", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 6, "name": "TC Pista Alta Gracia", "slug": "tc-pista-alta-gracia-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-05-31", "end_date": "2026-05-31", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Oscar Cabalen", "slug": "autodromo-oscar-cabalen", "country": "Argentina", "city": "Alta Gracia", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 7, "name": "TC Pista Rafaela", "slug": "tc-pista-rafaela-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-06-19", "end_date": "2026-06-21", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Ciudad de Rafaela", "slug": "autodromo-ciudad-de-rafaela", "country": "Argentina", "city": "Rafaela", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 8, "name": "TC Pista Posadas", "slug": "tc-pista-posadas-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-07-12", "end_date": "2026-07-12", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Rosamonte", "slug": "autodromo-rosamonte", "country": "Argentina", "city": "Posadas", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 9, "name": "TC Pista San Juan", "slug": "tc-pista-san-juan-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-07-31", "end_date": "2026-08-02", "session_template": "arg_series_standard", "circuit": { "name": "Circuito San Juan Villicum", "slug": "circuito-san-juan-villicum", "country": "Argentina", "city": "Albardon", "timezone": "America/Argentina/San_Juan" } },
-    { "round_number": 10, "name": "TC Pista Parana", "slug": "tc-pista-parana-2026", "status": "scheduled", "data_quality": "confirmed_calendar", "start_date": "2026-08-23", "end_date": "2026-08-23", "session_template": "arg_series_standard", "circuit": { "name": "Autodromo Ciudad de Parana", "slug": "autodromo-ciudad-de-parana", "country": "Argentina", "city": "Parana", "timezone": "America/Argentina/Cordoba" } },
-    { "round_number": 11, "name": "TC Pista A Confirmar I", "slug": "tc-pista-a-confirmar-i-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-09-13", "end_date": "2026-09-13", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-a-confirmar-i", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 12, "name": "TC Pista A Confirmar II", "slug": "tc-pista-a-confirmar-ii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-04", "end_date": "2026-10-04", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-a-confirmar-ii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 13, "name": "TC Pista A Confirmar III", "slug": "tc-pista-a-confirmar-iii-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-10-25", "end_date": "2026-10-25", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-a-confirmar-iii", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 14, "name": "TC Pista A Confirmar IV", "slug": "tc-pista-a-confirmar-iv-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-11-15", "end_date": "2026-11-15", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-a-confirmar-iv", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } },
-    { "round_number": 15, "name": "TC Pista A Confirmar V", "slug": "tc-pista-a-confirmar-v-2026", "status": "scheduled", "data_quality": "tentative_schedule", "start_date": "2026-12-06", "end_date": "2026-12-06", "session_template": "arg_series_standard", "circuit": { "name": "Circuito a Confirmar", "slug": "tc-pista-a-confirmar-v", "country": "Argentina", "city": null, "timezone": "America/Argentina/Buenos_Aires" } }
+    {
+      "round_number": 1,
+      "name": "TC Pista El Calafate",
+      "slug": "tc-pista-el-calafate-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-15",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Enrique Quique Freile",
+        "slug": "autodromo-enrique-quique-freile",
+        "country": "Argentina",
+        "city": "El Calafate",
+        "timezone": "America/Argentina/Rio_Gallegos"
+      }
+    },
+    {
+      "round_number": 2,
+      "name": "TC Pista Viedma",
+      "slug": "tc-pista-viedma-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-03-08",
+      "end_date": "2026-03-08",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Ciudad de Viedma",
+        "slug": "autodromo-ciudad-de-viedma",
+        "country": "Argentina",
+        "city": "Viedma",
+        "timezone": "America/Argentina/Salta"
+      }
+    },
+    {
+      "round_number": 3,
+      "name": "TC Pista NeuquÃ©n",
+      "slug": "tc-pista-neuquen-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-03-29",
+      "end_date": "2026-03-29",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Parque Provincia del NeuquÃ©n",
+        "slug": "autodromo-parque-provincia-del-neuquen",
+        "country": "Argentina",
+        "city": "Centenario",
+        "timezone": "America/Argentina/Salta"
+      }
+    },
+    {
+      "round_number": 4,
+      "name": "TC Pista ConcepciÃ³n del Uruguay",
+      "slug": "tc-pista-concepcion-del-uruguay-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-04-19",
+      "end_date": "2026-04-19",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo ConcepciÃ³n del Uruguay",
+        "slug": "autodromo-concepcion-del-uruguay",
+        "country": "Argentina",
+        "city": "ConcepciÃ³n del Uruguay",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 5,
+      "name": "TC Pista Termas de RÃ­o Hondo",
+      "slug": "tc-pista-termas-de-rio-hondo-2026",
+      "status": "scheduled",
+      "data_quality": "official_schedule_confirmed",
+      "source_note": "Cronograma oficial ACTC publicado el 2026-05-06 para la fecha de Termas de RÃ­o Hondo. La actividad de TC Pista arranca el sÃ¡bado 2026-05-09 con entrenamientos y clasificacion, y sigue el domingo 2026-05-10 con dos series y la final.",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-10",
+      "circuit": {
+        "name": "Autodromo Internacional de Termas de RÃ­o Hondo",
+        "slug": "autodromo-internacional-de-termas-de-rio-hondo",
+        "country": "Argentina",
+        "city": "Termas de RÃ­o Hondo",
+        "timezone": "America/Argentina/Cordoba"
+      },
+      "sessions": [
+        {
+          "name": "Entrenamiento 1",
+          "session_type": "practice",
+          "starts_at": "2026-05-09T08:55:00-03:00",
+          "ends_at": "2026-05-09T10:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 1,
+          "is_feature": false,
+          "data_quality": "official_schedule_confirmed"
+        },
+        {
+          "name": "Entrenamiento 2",
+          "session_type": "practice",
+          "starts_at": "2026-05-09T11:55:00-03:00",
+          "ends_at": "2026-05-09T13:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 2,
+          "is_feature": false,
+          "data_quality": "official_schedule_confirmed"
+        },
+        {
+          "name": "Clasificación",
+          "session_type": "qualifying",
+          "starts_at": "2026-05-09T15:26:00-03:00",
+          "ends_at": "2026-05-09T16:00:00-03:00",
+          "status": "scheduled",
+          "order_index": 3,
+          "is_feature": false,
+          "data_quality": "official_schedule_confirmed"
+        },
+        {
+          "name": "1ra Serie",
+          "session_type": "series",
+          "starts_at": "2026-05-10T09:15:00-03:00",
+          "ends_at": "2026-05-10T09:25:00-03:00",
+          "status": "scheduled",
+          "order_index": 4,
+          "is_feature": false,
+          "data_quality": "official_schedule_confirmed"
+        },
+        {
+          "name": "2da Serie",
+          "session_type": "series",
+          "starts_at": "2026-05-10T09:40:00-03:00",
+          "ends_at": "2026-05-10T09:50:00-03:00",
+          "status": "scheduled",
+          "order_index": 5,
+          "is_feature": false,
+          "data_quality": "official_schedule_confirmed"
+        },
+        {
+          "name": "Final",
+          "session_type": "race",
+          "starts_at": "2026-05-10T12:55:00-03:00",
+          "ends_at": "2026-05-10T13:35:00-03:00",
+          "status": "scheduled",
+          "order_index": 6,
+          "is_feature": true,
+          "data_quality": "official_schedule_confirmed"
+        }
+      ]
+    },
+    {
+      "round_number": 6,
+      "name": "TC Pista Alta Gracia",
+      "slug": "tc-pista-alta-gracia-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-05-31",
+      "end_date": "2026-05-31",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Oscar CabalÃ©n",
+        "slug": "autodromo-oscar-cabalen",
+        "country": "Argentina",
+        "city": "Alta Gracia",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 7,
+      "name": "TC Pista Rafaela",
+      "slug": "tc-pista-rafaela-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-06-19",
+      "end_date": "2026-06-21",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Ciudad de Rafaela",
+        "slug": "autodromo-ciudad-de-rafaela",
+        "country": "Argentina",
+        "city": "Rafaela",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 8,
+      "name": "TC Pista Posadas",
+      "slug": "tc-pista-posadas-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-07-12",
+      "end_date": "2026-07-12",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Rosamonte",
+        "slug": "autodromo-rosamonte",
+        "country": "Argentina",
+        "city": "Posadas",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 9,
+      "name": "TC Pista San Juan",
+      "slug": "tc-pista-san-juan-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-07-31",
+      "end_date": "2026-08-02",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito San Juan Villicum",
+        "slug": "circuito-san-juan-villicum",
+        "country": "Argentina",
+        "city": "AlbardÃ³n",
+        "timezone": "America/Argentina/San_Juan"
+      }
+    },
+    {
+      "round_number": 10,
+      "name": "TC Pista ParanÃ¡",
+      "slug": "tc-pista-parana-2026",
+      "status": "scheduled",
+      "data_quality": "confirmed_calendar",
+      "start_date": "2026-08-23",
+      "end_date": "2026-08-23",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Autodromo Ciudad de ParanÃ¡",
+        "slug": "autodromo-ciudad-de-parana",
+        "country": "Argentina",
+        "city": "ParanÃ¡",
+        "timezone": "America/Argentina/Cordoba"
+      }
+    },
+    {
+      "round_number": 11,
+      "name": "TC Pista A Confirmar",
+      "slug": "tc-pista-a-confirmar-i-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-09-13",
+      "end_date": "2026-09-13",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-a-confirmar-i",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 12,
+      "name": "TC Pista A Confirmar",
+      "slug": "tc-pista-a-confirmar-ii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-04",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-a-confirmar-ii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 13,
+      "name": "TC Pista A Confirmar",
+      "slug": "tc-pista-a-confirmar-iii-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-10-25",
+      "end_date": "2026-10-25",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-a-confirmar-iii",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 14,
+      "name": "TC Pista A Confirmar",
+      "slug": "tc-pista-a-confirmar-iv-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-11-15",
+      "end_date": "2026-11-15",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-a-confirmar-iv",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    },
+    {
+      "round_number": 15,
+      "name": "TC Pista A Confirmar",
+      "slug": "tc-pista-a-confirmar-v-2026",
+      "status": "scheduled",
+      "data_quality": "tentative_schedule",
+      "start_date": "2026-12-06",
+      "end_date": "2026-12-06",
+      "session_template": "arg_series_standard",
+      "circuit": {
+        "name": "Circuito a Confirmar",
+        "slug": "tc-pista-a-confirmar-v",
+        "country": "Argentina",
+        "city": null,
+        "timezone": "America/Argentina/Buenos_Aires"
+      }
+    }
   ]
 }

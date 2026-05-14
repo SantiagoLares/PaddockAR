@@ -1,18 +1,19 @@
 .category-badge {
+  font-family: var(--font-ui);
   --category-badge-border: var(--line-strong);
   --category-badge-text: #eef4fb;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 52px;
-  min-height: 28px;
+  min-height: 30px;
   padding: 0 12px;
   border: 1px solid var(--category-badge-border);
   border-radius: 999px;
-  background: #0f141b;
+  background: rgba(255, 255, 255, 0.018);
   color: var(--category-badge-text);
-  font-size: 12px;
-  font-weight: 900;
+  font-size: 11px;
+  font-weight: 800;
   letter-spacing: 0.04em;
   line-height: 1;
   text-align: center;
@@ -30,16 +31,16 @@
 
 .category-badge--large {
   min-width: 72px;
-  min-height: 38px;
+  min-height: 40px;
   padding-inline: 16px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .category-badge--active {
-  background: rgba(77, 184, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 0 1px rgba(77, 184, 255, 0.08);
+    0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .category-badge__text {

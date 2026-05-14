@@ -1,6 +1,6 @@
 [
   {
-    "name": "Formula 1",
+    "name": "FÃ³rmula 1",
     "slug": "formula-1",
     "short_name": "F1",
     "color": "#e10600"
@@ -12,13 +12,13 @@
     "color": "#d9e1ea"
   },
   {
-    "name": "Formula 2",
+    "name": "FÃ³rmula 2",
     "slug": "formula-2",
     "short_name": "F2",
     "color": "#0090d0"
   },
   {
-    "name": "Formula 3",
+    "name": "FÃ³rmula 3",
     "slug": "f3",
     "short_name": "F3",
     "color": "#1488cc"

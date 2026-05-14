@@ -1,8 +1,11 @@
 const {
   ARG_TIMEZONE,
   categoryCode,
+  categoryFamilyKey,
   categoryFamilyLabel,
   categoryHref,
+  cleanEventName,
+  eventDisplayName,
   formatDate,
   formatRelative,
   formatTime,
@@ -27,6 +30,7 @@ const apiState = document.querySelector("#apiState");
 const raceSpotlight = document.querySelector("#raceSpotlight");
 const nextRaces = document.querySelector("#nextRaces");
 const sessionList = document.querySelector("#sessionList");
+const monthCalendar = document.querySelector("#monthCalendar");
 const categoryFilters = document.querySelector("#categoryFilters");
 const statusFilters = document.querySelector("#statusFilters");
 const lastUpdated = document.querySelector("#lastUpdated");
@@ -35,6 +39,7 @@ const sideNavToggle = document.querySelector("#sideNavToggle");
 const sideNavBackdrop = document.querySelector("#sideNavBackdrop");
 
 const AUTO_REFRESH_MS = 30000;
+const PRESTIGE_CATEGORY_FAMILIES = new Set(["F1", "F2", "F3", "MotoGP", "WEC", "TC", "TN", "TC2000"]);
 const CATEGORY_TO_QUERY = {
   all: "",
   F1: "f1",
@@ -70,11 +75,18 @@ let activeStatus = "all";
 let lastUpdatedAt = null;
 let refreshIntervalId = null;
 let refreshInFlight = false;
+let activeCalendarMonth = null;
+let selectedCalendarDateKey = null;
+
+function renderMonthCalendarState(title, description) {
+  if (!monthCalendar) return;
+  setHTML(monthCalendar, renderEmpty(title, description));
+}
 
 function renderLoadError() {
   setHTML(
     sessionList,
-    renderError("No pudimos cargar la informacion", {
+    renderError("No pudimos cargar la información", {
       retry: true,
     }),
   );
@@ -105,7 +117,7 @@ function updateLastUpdatedLabel(state = "ok") {
 
   if (state === "error") {
     lastUpdated.textContent = lastUpdatedAt
-      ? `Sin conexion. Actualizado ${formatRelative(lastUpdatedAt)}`
+      ? `Sin conexión. Actualizado ${formatRelative(lastUpdatedAt)}`
       : "No se pudo actualizar";
     return;
   }
@@ -158,6 +170,17 @@ function dateParts(value) {
   return { label, time, dateKey, weekdayKey };
 }
 
+function formatDayHeading(label) {
+  const [weekday = "", date = ""] = String(label || "").split(",");
+  return `${weekday.trim().toUpperCase()} ${date.trim()}`.trim();
+}
+
+function formatCircuitLocation(circuit) {
+  if (!circuit) return "";
+  const location = [circuit.city, circuit.country].filter(Boolean).join(", ");
+  return location ? `${circuit.name} · ${location}` : circuit.name;
+}
+
 function getArgCalendarParts(value = new Date()) {
   const date = value instanceof Date ? value : new Date(value);
   const parts = dateParts(date);
@@ -170,6 +193,20 @@ function getArgCalendarParts(value = new Date()) {
 function getWeekdayIndexFromDateKey(dateKey) {
   const day = new Date(`${dateKey}T12:00:00Z`).getUTCDay();
   return day === 0 ? 7 : day;
+}
+
+function parseDateKey(dateKey) {
+  return new Date(`${dateKey}T12:00:00Z`);
+}
+
+function toDateKey(value) {
+  return new Date(value).toISOString().slice(0, 10);
+}
+
+function getUniqueEventsFromSessions(sessions) {
+  return sessions
+    .map((session) => session.event)
+    .filter((event, index, array) => array.findIndex((item) => item.id === event.id) === index);
 }
 
 function shiftDateKey(dateKey, days) {
@@ -187,6 +224,149 @@ function getWeekendRangeForDateKey(dateKey) {
     fridayKey,
     sundayKey: shiftDateKey(fridayKey, 2),
   };
+}
+
+function monthKeyFromDate(date) {
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function shiftMonth(monthKey, delta) {
+  const [year, month] = monthKey.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1 + delta, 1));
+  return monthKeyFromDate(date);
+}
+
+function formatMonthTitle(monthKey) {
+  const [year, month] = monthKey.split("-").map(Number);
+  return new Intl.DateTimeFormat("es-AR", {
+    month: "long",
+    year: "numeric",
+    timeZone: ARG_TIMEZONE,
+  }).format(new Date(Date.UTC(year, month - 1, 1)));
+}
+
+function buildCalendarEventMap(events) {
+  const map = new Map();
+  events.forEach((event) => {
+    const startKey = event.start_date;
+    const endKey = event.end_date;
+    let cursor = startKey;
+    while (cursor <= endKey) {
+      if (!map.has(cursor)) map.set(cursor, []);
+      map.get(cursor).push(event);
+      cursor = shiftDateKey(cursor, 1);
+    }
+  });
+  return map;
+}
+
+function getMonthEvents(events, monthKey) {
+  return events.filter((event) => {
+    return event.start_date.slice(0, 7) <= monthKey && event.end_date.slice(0, 7) >= monthKey;
+  });
+}
+
+function getCalendarAccentForEvent(event) {
+  return categoryCode(event?.category);
+}
+
+function renderMonthCalendar(events) {
+  if (!monthCalendar) return;
+
+  if (!events.length) {
+    setHTML(monthCalendar, renderEmpty("Todavía no hay fechas cargadas", "Cuando haya eventos publicados vas a ver el calendario mensual acá."));
+    return;
+  }
+
+  const sortedEvents = [...events].sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+  const fallbackMonth = sortedEvents[0].start_date.slice(0, 7);
+  const monthKey = activeCalendarMonth || fallbackMonth;
+  const monthEvents = getMonthEvents(sortedEvents, monthKey);
+  const eventMap = buildCalendarEventMap(monthEvents);
+
+  if (!selectedCalendarDateKey || !eventMap.has(selectedCalendarDateKey)) {
+    selectedCalendarDateKey = monthEvents[0]?.start_date || null;
+  }
+
+  const [year, month] = monthKey.split("-").map(Number);
+  const firstOfMonth = new Date(Date.UTC(year, month - 1, 1));
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const firstWeekday = firstOfMonth.getUTCDay();
+  const leadingBlanks = firstWeekday;
+  const cells = [];
+
+  for (let i = 0; i < leadingBlanks; i += 1) {
+    cells.push(`<div class="month-day is-muted" aria-hidden="true"></div>`);
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const dateKey = `${monthKey}-${String(day).padStart(2, "0")}`;
+    const dayEvents = eventMap.get(dateKey) || [];
+    const leadEvent = dayEvents[0];
+    const accent = leadEvent ? getCalendarAccentForEvent(leadEvent) : "";
+    const isSelected = selectedCalendarDateKey === dateKey;
+    cells.push(`
+      <button class="month-day ${dayEvents.length ? "has-event" : ""} ${isSelected ? "is-selected" : ""}" type="button" ${dayEvents.length ? `data-calendar-date="${dateKey}" data-accent="${accent}"` : "disabled"} aria-label="${dateKey}">
+        <span>${day}</span>
+      </button>
+    `);
+  }
+
+  const selectedEvents = eventMap.get(selectedCalendarDateKey) || monthEvents.slice(0, 3);
+  const featuredLine = selectedEvents.length
+    ? selectedEvents.slice(0, 3).map((event) => `${event.start_date.slice(8, 10)}-${event.end_date.slice(8, 10)} (${eventDisplayName(event)})`).join(", ")
+    : "Sin eventos destacados para este mes.";
+
+  setHTML(
+    monthCalendar,
+    `
+      <div class="month-calendar-shell">
+        <div class="month-calendar-head">
+          <div class="month-calendar-title">${formatMonthTitle(monthKey)}</div>
+          <div class="month-calendar-actions">
+            <button class="month-nav mono" type="button" data-calendar-shift="-1" aria-label="Mes anterior">&larr;</button>
+            <button class="month-nav mono" type="button" data-calendar-shift="1" aria-label="Mes siguiente">&rarr;</button>
+            <a class="month-link" href="calendar.html">Abrir calendario completo</a>
+          </div>
+        </div>
+        <div class="month-grid">
+          <div class="month-weekday">Dom</div>
+          <div class="month-weekday">Lun</div>
+          <div class="month-weekday">Mar</div>
+          <div class="month-weekday">Mi&eacute;</div>
+          <div class="month-weekday">Jue</div>
+          <div class="month-weekday">Vie</div>
+          <div class="month-weekday">S&aacute;b</div>
+          ${cells.join("")}
+        </div>
+        <div class="month-summary">
+          <div class="month-summary-title">Eventos destacados</div>
+          <div class="month-summary-line"><strong>${featuredLine}</strong></div>
+        </div>
+      </div>
+    `,
+  );
+}
+
+function safeRenderMonthCalendar(events) {
+  try {
+    renderMonthCalendar(events);
+  } catch (error) {
+    logger.error("Month calendar render failed", error);
+    renderMonthCalendarState(
+      "No pudimos cargar el calendario mensual",
+      "Probá nuevamente en unos segundos o entrá al calendario completo.",
+    );
+  }
+}
+
+function safeRenderHomeSection(renderFn, fallbackFn, label) {
+  try {
+    renderFn();
+  } catch (error) {
+    logger.error(`${label} render failed`, error);
+    fallbackFn?.();
+  }
 }
 
 function sessionBelongsToWeekend(session, weekendRange) {
@@ -367,7 +547,7 @@ function getCountdownMeta(value) {
   }
 
   return {
-    relative: relative ? `Empieza ${relative}` : "Proxima sesion",
+    relative: relative ? `Empieza ${relative}` : "Próxima sesión",
     countdown: formatCountdown(diff),
     diff,
   };
@@ -386,6 +566,10 @@ function getPrimarySessions(sessions) {
 
 function getHighlightedRaceSessions(sessions) {
   return sessions.filter((session) => isHighlightedRaceSession(session) && session.status !== "cancelled");
+}
+
+function isPrestigeCategory(category) {
+  return PRESTIGE_CATEGORY_FAMILIES.has(categoryFamilyKey(category));
 }
 
 function getFeaturedTagLabel(session) {
@@ -412,8 +596,9 @@ function getSessionSecondaryLabel(session) {
 }
 
 function formatEventSessionTitle(eventName, session) {
+  const normalizedEventName = cleanEventName(eventName);
   const secondary = getSessionSecondaryLabel(session);
-  return secondary ? `${eventName} - ${secondary}` : eventName;
+  return secondary ? `${normalizedEventName} - ${secondary}` : normalizedEventName;
 }
 
 function getSpotlightSession(sessions) {
@@ -457,7 +642,7 @@ function getNextCategoryReference(categoryCode) {
   if (!nextEventSession) return null;
 
   return {
-    eventName: nextEventSession.event.name,
+      eventName: nextEventSession.event.name,
     startsAt: nextEventSession.starts_at,
   };
 }
@@ -469,7 +654,7 @@ function renderRaceSpotlight(sessions) {
   if (!session) {
     setHTML(
       raceSpotlight,
-      renderEmpty("No hay una proxima carrera confirmada", "Cuando aparezca la siguiente sesion principal la vas a ver aca."),
+      renderEmpty("No hay una próxima carrera confirmada", "Cuando aparezca la siguiente sesión principal la vas a ver acá."),
     );
     return;
   }
@@ -477,13 +662,15 @@ function renderRaceSpotlight(sessions) {
   const category = session.event.category;
   const status = getSessionStatus(session);
   const timingText = status === "live" ? "En vivo ahora" : getSpotlightTimingText(session.starts_at);
+  const circuitLabel = formatCircuitLocation(session.event.circuit);
+  const sessionLabel = getSessionSecondaryLabel(session);
 
   setHTML(
     raceSpotlight,
     `
       <a class="race-spotlight-card ${status === "live" ? "is-live" : ""}" href="event.html?id=${session.event.id}" data-category-code="${categoryCode(category)}">
         <div class="race-spotlight-head">
-          <div class="race-spotlight-label mono">Proxima carrera</div>
+          <div class="race-spotlight-label mono">Próxima carrera</div>
           ${statusMarkup(status)}
         </div>
         <div class="race-spotlight-main">
@@ -491,8 +678,10 @@ function renderRaceSpotlight(sessions) {
             ${renderCategoryBadge(category, { tag: "span", size: "compact" })}
             ${renderDateTimeMeta(session.starts_at, { className: "race-spotlight-time mono" })}
           </div>
-          <div class="race-spotlight-event">${formatEventSessionTitle(session.event.name, session)}</div>
-          ${timingText ? `<div class="race-spotlight-timing mono">${timingText}</div>` : ""}
+          <div class="race-spotlight-event">${cleanEventName(session.event.name)}</div>
+          ${sessionLabel ? `<div class="race-spotlight-session">${sessionLabel}</div>` : ""}
+          ${circuitLabel ? `<div class="race-spotlight-circuit">${circuitLabel}</div>` : ""}
+          ${timingText ? `<div class="race-spotlight-timing mono"><span class="race-spotlight-timing-label">Countdown</span><strong>${timingText}</strong></div>` : ""}
         </div>
       </a>
     `,
@@ -512,6 +701,7 @@ function renderNextRaces(sessions, spotlightSession = null) {
   }
 
   const primaryUpcoming = getHighlightedRaceSessions(sessions)
+    .filter((session) => isPrestigeCategory(session.event.category))
     .filter((session) => getSessionStatus(session) !== "finished")
     .filter((session) => !sameSession(session, spotlightSession))
     .sort((a, b) => new Date(a.starts_at) - new Date(b.starts_at))
@@ -528,7 +718,10 @@ function renderNextRaces(sessions, spotlightSession = null) {
     nextRaces,
     `
       <header class="next-races-head">
-        <div class="section-title mono">Carreras destacadas</div>
+        <div>
+          <div class="section-title mono">Carreras destacadas</div>
+          <div class="next-races-caption">Seleccion internacional y campeonatos de mayor peso.</div>
+        </div>
       </header>
       <div class="next-races-list">
         ${primaryUpcoming
@@ -538,13 +731,17 @@ function renderNextRaces(sessions, spotlightSession = null) {
             return `
               <a class="next-race-item ${status === "live" ? "is-live" : ""}" href="event.html?id=${session.event.id}" data-category-code="${code}">
                 <div class="next-race-time mono">
-                  ${renderDateTimeMeta(session.starts_at, { className: "next-race-time-stack" })}
+                  <div class="next-race-date">${formatDate(session.starts_at, { weekday: "short", dateOnly: false })}</div>
+                  <div class="next-race-hour">${formatTime(session.starts_at)} ARG</div>
                 </div>
                 <div class="next-race-main">
-                  <div class="next-race-event">${session.event.name}</div>
+                  <div class="next-race-category">${renderCategoryBadge(session.event.category, { tag: "span", size: "compact" })}</div>
+                  <div class="next-race-event">${cleanEventName(session.event.name)}</div>
                   ${getSessionSecondaryLabel(session) ? `<div class="next-race-session">${getSessionSecondaryLabel(session)}</div>` : ""}
                 </div>
-                ${status === "live" ? statusMarkup("live") : `<span class="session-primary-tag mono">${getFeaturedTagLabel(session)}</span>`}
+                <div class="next-race-side">
+                  ${status === "live" ? statusMarkup("live") : getFeaturedTagLabel(session) === "SPRINT" ? `<span class="session-primary-tag mono">SPRINT</span>` : ""}
+                </div>
               </a>
             `;
           })
@@ -598,8 +795,8 @@ function renderSessions(sessions) {
     const weekendCategorySessions = allSessions.filter((session) => matchesCategoryFilter(session.event.category, activeCategory));
     const hasSessionsForCategory = weekendCategorySessions.length > 0;
     const description = hasSessionsForCategory
-      ? "Proba con otro estado dentro de esta vista."
-      : "Revisa el calendario completo para ver las proximas fechas cargadas.";
+      ? "Probá con otro estado dentro de esta vista."
+      : "Revisá el calendario completo para ver las próximas fechas cargadas.";
 
     setHTML(sessionList, renderEmpty("No hay actividad para esta vista", description));
     return;
@@ -615,30 +812,30 @@ function renderSessions(sessions) {
 
           const category = event.category;
           const code = categoryCode(category);
-          const circuit = event.circuit;
+          const circuitLabel = formatCircuitLocation(event.circuit);
           const rows = sortedEventSessions
             .map((session) => {
               const isFeature = isPrimarySession(session);
-              const isSundayFeature = day.isSunday && isFeature;
               const status = getSessionStatus(session);
               const isLive = status === "live";
+              const secondary = getSessionSecondaryLabel(session) || (isFeature ? "Carrera" : "Sesión");
 
               return `
-            <div class="session-row ${isFeature ? "feature" : ""} ${isSundayFeature ? "sunday-feature" : ""} ${isLive ? "is-live" : ""}" ${isFeature ? `data-category-code="${code}"` : ""}>
-              <div class="time mono">${session.displayTime}</div>
-              <div class="session-name">
-                ${isFeature ? '<span class="session-marker" aria-hidden="true"></span><span class="session-primary-tag mono">CARRERA</span>' : ""}
-                ${getSessionSecondaryLabel(session) ? `<span>${getSessionSecondaryLabel(session)}</span>` : ""}
-              </div>
-              ${statusMarkup(status)}
-            </div>
-            ${renderFinishedSessionWinner(session)}
-          `;
+                <div class="session-row ${isFeature ? "feature" : ""} ${isLive ? "is-live" : ""}" ${isFeature ? `data-category-code="${code}"` : ""}>
+                  <div class="time mono">${session.displayTime}</div>
+                  <div class="session-name">
+                    ${isFeature ? '<span class="session-marker" aria-hidden="true"></span>' : ""}
+                    <span>${secondary}</span>
+                  </div>
+                  ${statusMarkup(status)}
+                </div>
+                ${renderFinishedSessionWinner(session)}
+              `;
             })
             .join("");
 
           return `
-            <a class="event-card" href="event.html?id=${event.id}" aria-label="Ver detalle de ${event.name}" data-category-code="${code}">
+            <a class="event-card" href="event.html?id=${event.id}" aria-label="Ver detalle de ${cleanEventName(event.name)}" data-category-code="${code}">
               <header class="event-head">
                 ${renderCategoryBadge(category, {
                   tag: "span",
@@ -647,12 +844,14 @@ function renderSessions(sessions) {
                   attrs: `data-category-link data-category-href="${categoryHref(category)}" role="link" tabindex="0" aria-label="Ver categoria ${category.name}"`,
                 })}
                 <div class="event-meta">
-                <div class="event-name">${event.name}</div>
-                <div class="circuit">${circuit.name} - ${circuit.city || circuit.country}</div>
-              </div>
+                  <div class="event-name">${cleanEventName(event.name)}</div>
+                  <div class="circuit">${circuitLabel}</div>
+                </div>
                 <div class="event-total mono">${sortedEventSessions.length} sesiones</div>
               </header>
-              ${rows}
+              <div class="event-sessions">
+                ${rows}
+              </div>
             </a>
           `;
         })
@@ -661,13 +860,15 @@ function renderSessions(sessions) {
       return `
           <section class="day-block ${day.isSunday ? "sunday-block" : ""}">
             <header class="day-title ${day.isSunday ? "sunday-title" : ""}">
-              <span>${day.label}</span>
+              <span>${formatDayHeading(day.label)}</span>
               <span class="day-title-meta">
                 ${day.isSunday ? '<span class="race-day-tag mono">DIA DE CARRERA</span>' : ""}
                 <span class="day-count mono">${day.sessions} sesiones</span>
               </span>
             </header>
-            ${eventCards}
+            <div class="day-events">
+              ${eventCards}
+            </div>
           </section>
         `;
     })
@@ -768,23 +969,38 @@ function renderWeekendEmptyState() {
       raceSpotlight,
       renderEmpty(
         "No hay actividad programada para este fin de semana",
-        "Cuando haya sesiones en la ventana objetivo las vas a ver aca.",
+        "Cuando haya sesiones en la ventana objetivo las vas a ver acá.",
       ),
     );
   }
 
   setHTML(nextRaces, "");
   nextRaces.hidden = true;
+  if (monthCalendar) setHTML(monthCalendar, "");
   setHTML(
     sessionList,
     renderEmpty(
       "No hay actividad programada para este fin de semana",
-      "Revisa el calendario completo para ver las proximas fechas cargadas.",
+      "Revisá el calendario completo para ver las próximas fechas cargadas.",
     ),
   );
   setText(apiState, "Sin actividad");
   updateSidebarIndicators();
 }
+
+monthCalendar?.addEventListener("click", (event) => {
+  const shiftButton = event.target.closest("[data-calendar-shift]");
+  if (shiftButton) {
+    activeCalendarMonth = shiftMonth(activeCalendarMonth, Number(shiftButton.dataset.calendarShift));
+    safeRenderMonthCalendar(getUniqueEventsFromSessions(allLoadedSessions || []));
+    return;
+  }
+
+  const dayButton = event.target.closest("[data-calendar-date]");
+  if (!dayButton) return;
+  selectedCalendarDateKey = dayButton.dataset.calendarDate;
+  safeRenderMonthCalendar(getUniqueEventsFromSessions(allLoadedSessions || []));
+});
 
 categoryFilters.addEventListener("click", (event) => {
   const button = event.target.closest("[data-category]");
@@ -845,6 +1061,7 @@ async function loadWeekend({ silent = false } = {}) {
     if (raceSpotlight) {
       setHTML(raceSpotlight, "");
     }
+    renderMonthCalendarState("Cargando calendario", "Estamos armando la vista mensual.");
     setHTML(nextRaces, "");
     nextRaces.hidden = true;
     setHTML(sessionList, renderSkeleton("home"));
@@ -855,6 +1072,11 @@ async function loadWeekend({ silent = false } = {}) {
   try {
     const sessions = await getJson("/api/sessions");
     allLoadedSessions = sessions;
+    const uniqueEvents = getUniqueEventsFromSessions(sessions);
+    if (!activeCalendarMonth && uniqueEvents.length) {
+      activeCalendarMonth = uniqueEvents[0].start_date.slice(0, 7);
+    }
+    safeRenderMonthCalendar(uniqueEvents);
     const targetWeekend = getCurrentOrNextWeekend(sessions);
     allSessions = targetWeekend?.sessions || [];
     logger.info("Home sessions loaded", sessions.length, allSessions.length, targetWeekend?.fridayKey, targetWeekend?.sundayKey);
@@ -867,8 +1089,16 @@ async function loadWeekend({ silent = false } = {}) {
     syncCategoryNavigation();
     updateSidebarIndicators();
     setActiveButton(statusFilters, `[data-status="${activeStatus}"]`);
-    renderRaceSpotlight(allSessions);
-    applyFilters();
+    safeRenderHomeSection(
+      () => renderRaceSpotlight(allSessions),
+      () => raceSpotlight && setHTML(raceSpotlight, renderEmpty("No pudimos cargar la próxima sesión", "Reintentá en unos segundos.")),
+      "Race spotlight",
+    );
+    safeRenderHomeSection(
+      () => applyFilters(),
+      () => setHTML(sessionList, renderError("No pudimos cargar el cronograma", { retry: true })),
+      "Session board",
+    );
     lastUpdatedAt = new Date();
     updateLastUpdatedLabel();
   } catch (error) {

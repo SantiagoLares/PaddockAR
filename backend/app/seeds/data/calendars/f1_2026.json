@@ -1,7 +1,7 @@
 {
   "category_slug": "formula-1",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de Formula 1 basado en formula1.com/racing/2026 y sprint calendar oficial de Formula 1/FIA. Las fechas de evento son oficiales; los horarios de sesiones se generan como tentativos en hora de Argentina usando plantillas por formato de fin de semana.",
+  "source_note": "Calendario 2026 de FÃ³rmula 1 basado en formula1.com/racing/2026 y sprint calendar oficial de FÃ³rmula 1/FIA. Las fechas de evento son oficiales; los horarios de sesiones se generan como tentativos en hora de Argentina usando plantillas por formato de fin de semana.",
   "events": [
     {
       "category_slug": "formula-1",
@@ -45,7 +45,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 3,
-      "name": "GP de Japon",
+      "name": "GP de JapÃ³n",
       "slug": "gp-de-japon-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -55,7 +55,7 @@
       "circuit": {
         "name": "Suzuka Circuit",
         "slug": "suzuka-circuit",
-        "country": "Japon",
+        "country": "JapÃ³n",
         "city": "Suzuka",
         "timezone": "Asia/Tokyo"
       }
@@ -67,7 +67,7 @@
       "name": "GP de Miami",
       "slug": "gp-de-miami-2026",
       "status": "scheduled",
-      "source_note": "Horarios oficiales de Formula 1 para Miami 2026 ajustados a hora de Argentina. Practice 1 queda a las 13:00 ARG con duracion extendida a 1h30m segun actualizacion de FIA para el fin de semana.",
+      "source_note": "Horarios oficiales de Fórmula 1 para Miami 2026 ajustados a hora de Argentina. Practice 1 queda a las 13:00 ARG con duración extendida a 1h30m seg?n actualización de FIA para el fin de semana.",
       "data_quality": "official_schedule_manual_conversion",
       "start_date": "2026-05-01",
       "end_date": "2026-05-03",
@@ -81,7 +81,7 @@
           "order_index": 1,
           "is_feature": false,
           "data_quality": "official_schedule_manual_conversion",
-          "source_note": "Horario oficial mostrado para Argentina. Practice 1 con duracion extendida a 1h30m."
+          "source_note": "Horario oficial mostrado para Argentina. Practice 1 con duraciÃ³n extendida a 1h30m."
         },
         {
           "name": "Clasificación Sprint",
@@ -140,7 +140,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 5,
-      "name": "GP de Canada",
+      "name": "GP de CanadÃ¡",
       "slug": "gp-de-canada-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -150,7 +150,7 @@
       "circuit": {
         "name": "Circuit Gilles Villeneuve",
         "slug": "circuit-gilles-villeneuve",
-        "country": "Canada",
+        "country": "CanadÃ¡",
         "city": "Montreal",
         "timezone": "America/Toronto"
       }
@@ -159,7 +159,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 6,
-      "name": "GP de Monaco",
+      "name": "GP de M?naco",
       "slug": "gp-de-monaco-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -167,9 +167,9 @@
       "end_date": "2026-06-07",
       "session_template": "f1_standard",
       "circuit": {
-        "name": "Circuit de Monaco",
+        "name": "Circuit de M?naco",
         "slug": "circuit-de-monaco",
-        "country": "Monaco",
+        "country": "M?naco",
         "city": "Monte Carlo",
         "timezone": "Europe/Monaco"
       }
@@ -188,8 +188,8 @@
       "circuit": {
         "name": "Circuit de Barcelona-Catalunya",
         "slug": "circuit-de-barcelona-catalunya",
-        "country": "Espana",
-        "city": "Montmelo",
+        "country": "EspaÃ±a",
+        "city": "MontmelÃ³",
         "timezone": "Europe/Madrid"
       }
     },
@@ -216,7 +216,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 9,
-      "name": "GP de Gran Bretana",
+      "name": "GP de Gran BretaÃ±a",
       "slug": "gp-de-gran-bretana-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -226,7 +226,7 @@
       "circuit": {
         "name": "Silverstone Circuit",
         "slug": "silverstone-circuit",
-        "country": "Gran Bretana",
+        "country": "Gran BretaÃ±a",
         "city": "Silverstone",
         "timezone": "Europe/London"
       }
@@ -235,7 +235,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 10,
-      "name": "GP de Belgica",
+      "name": "GP de BÃ©lgica",
       "slug": "gp-de-belgica-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -245,7 +245,7 @@
       "circuit": {
         "name": "Circuit de Spa-Francorchamps",
         "slug": "circuit-de-spa-francorchamps",
-        "country": "Belgica",
+        "country": "BÃ©lgica",
         "city": "Stavelot",
         "timezone": "Europe/Brussels"
       }
@@ -254,7 +254,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 11,
-      "name": "GP de Hungria",
+      "name": "GP de HungrÃ­a",
       "slug": "gp-de-hungria-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -264,7 +264,7 @@
       "circuit": {
         "name": "Hungaroring",
         "slug": "hungaroring",
-        "country": "Hungria",
+        "country": "HungrÃ­a",
         "city": "Budapest",
         "timezone": "Europe/Budapest"
       }
@@ -273,7 +273,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 12,
-      "name": "GP de Paises Bajos",
+      "name": "GP de PaÃ­ses Bajos",
       "slug": "gp-de-paises-bajos-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -283,7 +283,7 @@
       "circuit": {
         "name": "Circuit Zandvoort",
         "slug": "circuit-zandvoort",
-        "country": "Paises Bajos",
+        "country": "PaÃ­ses Bajos",
         "city": "Zandvoort",
         "timezone": "Europe/Amsterdam"
       }
@@ -311,7 +311,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 14,
-      "name": "GP de Espana",
+      "name": "GP de EspaÃ±a",
       "slug": "gp-de-espana-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -321,7 +321,7 @@
       "circuit": {
         "name": "Circuito de Madrid",
         "slug": "circuito-de-madrid",
-        "country": "Espana",
+        "country": "EspaÃ±a",
         "city": "Madrid",
         "timezone": "Europe/Madrid"
       }
@@ -330,7 +330,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 15,
-      "name": "GP de Azerbaiyan",
+      "name": "GP de AzerbaiyÃ¡n",
       "slug": "gp-de-azerbaiyan-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -340,7 +340,7 @@
       "circuit": {
         "name": "Baku City Circuit",
         "slug": "baku-city-circuit",
-        "country": "Azerbaiyan",
+        "country": "AzerbaiyÃ¡n",
         "city": "Baku",
         "timezone": "Asia/Baku"
       }
@@ -387,7 +387,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 18,
-      "name": "GP de Mexico",
+      "name": "GP de MÃ©xico",
       "slug": "gp-de-mexico-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -395,10 +395,10 @@
       "end_date": "2026-11-01",
       "session_template": "f1_standard",
       "circuit": {
-        "name": "Autodromo Hermanos Rodriguez",
+        "name": "Autodromo Hermanos RodrÃ­guez",
         "slug": "autodromo-hermanos-rodriguez",
-        "country": "Mexico",
-        "city": "Ciudad de Mexico",
+        "country": "MÃ©xico",
+        "city": "Ciudad de MÃ©xico",
         "timezone": "America/Mexico_City"
       }
     },
@@ -406,7 +406,7 @@
       "category_slug": "formula-1",
       "season_year": 2026,
       "round_number": 19,
-      "name": "GP de Sao Paulo",
+      "name": "GP de SÃ£o Paulo",
       "slug": "gp-de-sao-paulo-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -417,7 +417,7 @@
         "name": "Interlagos",
         "slug": "interlagos",
         "country": "Brasil",
-        "city": "Sao Paulo",
+        "city": "SÃ£o Paulo",
         "timezone": "America/Sao_Paulo"
       }
     },
@@ -473,7 +473,7 @@
       "circuit": {
         "name": "Yas Marina Circuit",
         "slug": "yas-marina-circuit",
-        "country": "Emiratos Arabes Unidos",
+        "country": "Emiratos ?rabes Unidos",
         "city": "Yas Island",
         "timezone": "Asia/Dubai"
       }

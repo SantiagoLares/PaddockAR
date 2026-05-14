@@ -1,7 +1,7 @@
 {
   "category_slug": "wec",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de FIA WEC basado en la publicacion oficial de fiawec.com del 13.06.2025. Las fechas y sedes de los eventos son oficiales. Solo Spa-Francorchamps incluye cronograma detallado confirmado en este archivo; el resto queda cargado a nivel evento hasta sumar horarios confiables.",
+  "source_note": "Calendario 2026 de FIA WEC basado en la pÃºblicacion oficial de fiawec.com del 13.06.2025. Las fechas y sedes de los eventos son oficiales. Solo Spa-Francorchamps incluye cronograma detallado confirmado en este archivo; el resto queda cargado a nivel evento hasta sumar horarios confiables.",
   "events": [
     {
       "category_slug": "wec",
@@ -46,12 +46,12 @@
       "name": "6 Horas de Spa-Francorchamps",
       "slug": "6-horas-de-spa-francorchamps-2026",
       "status": "scheduled",
-      "source_note": "Fecha y cronograma base tomados del programa oficial FIA WEC y convertidos de hora local de Belgica a Argentina.",
+      "source_note": "Fecha y cronograma base tomados del programa oficial FIA WEC y convertidos de hora local de BÃ©lgica a Argentina.",
       "data_quality": "official_schedule",
       "circuit": {
         "name": "Circuit de Spa-Francorchamps",
         "slug": "circuit-de-spa-francorchamps",
-        "country": "Belgica",
+        "country": "BÃ©lgica",
         "city": "Stavelot",
         "timezone": "Europe/Brussels"
       },
@@ -160,17 +160,17 @@
       "category_slug": "wec",
       "season_year": 2026,
       "round_number": 5,
-      "name": "6 Horas de Sao Paulo",
+      "name": "6 Horas de SÃ£o Paulo",
       "slug": "6-horas-de-sao-paulo-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-07-10",
       "end_date": "2026-07-12",
       "circuit": {
-        "name": "Autodromo Jose Carlos Pace",
+        "name": "Autodromo JosÃ© Carlos Pace",
         "slug": "autodromo-jose-carlos-pace",
         "country": "Brasil",
-        "city": "Sao Paulo",
+        "city": "SÃ£o Paulo",
         "timezone": "America/Sao_Paulo"
       }
     },
@@ -205,7 +205,7 @@
       "circuit": {
         "name": "Fuji Speedway",
         "slug": "fuji-speedway",
-        "country": "Japon",
+        "country": "JapÃ³n",
         "city": "Oyama",
         "timezone": "Asia/Tokyo"
       }
