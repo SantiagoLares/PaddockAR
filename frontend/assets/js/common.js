@@ -1,10 +1,28 @@
 (function () {
-  const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
+  const PUBLIC_SITE_URL = "https://paddockar.com.ar";
   const PROD_API_BASE_URL = "https://paddockar.onrender.com";
   const apiMode = new URLSearchParams(window.location.search).get("api");
-  const USE_LOCAL_API = apiMode !== "render";
+  const PRIVATE_NETWORK_HOST_PATTERN = /^(localhost|127(?:\.\d{1,3}){3}|10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})$/;
+
+  function isPrivateNetworkHost(hostname) {
+    return PRIVATE_NETWORK_HOST_PATTERN.test(String(hostname || "").trim());
+  }
+
+  function resolveLocalApiBaseUrl() {
+    if (location.protocol === "file:") {
+      return "http://127.0.0.1:8000";
+    }
+
+    const protocol = location.protocol === "https:" ? "https:" : "http:";
+    const hostname = isPrivateNetworkHost(location.hostname) ? location.hostname : "127.0.0.1";
+    return `${protocol}//${hostname}:8000`;
+  }
+
+  const LOCAL_API_BASE_URL = resolveLocalApiBaseUrl();
+  const IS_LOCAL_FRONTEND = location.protocol === "file:" || isPrivateNetworkHost(location.hostname);
+  const USE_LOCAL_API = apiMode === "local" || (!apiMode && IS_LOCAL_FRONTEND);
   const API_BASE_URL = USE_LOCAL_API ? LOCAL_API_BASE_URL : PROD_API_BASE_URL;
-  const IS_LOCAL_FRONTEND = location.protocol !== "file:" && ["localhost", "127.0.0.1"].includes(location.hostname);
+  const API_HEALTH_URL = `${API_BASE_URL}/api/health`;
   const LOG_ENABLED = USE_LOCAL_API || IS_LOCAL_FRONTEND || localStorage.getItem("paddockar_debug") === "1";
   const ARG_TIMEZONE = "America/Argentina/Buenos_Aires";
   const ASSET_BASE_URL = location.pathname.includes("/admin/") ? "../assets" : "assets";
@@ -397,11 +415,59 @@
     };
   }
 
+  function buildPublicPageUrl() {
+    const path = location.pathname || "/";
+    let publicPath = "/";
+
+    if (path === "/" || path.endsWith("/")) {
+      publicPath = "/";
+    } else {
+      const pathMatch = path.match(/\/(admin\/[^/]+\.html|[^/]+\.html)$/);
+      if (pathMatch?.[1]) {
+        publicPath = `/${pathMatch[1]}`;
+      }
+    }
+
+    if (publicPath === "/index.html") {
+      publicPath = "/";
+    }
+
+    return `${PUBLIC_SITE_URL}${publicPath}${location.search || ""}`;
+  }
+
+  function syncPublicMetadata() {
+    const publicUrl = buildPublicPageUrl();
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+
+    if (canonical) canonical.href = publicUrl;
+    if (ogUrl) ogUrl.content = publicUrl;
+  }
+
+  function syncApiHealthLinks() {
+    document.querySelectorAll("[data-api-health-link]").forEach((link) => {
+      link.setAttribute("href", API_HEALTH_URL);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      syncPublicMetadata();
+      syncApiHealthLinks();
+    });
+  } else {
+    syncPublicMetadata();
+    syncApiHealthLinks();
+  }
+
   window.PaddockARCommon = {
+    PUBLIC_SITE_URL,
     API_BASE_URL,
     LOCAL_API_BASE_URL,
     PROD_API_BASE_URL,
+    API_HEALTH_URL,
     USE_LOCAL_API,
+    IS_LOCAL_FRONTEND,
     ARG_TIMEZONE,
     ASSET_BASE_URL,
     categoryColors,

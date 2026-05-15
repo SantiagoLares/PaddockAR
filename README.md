@@ -6,8 +6,10 @@ Proyecto independiente. Los datos estan sujetos a cambios.
 
 ## Demo
 
-- Frontend: https://paddockar.onrender.com
+- Frontend: https://paddockar.com.ar/
 - API health: https://paddockar.onrender.com/api/health
+
+La web publica usa `https://paddockar.com.ar/`. La API de produccion sigue separada en Render y responde desde `https://paddockar.onrender.com`.
 
 ## Stack
 
