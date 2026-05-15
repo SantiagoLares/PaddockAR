@@ -37,6 +37,8 @@ const lastUpdated = document.querySelector("#lastUpdated");
 const sideNav = document.querySelector("#sideNav");
 const sideNavToggle = document.querySelector("#sideNavToggle");
 const sideNavBackdrop = document.querySelector("#sideNavBackdrop");
+const boardTitle = document.querySelector(".data-stage .section-display");
+const boardCaption = document.querySelector(".data-stage .section-caption");
 
 const AUTO_REFRESH_MS = 30000;
 const PRESTIGE_CATEGORY_FAMILIES = new Set(["F1", "F2", "F3", "MotoGP", "WEC", "TC", "TN", "TC2000"]);
@@ -77,6 +79,7 @@ let refreshIntervalId = null;
 let refreshInFlight = false;
 let activeCalendarMonth = null;
 let selectedCalendarDateKey = null;
+const eventExpansionState = new Map();
 
 function renderMonthCalendarState(title, description) {
   if (!monthCalendar) return;
@@ -91,6 +94,11 @@ function renderLoadError() {
     }),
   );
   setText(apiState, "Error de API");
+}
+
+function updateBoardCopy() {
+  if (boardTitle) boardTitle.textContent = "Agenda por evento";
+  if (boardCaption) boardCaption.textContent = "Cada campeonato se ordena por su proxima actividad relevante para escanear el fin de semana de un vistazo.";
 }
 
 function renderDateTimeMeta(value, { dateOnly = false, className = "" } = {}) {
@@ -735,7 +743,6 @@ function renderNextRaces(sessions, spotlightSession = null) {
                   <div class="next-race-hour">${formatTime(session.starts_at)} ARG</div>
                 </div>
                 <div class="next-race-main">
-                  <div class="next-race-category">${renderCategoryBadge(session.event.category, { tag: "span", size: "compact" })}</div>
                   <div class="next-race-event">${cleanEventName(session.event.name)}</div>
                   ${getSessionSecondaryLabel(session) ? `<div class="next-race-session">${getSessionSecondaryLabel(session)}</div>` : ""}
                 </div>
@@ -889,6 +896,217 @@ function applyFilters() {
 
   renderSessions(filtered);
   apiState.textContent = `${filtered.length}/${allSessions.length} sesiones`;
+}
+
+const WEEKDAY_SHORT_LABELS = {
+  lunes: "Lun",
+  martes: "Mar",
+  miercoles: "Mie",
+  jueves: "Jue",
+  viernes: "Vie",
+  sabado: "Sab",
+  domingo: "Dom",
+};
+
+function getSessionDisplayLabel(session) {
+  const secondary = getSessionSecondaryLabel(session);
+  if (secondary) return secondary;
+
+  const sessionType = normalizeSessionName(session?.session_type);
+  if (sessionType === "feature") return "Feature Race";
+  if (sessionType === "final") return "Final";
+  if (sessionType === "sprint") return "Sprint";
+  if (isPrimarySession(session)) return "Carrera";
+  return "Sesion";
+}
+
+function getSessionDayTimeMeta(session) {
+  const parts = dateParts(session.starts_at);
+  return {
+    dayShort: WEEKDAY_SHORT_LABELS[parts.weekdayKey] || parts.weekdayKey.slice(0, 3),
+    dayLong: parts.weekdayKey,
+    time: parts.time,
+  };
+}
+
+function getEventPrimarySummarySession(sessions) {
+  const sorted = sortSessionsByStart(sessions);
+  const now = Date.now();
+  const primary = sorted.filter((session) => isPrimarySession(session) && getSessionStatus(session) !== "cancelled");
+  const livePrimary = primary.find((session) => getSessionStatus(session) === "live");
+  if (livePrimary) return livePrimary;
+
+  const upcomingPrimary = primary.find((session) => new Date(session.starts_at).getTime() >= now);
+  if (upcomingPrimary) return upcomingPrimary;
+
+  return primary[primary.length - 1] || null;
+}
+
+function getEventSummaryLine(group) {
+  const primarySession = getEventPrimarySummarySession(group.sessions);
+  const sessionsLabel = `${group.sessions.length} ${group.sessions.length === 1 ? "sesion" : "sesiones"}`;
+  if (!primarySession) return sessionsLabel;
+
+  const { dayLong, time } = getSessionDayTimeMeta(primarySession);
+  return `${sessionsLabel} - ${getSessionDisplayLabel(primarySession)} ${dayLong} ${time}`;
+}
+
+function getEventSortMeta(group) {
+  const liveSession = group.sessions.find((session) => getSessionStatus(session) === "live");
+  if (liveSession) {
+    return { priority: 0, time: new Date(liveSession.starts_at).getTime() };
+  }
+
+  const nextSession = group.sessions.find((session) => {
+    return getSessionStatus(session) === "scheduled" && new Date(session.starts_at).getTime() >= Date.now();
+  });
+  if (nextSession) {
+    return { priority: 1, time: new Date(nextSession.starts_at).getTime() };
+  }
+
+  const lastFinished = [...group.sessions].reverse().find((session) => getSessionStatus(session) === "finished");
+  return {
+    priority: 2,
+    time: lastFinished ? new Date(lastFinished.starts_at).getTime() : Number.MAX_SAFE_INTEGER,
+  };
+}
+
+function buildEventGroups(sessions) {
+  const groups = new Map();
+
+  sortSessionsByStart(sessions).forEach((session) => {
+    const event = session.event;
+    const key = String(event.id);
+    if (!groups.has(key)) {
+      groups.set(key, {
+        id: key,
+        event,
+        category: event.category,
+        sessions: [],
+      });
+    }
+
+    groups.get(key).sessions.push(session);
+  });
+
+  return Array.from(groups.values())
+    .map((group) => ({
+      ...group,
+      sessions: sortSessionsByStart(group.sessions),
+    }))
+    .sort((a, b) => {
+      const aMeta = getEventSortMeta(a);
+      const bMeta = getEventSortMeta(b);
+
+      if (aMeta.priority !== bMeta.priority) return aMeta.priority - bMeta.priority;
+      if (aMeta.priority === 2) return bMeta.time - aMeta.time;
+      return aMeta.time - bMeta.time;
+    });
+}
+
+function getDefaultOpenEventIds(groups) {
+  const liveGroups = groups.filter((group) => group.sessions.some((session) => getSessionStatus(session) === "live"));
+  if (liveGroups.length) return new Set(liveGroups.map((group) => group.id));
+
+  const nextGroup = groups.find((group) => group.sessions.some((session) => getSessionStatus(session) === "scheduled"));
+  if (nextGroup) return new Set([nextGroup.id]);
+
+  return groups[0] ? new Set([groups[0].id]) : new Set();
+}
+
+function isEventGroupOpen(group, defaultOpenIds) {
+  if (eventExpansionState.has(group.id)) return eventExpansionState.get(group.id);
+  return defaultOpenIds.has(group.id);
+}
+
+function getEventHeaderLocation(event) {
+  const location = [event?.circuit?.city, event?.circuit?.country].filter(Boolean).join(", ");
+  return [event?.circuit?.name, location].filter(Boolean).join(" - ");
+}
+
+function renderEventSessionRows(group) {
+  return group.sessions
+    .map((session) => {
+      const { dayShort, time } = getSessionDayTimeMeta(session);
+      const status = getSessionStatus(session);
+
+      return `
+        <a class="event-session-row ${status === "live" ? "is-live" : ""}" href="event.html?id=${group.event.id}">
+          <span class="event-session-name">${getSessionDisplayLabel(session)}</span>
+          <span class="event-session-day mono">${dayShort}</span>
+          <span class="event-session-time mono">${time}</span>
+          ${statusMarkup(status)}
+        </a>
+      `;
+    })
+    .join("");
+}
+
+function renderEventGroups(groups) {
+  const defaultOpenIds = getDefaultOpenEventIds(groups);
+
+  return groups
+    .map((group) => {
+      const code = categoryCode(group.category);
+      const isOpen = isEventGroupOpen(group, defaultOpenIds);
+      const locationLabel = getEventHeaderLocation(group.event);
+
+      return `
+        <section class="event-group ${isOpen ? "is-open" : ""}" data-category-code="${code}">
+          <div class="event-group-head" data-event-toggle="${group.id}" role="button" tabindex="0" aria-expanded="${String(isOpen)}" aria-controls="event-group-panel-${group.id}">
+            <div class="event-group-main">
+              <div class="event-group-topline">
+                <a class="event-group-category-link" href="${categoryHref(group.category)}" data-category-link data-category-href="${categoryHref(group.category)}" aria-label="Ver categoria ${group.category.name}">
+                  ${renderCategoryBadge(group.category, { tag: "span", size: "compact" })}
+                </a>
+                <a class="event-group-link mono" href="event.html?id=${group.event.id}">Ver evento</a>
+              </div>
+              <div class="event-group-title">${cleanEventName(group.event.name)}</div>
+              ${locationLabel ? `<div class="event-group-location">${locationLabel}</div>` : ""}
+              <div class="event-group-summary mono">${getEventSummaryLine(group)}</div>
+            </div>
+            <span class="event-group-chevron" aria-hidden="true">${renderIcon("chevron-down", { size: 18, className: "event-group-chevron-icon" }) || "v"}</span>
+          </div>
+          <div class="event-group-body" id="event-group-panel-${group.id}" ${isOpen ? "" : "hidden"}>
+            ${renderEventSessionRows(group)}
+          </div>
+        </section>
+      `;
+    })
+    .join("");
+}
+
+function renderSessions(sessions, groups = buildEventGroups(sessions)) {
+  if (!sessions.length || !groups.length) {
+    setHTML(nextRaces, "");
+    nextRaces.hidden = true;
+    const weekendCategorySessions = allSessions.filter((session) => matchesCategoryFilter(session.event.category, activeCategory));
+    const hasSessionsForCategory = weekendCategorySessions.length > 0;
+    const description = hasSessionsForCategory
+      ? "ProbÃ¡ con otro estado dentro de esta vista."
+      : "RevisÃ¡ el calendario completo para ver las prÃ³ximas fechas cargadas.";
+
+    setHTML(sessionList, renderEmpty("No hay actividad para esta vista", description));
+    return;
+  }
+
+  renderNextRaces(sessions, getSpotlightSession(sessions));
+  setHTML(sessionList, `<div class="event-group-list">${renderEventGroups(groups)}</div>`);
+}
+
+function applyFilters() {
+  const filtered = allSessions.filter((session) => {
+    const category = session.event.category;
+    const status = getSessionStatus(session);
+    const matchesCategory = matchesCategoryFilter(category, activeCategory);
+    const matchesStatus = activeStatus === "all" ? true : activeStatus === "upcoming" ? status === "scheduled" : status === activeStatus;
+
+    return matchesCategory && matchesStatus;
+  });
+
+  const groups = buildEventGroups(filtered);
+  renderSessions(filtered, groups);
+  apiState.textContent = `${groups.length} eventos - ${filtered.length}/${allSessions.length} sesiones`;
 }
 
 function getCategoryFromUrl() {
@@ -1132,6 +1350,15 @@ sessionList.addEventListener("click", (event) => {
     return;
   }
 
+  const eventToggle = event.target.closest("[data-event-toggle]");
+  if (eventToggle && !event.target.closest("a")) {
+    const groupId = eventToggle.dataset.eventToggle;
+    const isExpanded = eventToggle.getAttribute("aria-expanded") === "true";
+    eventExpansionState.set(groupId, !isExpanded);
+    applyFilters();
+    return;
+  }
+
   if (event.target.closest("[data-retry]")) {
     loadWeekend();
   }
@@ -1139,15 +1366,24 @@ sessionList.addEventListener("click", (event) => {
 
 sessionList.addEventListener("keydown", (event) => {
   const categoryLink = event.target.closest("[data-category-link]");
-  if (!categoryLink) return;
-
-  if (event.key === "Enter" || event.key === " ") {
+  if (categoryLink && (event.key === "Enter" || event.key === " ")) {
     event.preventDefault();
     window.location.href = categoryLink.dataset.categoryHref;
+    return;
+  }
+
+  const eventToggle = event.target.closest("[data-event-toggle]");
+  if (eventToggle && (event.key === "Enter" || event.key === " ")) {
+    event.preventDefault();
+    const groupId = eventToggle.dataset.eventToggle;
+    const isExpanded = eventToggle.getAttribute("aria-expanded") === "true";
+    eventExpansionState.set(groupId, !isExpanded);
+    applyFilters();
   }
 });
 
 activeCategory = getCategoryFromUrl();
+updateBoardCopy();
 syncCategoryNavigation();
 updateCategoryUrl(activeCategory, { replace: true });
 updateClock();
