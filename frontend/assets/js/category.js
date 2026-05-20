@@ -402,6 +402,27 @@ async function loadStandingsSafe(slug) {
   }
 }
 
+function updateCategorySeo(category) {
+  try {
+    if (!window.PaddockARSeo) return;
+    
+    const displayName = getCategoryDisplayName(category);
+    const title = `${displayName} | PaddockAR`;
+    const description = `Consultá eventos, sesiones y horarios de ${displayName} en PaddockAR, agenda de automovilismo en hora argentina.`;
+    const url = `https://paddockar.com.ar/category.html?cat=${category.slug || category.short_name || ''}`;
+    
+    window.PaddockARSeo.updatePageSeo({
+      title,
+      description,
+      url,
+      type: 'website',
+      image: '/assets/img/og-paddockar.png',
+    });
+  } catch (e) {
+    createLogger('PaddockAR').error('Update category SEO failed', e);
+  }
+}
+
 function renderCategory(category, events, standings) {
   const sorted = [...events].sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
   const displayName = getCategoryDisplayName(category);
@@ -413,6 +434,7 @@ function renderCategory(category, events, standings) {
   renderHero(category, sorted);
   renderCategoryEvents(category, sorted);
   renderStandings(category, standings);
+  updateCategorySeo(category);
 }
 
 async function loadCategory() {
