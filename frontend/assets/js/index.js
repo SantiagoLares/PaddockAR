@@ -70,6 +70,7 @@ const QUERY_TO_CATEGORY = Object.entries(CATEGORY_TO_QUERY).reduce((acc, [catego
   if (query) acc[query] = category;
   return acc;
 }, {});
+
 let allSessions = [];
 let allLoadedSessions = [];
 let activeCategory = "all";
@@ -98,7 +99,10 @@ function renderLoadError() {
 
 function updateBoardCopy() {
   if (boardTitle) boardTitle.textContent = "Agenda por evento";
-  if (boardCaption) boardCaption.textContent = "Cada campeonato se ordena por su proxima actividad relevante para escanear el fin de semana de un vistazo.";
+  if (boardCaption) {
+    boardCaption.textContent =
+      "Cada campeonato se ordena por su próxima actividad relevante para escanear el fin de semana de un vistazo.";
+  }
 }
 
 function renderDateTimeMeta(value, { dateOnly = false, className = "" } = {}) {
@@ -436,74 +440,6 @@ function getCurrentOrNextWeekend(events, now = new Date()) {
   };
 }
 
-function groupByDayAndEvent(sessions) {
-  const days = new Map();
-
-  sessions.forEach((session) => {
-    const parts = dateParts(session.starts_at);
-    const event = session.event;
-    const dayKey = parts.dateKey;
-    const eventKey = `${event.category.short_name}-${event.slug}-${event.id}`;
-
-    if (!days.has(dayKey)) {
-      days.set(dayKey, {
-        key: dayKey,
-        label: parts.label,
-        sortDate: parts.dateKey,
-        weekdayKey: parts.weekdayKey,
-        isSunday: parts.weekdayKey === "domingo",
-        sessions: 0,
-        events: new Map(),
-      });
-    }
-
-    const day = days.get(dayKey);
-    day.sessions += 1;
-
-    if (!day.events.has(eventKey)) {
-      day.events.set(eventKey, {
-        event,
-        sessions: [],
-      });
-    }
-
-    day.events.get(eventKey).sessions.push({
-      ...session,
-      displayTime: parts.time,
-    });
-  });
-
-  return Array.from(days.values()).sort((a, b) => {
-    return a.sortDate.localeCompare(b.sortDate);
-  });
-}
-
-function compareSessionsByLivePriority(a, b) {
-  const aStatus = getSessionStatus(a);
-  const bStatus = getSessionStatus(b);
-  const aIsLive = aStatus === "live";
-  const bIsLive = bStatus === "live";
-
-  if (aIsLive !== bIsLive) return aIsLive ? -1 : 1;
-  return new Date(a.starts_at) - new Date(b.starts_at);
-}
-
-function getSortedEventSessions(sessions) {
-  return [...sessions].sort(compareSessionsByLivePriority);
-}
-
-function getSortedEventGroups(events) {
-  return Array.from(events.values()).sort((a, b) => {
-    const aSessions = getSortedEventSessions(a.sessions);
-    const bSessions = getSortedEventSessions(b.sessions);
-    const aHasLive = aSessions.some((session) => getSessionStatus(session) === "live");
-    const bHasLive = bSessions.some((session) => getSessionStatus(session) === "live");
-
-    if (aHasLive !== bHasLive) return aHasLive ? -1 : 1;
-    return new Date(aSessions[0]?.starts_at || 0) - new Date(bSessions[0]?.starts_at || 0);
-  });
-}
-
 function statusMarkup(status) {
   const label = statusLabels[status] || status.toUpperCase();
   const dot = status === "live" ? `${renderIcon("radio", { size: 12, className: "status-icon" })}<span class="live-dot"></span>` : "";
@@ -650,7 +586,7 @@ function getNextCategoryReference(categoryCode) {
   if (!nextEventSession) return null;
 
   return {
-      eventName: nextEventSession.event.name,
+    eventName: nextEventSession.event.name,
     startsAt: nextEventSession.starts_at,
   };
 }
@@ -728,7 +664,7 @@ function renderNextRaces(sessions, spotlightSession = null) {
       <header class="next-races-head">
         <div>
           <div class="section-title mono">Carreras destacadas</div>
-          <div class="next-races-caption">Seleccion internacional y campeonatos de mayor peso.</div>
+          <div class="next-races-caption">Selección internacional y campeonatos de mayor peso.</div>
         </div>
       </header>
       <div class="next-races-list">
@@ -758,146 +694,6 @@ function renderNextRaces(sessions, spotlightSession = null) {
   );
 }
 
-function renderLiveNowBlock(sessions) {
-  if (activeStatus === "live") return "";
-
-  const liveSessions = sessions
-    .filter((session) => getSessionStatus(session) === "live")
-    .sort(compareSessionsByLivePriority);
-
-  if (!liveSessions.length) return "";
-
-  return `
-    <section class="live-now-block" aria-label="Sesiones en vivo ahora">
-      <header class="live-now-head">
-        <span class="live-dot" aria-hidden="true"></span>
-        <span class="mono">AHORA</span>
-      </header>
-      <div class="live-now-list">
-        ${liveSessions
-          .map((session) => {
-            const category = session.event.category;
-            const code = categoryCode(category);
-            return `
-              <a class="live-now-item" href="event.html?id=${session.event.id}" data-category-code="${code}">
-                <div class="live-now-time mono">${renderIconLabel("clock-3", `${formatTime(session.starts_at)} ARG`, { iconSize: 12 })}</div>
-                <div class="live-now-main">
-                  ${renderCategoryBadge(category, { tag: "span", size: "compact" })}
-                  <span class="live-now-event">${formatEventSessionTitle(session.event.name, session)}</span>
-                </div>
-                ${statusMarkup("live")}
-              </a>
-            `;
-          })
-          .join("")}
-      </div>
-    </section>
-  `;
-}
-
-function renderSessions(sessions) {
-  if (!sessions.length) {
-    setHTML(nextRaces, "");
-    nextRaces.hidden = true;
-    const weekendCategorySessions = allSessions.filter((session) => matchesCategoryFilter(session.event.category, activeCategory));
-    const hasSessionsForCategory = weekendCategorySessions.length > 0;
-    const description = hasSessionsForCategory
-      ? "Probá con otro estado dentro de esta vista."
-      : "Revisá el calendario completo para ver las próximas fechas cargadas.";
-
-    setHTML(sessionList, renderEmpty("No hay actividad para esta vista", description));
-    return;
-  }
-
-  renderNextRaces(sessions, getSpotlightSession(sessions));
-  const days = groupByDayAndEvent(sessions);
-  const dayBlocks = days
-    .map((day) => {
-      const eventCards = getSortedEventGroups(day.events)
-        .map(({ event, sessions: eventSessions }) => {
-          const sortedEventSessions = getSortedEventSessions(eventSessions);
-
-          const category = event.category;
-          const code = categoryCode(category);
-          const circuitLabel = formatCircuitLocation(event.circuit);
-          const rows = sortedEventSessions
-            .map((session) => {
-              const isFeature = isPrimarySession(session);
-              const status = getSessionStatus(session);
-              const isLive = status === "live";
-              const secondary = getSessionSecondaryLabel(session) || (isFeature ? "Carrera" : "Sesión");
-
-              return `
-                <div class="session-row ${isFeature ? "feature" : ""} ${isLive ? "is-live" : ""}" ${isFeature ? `data-category-code="${code}"` : ""}>
-                  <div class="time mono">${session.displayTime}</div>
-                  <div class="session-name">
-                    ${isFeature ? '<span class="session-marker" aria-hidden="true"></span>' : ""}
-                    <span>${secondary}</span>
-                  </div>
-                  ${statusMarkup(status)}
-                </div>
-                ${renderFinishedSessionWinner(session)}
-              `;
-            })
-            .join("");
-
-          return `
-            <a class="event-card" href="event.html?id=${event.id}" aria-label="Ver detalle de ${cleanEventName(event.name)}" data-category-code="${code}">
-              <header class="event-head">
-                ${renderCategoryBadge(category, {
-                  tag: "span",
-                  size: "compact",
-                  extraClass: "category-badge-link",
-                  attrs: `data-category-link data-category-href="${categoryHref(category)}" role="link" tabindex="0" aria-label="Ver categoria ${category.name}"`,
-                })}
-                <div class="event-meta">
-                  <div class="event-name">${cleanEventName(event.name)}</div>
-                  <div class="circuit">${circuitLabel}</div>
-                </div>
-                <div class="event-total mono">${sortedEventSessions.length} sesiones</div>
-              </header>
-              <div class="event-sessions">
-                ${rows}
-              </div>
-            </a>
-          `;
-        })
-        .join("");
-
-      return `
-          <section class="day-block ${day.isSunday ? "sunday-block" : ""}">
-            <header class="day-title ${day.isSunday ? "sunday-title" : ""}">
-              <span>${formatDayHeading(day.label)}</span>
-              <span class="day-title-meta">
-                ${day.isSunday ? '<span class="race-day-tag mono">DIA DE CARRERA</span>' : ""}
-                <span class="day-count mono">${day.sessions} sesiones</span>
-              </span>
-            </header>
-            <div class="day-events">
-              ${eventCards}
-            </div>
-          </section>
-        `;
-    })
-    .join("");
-
-  setHTML(sessionList, `${renderLiveNowBlock(sessions)}${dayBlocks}`);
-}
-
-function applyFilters() {
-  const filtered = allSessions.filter((session) => {
-    const category = session.event.category;
-    const status = getSessionStatus(session);
-    const matchesCategory = matchesCategoryFilter(category, activeCategory);
-    const matchesStatus = activeStatus === "all" ? true : activeStatus === "upcoming" ? status === "scheduled" : status === activeStatus;
-
-    return matchesCategory && matchesStatus;
-  });
-
-  renderSessions(filtered);
-  apiState.textContent = `${filtered.length}/${allSessions.length} sesiones`;
-}
-
 const WEEKDAY_SHORT_LABELS = {
   lunes: "Lun",
   martes: "Mar",
@@ -917,7 +713,7 @@ function getSessionDisplayLabel(session) {
   if (sessionType === "final") return "Final";
   if (sessionType === "sprint") return "Sprint";
   if (isPrimarySession(session)) return "Carrera";
-  return "Sesion";
+  return "Sesión";
 }
 
 function getSessionDayTimeMeta(session) {
@@ -944,7 +740,7 @@ function getEventPrimarySummarySession(sessions) {
 
 function getEventSummaryLine(group) {
   const primarySession = getEventPrimarySummarySession(group.sessions);
-  const sessionsLabel = `${group.sessions.length} ${group.sessions.length === 1 ? "sesion" : "sesiones"}`;
+  const sessionsLabel = `${group.sessions.length} ${group.sessions.length === 1 ? "sesión" : "sesiones"}`;
   if (!primarySession) return sessionsLabel;
 
   const { dayLong, time } = getSessionDayTimeMeta(primarySession);
@@ -1056,7 +852,7 @@ function renderEventGroups(groups) {
           <div class="event-group-head" data-event-toggle="${group.id}" role="button" tabindex="0" aria-expanded="${String(isOpen)}" aria-controls="event-group-panel-${group.id}">
             <div class="event-group-main">
               <div class="event-group-topline">
-                <a class="event-group-category-link" href="${categoryHref(group.category)}" data-category-link data-category-href="${categoryHref(group.category)}" aria-label="Ver categoria ${group.category.name}">
+                <a class="event-group-category-link" href="${categoryHref(group.category)}" data-category-link data-category-href="${categoryHref(group.category)}" aria-label="Ver categoría ${group.category.name}">
                   ${renderCategoryBadge(group.category, { tag: "span", size: "compact" })}
                 </a>
                 <a class="event-group-link mono" href="event.html?id=${group.event.id}">Ver evento</a>
@@ -1083,8 +879,8 @@ function renderSessions(sessions, groups = buildEventGroups(sessions)) {
     const weekendCategorySessions = allSessions.filter((session) => matchesCategoryFilter(session.event.category, activeCategory));
     const hasSessionsForCategory = weekendCategorySessions.length > 0;
     const description = hasSessionsForCategory
-      ? "ProbÃ¡ con otro estado dentro de esta vista."
-      : "RevisÃ¡ el calendario completo para ver las prÃ³ximas fechas cargadas.";
+      ? "Probá con otro estado dentro de esta vista."
+      : "Revisá el calendario completo para ver las próximas fechas cargadas.";
 
     setHTML(sessionList, renderEmpty("No hay actividad para esta vista", description));
     return;
@@ -1170,7 +966,7 @@ function setSidebarOpen(isOpen) {
   sideNavBackdrop?.classList.toggle("is-open", isOpen);
   sideNavBackdrop?.classList.toggle("overlay--visible", isOpen);
   sideNavToggle?.setAttribute("aria-expanded", String(isOpen));
-  sideNavToggle?.setAttribute("aria-label", isOpen ? "Cerrar categorias" : "Abrir categorias");
+  sideNavToggle?.setAttribute("aria-label", isOpen ? "Cerrar categorías" : "Abrir categorías");
   document.body.classList.toggle("sidebar-lock", isOpen);
 }
 
@@ -1239,9 +1035,10 @@ sideNav?.addEventListener("click", (event) => {
   if (!categoryButton) return;
 
   const category = categoryButton.dataset.sideCategory;
-  window.location.href = category === "all"
-    ? "index.html"
-    : `category.html?cat=${encodeURIComponent(CATEGORY_TO_QUERY[category] || "")}`;
+  window.location.href =
+    category === "all"
+      ? "index.html"
+      : `category.html?cat=${encodeURIComponent(CATEGORY_TO_QUERY[category] || "")}`;
   setSidebarOpen(false);
 });
 
@@ -1284,6 +1081,7 @@ async function loadWeekend({ silent = false } = {}) {
     nextRaces.hidden = true;
     setHTML(sessionList, renderSkeleton("home"));
   }
+
   updateLastUpdatedLabel("loading");
   logger.info("Loading home sessions", "/api/sessions");
 
@@ -1291,37 +1089,53 @@ async function loadWeekend({ silent = false } = {}) {
     const sessions = await getJson("/api/sessions");
     allLoadedSessions = sessions;
     const uniqueEvents = getUniqueEventsFromSessions(sessions);
+
     if (!activeCalendarMonth && uniqueEvents.length) {
       activeCalendarMonth = uniqueEvents[0].start_date.slice(0, 7);
     }
+
     safeRenderMonthCalendar(uniqueEvents);
+
     const targetWeekend = getCurrentOrNextWeekend(sessions);
     allSessions = targetWeekend?.sessions || [];
-    logger.info("Home sessions loaded", sessions.length, allSessions.length, targetWeekend?.fridayKey, targetWeekend?.sundayKey);
+
+    logger.info(
+      "Home sessions loaded",
+      sessions.length,
+      allSessions.length,
+      targetWeekend?.fridayKey,
+      targetWeekend?.sundayKey,
+    );
+
     if (!allSessions.length) {
       renderWeekendEmptyState();
       lastUpdatedAt = new Date();
       updateLastUpdatedLabel();
       return;
     }
+
     syncCategoryNavigation();
     updateSidebarIndicators();
     setActiveButton(statusFilters, `[data-status="${activeStatus}"]`);
+
     safeRenderHomeSection(
       () => renderRaceSpotlight(allSessions),
       () => raceSpotlight && setHTML(raceSpotlight, renderEmpty("No pudimos cargar la próxima sesión", "Reintentá en unos segundos.")),
       "Race spotlight",
     );
+
     safeRenderHomeSection(
       () => applyFilters(),
       () => setHTML(sessionList, renderError("No pudimos cargar el cronograma", { retry: true })),
       "Session board",
     );
+
     lastUpdatedAt = new Date();
     updateLastUpdatedLabel();
   } catch (error) {
     logger.error("Weekend sessions failed", error);
     updateLastUpdatedLabel("error");
+
     if (allSessions.length) {
       updateSidebarIndicators();
       applyFilters();
@@ -1387,14 +1201,28 @@ updateBoardCopy();
 syncCategoryNavigation();
 updateCategoryUrl(activeCategory, { replace: true });
 updateClock();
+
 setInterval(() => {
   updateClock();
   updateLastUpdatedLabel();
+
   if (allSessions.length) {
     updateSidebarIndicators();
     renderRaceSpotlight(allSessions);
     if (activeStatus !== "all") applyFilters();
   }
 }, 1000);
-loadWeekend();
-startAutoRefresh();
+
+loadWeekend()
+  .then(() => {
+    try {
+      window.PaddockARAnalytics?.trackPageView?.("view_home");
+    } catch (error) {
+      logger.error("Analytics home tracking failed", error);
+    }
+
+    startAutoRefresh();
+  })
+  .catch(() => {
+    startAutoRefresh();
+  });

@@ -173,6 +173,15 @@ async function loadEvent() {
     const event = await getJson(`/api/events/${id}`);
     logger.info("Event detail loaded", event.id, event.name);
     renderEvent(event);
+    try {
+      window.PaddockARAnalytics?.trackEvent?.('view_event_detail', {
+        event_id: event.id,
+        event_name: event.name,
+        category: event.category?.name,
+        circuit: event.circuit?.name,
+        country: event.circuit?.country,
+      });
+    } catch (e) {}
   } catch (error) {
     logger.error("Event detail failed", error);
     renderLoadError();

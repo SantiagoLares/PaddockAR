@@ -106,7 +106,7 @@ function renderCalendar(events) {
         .map(
           (event) => `
           <a class="event-row" href="event.html?id=${event.id}">
-            <div class="date-range mono">${renderIconLabel("calendar", `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`, { iconSize: 13, className: "date-range-label" })}</div>
+            <div class="date-range mono">${formatDate(event.start_date)} - ${formatDate(event.end_date)}</div>
             <div class="event-main">
               <div class="event-line">
                 ${renderCategoryBadge(event.category, { tag: "span", extraClass: "event-category-logo", size: "compact" })}
@@ -115,7 +115,7 @@ function renderCalendar(events) {
               ${renderEventWinner(event)}
               <div class="circuit">${event.circuit.name}</div>
             </div>
-            <div class="country">${renderIconLabel("map-pin", event.circuit.city ? `${event.circuit.city}, ${event.circuit.country}` : event.circuit.country, { iconSize: 13, className: "country-label" })}</div>
+            <div class="country mono">${event.circuit.city ? `${event.circuit.city}, ${event.circuit.country}` : event.circuit.country}</div>
           </a>
         `,
         )
@@ -201,4 +201,8 @@ calendarBoard.addEventListener("keydown", (event) => {
   toggle.click();
 });
 
-loadCalendar();
+loadCalendar().then(() => {
+  try {
+    window.PaddockARAnalytics?.trackPageView?.('view_calendar');
+  } catch (e) {}
+}).catch(() => {});

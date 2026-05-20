@@ -466,6 +466,13 @@ async function loadCategory() {
     const standings = await loadStandingsSafe(slug);
     logger.info("Category data loaded", slug, filtered.length, standings.length);
     renderCategory(category, filtered, standings);
+      try {
+        window.PaddockARAnalytics?.trackPageView?.('view_category', {
+          category_id: category.id,
+          category_name: category.name,
+          category_slug: category.slug,
+        });
+      } catch (e) {}
   } catch (error) {
     logger.error("Category events failed", slug, error);
     renderLoadError();
