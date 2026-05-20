@@ -1680,6 +1680,203 @@ body.sidebar-lock {
   white-space: nowrap;
 }
 
+.event-group {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.014);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.event-group:hover {
+  transform: translateY(-1px);
+}
+
+.event-group--hero {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.012));
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.28);
+}
+
+.event-group--hero .event-header {
+  padding: 24px 28px;
+  gap: 22px;
+}
+
+.event-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  cursor: pointer;
+  transition: background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.event-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.event-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.event-badge {
+  flex-shrink: 0;
+}
+
+.event-info {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.event-name {
+  color: #f8fafc;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.1;
+  text-decoration: none;
+  text-wrap: balance;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-name:hover {
+  text-decoration: underline;
+}
+
+.event-masthead {
+  display: grid;
+  gap: 4px;
+}
+
+.event-next-session {
+  display: block;
+  color: #f8fbff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.event-meta {
+  display: grid;
+  gap: 4px;
+  color: #9aa6b7;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.event-location {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #8f9aa8;
+}
+
+.event-status-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.event-status-area--hero {
+  gap: 14px;
+}
+
+.event-toggle-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cdd6e0;
+  font-size: 12px;
+  line-height: 1;
+  transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+}
+
+.event-group.is-open .event-toggle-control {
+  transform: rotate(180deg);
+}
+
+.event-body {
+  padding: 0 22px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.event-group:not(.is-open) .event-body {
+  display: none;
+}
+
+.event-group + .event-group {
+  margin-top: 18px;
+}
+
+.event-group .session-row {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #d8e2ef;
+}
+
+.event-group .session-row:first-child {
+  border-top: 0;
+}
+
+.event-group .session-time {
+  color: #b6c0cc;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.event-group .session-name {
+  color: #f2f6fb;
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-group .session-status {
+  justify-self: end;
+}
+
+.event-group .session-row.feature .session-name {
+  color: #f8fafc;
+}
+
+.event-group .session-row.is-live {
+  background: rgba(229, 72, 77, 0.08);
+}
+
+.event-group .session-row.is-live:hover {
+  background: rgba(229, 72, 77, 0.12);
+}
+
+.event-group .session-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
 .event-card {
   display: block;
   position: relative;
@@ -2452,5 +2649,27 @@ body.sidebar-lock {
   .next-race-session,
   .race-spotlight-event {
     white-space: normal;
+  }
+
+  .event-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .event-status-area {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .event-body {
+    padding: 0 16px 16px;
+  }
+
+  .event-group .session-row {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .event-group .session-status {
+    justify-self: start;
   }
 }
