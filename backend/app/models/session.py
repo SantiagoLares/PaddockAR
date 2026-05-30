@@ -21,8 +21,11 @@ class Session(Base):
     status: Mapped[str] = mapped_column(String(30), nullable=False, default="scheduled")
     order_index: Mapped[int] = mapped_column(nullable=False, default=0)
     is_feature: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    source_url: Mapped[str] = mapped_column(Text, nullable=True)
     data_quality: Mapped[str] = mapped_column(String(80), nullable=True)
     source_note: Mapped[str] = mapped_column(Text, nullable=True)
+    is_public: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
     event: Mapped["Event"] = relationship(back_populates="sessions")
     results: Mapped[list["Result"]] = relationship(

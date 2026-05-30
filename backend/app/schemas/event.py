@@ -19,6 +19,11 @@ class EventRead(BaseModel):
     start_date: date
     end_date: date
     status: str
+    source_url: str | None = None
+    data_quality: str | None = None
+    source_note: str | None = None
+    is_public: bool = True
+    is_active: bool = True
     category: CategoryRead
     circuit: CircuitRead
 
@@ -35,6 +40,11 @@ class EventSessionRead(BaseModel):
     status: str
     order_index: int
     is_feature: bool
+    source_url: str | None = None
+    data_quality: str | None = None
+    source_note: str | None = None
+    is_public: bool = True
+    is_active: bool = True
     results: list[ResultRead] = []
 
     model_config = ConfigDict(from_attributes=True)
@@ -53,6 +63,11 @@ class EventWrite(BaseModel):
     start_date: date
     end_date: date
     status: str
+    source_url: str | None = None
+    data_quality: str | None = None
+    source_note: str | None = None
+    is_public: bool = True
+    is_active: bool = True
 
     @model_validator(mode="after")
     def validate_dates(self):
@@ -74,3 +89,8 @@ class EventUpdate(BaseModel):
     start_date: date | None = None
     end_date: date | None = None
     status: str | None = None
+    source_url: str | None = None
+    data_quality: str | None = None
+    source_note: str | None = None
+    is_public: bool | None = None
+    is_active: bool | None = None

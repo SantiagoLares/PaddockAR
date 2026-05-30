@@ -3,331 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TTHJ7Z4B');
+  </script>
+  <!-- End Google Tag Manager -->
   <title>PaddockAR | Agenda motor</title>
   <meta name="description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
-  <meta name="theme-color" content="#0B0F14" />
+  <meta name="theme-color" content="#080808" />
   <meta property="og:title" content="PaddockAR | Agenda motor" />
   <meta property="og:description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://paddockar.com.ar/" />
   <link rel="canonical" href="https://paddockar.com.ar/" />
   <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/css/base.css?v=20260504" />
-  <link rel="stylesheet" href="assets/css/components/topbar.css?v=20260501" />
-  <link rel="stylesheet" href="assets/css/components/layout.css?v=20260504" />
-  <link rel="stylesheet" href="assets/css/components/summary.css?v=20260501" />
-  <link rel="stylesheet" href="assets/css/components/filters.css?v=20260501" />
-  <link rel="stylesheet" href="assets/css/components/badges.css?v=20260504" />
-  <link rel="stylesheet" href="assets/css/components/status.css?v=20260504" />
-  <link rel="stylesheet" href="assets/css/index.css?v=20260504" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css?v=20260519" />
+  <link rel="stylesheet" href="assets/css/index.css?v=20260524b" />
 </head>
-<body class="page-shell-1180 home-with-sidebar home-redline">
-  <aside id="sideNav" class="side-nav sidebar" aria-label="Categorias">
-    <div class="side-nav-head">
-      <div class="side-nav-title">Categorias</div>
-      <button class="side-nav-close mono" type="button" data-sidebar-close aria-label="Cerrar menu">x</button>
+<body class="home-index-v2">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTHJ7Z4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="logo-pulse"></div>
+      <a class="logo-link" href="index.html" aria-label="Ir a inicio">
+        <div class="logo">PADDOCK<span>AR</span></div>
+      </a>
     </div>
-    <div class="side-nav-scroll">
-      <button class="side-nav-item mono active" type="button" data-side-category="all" title="Todas las categorias">
-        <span class="side-nav-item-label">Todos</span>
-        <span class="side-nav-indicator" data-side-indicator></span>
-      </button>
-      <div class="side-nav-section">
-        <button class="side-nav-section-toggle mono" type="button" aria-expanded="true">
-          <span>DESTACADO</span>
-          <span class="side-nav-chevron">v</span>
-        </button>
-        <div class="side-nav-section-body">
-          <button class="side-nav-item mono side-nav-item--primary" type="button" data-side-category="F1" title="Formula 1">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="f1"><span class="category-badge__text">F1</span></span><span class="side-nav-item-name">Formula 1</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-          <button class="side-nav-item mono side-nav-item--primary" type="button" data-side-category="MotoGP" title="MotoGP">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="motogp"><span class="category-badge__text">MotoGP</span></span><span class="side-nav-item-name">MotoGP</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-          <button class="side-nav-item mono side-nav-item--primary" type="button" data-side-category="WEC" title="World Endurance Championship">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="wec"><span class="category-badge__text">WEC</span></span><span class="side-nav-item-name">WEC</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-        </div>
-      </div>
-      <div class="side-nav-section">
-        <button class="side-nav-section-toggle mono" type="button" aria-expanded="true">
-          <span>ARGENTINA</span>
-          <span class="side-nav-chevron">v</span>
-        </button>
-        <div class="side-nav-section-body">
-          <div class="side-nav-section side-nav-subsection">
-            <button class="side-nav-section-toggle mono side-nav-subsection-toggle" type="button" aria-expanded="true">
-              <span>ACTC</span>
-              <span class="side-nav-chevron">v</span>
-            </button>
-            <div class="side-nav-section-body side-nav-subsection-body">
-              <button class="side-nav-item mono side-nav-item--primary" type="button" data-side-category="TC" title="Turismo Carretera">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="tc"><span class="category-badge__text">TC</span></span><span class="side-nav-item-name">Turismo Carretera</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TCP" title="TC Pista">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tcp"><span class="category-badge__text">TCP</span></span><span class="side-nav-item-name">TC Pista</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TCM" title="TC Mouras">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tcm"><span class="category-badge__text">TCM</span></span><span class="side-nav-item-name">TC Mouras</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TCPM" title="TC Pista Mouras">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tcpm"><span class="category-badge__text">TCPM</span></span><span class="side-nav-item-name">TC Pista Mouras</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TCPK" title="TC Pick Up">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tcpk"><span class="category-badge__text">TCPK</span></span><span class="side-nav-item-name">Pick Up</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TCPPK" title="TC Pista Pick Up">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tcppk"><span class="category-badge__text">TCPPK</span></span><span class="side-nav-item-name">Pista Pick Up</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-            </div>
-          </div>
-          <div class="side-nav-section side-nav-subsection">
-            <button class="side-nav-section-toggle mono side-nav-subsection-toggle" type="button" aria-expanded="true">
-              <span>TURISMO PISTA</span>
-              <span class="side-nav-chevron">v</span>
-            </button>
-            <div class="side-nav-section-body side-nav-subsection-body">
-              <button class="side-nav-item mono" type="button" data-side-category="TP C3" title="Turismo Pista Clase 3">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tpc3"><span class="category-badge__text">TP C3</span></span><span class="side-nav-item-name">Clase 3</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TP C2" title="Turismo Pista Clase 2">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tpc2"><span class="category-badge__text">TP C2</span></span><span class="side-nav-item-name">Clase 2</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TP C1" title="Turismo Pista Clase 1">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tpc1"><span class="category-badge__text">TP C1</span></span><span class="side-nav-item-name">Clase 1</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-            </div>
-          </div>
-          <div class="side-nav-section side-nav-subsection">
-            <button class="side-nav-section-toggle mono side-nav-subsection-toggle" type="button" aria-expanded="true">
-              <span>TURISMO NACIONAL</span>
-              <span class="side-nav-chevron">v</span>
-            </button>
-            <div class="side-nav-section-body side-nav-subsection-body">
-              <button class="side-nav-item mono" type="button" data-side-category="TN C3" title="Turismo Nacional Clase 3">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tnc3"><span class="category-badge__text">TN C3</span></span><span class="side-nav-item-name">Clase 3</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-              <button class="side-nav-item mono" type="button" data-side-category="TN C2" title="Turismo Nacional Clase 2">
-                <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="tnc2"><span class="category-badge__text">TN C2</span></span><span class="side-nav-item-name">Clase 2</span></span>
-                <span class="side-nav-indicator" data-side-indicator></span>
-              </button>
-            </div>
-          </div>
-          <button class="side-nav-item mono" type="button" data-side-category="TC2000" title="TC2000">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="tc2000"><span class="category-badge__text">TC2000</span></span><span class="side-nav-item-name">TC2000</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-          <button class="side-nav-item mono" type="button" data-side-category="TR" title="Top Race">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="tr"><span class="category-badge__text">TR</span></span><span class="side-nav-item-name">Top Race</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-          <button class="side-nav-item mono" type="button" data-side-category="T4000" title="Turismo 4000 Argentino">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="t4000"><span class="category-badge__text">T4000</span></span><span class="side-nav-item-name">Turismo 4000</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-          <button class="side-nav-item mono" type="button" data-side-category="BORA" title="Copa Bora">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact" data-category-code="bora"><span class="category-badge__text">BORA</span></span><span class="side-nav-item-name">Copa Bora</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-        </div>
-      </div>
-      <div class="side-nav-section">
-        <button class="side-nav-section-toggle mono" type="button" aria-expanded="true">
-          <span>INTERNACIONAL</span>
-          <span class="side-nav-chevron">v</span>
-        </button>
-        <div class="side-nav-section-body">
-          <button class="side-nav-item mono side-nav-item--primary" type="button" data-side-category="F2" title="Formula 2">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="f2"><span class="category-badge__text">F2</span></span><span class="side-nav-item-name">Formula 2</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-          <button class="side-nav-item mono" type="button" data-side-category="F3" title="Formula 3">
-            <span class="side-nav-item-label"><span class="category-badge category-badge--compact category-badge--active" data-category-code="f3"><span class="category-badge__text">F3</span></span><span class="side-nav-item-name">Formula 3</span></span>
-            <span class="side-nav-indicator" data-side-indicator></span>
-          </button>
-        </div>
-      </div>
+    <div class="topbar-center" aria-label="Navegaci&oacute;n principal">
+      <a class="nav-link active" href="index.html">Inicio</a>
+      <a class="nav-link" href="calendar.html">Calendario</a>
+      <a class="nav-link" href="categories.html">Categor&iacute;as</a>
+      <a class="nav-link" href="admin/index.html">Admin</a>
     </div>
-  </aside>
-  <div id="sideNavBackdrop" class="side-nav-backdrop overlay" data-sidebar-close></div>
-  <nav class="topbar">
-    <div class="topbar-inner">
-      <button id="sideNavToggle" class="side-nav-toggle mono" type="button" aria-controls="sideNav" aria-expanded="false" aria-label="Abrir categorias">
-        <span class="hamburger-lines" aria-hidden="true"></span>
-      </button>
-      <div class="brand">
-        <a class="logo-link" href="index.html" aria-label="Ir a inicio">
-          <div class="logo">PADDOCK<span>AR</span></div>
-        </a>
-        <div class="tagline">agenda motor</div>
-      </div>
-      <div class="nav-links mono" aria-label="Navegacion">
-        <a class="active" href="index.html">Inicio</a>
-        <a href="calendar.html">Calendario</a>
-      </div>
-      <div class="clock mono">
-        <span class="pulse"></span>
-        <span id="clock">--:--:--</span>
+    <div class="topbar-right">
+      <div class="clock">
+        <span class="logo-pulse topbar-pulse"></span>
+        <strong id="clockDisplay">--:--:--</strong>
         <span>ARG</span>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <main>
-    <section class="home-hero">
-      <div class="hero-copy">
-        <div class="hero-kicker mono">Agenda en hora argentina</div>
-        <h1>Agenda motor compacta para Argentina.</h1>
-        <p class="subtitle hero-subtitle">Consulta horarios de automovilismo con una lectura clara, local y enfocada en lo que corre este fin de semana.</p>
-        <div class="hero-actions">
-          <a class="hero-button hero-button--primary" href="#sessionList">Ver proximas sesiones</a>
-          <a class="hero-button hero-button--ghost" href="calendar.html">Abrir calendario</a>
-        </div>
-        <div class="hero-note mono">Formula 1, MotoGP, WEC y categorias nacionales en horario ARG.</div>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Filtros de agenda">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Estado</div>
+        <div id="statusFilters"></div>
       </div>
 
-      <div class="hero-stack">
-        <section class="summary">
-          <div>
-            <div class="summary-eyebrow mono">Panel en vivo</div>
-            <div class="summary-title">Proximas sesiones</div>
-          </div>
-          <div class="summary-status mono">
-            <div id="apiState" class="api-state">Conectando API</div>
-            <div id="lastUpdated" class="last-updated" aria-live="polite">Esperando datos</div>
-          </div>
-        </section>
-
-        <section id="raceSpotlight" class="race-spotlight" aria-live="polite"></section>
-        <section id="nextRaces" class="next-races" aria-live="polite"></section>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Categor&iacute;a</div>
+        <div id="categoryFilters"></div>
       </div>
-    </section>
+    </aside>
 
-    <section class="home-categories home-panel" aria-label="Explorar categorias">
-      <div class="section-heading">
-        <div>
-          <div class="section-kicker mono">Explorar por categoria</div>
-          <h2 class="section-display">Cobertura principal</h2>
+    <main class="main">
+      <header class="main-header">
+        <div class="main-header-left">
+          <div class="main-eyebrow" id="weekendEyebrow">Este fin de semana</div>
+          <h1 class="main-title">Eventos y sesiones</h1>
+          <div class="main-sub">Horarios en Argentina (GMT-3) &middot; Calendario de automovilismo</div>
         </div>
-        <p class="section-caption">Accesos directos a las categorias mas seguidas del calendario.</p>
-      </div>
-      <div class="category-pill-groups">
-        <div class="category-pill-group">
-          <div class="category-pill-group-label mono">Internacional</div>
-          <div class="category-pills">
-            <a class="category-pill category-pill--f1 category-pill--active" href="category.html?cat=f1">Formula 1</a>
-            <a class="category-pill category-pill--motogp" href="category.html?cat=motogp">MotoGP</a>
-            <a class="category-pill category-pill--wec" href="category.html?cat=wec">WEC</a>
-            <a class="category-pill category-pill--f2" href="category.html?cat=f2">Formula 2</a>
-            <a class="category-pill category-pill--f3" href="category.html?cat=f3">Formula 3</a>
-          </div>
-        </div>
-        <div class="category-pill-group">
-          <div class="category-pill-group-label mono">Argentina</div>
-          <div class="category-pills">
-            <a class="category-pill category-pill--tc" href="category.html?cat=tc">Turismo Carretera</a>
-            <a class="category-pill category-pill--tn" href="category.html?cat=tn-c3">Turismo Nacional</a>
-            <a class="category-pill category-pill--tc2000" href="category.html?cat=tc2000">TC2000</a>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="main-header-right" id="mainStats" aria-label="Resumen de agenda"></div>
+      </header>
 
-    <section class="month-context home-panel" aria-label="Calendario del mes">
-      <div class="section-heading">
-        <div>
-          <div class="section-kicker mono">Contexto mensual</div>
-          <h2 class="section-display">Calendario</h2>
-        </div>
-        <p class="section-caption">Panorama del mes con fines de semana cargados y acceso rapido al calendario completo.</p>
-      </div>
-      <section id="monthCalendar" class="month-calendar" aria-live="polite"></section>
-    </section>
-
-    <section class="data-stage home-panel">
-      <div class="data-stage-head">
-        <div>
-          <div class="section-kicker mono">Lectura por jornada</div>
-          <h2 class="section-display">Cronograma del fin de semana</h2>
-        </div>
-        <p class="section-caption">Vista compacta por dia, evento y estado de sesion.</p>
+      <div class="api-bar">
+        <div class="api-dot" id="apiDot"></div>
+        <div class="api-text" id="apiText">Conectando API</div>
       </div>
 
-      <section class="filters" aria-label="Filtros">
-        <div class="filter-group" id="categoryFilters">
-          <button class="filter-button mono active" type="button" data-category="all">Todos</button>
-          <button class="filter-button mono" type="button" data-category="F1">F1</button>
-          <button class="filter-button mono" type="button" data-category="MotoGP">MotoGP</button>
-          <button class="filter-button mono" type="button" data-category="F2">F2</button>
-          <button class="filter-button mono" type="button" data-category="F3">F3</button>
-          <button class="filter-button mono" type="button" data-category="WEC">WEC</button>
-          <button class="filter-button mono" type="button" data-category="TC">TC</button>
-          <button class="filter-button mono" type="button" data-category="TN">TN</button>
-          <button class="filter-button mono" type="button" data-category="TN C2">TN C2</button>
-          <button class="filter-button mono" type="button" data-category="TN C3">TN C3</button>
-        </div>
-        <div class="filter-group" id="statusFilters">
-          <button class="filter-button mono active" type="button" data-status="all">Todos</button>
-          <button class="filter-button mono" type="button" data-status="upcoming">Proximas</button>
-          <button class="filter-button mono" type="button" data-status="live">En vivo</button>
-          <button class="filter-button mono" type="button" data-status="finished">Finalizadas</button>
-        </div>
-      </section>
-
-      <section id="sessionList" class="board" aria-live="polite"></section>
-    </section>
-
-    <section class="support-card" aria-label="Apoyo al proyecto">
-      <div class="support-card__title">Apoya PaddockAR</div>
-      <p class="support-card__text">Si te sirve el calendario y queres ayudar a mantener el proyecto, podes invitarme un cafecito.</p>
-      <a class="support-card__button" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__grid">
-        <section class="site-footer__column">
-          <div class="site-footer__brand">PaddockAR</div>
-          <p class="site-footer__text">Agenda compacta de automovilismo.</p>
-          <p class="site-footer__text">Horarios en Argentina.</p>
-        </section>
-        <section class="site-footer__column">
-          <div class="site-footer__title">Producto</div>
-          <nav class="site-footer__links" aria-label="Producto">
-            <a href="index.html">Inicio</a>
-            <a href="calendar.html">Calendario</a>
-            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer" data-api-health-link>Estado API</a>
-          </nav>
-        </section>
-        <section class="site-footer__column">
-          <div class="site-footer__title">Proyecto</div>
-          <nav class="site-footer__links" aria-label="Proyecto">
-            <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="footer-support-link" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
-            <a href="#">Contacto</a>
-            <span>Datos sujetos a cambios</span>
-          </nav>
-        </section>
-      </div>
-      <div class="site-footer__bottom mono">
-        &copy; 2026 PaddockAR. Proyecto independiente.
-      </div>
-    </div>
-  </footer>
+      <section class="spotlight" id="spotlight" aria-live="polite"></section>
+      <section class="event-feed" id="eventFeed" aria-live="polite"></section>
+    </main>
+  </div>
 
   <script src="assets/vendor/dayjs/dayjs.min.js"></script>
   <script src="assets/vendor/dayjs/plugin-utc.js"></script>
@@ -339,6 +100,7 @@
   <script src="assets/js/common.js?v=20260506"></script>
   <script src="assets/js/api.js?v=20260501"></script>
   <script src="assets/js/dom.js?v=20260504"></script>
-  <script src="assets/js/index.js?v=20260504"></script>
+  <script src="assets/js/seo.js?v=20260522"></script>
+  <script src="assets/js/index.js?v=20260524c"></script>
 </body>
 </html>

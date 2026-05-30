@@ -168,6 +168,53 @@
     return categoryPageSlugAliases[slug] || slug;
   }
 
+  function looksLikeMojibake(value) {
+    return /(?:Ã.|Â.|â.|�)/.test(String(value || ""));
+  }
+
+  function repairMojibake(value) {
+    if (typeof value !== "string" || !looksLikeMojibake(value) || !window.TextDecoder) {
+      return value;
+    }
+
+    try {
+      const bytes = Uint8Array.from(value, (char) => char.charCodeAt(0));
+      const decoded = new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+      return decoded && !decoded.includes("\uFFFD") ? decoded : value;
+    } catch (_error) {
+      return value;
+    }
+  }
+
+  function repairText(value) {
+    return typeof value === "string" ? repairMojibake(value) : value;
+  }
+
+  function repairEntityText(entity) {
+    if (!entity || typeof entity !== "object") return entity;
+
+    if (Array.isArray(entity)) {
+      return entity.map((item) => repairEntityText(item));
+    }
+
+    return Object.fromEntries(
+      Object.entries(entity).map(([key, value]) => {
+        if (typeof value === "string") return [key, repairText(value)];
+        if (value && typeof value === "object") return [key, repairEntityText(value)];
+        return [key, value];
+      }),
+    );
+  }
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   function stripRomanRoundSuffix(value) {
     return String(value || "")
       .trim()
@@ -176,14 +223,14 @@
   }
 
   function cleanEventName(value) {
-    return stripRomanRoundSuffix(value);
+    return repairText(stripRomanRoundSuffix(value));
   }
 
   function eventDisplayName(event) {
     const categorySlug = normalizeCategoryParam(event?.category?.slug || event?.category?.short_name || "");
-    const city = String(event?.circuit?.city || "").trim();
-    const country = String(event?.circuit?.country || "").trim();
-    const circuitName = String(event?.circuit?.name || "").trim();
+    const city = repairText(String(event?.circuit?.city || "").trim());
+    const country = repairText(String(event?.circuit?.country || "").trim());
+    const circuitName = repairText(String(event?.circuit?.name || "").trim());
     const fallbackName = cleanEventName(event?.name);
 
     if (categorySlug === "f1" || categorySlug === "f2") {
@@ -206,7 +253,7 @@
   }
 
   function getCategoryBadgeText(category) {
-    return String(category?.short_name || category?.name || "CAT").trim();
+    return repairText(String(category?.short_name || category?.name || "CAT").trim());
   }
 
   function renderCategoryBadge(category, {
@@ -478,6 +525,9 @@
     categoryPageSlug,
     categoryHref,
     normalizeCategoryParam,
+    repairText,
+    repairEntityText,
+    escapeHTML,
     cleanEventName,
     eventDisplayName,
     matchesCategoryFilter,

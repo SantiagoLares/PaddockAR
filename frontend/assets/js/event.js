@@ -6,7 +6,6 @@ const {
   renderIcon,
   renderIconLabel,
   statusLabels,
-  renderCategoryBadge,
   isPrimarySession,
   isLiveSession,
   getSessionWinner,
@@ -39,7 +38,11 @@ function formatSessionDate(value) {
   };
 }
 
-function statusMarkup(status) {
+function statusMarkup(status, { isFeature = false } = {}) {
+  if (status === "scheduled") {
+    return isFeature ? '<span class="session-accent-dot" aria-hidden="true"></span>' : "";
+  }
+
   const label = statusLabels[status] || status.toUpperCase();
   const icon = status === "live"
     ? `${renderIcon("radio", { size: 12, className: "status-icon" })}<span class="live-dot"></span>`
@@ -49,6 +52,14 @@ function statusMarkup(status) {
 
 function getSessionStatus(session) {
   return isLiveSession(session) ? "live" : session.status || "scheduled";
+}
+
+function getSessionContextLine(session, status) {
+  if (status === "live") return "En pista ahora";
+  if (status === "finished") return "Sesion completada";
+  if (status === "cancelled") return "Sesion cancelada";
+  if (isPrimarySession(session)) return "Evento principal del fin de semana";
+  return "";
 }
 
 function renderResultsTable(session) {
@@ -101,61 +112,67 @@ function renderEvent(event) {
       const isFeature = isPrimarySession(session);
       const status = getSessionStatus(session);
       const isLive = status === "live";
+      const contextLine = getSessionContextLine(session, status);
 
       return `
-          <section class="session-block">
-            <div class="session-row ${isFeature ? "feature" : ""} ${isLive ? "is-live" : ""}" ${isFeature ? `data-category-code="${code}"` : ""}>
-              <div class="date-time mono">
-                <span class="date-time-main">${date.time} ARG</span>
-                <span>${date.date}</span>
-              </div>
-              <div class="session-name">
-                ${isFeature ? '<span class="session-marker" aria-hidden="true"></span><span class="session-primary-tag mono">CARRERA</span>' : ""}
-                <span>${session.name}</span>
-              </div>
-              ${statusMarkup(status)}
+        <section class="session-block ${isFeature ? "feature" : ""} ${isLive ? "is-live" : ""}" ${isFeature ? `data-category-code="${code}"` : ""}>
+          <div class="session-row">
+            <div class="session-timing mono">
+              <span class="session-day">${date.date}</span>
+              <span class="session-time">${date.time} ARG</span>
             </div>
-            ${renderResultsTable(session)}
-          </section>
-        `;
+            <div class="session-copy">
+              <div class="session-title-row">
+                <h2 class="session-name">${session.name}</h2>
+                ${statusMarkup(status, { isFeature })}
+              </div>
+              ${contextLine ? `<p class="session-context">${contextLine}</p>` : ""}
+            </div>
+          </div>
+          ${renderResultsTable(session)}
+        </section>
+      `;
     })
     .join("");
 
   setHTML(app, `
-        <section class="hero" data-category-code="${code}">
-          <header class="hero-head">
-            ${renderCategoryBadge(category)}
-            <div>
-              <h1>${cleanEventName(event.name)}</h1>
-              <div class="category-name">${category.name}</div>
-            </div>
-          </header>
-
-          <div class="info-grid">
-            <div class="info-item">
-              <div class="label mono">${renderIconLabel("flag", "Circuito", { iconSize: 12 })}</div>
-              <div class="value">${circuit.name}</div>
-            </div>
-            <div class="info-item">
-              <div class="label mono">${renderIconLabel("map-pin", "Ubicacion", { iconSize: 12 })}</div>
-              <div class="value">${circuit.city ? `${circuit.city}, ${circuit.country}` : circuit.country}</div>
-            </div>
-            <div class="info-item">
-              <div class="label mono">${renderIconLabel("clock-3", "Inicio", { iconSize: 12 })}</div>
-              <div class="value mono">${formatDate(event.start_date)}</div>
-            </div>
-            <div class="info-item">
-              <div class="label mono">${renderIconLabel("clock-3", "Fin", { iconSize: 12 })}</div>
-              <div class="value mono">${formatDate(event.end_date)}</div>
-            </div>
+    <section class="hero" data-category-code="${code}">
+      <header class="hero-head">
+        <div class="hero-copy">
+          <div class="hero-kicker mono">${category.name}</div>
+          <h1>${cleanEventName(event.name)}</h1>
+          <div class="hero-meta">
+            <span>${circuit.name}</span>
+            <span>${circuit.city ? `${circuit.city}, ${circuit.country}` : circuit.country}</span>
+            <span class="mono">${formatDate(event.start_date)} - ${formatDate(event.end_date)}</span>
           </div>
-        </section>
+        </div>
+      </header>
 
-        <div class="section-title mono">Sesiones</div>
-        <section class="sessions">
-          ${sessionRows || renderEmpty("Todavía no hay sesiones publicadas", "Cuando el evento tenga cronograma lo vas a ver acá.")}
-        </section>
-      `);
+      <div class="hero-facts" aria-label="Detalles del evento">
+        <div class="hero-fact">
+          <div class="hero-fact-label mono">${renderIconLabel("flag", "Circuito", { iconSize: 12 })}</div>
+          <div class="hero-fact-value">${circuit.name}</div>
+        </div>
+        <div class="hero-fact">
+          <div class="hero-fact-label mono">${renderIconLabel("map-pin", "Ubicacion", { iconSize: 12 })}</div>
+          <div class="hero-fact-value">${circuit.city ? `${circuit.city}, ${circuit.country}` : circuit.country}</div>
+        </div>
+        <div class="hero-fact">
+          <div class="hero-fact-label mono">${renderIconLabel("clock-3", "Inicio", { iconSize: 12 })}</div>
+          <div class="hero-fact-value mono">${formatDate(event.start_date)}</div>
+        </div>
+        <div class="hero-fact">
+          <div class="hero-fact-label mono">${renderIconLabel("clock-3", "Fin", { iconSize: 12 })}</div>
+          <div class="hero-fact-value mono">${formatDate(event.end_date)}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sessions">
+      ${sessionRows || renderEmpty("Todavía no hay sesiones publicadas", "Cuando el evento tenga cronograma lo vas a ver acá.")}
+    </section>
+  `);
 }
 
 async function loadEvent() {

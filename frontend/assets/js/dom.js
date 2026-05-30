@@ -7,30 +7,31 @@
     element.textContent = text;
   }
 
-  function renderStateCard(kind, title, description = "", action = "") {
+  function renderStateCard(kind, title, description = "", action = "", eyebrow = "Estado") {
     const detail = description ? `<div class="state-description">${description}</div>` : "";
     const actionMarkup = action ? `<div class="state-action">${action}</div>` : "";
     return `
-      <div class="${kind}">
+      <section class="state-card state-card--${kind}">
+        <div class="state-eyebrow mono">${eyebrow}</div>
         <div class="state-title">${title}</div>
         ${detail}
         ${actionMarkup}
-      </div>
+      </section>
     `;
   }
 
   function renderEmpty(title, description = "") {
-    return renderStateCard("empty", title, description);
+    return renderStateCard("empty", title, description, "", "Sin actividad");
   }
 
-  function renderLoading(title = "Cargando agenda", description = "Estamos buscando la información más reciente.") {
-    return renderStateCard("loading", title, description);
+  function renderLoading(title = "Sincronizando agenda", description = "Estamos buscando la informacion mas reciente.") {
+    return renderStateCard("loading", title, description, "", "Cargando");
   }
 
   function renderError(
     title,
     {
-      description = "Probá nuevamente en unos segundos.",
+      description = "Proba nuevamente en unos segundos.",
       retry = false,
       retryLabel = "Reintentar",
     } = {},
@@ -38,7 +39,7 @@
     const action = retry
       ? `<button class="retry-button mono" type="button" data-retry>${retryLabel}</button>`
       : "";
-    return renderStateCard("error", title, description, action);
+    return renderStateCard("error", title, description, action, "Sin conexion");
   }
 
   function skeletonLine(width = "100%", extraClass = "") {

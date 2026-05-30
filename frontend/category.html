@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR | Agenda motor</title>
-  <meta name="description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TTHJ7Z4B');
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Horarios de categoría | PaddockAR</title>
+  <meta name="description" content="Consultá los horarios, eventos y calendario de la categoría en Argentina en PaddockAR. Prácticas, clasificaciones, sprints y carreras actualizadas." />
+  <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0B0F14" />
-  <meta property="og:title" content="PaddockAR | Agenda motor" />
-  <meta property="og:description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta property="og:title" content="Horarios de categoría | PaddockAR" />
+  <meta property="og:description" content="Consultá los horarios, eventos y calendario de la categoría en Argentina en PaddockAR. Prácticas, clasificaciones, sprints y carreras actualizadas." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://paddockar.com.ar/category.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Horarios de categoría | PaddockAR" />
+  <meta name="twitter:description" content="Consultá los horarios, eventos y calendario de la categoría en Argentina en PaddockAR. Prácticas, clasificaciones, sprints y carreras actualizadas." />
   <link rel="canonical" href="https://paddockar.com.ar/category.html" />
   <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/base.css?v=20260504" />
@@ -19,8 +32,90 @@
   <link rel="stylesheet" href="assets/css/components/badges.css" />
   <link rel="stylesheet" href="assets/css/components/status.css" />
   <link rel="stylesheet" href="assets/css/category.css" />
+  <script>
+    // SEO: Update metadata dynamically based on category parameter
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('cat') || urlParams.get('slug');
+      
+      const seoData = {
+        f1: {
+          title: 'Horarios de Fórmula 1 en Argentina | PaddockAR',
+          description: 'Consultá los horarios de Fórmula 1 en Argentina: prácticas, clasificación, sprint y carrera actualizados en PaddockAR.',
+          canonical: 'https://paddockar.com.ar/category.html?cat=f1'
+        },
+        f2: {
+          title: 'Horarios de Fórmula 2 en Argentina | PaddockAR',
+          description: 'Agenda actualizada de Fórmula 2 con horarios en Argentina para entrenamientos, clasificación, sprint y carrera.',
+          canonical: 'https://paddockar.com.ar/category.html?cat=f2'
+        },
+        motogp: {
+          title: 'Horarios de MotoGP en Argentina | PaddockAR',
+          description: 'Agenda actualizada de MotoGP con horarios en Argentina para entrenamientos, clasificación, sprint y carrera.',
+          canonical: 'https://paddockar.com.ar/category.html?cat=motogp'
+        },
+        tc: {
+          title: 'Horarios de Turismo Carretera en Argentina | PaddockAR',
+          description: 'Calendario y horarios del Turismo Carretera en Argentina. Fechas, sesiones y carreras actualizadas en PaddockAR.',
+          canonical: 'https://paddockar.com.ar/category.html?cat=tc'
+        },
+        tn: {
+          title: 'Horarios de Turismo Nacional en Argentina | PaddockAR',
+          description: 'Consultá los horarios del Turismo Nacional en Argentina con fechas, sesiones y carreras actualizadas.',
+          canonical: 'https://paddockar.com.ar/category.html?cat=tn'
+        },
+        wec: {
+          title: 'Horarios del WEC en Argentina | PaddockAR',
+          description: 'Agenda del Campeonato Mundial de Resistencia con horarios en Argentina, fechas, clasificaciones y carreras.',
+          canonical: 'https://paddockar.com.ar/category.html?cat=wec'
+        }
+      };
+      
+      const categoryLower = category ? category.toLowerCase() : null;
+      const seo = categoryLower && seoData[categoryLower] ? seoData[categoryLower] : null;
+      
+      if (seo) {
+        // Update title
+        document.title = seo.title;
+        
+        // Update meta description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', seo.description);
+        
+        // Update og:title
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', seo.title);
+        
+        // Update og:description
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', seo.description);
+        
+        // Update og:url
+        let ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', seo.canonical);
+        
+        // Update twitter:title
+        let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute('content', seo.title);
+        
+        // Update twitter:description
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDesc) twitterDesc.setAttribute('content', seo.description);
+        
+        // Update canonical
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', seo.canonical);
+      }
+    })();
+  </script>
 </head>
-<body class="page-shell-940 premium-page">
+<body class="page-shell-940 premium-page race-page category-page">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTHJ7Z4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <nav class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -32,6 +127,8 @@
       <div class="nav-links mono" aria-label="Navegacion">
         <a href="index.html">Inicio</a>
         <a href="calendar.html">Calendario</a>
+        <a class="active" href="index.html#categories">Categorias</a>
+        <a href="admin/events.html">Admin</a>
       </div>
     </div>
   </nav>
@@ -39,13 +136,29 @@
   <main>
     <section class="summary">
       <div class="category-summary-copy">
+        <div class="summary-kicker mono"><span class="summary-kicker-dot" aria-hidden="true"></span>Seguimiento por campeonato</div>
         <h1 id="categoryName" class="category-page-title">Categoria</h1>
         <div id="categorySubtitle" class="subtitle">Calendario, proximas carreras y campeonato.</div>
       </div>
       <div class="category-summary-actions">
-        <a class="category-home-link mono" href="index.html">Volver a Inicio</a>
+        <a class="category-home-link summary-link mono" href="index.html">Volver a Inicio</a>
+        <a class="summary-link" href="calendar.html">Ver calendario</a>
         <div id="apiState" class="api-state mono">Conectando API</div>
       </div>
+    </section>
+
+    <section class="category-seo" aria-labelledby="categorySeoTitle">
+      <div class="category-seo__eyebrow mono">Explora por categoria</div>
+      <h2 id="categorySeoTitle">Horarios por categoría de automovilismo</h2>
+      <p class="category-seo__description">
+        PaddockAR permite consultar eventos, sesiones y horarios por categoría en hora argentina, con una vista clara para seguir F1, MotoGP, Turismo Carretera, Turismo Nacional, WEC, F2, TC2000 y Top Race desde un solo lugar.
+      </p>
+      <ul class="category-seo__list">
+        <li>Eventos agrupados por categoría.</li>
+        <li>Horarios en Argentina.</li>
+        <li>Sesiones como prácticas, clasificaciones, sprints y carreras.</li>
+        <li>Detalle de circuitos y países.</li>
+      </ul>
     </section>
 
     <section id="categoryHero" class="category-hero" aria-live="polite"></section>
@@ -67,26 +180,50 @@
 
   <footer class="site-footer">
     <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <section class="site-footer__intro">
+          <div class="site-footer__eyebrow">Cierre de vuelta</div>
+          <div class="site-footer__brand">PaddockAR</div>
+          <p class="site-footer__lead">
+            Vista por categoria para seguir campeonatos, proximos eventos y actividad del fin de semana en una sola lectura.
+          </p>
+          <div class="site-footer__status">
+            <span class="site-footer__pill">Categoria activa</span>
+            <span class="site-footer__pill">Campeonato</span>
+            <span class="site-footer__pill">Horarios ARG</span>
+          </div>
+        </section>
+
+        <aside class="site-footer__support">
+          <div class="site-footer__title">Apoya el proyecto</div>
+          <p class="site-footer__support-copy">
+            PaddockAR se mantiene como proyecto independiente. Tu apoyo ayuda a sostener datos, horarios y nuevas mejoras.
+          </p>
+          <a class="site-footer__support-link" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
+        </aside>
+      </div>
+
       <div class="site-footer__grid">
         <section class="site-footer__column">
-          <div class="site-footer__brand">PaddockAR</div>
-          <p class="site-footer__text">Agenda compacta de automovilismo.</p>
-          <p class="site-footer__text">Horarios en Argentina.</p>
-        </section>
-        <section class="site-footer__column">
-          <div class="site-footer__title">Producto</div>
-          <nav class="site-footer__links" aria-label="Producto">
+          <div class="site-footer__title">Navegacion</div>
+          <nav class="site-footer__links" aria-label="Navegacion">
             <a href="index.html">Inicio</a>
             <a href="calendar.html">Calendario</a>
-            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer" data-api-health-link>Estado API</a>
+            <a href="category.html?slug=f1">Categorias</a>
           </nav>
+        </section>
+        <section class="site-footer__column">
+          <div class="site-footer__title">Cobertura</div>
+          <div class="site-footer__stack">
+            <p class="site-footer__text">Eventos, horarios, circuitos y paises por categoria con lectura local en Argentina.</p>
+            <p class="site-footer__text">F1, MotoGP, TC, Turismo Nacional, WEC, F2, TC2000 y Top Race.</p>
+          </div>
         </section>
         <section class="site-footer__column">
           <div class="site-footer__title">Proyecto</div>
           <nav class="site-footer__links" aria-label="Proyecto">
             <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="footer-support-link" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
-            <a href="#">Contacto</a>
+            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer" data-api-health-link>Estado API</a>
             <span>Datos sujetos a cambios</span>
           </nav>
         </section>
@@ -109,6 +246,7 @@
   <script src="assets/js/charts.js?v=20260506"></script>
   <script src="assets/js/api.js"></script>
   <script src="assets/js/dom.js?v=20260504"></script>
+  <script src="assets/js/seo.js?v=20260521"></script>
   <script src="assets/js/category.js?v=20260504"></script>
 </body>
 </html>

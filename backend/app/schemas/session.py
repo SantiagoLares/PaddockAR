@@ -16,6 +16,11 @@ class SessionRead(BaseModel):
     status: str
     order_index: int
     is_feature: bool
+    source_url: str | None = None
+    data_quality: str | None = None
+    source_note: str | None = None
+    is_public: bool = True
+    is_active: bool = True
     event: EventRead
     results: list[ResultRead] = []
 
@@ -28,3 +33,8 @@ class SessionUpdate(BaseModel):
     starts_at: datetime | None = None
     ends_at: datetime | None = None
     status: str | None = None
+    source_url: str | None = None
+    data_quality: str | None = None
+    source_note: str | None = None
+    is_public: bool | None = None
+    is_active: bool | None = None

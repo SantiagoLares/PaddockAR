@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.core.database import get_db
 from app.core.text_normalization import normalize_session
+from app.models.category import Category
 from app.models.event import Event
 from app.models.session import Session as EventSession
 from app.schemas.session import SessionRead
@@ -15,10 +16,24 @@ router = APIRouter(tags=["sessions"])
 
 
 def _session_query():
-    return select(EventSession).options(
-        joinedload(EventSession.event).joinedload(Event.category),
-        joinedload(EventSession.event).joinedload(Event.circuit),
-        joinedload(EventSession.results),
+    return (
+        select(EventSession)
+        .join(EventSession.event)
+        .join(Event.category)
+        .options(
+            joinedload(EventSession.event).joinedload(Event.category),
+            joinedload(EventSession.event).joinedload(Event.circuit),
+            joinedload(EventSession.results),
+        )
+        .where(
+            EventSession.is_public.is_(True),
+            EventSession.is_active.is_(True),
+            Event.is_public.is_(True),
+            Event.is_active.is_(True),
+            Event.category.has(
+                Category.is_public.is_(True) & Category.is_active.is_(True),
+            ),
+        )
     )
 
 

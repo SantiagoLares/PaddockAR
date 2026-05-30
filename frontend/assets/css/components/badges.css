@@ -1,46 +1,63 @@
 .category-badge {
   font-family: var(--font-ui);
-  --category-badge-border: var(--line-strong);
-  --category-badge-text: #eef4fb;
+  --category-badge-accent: var(--text-secondary);
+  --category-badge-text: var(--text-secondary);
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: 52px;
-  min-height: 30px;
-  padding: 0 12px;
-  border: 1px solid var(--category-badge-border);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.018);
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--category-badge-text);
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  line-height: 1;
-  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-align: left;
   text-transform: uppercase;
   white-space: nowrap;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  box-shadow: none;
+}
+
+.category-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--category-badge-accent);
+  flex: 0 0 auto;
+  opacity: 0.9;
 }
 
 .category-badge--compact {
-  min-width: 46px;
-  min-height: 24px;
-  padding-inline: 10px;
-  font-size: 11px;
+  font-size: 10px;
+  gap: 6px;
+}
+
+.category-badge--compact::before {
+  width: 5px;
+  height: 5px;
 }
 
 .category-badge--large {
-  min-width: 72px;
-  min-height: 40px;
-  padding-inline: 16px;
-  font-size: 14px;
+  font-size: 12px;
+  gap: 8px;
+}
+
+.category-badge--large::before {
+  width: 7px;
+  height: 7px;
 }
 
 .category-badge--active {
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+}
+
+.category-badge--active::before {
+  opacity: 1;
 }
 
 .category-badge__text {
@@ -57,33 +74,32 @@
 }
 
 .category-badge-link:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: #121922;
+  color: var(--text-main);
 }
 
 .sidebar .category-badge {
-  min-width: 58px;
+  font-size: 10px;
 }
 
 .category-badge[data-category-code="f1"] {
-  --category-badge-border: var(--f1);
-  --category-badge-text: #ff6b65;
+  --category-badge-accent: var(--f1);
+  --category-badge-text: #ff8a82;
 }
 
 .category-badge[data-category-code="f2"],
 .category-badge[data-category-code="f3"] {
-  --category-badge-border: var(--f2);
-  --category-badge-text: #70c2ff;
+  --category-badge-accent: var(--f2);
+  --category-badge-text: #9ecfff;
 }
 
 .category-badge[data-category-code="motogp"] {
-  --category-badge-border: var(--motogp);
-  --category-badge-text: #eef2f7;
+  --category-badge-accent: var(--motogp);
+  --category-badge-text: #e8edf3;
 }
 
 .category-badge[data-category-code="wec"] {
-  --category-badge-border: var(--wec);
-  --category-badge-text: #58ecf4;
+  --category-badge-accent: var(--wec);
+  --category-badge-text: #7de8f2;
 }
 
 .category-badge[data-category-code="tc"],
@@ -92,37 +108,37 @@
 .category-badge[data-category-code="tcpm"],
 .category-badge[data-category-code="tcpk"],
 .category-badge[data-category-code="tcppk"] {
-  --category-badge-border: var(--tc);
-  --category-badge-text: #72c7ff;
+  --category-badge-accent: #c9a24a;
+  --category-badge-text: #d4bc8a;
 }
 
 .category-badge[data-category-code="tc2000"] {
-  --category-badge-border: var(--tc2000);
-  --category-badge-text: #7bb6ff;
+  --category-badge-accent: var(--tc2000);
+  --category-badge-text: #9ec8ff;
 }
 
 .category-badge[data-category-code="tr"] {
-  --category-badge-border: var(--tr);
-  --category-badge-text: #c7a3ff;
+  --category-badge-accent: var(--tr);
+  --category-badge-text: #c4b0ff;
 }
 
 .category-badge[data-category-code="t4000"],
 .category-badge[data-category-code="bora"] {
-  --category-badge-border: #9b8765;
-  --category-badge-text: #dbc6a3;
+  --category-badge-accent: var(--bora);
+  --category-badge-text: #e0cf90;
 }
 
 .category-badge[data-category-code="tp"],
 .category-badge[data-category-code="tpc1"],
 .category-badge[data-category-code="tpc2"],
 .category-badge[data-category-code="tpc3"] {
-  --category-badge-border: var(--tp);
-  --category-badge-text: #62e9db;
+  --category-badge-accent: var(--tp);
+  --category-badge-text: #7de8dc;
 }
 
 .category-badge[data-category-code="tn"],
 .category-badge[data-category-code="tnc2"],
 .category-badge[data-category-code="tnc3"] {
-  --category-badge-border: var(--tn);
-  --category-badge-text: #6fdda0;
+  --category-badge-accent: var(--tn);
+  --category-badge-text: #8ee4b0;
 }

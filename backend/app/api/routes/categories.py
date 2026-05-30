@@ -12,7 +12,11 @@ router = APIRouter(prefix="/api/categories", tags=["categories"])
 
 @router.get("", response_model=list[CategoryRead])
 def list_categories(db: Session = Depends(get_db)):
-    statement = select(Category).order_by(Category.name)
+    statement = (
+        select(Category)
+        .where(Category.is_public.is_(True), Category.is_active.is_(True))
+        .order_by(Category.name)
+    )
     categories = db.scalars(statement).all()
     for category in categories:
         normalize_category(category)

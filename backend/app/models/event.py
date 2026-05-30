@@ -1,6 +1,6 @@
 from datetime import date
 
-from sqlalchemy import Date, ForeignKey, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, Date, ForeignKey, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
@@ -22,8 +22,11 @@ class Event(Base):
     start_date: Mapped[date] = mapped_column(Date, nullable=False)
     end_date: Mapped[date] = mapped_column(Date, nullable=False)
     status: Mapped[str] = mapped_column(String(30), nullable=False, default="scheduled")
+    source_url: Mapped[str] = mapped_column(Text, nullable=True)
     data_quality: Mapped[str] = mapped_column(String(80), nullable=True)
     source_note: Mapped[str] = mapped_column(Text, nullable=True)
+    is_public: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
     category: Mapped["Category"] = relationship(back_populates="events")
     circuit: Mapped["Circuit"] = relationship(back_populates="events")

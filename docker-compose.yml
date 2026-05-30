@@ -17,5 +17,33 @@ services:
       timeout: 5s
       retries: 5
 
+  backend:
+    build:
+      context: ./backend
+    container_name: paddockar-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg2://paddockar:paddockar_pass@postgres:5432/paddockar
+      PORT: 8000
+      LOG_LEVEL: INFO
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin
+      ADMIN_TOKEN_SECRET: change-this-secret
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: paddockar-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5500:8080"
+
 volumes:
   paddockar_postgres_data:

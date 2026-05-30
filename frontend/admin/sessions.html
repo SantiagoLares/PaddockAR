@@ -2,76 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=index.html#sessions" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR Admin | Sesiones</title>
-  <link rel="stylesheet" href="../assets/css/base.css" />
-  <link rel="stylesheet" href="../assets/css/components/topbar.css" />
-  <link rel="stylesheet" href="../assets/css/components/layout.css" />
-  <link rel="stylesheet" href="../assets/css/components/summary.css" />
-  <link rel="stylesheet" href="../assets/css/components/filters.css" />
-  <link rel="stylesheet" href="../assets/css/components/badges.css" />
-  <link rel="stylesheet" href="../assets/css/components/forms.css" />
-  <link rel="stylesheet" href="../assets/css/admin-sessions.css" />
+  <title>PaddockAR Admin | Redireccion</title>
 </head>
-<body class="page-shell-1180">
-  <nav class="topbar">
-    <div class="topbar-inner">
-      <a class="logo-link" href="../index.html" aria-label="Ir a inicio">
-        <div class="logo">PADDOCK<span>AR</span></div>
-      </a>
-      <div class="nav-links mono" aria-label="Admin navegacion">
-        <a class="active" href="sessions.html">Sesiones</a>
-        <a href="events.html">Eventos</a>
-        <a href="results.html">Resultados</a>
-        <a href="standings.html">Standings</a>
-      </div>
-      <div class="admin-label mono">Admin sesiones</div>
-    </div>
-  </nav>
-
-  <main>
-    <section class="summary">
-      <div>
-        <h1>Sesiones</h1>
-        <div class="subtitle">Edicion basica de horarios y estados.</div>
-      </div>
-      <div class="top-actions">
-        <div id="state" class="state mono">Conectando API</div>
-        <button id="logoutButton" class="logout-button mono" type="button" hidden>Salir</button>
-      </div>
-    </section>
-
-    <section id="loginPanel" class="login-panel" hidden>
-      <div class="field">
-        <label class="mono">Usuario</label>
-        <input id="username" autocomplete="username" />
-      </div>
-      <div class="field">
-        <label class="mono">Contrasena</label>
-        <input id="password" type="password" autocomplete="current-password" />
-      </div>
-      <button id="loginButton" class="save-button mono" type="button">Ingresar</button>
-    </section>
-
-    <section id="adminPanel" hidden>
-      <section class="filters">
-        <select id="categoryFilter" aria-label="Filtrar por categoria">
-          <option value="all">Todas las categorias</option>
-        </select>
-        <select id="eventFilter" aria-label="Filtrar por evento">
-          <option value="all">Todos los eventos</option>
-        </select>
-      </section>
-
-      <section id="sessions" class="sessions" aria-live="polite"></section>
-    </section>
-
-    <div id="message"></div>
-  </main>
-
-  <script src="../assets/js/common.js"></script>
-  <script src="../assets/js/api.js"></script>
-  <script src="../assets/js/dom.js"></script>
-  <script src="../assets/js/admin-sessions.js"></script>
+<body>
+  <p>Redireccionando al nuevo panel admin… <a href="index.html#sessions">Abrir admin</a></p>
 </body>
 </html>

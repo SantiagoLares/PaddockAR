@@ -1,11 +1,8 @@
 const {
-  categoryHref,
-  categoryFamilyKey,
+  ARG_TIMEZONE,
+  categoryCode,
   categoryFamilyLabel,
   eventDisplayName,
-  formatDate,
-  renderIcon,
-  renderIconLabel,
   renderCategoryBadge,
   getPrimaryEventSession,
   getSessionWinner,
@@ -16,7 +13,6 @@ const { getJson } = window.PaddockARApi;
 const { setHTML, setText, renderEmpty, renderError, renderSkeleton } = window.PaddockARDom;
 const logger = createLogger("PaddockAR");
 
-const categoryOrder = ["F1", "F2", "F3", "MotoGP", "WEC", "TC", "TCP", "TCM", "TCPM", "TCPK", "TCPPK", "TC2000", "TR", "T4000", "BORA", "TP", "TN"];
 const apiState = document.querySelector("#apiState");
 const calendarBoard = document.querySelector("#calendarBoard");
 
@@ -30,60 +26,143 @@ function renderLoadError() {
   setText(apiState, "Error de API");
 }
 
-function categoryPanelId(category) {
-  return `category-panel-${String(category.slug || category.short_name || "cat").replace(/[^a-z0-9_-]+/gi, "-").toLowerCase()}`;
-}
-
 function renderEventWinner(event) {
   const primarySession = getPrimaryEventSession(event);
   if (primarySession?.status !== "finished") return "";
   return renderWinnerLine(getSessionWinner(primarySession), { compact: true });
 }
 
-function getGroupHeaderCategory(group) {
-  if (group.key === "TN" && group.categories.size > 1) {
-    return {
-      ...group.events[0].category,
-      name: "Turismo Nacional",
-      short_name: "TN",
-      slug: "turismo-nacional",
-    };
-  }
-  if (group.key === "TP" && group.categories.size > 1) {
-    return {
-      ...group.events[0].category,
-      name: "Turismo Pista",
-      short_name: "TP",
-      slug: "turismo-pista",
-    };
-  }
-  if (group.categories.size === 1) return group.events[0].category;
-  return group.events.find((event) => categoryFamilyKey(event.category) === "TN")?.category || group.events[0].category;
+function getDatePartsInArgentina(dateStr) {
+  const date = new Date(`${dateStr}T12:00:00`);
+  const parts = new Intl.DateTimeFormat("es-AR", {
+    timeZone: ARG_TIMEZONE,
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).formatToParts(date);
+
+  const pick = (type) => parts.find((part) => part.type === type)?.value || "";
+  return {
+    day: Number(pick("day")),
+    month: pick("month").replace(/\.$/, "").toUpperCase(),
+    year: Number(pick("year")),
+  };
 }
 
-function groupByCategory(events) {
-  const groups = new Map();
+function formatCompactDateRange(startDate, endDate) {
+  const start = getDatePartsInArgentina(startDate);
+  const end = getDatePartsInArgentina(endDate);
+
+  if (start.month === end.month && start.year === end.year) {
+    if (start.day === end.day) return `${start.day} ${start.month}`;
+    return `${start.day}-${end.day} ${start.month}`;
+  }
+
+  return `${start.day} ${start.month} – ${end.day} ${end.month}`;
+}
+
+function formatMonthHeading(monthKey) {
+  const [year, month] = monthKey.split("-").map(Number);
+  const label = new Intl.DateTimeFormat("es-AR", {
+    month: "long",
+    year: "numeric",
+    timeZone: ARG_TIMEZONE,
+  }).format(new Date(Date.UTC(year, month - 1, 1)));
+
+  return label.toUpperCase();
+}
+
+function groupEventsByMonth(events) {
+  const months = new Map();
 
   events.forEach((event) => {
-    const familyKey = categoryFamilyKey(event.category);
-    if (!groups.has(familyKey)) {
-      groups.set(familyKey, {
-        key: familyKey,
-        label: categoryFamilyLabel(event.category),
-        categories: new Map(),
-        events: [],
-      });
-    }
-    const group = groups.get(familyKey);
-    group.events.push(event);
-    group.categories.set(event.category.slug, event.category);
+    const key = event.start_date.slice(0, 7);
+    if (!months.has(key)) months.set(key, []);
+    months.get(key).push(event);
   });
 
-  return Array.from(groups.values()).sort((a, b) => {
-    const aIndex = categoryOrder.indexOf(a.key);
-    const bIndex = categoryOrder.indexOf(b.key);
-    return (aIndex === -1 ? 99 : aIndex) - (bIndex === -1 ? 99 : bIndex);
+  return Array.from(months.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, monthEvents]) => ({
+      key,
+      label: formatMonthHeading(key),
+      events: monthEvents.sort((a, b) => new Date(a.start_date) - new Date(b.start_date)),
+    }));
+}
+
+function normalizeText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function simplifySessionLabel(session) {
+  const name = normalizeText(session?.name);
+  const type = normalizeText(session?.session_type);
+
+  if (type === "sprint" || name.includes("sprint")) return "Sprint";
+  if (session?.is_feature || type === "race" || type === "final" || type === "feature" || name === "carrera" || name === "race") {
+    return "Carrera";
+  }
+  if (type.includes("qual") || name.includes("qualy") || name.includes("clasific")) return "Qualy";
+  if (type.includes("practice") || type.includes("fp") || name.includes("practica") || name.includes("entren")) {
+    return "Practica";
+  }
+
+  return session?.name?.trim() || "Sesion";
+}
+
+function getSessionKind(session) {
+  const label = simplifySessionLabel(session);
+  if (label === "Carrera") return "race";
+  if (label === "Sprint") return "sprint";
+  if (label === "Qualy") return "qualifying";
+  if (label === "Practica") return "practice";
+  return "session";
+}
+
+function renderTimelineSessions(event) {
+  const sessions = [...(event.sessions || [])].sort((a, b) => {
+    if (a.order_index !== b.order_index) return a.order_index - b.order_index;
+    return new Date(a.starts_at) - new Date(b.starts_at);
   });
+
+  if (!sessions.length) return "";
+
+  const items = sessions
+    .map((session) => {
+      const kind = getSessionKind(session);
+      return `<li class="timeline-session timeline-session--${kind}">${simplifySessionLabel(session)}</li>`;
+    })
+    .join("");
+
+  return `<ul class="timeline-sessions" aria-label="Sesiones del evento">${items}</ul>`;
+}
+
+function renderTimelineEvent(event) {
+  const code = categoryCode(event.category);
+  const city = event.circuit?.city || event.circuit?.country || "";
+  const categoryLabel = categoryFamilyLabel(event.category);
+  const meta = [categoryLabel, city].filter(Boolean).join(" · ");
+
+  return `
+    <article class="timeline-event" data-category-code="${code}">
+      <div class="timeline-event-dates mono">${formatCompactDateRange(event.start_date, event.end_date)}</div>
+      <a class="timeline-event-link" href="event.html?id=${event.id}">
+        <div class="timeline-event-head">
+          <h3 class="timeline-event-name">${eventDisplayName(event)}</h3>
+          ${renderEventWinner(event)}
+        </div>
+        <p class="timeline-event-meta">
+          ${renderCategoryBadge(event.category, { tag: "span", size: "compact" })}
+          ${meta ? `<span class="timeline-event-meta-text">${meta}</span>` : ""}
+        </p>
+        ${renderTimelineSessions(event)}
+      </a>
+    </article>
+  `;
 }
 
 function renderCalendar(events) {
@@ -96,60 +175,29 @@ function renderCalendar(events) {
   }
 
   const sorted = [...events].sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-  const groups = groupByCategory(sorted);
+  const months = groupEventsByMonth(sorted);
 
-  setHTML(calendarBoard, groups
-    .map((group) => {
-      const primaryCategory = getGroupHeaderCategory(group);
-      const panelId = categoryPanelId(primaryCategory);
-      const rows = group.events
-        .map(
-          (event) => `
-          <a class="event-row" href="event.html?id=${event.id}">
-            <div class="date-range mono">${renderIconLabel("calendar", `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`, { iconSize: 13, className: "date-range-label" })}</div>
-            <div class="event-main">
-              <div class="event-line">
-                ${renderCategoryBadge(event.category, { tag: "span", extraClass: "event-category-logo", size: "compact" })}
-                <div class="event-name">${eventDisplayName(event)}</div>
-              </div>
-              ${renderEventWinner(event)}
-              <div class="circuit">${event.circuit.name}</div>
-            </div>
-            <div class="country">${renderIconLabel("map-pin", event.circuit.city ? `${event.circuit.city}, ${event.circuit.country}` : event.circuit.country, { iconSize: 13, className: "country-label" })}</div>
-          </a>
-        `,
-        )
-        .join("");
+  const timelineHtml = months
+    .map(
+      (month) => `
+      <section class="timeline-month">
+        <h2 class="timeline-month-title">${month.label}</h2>
+        <div class="timeline-month-body">
+          ${month.events
+            .map(
+              (event, index) => `
+            ${index > 0 ? '<div class="timeline-gap" aria-hidden="true"></div>' : ""}
+            ${renderTimelineEvent(event)}
+          `,
+            )
+            .join("")}
+        </div>
+      </section>
+    `,
+    )
+    .join("");
 
-      return `
-          <section class="category-block">
-            <div class="category-title" data-accordion-toggle aria-expanded="false" aria-controls="${panelId}" role="button" tabindex="0">
-              <div class="category-left">
-                ${group.categories.size === 1
-            ? `
-                    <a class="category-link" href="${categoryHref(primaryCategory)}" aria-label="Ver categoría ${primaryCategory.name}">
-                      ${renderCategoryBadge(primaryCategory, {
-                tag: "span",
-                extraClass: "category-header-logo",
-                size: "compact",
-              })}
-                    </a>
-                  `
-            : renderCategoryBadge(primaryCategory, { tag: "span", extraClass: "category-header-logo", size: "compact" })}
-                <div class="category-name">${group.label}</div>
-                <div class="category-count mono">${group.events.length} eventos</div>
-              </div>
-              <div class="category-right">
-                <span class="category-chevron mono" aria-hidden="true">${renderIcon("chevron-down", { size: 16, className: "category-chevron-icon" })}</span>
-              </div>
-            </div>
-            <div id="${panelId}" class="category-panel" aria-hidden="true">
-              ${rows}
-            </div>
-          </section>
-        `;
-    })
-    .join(""));
+  setHTML(calendarBoard, `<div class="calendar-timeline">${timelineHtml}</div>`);
 }
 
 async function loadCalendar() {
@@ -171,34 +219,7 @@ async function loadCalendar() {
 calendarBoard.addEventListener("click", (event) => {
   if (event.target.closest("[data-retry]")) {
     loadCalendar();
-    return;
   }
-
-  if (event.target.closest(".category-link")) {
-    event.stopPropagation();
-    return;
-  }
-
-  const toggle = event.target.closest("[data-accordion-toggle]");
-  if (!toggle) return;
-
-  const panel = document.getElementById(toggle.getAttribute("aria-controls"));
-  if (!panel) return;
-
-  const expanded = toggle.getAttribute("aria-expanded") === "true";
-  toggle.setAttribute("aria-expanded", String(!expanded));
-  toggle.closest(".category-block")?.classList.toggle("is-open", !expanded);
-  panel.setAttribute("aria-hidden", String(expanded));
-  const chevron = toggle.querySelector(".category-chevron");
-  if (chevron) chevron.innerHTML = renderIcon(expanded ? "chevron-down" : "chevron-up", { size: 16, className: "category-chevron-icon" });
-});
-
-calendarBoard.addEventListener("keydown", (event) => {
-  const toggle = event.target.closest("[data-accordion-toggle]");
-  if (!toggle) return;
-  if (event.key !== "Enter" && event.key !== " ") return;
-  event.preventDefault();
-  toggle.click();
 });
 
 loadCalendar();

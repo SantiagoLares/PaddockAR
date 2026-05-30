@@ -72,7 +72,28 @@ README.md
 - Python 3.11+
 - Docker Desktop
 
-### 1. Levantar PostgreSQL
+### Opcion A: stack completo con Docker
+
+```powershell
+docker compose up --build -d
+```
+
+Servicios:
+
+```txt
+Frontend: http://127.0.0.1:5500/index.html
+API: http://127.0.0.1:8000/api/health
+PostgreSQL: 127.0.0.1:5433
+```
+
+La primera vez Docker construye dos imagenes locales:
+
+- `backend/` para FastAPI
+- `frontend/` para servir los archivos estaticos
+
+### Opcion B: PostgreSQL con Docker + app local
+
+#### 1. Levantar PostgreSQL
 
 ```powershell
 docker compose up -d postgres
@@ -88,13 +109,13 @@ user: paddockar
 password: paddockar_pass
 ```
 
-### 2. Instalar dependencias
+#### 2. Instalar dependencias
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
 ```
 
-### 3. Variables de entorno
+#### 3. Variables de entorno
 
 Podes cargar estas variables o crear un `.env` compatible con `backend/.env.example`:
 
@@ -107,7 +128,7 @@ ADMIN_PASSWORD=admin
 ADMIN_TOKEN_SECRET=change-this-secret
 ```
 
-### 4. Levantar API
+#### 4. Levantar API
 
 ```powershell
 cd backend
@@ -120,18 +141,18 @@ Health check local:
 http://127.0.0.1:8000/api/health
 ```
 
-### 5. Abrir frontend
+#### 5. Abrir frontend
 
-Servir la carpeta `frontend`:
+Servir la carpeta `frontend` en un puerto libre, por ejemplo `5500`:
 
 ```powershell
-.\.venv\Scripts\python.exe -m http.server 8080 --bind 127.0.0.1 -d frontend
+.\.venv\Scripts\python.exe -m http.server 5500 --bind 127.0.0.1 -d frontend
 ```
 
 Abrir:
 
 ```txt
-http://127.0.0.1:8080/index.html
+http://127.0.0.1:5500/index.html
 ```
 
 ## Seeds

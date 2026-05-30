@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR | Agenda motor</title>
-  <meta name="description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TTHJ7Z4B');
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Evento de automovilismo | PaddockAR</title>
+  <meta name="description" content="Consulta sesiones, horarios, circuito y estado de cada evento de automovilismo en PaddockAR, con agenda adaptada a la hora argentina." />
+  <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0B0F14" />
-  <meta property="og:title" content="PaddockAR | Agenda motor" />
-  <meta property="og:description" content="Agenda compacta de automovilismo con horarios, carreras y actividad del fin de semana en Argentina." />
+  <meta property="og:title" content="Evento de automovilismo | PaddockAR" />
+  <meta property="og:description" content="Consulta sesiones, horarios, circuito y estado de cada evento de automovilismo en PaddockAR, con agenda adaptada a la hora argentina." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://paddockar.com.ar/event.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Evento de automovilismo | PaddockAR" />
+  <meta name="twitter:description" content="Consulta sesiones, horarios, circuito y estado de cada evento de automovilismo en PaddockAR, con agenda adaptada a la hora argentina." />
   <link rel="canonical" href="https://paddockar.com.ar/event.html" />
   <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/base.css?v=20260504" />
@@ -21,7 +34,13 @@
   <link rel="stylesheet" href="assets/css/components/forms.css" />
   <link rel="stylesheet" href="assets/css/event.css" />
 </head>
-<body class="page-shell-860 premium-page premium-event">
+<body class="page-shell-860 premium-page premium-event race-page event-page">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTHJ7Z4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <nav class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -33,8 +52,10 @@
       <div class="nav-links mono" aria-label="Navegacion">
         <a href="index.html">Inicio</a>
         <a href="calendar.html">Calendario</a>
+        <a href="index.html#categories">Categorias</a>
+        <a href="admin/events.html">Admin</a>
       </div>
-      <a class="back-link mono" href="index.html">Volver</a>
+      <a class="back-link mono" href="calendar.html">Volver</a>
     </div>
   </nav>
 
@@ -53,30 +74,62 @@
         </div>
       </div>
     </section>
+
+    <section class="event-seo" aria-labelledby="eventSeoTitle">
+      <div class="event-seo__eyebrow mono">Detalle del evento</div>
+      <h2 id="eventSeoTitle">Horarios y sesiones del evento</h2>
+      <p class="event-seo__description">
+        Esta página muestra el detalle del evento con sesiones, horarios, circuito, país y estado de cada actividad para seguir prácticas, clasificaciones, sprints y carreras en hora argentina.
+      </p>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <section class="site-footer__intro">
+          <div class="site-footer__eyebrow">Cierre de vuelta</div>
+          <div class="site-footer__brand">PaddockAR</div>
+          <p class="site-footer__lead">
+            Detalle de evento para seguir sesiones, horarios, circuito, pais y estado de cada actividad con una lectura limpia.
+          </p>
+          <div class="site-footer__status">
+            <span class="site-footer__pill">Evento</span>
+            <span class="site-footer__pill">Sesiones</span>
+            <span class="site-footer__pill">Resultados</span>
+          </div>
+        </section>
+
+        <aside class="site-footer__support">
+          <div class="site-footer__title">Apoya el proyecto</div>
+          <p class="site-footer__support-copy">
+            Cada mejora de cobertura, cada horario y cada ajuste visual se sostienen como parte de un proyecto independiente.
+          </p>
+          <a class="site-footer__support-link" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
+        </aside>
+      </div>
+
       <div class="site-footer__grid">
         <section class="site-footer__column">
-          <div class="site-footer__brand">PaddockAR</div>
-          <p class="site-footer__text">Agenda compacta de automovilismo.</p>
-          <p class="site-footer__text">Horarios en Argentina.</p>
-        </section>
-        <section class="site-footer__column">
-          <div class="site-footer__title">Producto</div>
-          <nav class="site-footer__links" aria-label="Producto">
+          <div class="site-footer__title">Navegacion</div>
+          <nav class="site-footer__links" aria-label="Navegacion">
             <a href="index.html">Inicio</a>
             <a href="calendar.html">Calendario</a>
-            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer" data-api-health-link>Estado API</a>
+            <a href="category.html?slug=f1">Categorias</a>
           </nav>
+        </section>
+        <section class="site-footer__column">
+          <div class="site-footer__title">Cobertura</div>
+          <div class="site-footer__stack">
+            <p class="site-footer__text">Sesiones, practicas, clasificaciones, sprints, carreras y estado del evento en hora argentina.</p>
+            <p class="site-footer__text">Circuito, pais y contexto del fin de semana desde la API actual.</p>
+          </div>
         </section>
         <section class="site-footer__column">
           <div class="site-footer__title">Proyecto</div>
           <nav class="site-footer__links" aria-label="Proyecto">
             <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="footer-support-link" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
-            <a href="#">Contacto</a>
+            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer" data-api-health-link>Estado API</a>
             <span>Datos sujetos a cambios</span>
           </nav>
         </section>
@@ -97,6 +150,7 @@
   <script src="assets/js/common.js?v=20260506"></script>
   <script src="assets/js/api.js"></script>
   <script src="assets/js/dom.js?v=20260504"></script>
+  <script src="assets/js/seo.js?v=20260521"></script>
   <script src="assets/js/event.js?v=20260504"></script>
 </body>
 </html>

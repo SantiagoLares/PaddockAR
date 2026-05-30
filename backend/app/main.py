@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.api.routes import admin_events, admin_results, admin_sessions, admin_standings, auth, categories, circuits, events, results, sessions, standings
+from app.api.routes import admin_events, admin_results, admin_sessions, admin_standings, admin_weekends, auth, categories, circuits, events, results, sessions, standings
 from app.core.config import settings
 from app.core.database import create_tables, ping_database
 from app.core.logging import setup_logging
@@ -50,14 +50,15 @@ app.add_middleware(
         "https://www.paddockar.com.ar",
         "https://paddockar-1.onrender.com",
         "https://paddockar.onrender.com",
-        "http://127.0.0.1:3000",
-        "http://localhost:3000",
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "http://127.0.0.1:8080",
-        "http://localhost:8080",
     ],
-    allow_origin_regex=r"^https?://(192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3})(:\d+)?$",
+    allow_origin_regex=(
+        r"^https?://("
+        r"(localhost|127(?:\.\d{1,3}){3})"
+        r"|192\.168\.\d{1,3}\.\d{1,3}"
+        r"|10\.\d{1,3}\.\d{1,3}\.\d{1,3}"
+        r"|172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}"
+        r")(:\d+)?$"
+    ),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -74,6 +75,7 @@ app.include_router(admin_events.router)
 app.include_router(admin_results.router)
 app.include_router(admin_sessions.router)
 app.include_router(admin_standings.router)
+app.include_router(admin_weekends.router)
 app.include_router(auth.router)
 
 

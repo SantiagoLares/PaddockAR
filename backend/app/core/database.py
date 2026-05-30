@@ -46,6 +46,10 @@ def ping_database() -> bool:
 
 def create_tables() -> None:
     from app import models  # noqa: F401
+    from app.core.runtime_schema import ensure_runtime_schema
 
     logger.info("Creating database tables if needed")
     Base.metadata.create_all(bind=engine)
+    applied = ensure_runtime_schema(engine)
+    if applied:
+        logger.info("Applied runtime schema upgrades: %s", ", ".join(applied))
