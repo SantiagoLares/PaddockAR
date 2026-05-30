@@ -1,0 +1,74 @@
+/* Categories Navigation Component */
+.categories-nav {
+  padding: 2rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.categories-nav__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 1rem 0;
+  font-family: var(--font-mono, "Courier New", monospace);
+}
+
+.categories-nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categories-nav__link {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: all 0.2s ease-out;
+  background-color: transparent;
+  font-family: var(--font-mono, "Courier New", monospace);
+}
+
+.categories-nav__link:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.categories-nav__link:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.categories-nav__link--secondary {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.categories-nav__link--secondary:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 640px) {
+  .categories-nav {
+    padding: 1.5rem 0;
+  }
+
+  .categories-nav__links {
+    gap: 0.375rem;
+  }
+
+  .categories-nav__link {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+}
