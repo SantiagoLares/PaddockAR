@@ -2,6 +2,8 @@ const {
   categoryHref,
   createLogger,
   escapeHTML,
+  eventDisplayName,
+  eventLocationLabel,
   formatDate,
   formatRelative,
   formatTime,
@@ -146,20 +148,11 @@ function getCategoryLabel(category) {
 }
 
 function getEventName(event) {
-  return repairText(String(event?.name || "Evento"));
+  return eventDisplayName(event);
 }
 
 function getLocationLabel(event) {
-  const circuit = event?.circuit;
-  if (!circuit) return "Circuito por confirmar";
-
-  const parts = [
-    repairText(circuit.name),
-    repairText(circuit.city),
-    repairText(circuit.country),
-  ].filter(Boolean);
-
-  return parts.join(` ${SEP} `);
+  return eventLocationLabel(event);
 }
 
 function getSessionStatus(session) {

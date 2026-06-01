@@ -7,17 +7,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 1,
-      "name": "TN Clase 2 ParanÃ¡",
+      "name": "TN Clase 2 Paraná",
       "slug": "tn-c2-parana-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-02-06",
       "end_date": "2026-02-08",
       "circuit": {
-        "name": "Autodromo Ciudad de ParanÃ¡",
+        "name": "Autodromo Ciudad de Paraná",
         "slug": "autodromo-ciudad-de-parana",
         "country": "Argentina",
-        "city": "ParanÃ¡",
+        "city": "Paraná",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
@@ -25,14 +25,14 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 2,
-      "name": "TN Clase 2 CabalÃ©n",
+      "name": "TN Clase 2 Cabalén",
       "slug": "tn-c2-cabalen-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-03-13",
       "end_date": "2026-03-15",
       "circuit": {
-        "name": "Autodromo Oscar CabalÃ©n",
+        "name": "Autodromo Oscar Cabalén",
         "slug": "autodromo-oscar-cabalen",
         "country": "Argentina",
         "city": "Alta Gracia",
@@ -64,13 +64,13 @@
       "name": "TN Clase 2 San Juan Villicum",
       "slug": "tn-c2-san-juan-villicum-2026",
       "status": "scheduled",
-      "source_note": "Cronograma de TN Clase 2 en horario de Argentina simplificado para agenda pÃºblica. Los entrenamientos y las clasificaciones se agrupan por clase y no se muestran los grupos A/B/C.",
+      "source_note": "Cronograma de TN Clase 2 en horario de Argentina simplificado para agenda pública. Los entrenamientos y las clasificaciones se agrupan por clase y no se muestran los grupos A/B/C.",
       "data_quality": "confirmed_event_simplified_class_schedule",
       "circuit": {
         "name": "Circuito San Juan Villicum",
         "slug": "circuito-san-juan-villicum",
         "country": "Argentina",
-        "city": "AlbardÃ³n",
+        "city": "Albardón",
         "timezone": "America/Argentina/Buenos_Aires"
       },
       "sessions": [
@@ -186,17 +186,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 6,
-      "name": "TN Clase 2 Termas de RÃ­o Hondo",
+      "name": "TN Clase 2 Termas de Río Hondo",
       "slug": "tn-c2-termas-de-rio-hondo-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-07-03",
       "end_date": "2026-07-05",
       "circuit": {
-        "name": "Circuito Termas de RÃ­o Hondo",
+        "name": "Circuito Termas de Río Hondo",
         "slug": "circuito-termas-de-rio-hondo",
         "country": "Argentina",
-        "city": "Termas de RÃ­o Hondo",
+        "city": "Termas de Río Hondo",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
@@ -214,7 +214,7 @@
         "name": "Circuito San Juan Villicum",
         "slug": "circuito-san-juan-villicum",
         "country": "Argentina",
-        "city": "AlbardÃ³n",
+        "city": "Albardón",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
@@ -222,17 +222,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 8,
-      "name": "TN Clase 2 OberÃ¡",
+      "name": "TN Clase 2 Oberá",
       "slug": "tn-c2-obera-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-08-28",
       "end_date": "2026-08-30",
       "circuit": {
-        "name": "Autodromo Ciudad de OberÃ¡",
+        "name": "Autodromo Ciudad de Oberá",
         "slug": "autodromo-ciudad-de-obera",
         "country": "Argentina",
-        "city": "OberÃ¡",
+        "city": "Oberá",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
@@ -240,17 +240,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 9,
-      "name": "TN Clase 2 RÃ­o Cuarto",
+      "name": "TN Clase 2 Río Cuarto",
       "slug": "tn-c2-rio-cuarto-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-09-18",
       "end_date": "2026-09-20",
       "circuit": {
-        "name": "Autodromo Ciudad de RÃ­o Cuarto",
+        "name": "Autodromo Ciudad de Río Cuarto",
         "slug": "autodromo-ciudad-de-rio-cuarto",
         "country": "Argentina",
-        "city": "RÃ­o Cuarto",
+        "city": "Río Cuarto",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
@@ -258,17 +258,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 10,
-      "name": "TN Clase 2 San MartÃ­n",
+      "name": "TN Clase 2 San Martín",
       "slug": "tn-c2-san-martin-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-10-09",
       "end_date": "2026-10-11",
       "circuit": {
-        "name": "Autodromo Ciudad de San MartÃ­n",
+        "name": "Autodromo Ciudad de San Martín",
         "slug": "autodromo-ciudad-de-san-martin",
         "country": "Argentina",
-        "city": "San MartÃ­n",
+        "city": "San Martín",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
@@ -276,17 +276,17 @@
       "category_slug": "turismo-nacional-clase-2",
       "season_year": 2026,
       "round_number": 11,
-      "name": "TN Clase 2 San NicolÃ¡s",
+      "name": "TN Clase 2 San Nicolás",
       "slug": "tn-c2-san-nicolas-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_event_only",
       "start_date": "2026-10-30",
       "end_date": "2026-11-01",
       "circuit": {
-        "name": "Autodromo San NicolÃ¡s Ciudad",
+        "name": "Autodromo San Nicolás Ciudad",
         "slug": "autodromo-san-nicolas-ciudad",
         "country": "Argentina",
-        "city": "San NicolÃ¡s",
+        "city": "San Nicolás",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },

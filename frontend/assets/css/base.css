@@ -3,7 +3,7 @@
 :root {
   --font-ui: "Inter", "Segoe UI", Arial, sans-serif;
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-mono: "Roboto Mono", Consolas, "SFMono-Regular", monospace;
+  --font-mono: "Monaco", "Roboto Mono", Consolas, "SFMono-Regular", monospace;
 
   /* Dark high contrast — semantic tokens */
   --bg-main: #020203;

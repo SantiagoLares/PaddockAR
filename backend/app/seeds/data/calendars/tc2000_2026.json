@@ -1,7 +1,7 @@
 {
   "category_slug": "tc2000",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de TC2000 verificado el 2026-05-07 contra pÃºblicaciones oficiales vigentes de la categoria. Quedaron confirmadas pÃºblicamente las primeras cuatro fechas hasta Salta; desde el 28.06.2026 en adelante se mantienen sedes a confirmar para no promover informaciÃ³n no cerrada oficialmente.",
+  "source_note": "Calendario 2026 de TC2000 verificado el 2026-05-07 contra publicaciónes oficiales vigentes de la categoria. Quedaron confirmadas públicamente las primeras cuatro fechas hasta Salta; desde el 28.06.2026 en adelante se mantienen sedes a confirmar para no promover información no cerrada oficialmente.",
   "events": [
     {
       "round_number": 1,
@@ -33,7 +33,7 @@
         "name": "Circuito San Juan Villicum",
         "slug": "circuito-san-juan-villicum",
         "country": "Argentina",
-        "city": "AlbardÃ³n",
+        "city": "Albardón",
         "timezone": "America/Argentina/San_Juan"
       }
     },
@@ -64,7 +64,7 @@
       "end_date": "2026-05-24",
       "session_template": "arg_touring_standard",
       "circuit": {
-        "name": "Autodromo Martin Miguel de G?emes",
+        "name": "Autódromo Martin Miguel de Güemes",
         "slug": "autodromo-martin-miguel-de-guemes",
         "country": "Argentina",
         "city": "Salta",

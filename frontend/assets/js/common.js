@@ -160,6 +160,8 @@
   }
 
   function categoryHref(category) {
+    // Category detail pages always use `?cat=`; the generic "Categorias"
+    // navigation goes to `index.html#categories` because that is a home section.
     return `category.html?cat=${encodeURIComponent(categoryPageSlug(category))}`;
   }
 
@@ -226,18 +228,43 @@
     return repairText(stripRomanRoundSuffix(value));
   }
 
+  function formatGrandPrixName(name) {
+    if (!name) return name;
+    return String(name)
+      .replace(/^GP\b/i, "Gran Premio")
+      .replace(/\bGP\b/i, "Gran Premio")
+      .trim();
+  }
+
   function eventDisplayName(event) {
     const categorySlug = normalizeCategoryParam(event?.category?.slug || event?.category?.short_name || "");
     const city = repairText(String(event?.circuit?.city || "").trim());
     const country = repairText(String(event?.circuit?.country || "").trim());
     const circuitName = repairText(String(event?.circuit?.name || "").trim());
     const fallbackName = cleanEventName(event?.name);
+    const eventName = formatGrandPrixName(fallbackName);
 
     if (categorySlug === "f1" || categorySlug === "f2") {
-      return city || country || circuitName || fallbackName;
+      return eventName || city || country || circuitName;
     }
 
     return fallbackName || city || country || circuitName;
+  }
+
+  function eventLocationLabel(event) {
+    const circuit = event?.circuit;
+    if (!circuit || (!circuit.city && !circuit.country && !circuit.name)) {
+      return "Circuito por confirmar";
+    }
+
+    const city = repairText(String(circuit.city || "").trim());
+    const country = repairText(String(circuit.country || "").trim());
+    const name = repairText(String(circuit.name || "").trim());
+
+    if (city && country) return `${city}, ${country}`;
+    if (city) return city;
+    if (country) return country;
+    return name;
   }
 
   function matchesCategoryFilter(category, filterValue) {
@@ -497,12 +524,79 @@
     });
   }
 
+  function renderTopbarNavLinks(activePage = "") {
+    // Main nav convention:
+    // - generic "Categorias" => home anchor `index.html#categories`
+    // - specific category links => `category.html?cat=...`
+    const links = [
+      { key: "home", href: "index.html", label: "Inicio" },
+      { key: "calendar", href: "calendar.html", label: "Calendario" },
+      { key: "categories", href: "index.html#categories", label: "Categorias" },
+      { key: "admin", href: "admin/events.html", label: "Admin" },
+    ];
+
+    return links
+      .map((link) => {
+        const activeClass = link.key === activePage ? " class=\"active\"" : "";
+        return `<a${activeClass} href="${link.href}">${link.label}</a>`;
+      })
+      .join("");
+  }
+
+  function renderTopbarExtra(extra = "") {
+    if (extra === "clock") {
+      return `
+        <div class="clock mono">
+          <span class="pulse"></span>
+          <span id="clock">--:--:--</span>
+          <span>ARG</span>
+        </div>
+      `;
+    }
+
+    if (extra === "back") {
+      return `<a class="back-link mono" href="calendar.html">Volver</a>`;
+    }
+
+    return "";
+  }
+
+  function renderTopbar({ activePage = "", extra = "" } = {}) {
+    return `
+      <nav class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <a class="logo-link" href="index.html" aria-label="Ir a inicio">
+              <div class="logo">PADDOCK<span>AR</span></div>
+            </a>
+            <div class="tagline">agenda motor</div>
+          </div>
+          <div class="nav-links mono" aria-label="Navegacion">
+            ${renderTopbarNavLinks(activePage)}
+          </div>
+          ${renderTopbarExtra(extra)}
+        </div>
+      </nav>
+    `;
+  }
+
+  function mountSharedTopbar() {
+    const mountPoint = document.querySelector("#siteTopbar");
+    if (!mountPoint) return;
+
+    const activePage = mountPoint.dataset.navPage || "";
+    const extra = mountPoint.dataset.navExtra || "";
+    mountPoint.outerHTML = renderTopbar({ activePage, extra });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
+      mountSharedTopbar();
       syncPublicMetadata();
       syncApiHealthLinks();
     });
   } else {
+    mountSharedTopbar();
     syncPublicMetadata();
     syncApiHealthLinks();
   }
@@ -530,6 +624,7 @@
     escapeHTML,
     cleanEventName,
     eventDisplayName,
+    eventLocationLabel,
     matchesCategoryFilter,
     statusLabels,
     renderCategoryBadge,
@@ -551,5 +646,6 @@
     isHighlightedRaceSession,
     isLiveSession,
     createLogger,
+    renderTopbar,
   };
 })();

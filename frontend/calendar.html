@@ -1,67 +1,27 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TTHJ7Z4B');
-  </script>
-  <!-- End Google Tag Manager -->
-  <title>Calendario de automovilismo en Argentina | PaddockAR</title>
-  <meta name="description" content="Consultá el calendario de automovilismo con horarios en Argentina para carreras, prácticas, clasificaciones y eventos destacados. F1, MotoGP, Turismo Carretera, F2, TN y WEC." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0B0F14" />
-  <meta property="og:title" content="Calendario de automovilismo en Argentina | PaddockAR" />
-  <meta property="og:description" content="Consultá el calendario de automovilismo con horarios en Argentina para carreras, prácticas, clasificaciones y eventos destacados. F1, MotoGP, Turismo Carretera, F2, TN y WEC." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://paddockar.com.ar/calendar.html" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Calendario de automovilismo en Argentina | PaddockAR" />
-  <meta name="twitter:description" content="Consultá el calendario de automovilismo con horarios en Argentina para carreras, prácticas, clasificaciones y eventos destacados. F1, MotoGP, Turismo Carretera, F2, TN y WEC." />
-  <link rel="canonical" href="https://paddockar.com.ar/calendar.html" />
+  <title>Calendario de automovilismo | PaddockAR</title>
+  <meta name="description" content="Calendario de automovilismo con fechas y horarios en Argentina. Vista mensual compacta y seccion de este fin de semana." />
   <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/css/base.css?v=20260519" />
+  <link rel="stylesheet" href="assets/css/base.css?v=20260601" />
   <link rel="stylesheet" href="assets/css/components/topbar.css" />
-  <link rel="stylesheet" href="assets/css/components/layout.css?v=20260504" />
+  <link rel="stylesheet" href="assets/css/components/layout.css?v=20260601" />
   <link rel="stylesheet" href="assets/css/components/summary.css" />
-  <link rel="stylesheet" href="assets/css/components/badges.css?v=20260519" />
-  <link rel="stylesheet" href="assets/css/calendar.css?v=20260519" />
+  <link rel="stylesheet" href="assets/css/components/badges.css?v=20260601" />
+  <link rel="stylesheet" href="assets/css/calendar.css?v=20260601" />
 </head>
 <body class="page-shell-940 premium-page race-page calendar-page">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTHJ7Z4B"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <nav class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <a class="logo-link" href="index.html" aria-label="Ir a inicio">
-          <div class="logo">PADDOCK<span>AR</span></div>
-        </a>
-        <div class="tagline">agenda motor</div>
-      </div>
-      <div class="nav-links mono" aria-label="Navegacion">
-        <a href="index.html">Inicio</a>
-        <a class="active" href="calendar.html">Calendario</a>
-        <a href="index.html#categories">Categorias</a>
-        <a href="admin/events.html">Admin</a>
-      </div>
-    </div>
-  </nav>
+  <div id="siteTopbar" data-nav-page="calendar"></div>
 
   <main>
     <section class="summary">
       <div class="summary-copy">
         <div class="summary-kicker mono"><span class="summary-kicker-dot" aria-hidden="true"></span>Agenda completa</div>
         <h1>Calendario</h1>
-        <div class="subtitle">Fechas, categorias y sesiones ordenadas para leer toda la temporada en hora argentina.</div>
+        <div class="subtitle">Fechas, sesiones y campeonatos en un mes compacto con los fines de semana destacados.</div>
       </div>
       <div class="summary-actions">
         <a class="summary-link summary-link--primary" href="index.html">Volver al inicio</a>
@@ -73,17 +33,9 @@
     <section id="calendarBoard" class="calendar-board" aria-live="polite"></section>
 
     <section class="calendar-seo" aria-labelledby="calendarSeoTitle">
-      <div class="calendar-seo__eyebrow mono">Cobertura en hora argentina</div>
-      <h2 id="calendarSeoTitle">Calendario de automovilismo en Argentina</h2>
-      <p class="calendar-seo__description">
-        PaddockAR permite consultar fechas, eventos y horarios de automovilismo en hora argentina, con una vista clara para seguir cada fin de semana y revisar la actividad de F1, MotoGP, Turismo Carretera, Turismo Nacional, WEC, F2, TC2000 y Top Race.
-      </p>
-      <ul class="calendar-seo__benefits">
-        <li>Horarios de practicas, clasificaciones, sprints y carreras.</li>
-        <li>Calendario ordenado por categoria.</li>
-        <li>Informacion de eventos, circuitos y paises.</li>
-        <li>Horarios adaptados a Argentina.</li>
-      </ul>
+      <div class="calendar-seo__eyebrow mono">Cobertura completa</div>
+      <h2 id="calendarSeoTitle">Calendario de automovilismo con horarios en Argentina</h2>
+      <p class="calendar-seo__description">Consulta un calendario mensual claro con el panorama del fin de semana y las categorias ordenadas por evento.</p>
     </section>
   </main>
 
@@ -93,53 +45,36 @@
         <section class="site-footer__intro">
           <div class="site-footer__eyebrow">Cierre de vuelta</div>
           <div class="site-footer__brand">PaddockAR</div>
-          <p class="site-footer__lead">
-            Calendario de automovilismo en hora argentina con fechas, sesiones y contexto para leer toda la actividad del mes sin ruido.
-          </p>
-          <div class="site-footer__status">
-            <span class="site-footer__pill">Horarios ARG</span>
-            <span class="site-footer__pill">Fechas reales</span>
-            <span class="site-footer__pill">Vista por categoria</span>
-          </div>
+          <p class="site-footer__lead">Calendario de automovilismo en hora argentina con una vista mensual compacta y foco en la actividad del finde.</p>
         </section>
-
         <aside class="site-footer__support">
           <div class="site-footer__title">Apoya el proyecto</div>
-          <p class="site-footer__support-copy">
-            Si el calendario te ahorra tiempo cada finde, podes ayudar a sostener las actualizaciones y la infraestructura.
-          </p>
+          <p class="site-footer__support-copy">Si el calendario te ayuda, tu apoyo mantiene el sitio y las actualizaciones.</p>
           <a class="site-footer__support-link" href="https://cafecito.app/paddockar" target="_blank" rel="noopener noreferrer">Invitame un cafecito</a>
         </aside>
       </div>
-
       <div class="site-footer__grid">
         <section class="site-footer__column">
           <div class="site-footer__title">Navegacion</div>
           <nav class="site-footer__links" aria-label="Navegacion">
             <a href="index.html">Inicio</a>
             <a href="calendar.html">Calendario</a>
-            <a href="category.html?slug=f1">Categorias</a>
+            <a href="index.html#categories">Categorias</a>
           </nav>
         </section>
         <section class="site-footer__column">
           <div class="site-footer__title">Cobertura</div>
-          <div class="site-footer__stack">
-            <p class="site-footer__text">F1, MotoGP, Turismo Carretera, Turismo Nacional, WEC, F2, TC2000 y Top Race.</p>
-            <p class="site-footer__text">Practicas, clasificaciones, sprints y carreras ordenadas por evento.</p>
-          </div>
+          <p class="site-footer__text">F1, MotoGP, Turismo Carretera, Turismo Nacional, WEC, F2, TC2000 y Top Race en un mismo calendario.</p>
         </section>
         <section class="site-footer__column">
           <div class="site-footer__title">Proyecto</div>
           <nav class="site-footer__links" aria-label="Proyecto">
             <a href="https://github.com/SantiagoLares/PaddockAR" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer" data-api-health-link>Estado API</a>
-            <span>Datos sujetos a cambios</span>
+            <a href="https://paddockar.onrender.com/api/health" target="_blank" rel="noreferrer">Estado API</a>
           </nav>
         </section>
       </div>
-      <div class="site-footer__bottom mono">
-        &copy; 2026 PaddockAR. Proyecto independiente.
-      </div>
+      <div class="site-footer__bottom mono">&copy; 2026 PaddockAR. Proyecto independiente.</div>
     </div>
   </footer>
 
@@ -150,10 +85,10 @@
   <script src="assets/vendor/dayjs/plugin-localizedFormat.js"></script>
   <script src="assets/vendor/dayjs/locale-es.js"></script>
   <script src="assets/vendor/lucide/lucide.min.js"></script>
-  <script src="assets/js/common.js?v=20260506"></script>
+  <script src="assets/js/common.js?v=20260601"></script>
   <script src="assets/js/api.js"></script>
-  <script src="assets/js/dom.js?v=20260504"></script>
-  <script src="assets/js/seo.js?v=20260521"></script>
-  <script src="assets/js/calendar.js?v=20260519"></script>
+  <script src="assets/js/dom.js?v=20260601"></script>
+  <script src="assets/js/seo.js?v=20260601"></script>
+  <script src="assets/js/calendar.js?v=20260601"></script>
 </body>
 </html>

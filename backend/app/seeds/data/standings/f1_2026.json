@@ -2,7 +2,7 @@
   "category_slug": "f1",
   "season_year": 2026,
   "source": "manual_fallback",
-  "source_note": "Fallback manual armado desde las paginas oficiales de FÃ³rmula 1 revisadas el 2026-05-04.",
+  "source_note": "Fallback manual armado desde las páginas oficiales de Fórmula 1 revisadas el 2026-05-04.",
   "source_urls": {
     "drivers": "https://www.formula1.com/en/results/2026/drivers",
     "constructors": "https://www.formula1.com/en/results/2026/team",

@@ -13,7 +13,7 @@
       "end_date": "2026-01-25",
       "session_template": "arg_touring_standard",
       "circuit": {
-        "name": "Autodromo Roberto JosÃ© Mouras",
+        "name": "Autodromo Roberto José Mouras",
         "slug": "autodromo-roberto-jose-mouras",
         "country": "Argentina",
         "city": "La Plata",
@@ -22,7 +22,7 @@
     },
     {
       "round_number": 2,
-      "name": "Copa Bora ConcepciÃ³n del Uruguay",
+      "name": "Copa Bora Concepción del Uruguay",
       "slug": "copa-bora-concepcion-del-uruguay-2026",
       "status": "scheduled",
       "data_quality": "official_result_confirmed_event",
@@ -30,10 +30,10 @@
       "end_date": "2026-03-01",
       "session_template": "arg_touring_standard",
       "circuit": {
-        "name": "Autodromo ConcepciÃ³n del Uruguay",
+        "name": "Autodromo Concepción del Uruguay",
         "slug": "autodromo-concepcion-del-uruguay",
         "country": "Argentina",
-        "city": "ConcepciÃ³n del Uruguay",
+        "city": "Concepción del Uruguay",
         "timezone": "America/Argentina/Cordoba"
       }
     },
@@ -47,7 +47,7 @@
       "end_date": "2026-03-22",
       "session_template": "arg_touring_standard",
       "circuit": {
-        "name": "Autodromo Roberto JosÃ© Mouras",
+        "name": "Autodromo Roberto José Mouras",
         "slug": "autodromo-roberto-jose-mouras",
         "country": "Argentina",
         "city": "La Plata",

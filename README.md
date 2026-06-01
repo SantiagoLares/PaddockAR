@@ -123,8 +123,8 @@ Podes cargar estas variables o crear un `.env` compatible con `backend/.env.exam
 DATABASE_URL=postgresql+psycopg2://paddockar:paddockar_pass@127.0.0.1:5433/paddockar
 PORT=8000
 LOG_LEVEL=INFO
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=admin
+ADMIN_USERNAME=soquetonadmin
+ADMIN_PASSWORD=123456781
 ADMIN_TOKEN_SECRET=change-this-secret
 ```
 
@@ -241,8 +241,8 @@ Opcionalmente, el script deja preparados los modos `official` y `auto`, pero el 
 Credenciales por defecto:
 
 ```txt
-usuario: admin
-password: admin
+usuario: soquetonadmin
+password: 123456781
 ```
 
 Paneles:

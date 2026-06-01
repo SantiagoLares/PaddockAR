@@ -2,7 +2,7 @@
   "category_slug": "f3",
   "season_year": 2026,
   "source": "manual_fallback",
-  "source_note": "Fallback manual armado desde las standings oficiales de FIA FÃ³rmula 3 revisadas el 2026-05-06. Las victorias de pilotos se validaron contra las paginas oficiales de resultados Sprint Race y Feature Race; las victorias de equipos se derivan de esas mismas victorias oficiales.",
+  "source_note": "Fallback manual armado desde las standings oficiales de FIA Fórmula 3 revisadas el 2026-05-06. Las victorias de pilotos se validaron contra las páginas oficiales de resultados Sprint Race y Feature Race; las victorias de equipos se derivan de esas mismas victorias oficiales.",
   "source_urls": {
     "drivers": "https://www.fiaformula3.com/Standings/Driver",
     "constructors": "https://www.fiaformula3.com/Standings/Team",

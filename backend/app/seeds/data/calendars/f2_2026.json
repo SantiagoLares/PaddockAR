@@ -1,7 +1,7 @@
 {
   "category_slug": "formula-2",
   "season_year": 2026,
-  "source_note": "Calendario 2026 revisado de FÃ³rmula 2 basado en la pÃºblicacion oficial FIA del 09.04.2026. Las fechas de evento son oficiales; los horarios de sesiones se generan como tentativos en hora de Argentina usando plantillas por formato de fin de semana.",
+  "source_note": "Calendario 2026 revisado de Fórmula 2 basado en la publicación oficial FIA del 09.04.2026. Las fechas de evento son oficiales; los horarios de sesiones se generan como tentativos en hora de Argentina usando plantillas por formato de fin de semana.",
   "events": [
     {
       "category_slug": "formula-2",
@@ -29,7 +29,7 @@
       "name": "F2 Miami",
       "slug": "f2-miami-2026",
       "status": "scheduled",
-      "source_note": "Horarios oficiales de FÃ³rmula 2 para Miami 2026 tomados de fiaformula2.com y convertidos de hora local de Miami a hora de Argentina.",
+      "source_note": "Horarios oficiales de Fórmula 2 para Miami 2026 tomados de fiaformula2.com y convertidos de hora local de Miami a hora de Argentina.",
       "data_quality": "official_schedule_manual_conversion",
       "start_date": "2026-05-01",
       "end_date": "2026-05-03",
@@ -101,7 +101,7 @@
       "circuit": {
         "name": "Circuit Gilles Villeneuve",
         "slug": "circuit-gilles-villeneuve",
-        "country": "CanadÃ¡",
+        "country": "Canadá",
         "city": "Montreal",
         "timezone": "America/Toronto"
       }
@@ -110,7 +110,7 @@
       "category_slug": "formula-2",
       "season_year": 2026,
       "round_number": 4,
-      "name": "F2 M?naco",
+      "name": "F2 Mónaco",
       "slug": "f2-monaco-2026",
       "status": "scheduled",
       "data_quality": "official_calendar_tentative_schedule",
@@ -118,9 +118,9 @@
       "end_date": "2026-06-07",
       "session_template": "f2_monaco",
       "circuit": {
-        "name": "Circuit de M?naco",
+        "name": "Circuit de Mónaco",
         "slug": "circuit-de-monaco",
-        "country": "M?naco",
+        "country": "Mónaco",
         "city": "Monte Carlo",
         "timezone": "Europe/Monaco"
       }
@@ -139,8 +139,8 @@
       "circuit": {
         "name": "Circuit de Barcelona-Catalunya",
         "slug": "circuit-de-barcelona-catalunya",
-        "country": "EspaÃ±a",
-        "city": "MontmelÃ³",
+        "country": "España",
+        "city": "Montmeló",
         "timezone": "Europe/Madrid"
       }
     },
@@ -177,7 +177,7 @@
       "circuit": {
         "name": "Silverstone Circuit",
         "slug": "silverstone-circuit",
-        "country": "Gran BretaÃ±a",
+        "country": "Gran Bretaña",
         "city": "Silverstone",
         "timezone": "Europe/London"
       }
@@ -196,7 +196,7 @@
       "circuit": {
         "name": "Circuit de Spa-Francorchamps",
         "slug": "circuit-de-spa-francorchamps",
-        "country": "BÃ©lgica",
+        "country": "Bélgica",
         "city": "Stavelot",
         "timezone": "Europe/Brussels"
       }
@@ -215,7 +215,7 @@
       "circuit": {
         "name": "Hungaroring",
         "slug": "hungaroring",
-        "country": "HungrÃ­a",
+        "country": "Hungría",
         "city": "Budapest",
         "timezone": "Europe/Budapest"
       }
@@ -253,7 +253,7 @@
       "circuit": {
         "name": "Circuito de Madrid",
         "slug": "circuito-de-madrid",
-        "country": "EspaÃ±a",
+        "country": "España",
         "city": "Madrid",
         "timezone": "Europe/Madrid"
       }
@@ -272,7 +272,7 @@
       "circuit": {
         "name": "Baku City Circuit",
         "slug": "baku-city-circuit",
-        "country": "AzerbaiyÃ¡n",
+        "country": "Azerbaiyán",
         "city": "Baku",
         "timezone": "Asia/Baku"
       }
@@ -310,7 +310,7 @@
       "circuit": {
         "name": "Yas Marina Circuit",
         "slug": "yas-marina-circuit",
-        "country": "Emiratos ?rabes Unidos",
+        "country": "Emiratos Árabes Unidos",
         "city": "Yas Island",
         "timezone": "Asia/Dubai"
       }

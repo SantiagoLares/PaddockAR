@@ -1,7 +1,7 @@
 {
   "category_slug": "turismo-pista-c1",
   "season_year": 2026,
-  "source_note": "Calendario 2026 de Turismo Pista Clase 1 basado en pÃºblicaciones oficiales de turismopista.com.ar revisadas el 2026-05-06. Las tres clases comparten fecha y sede; los horarios de sesiones se cargan como tentativos porque no se pÃºblica un cronograma horario completo por fecha en la fuente auditada.",
+  "source_note": "Calendario 2026 de Turismo Pista Clase 1 basado en publicaciónes oficiales de turismopista.com.ar revisadas el 2026-05-06. Las tres clases comparten fecha y sede; los horarios de sesiones se cargan como tentativos porque no se pública un cronograma horario completo por fecha en la fuente auditada.",
   "events": [
     {
       "round_number": 1,
@@ -13,7 +13,7 @@
       "end_date": "2026-02-01",
       "session_template": "arg_series_standard",
       "circuit": {
-        "name": "Autodromo Roberto JosÃ© Mouras",
+        "name": "Autodromo Roberto José Mouras",
         "slug": "autodromo-roberto-jose-mouras",
         "country": "Argentina",
         "city": "La Plata",
@@ -90,7 +90,7 @@
     },
     {
       "round_number": 6,
-      "name": "Turismo Pista Clase 1 RÃ­o Cuarto",
+      "name": "Turismo Pista Clase 1 Río Cuarto",
       "slug": "turismo-pista-c1-rio-cuarto-2026",
       "status": "scheduled",
       "data_quality": "tentative_schedule",
@@ -98,16 +98,16 @@
       "end_date": "2026-07-19",
       "session_template": "arg_series_standard",
       "circuit": {
-        "name": "Autodromo Parque Ciudad de RÃ­o Cuarto",
+        "name": "Autodromo Parque Ciudad de Río Cuarto",
         "slug": "autodromo-parque-ciudad-de-rio-cuarto",
         "country": "Argentina",
-        "city": "RÃ­o Cuarto",
+        "city": "Río Cuarto",
         "timezone": "America/Argentina/Cordoba"
       }
     },
     {
       "round_number": 7,
-      "name": "Turismo Pista Clase 1 San NicolÃ¡s",
+      "name": "Turismo Pista Clase 1 San Nicolás",
       "slug": "turismo-pista-c1-san-nicolas-2026",
       "status": "scheduled",
       "data_quality": "tentative_schedule",
@@ -115,16 +115,16 @@
       "end_date": "2026-08-09",
       "session_template": "arg_series_standard",
       "circuit": {
-        "name": "Autodromo San NicolÃ¡s Ciudad",
+        "name": "Autodromo San Nicolás Ciudad",
         "slug": "autodromo-san-nicolas-ciudad",
         "country": "Argentina",
-        "city": "San NicolÃ¡s",
+        "city": "San Nicolás",
         "timezone": "America/Argentina/Buenos_Aires"
       }
     },
     {
       "round_number": 8,
-      "name": "Turismo Pista Clase 1 Termas de RÃ­o Hondo",
+      "name": "Turismo Pista Clase 1 Termas de Río Hondo",
       "slug": "turismo-pista-c1-termas-de-rio-hondo-2026",
       "status": "scheduled",
       "data_quality": "tentative_schedule",
@@ -132,16 +132,16 @@
       "end_date": "2026-09-06",
       "session_template": "arg_series_standard",
       "circuit": {
-        "name": "Autodromo Internacional de Termas de RÃ­o Hondo",
+        "name": "Autodromo Internacional de Termas de Río Hondo",
         "slug": "autodromo-internacional-de-termas-de-rio-hondo",
         "country": "Argentina",
-        "city": "Termas de RÃ­o Hondo",
+        "city": "Termas de Río Hondo",
         "timezone": "America/Argentina/Cordoba"
       }
     },
     {
       "round_number": 9,
-      "name": "Turismo Pista Clase 1 ConcepciÃ³n del Uruguay",
+      "name": "Turismo Pista Clase 1 Concepción del Uruguay",
       "slug": "turismo-pista-c1-concepcion-del-uruguay-2026",
       "status": "scheduled",
       "data_quality": "tentative_schedule",
@@ -149,10 +149,10 @@
       "end_date": "2026-10-18",
       "session_template": "arg_series_standard",
       "circuit": {
-        "name": "Autodromo ConcepciÃ³n del Uruguay",
+        "name": "Autodromo Concepción del Uruguay",
         "slug": "autodromo-concepcion-del-uruguay",
         "country": "Argentina",
-        "city": "ConcepciÃ³n del Uruguay",
+        "city": "Concepción del Uruguay",
         "timezone": "America/Argentina/Cordoba"
       }
     },

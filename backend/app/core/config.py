@@ -8,8 +8,8 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg2://paddockar:paddockar_pass@127.0.0.1:5433/paddockar"
     port: int = 8000
     log_level: str = "INFO"
-    admin_username: str = "admin"
-    admin_password: str = "admin"
+    admin_username: str = "soquetonadmin"
+    admin_password: str = "123456781"
     admin_token_secret: str = "paddockar-local-admin-secret"
 
     @field_validator("database_url")
