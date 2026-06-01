@@ -990,6 +990,28 @@
   .panel-footer {
     padding-right: 16px;
   }
+
+  .event-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .event-status-area {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .event-body {
+    padding: 0 16px 16px;
+  }
+
+  .event-group .session-row {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .event-group .session-status {
+    justify-self: start;
+  }
 }
 
 ::-webkit-scrollbar {

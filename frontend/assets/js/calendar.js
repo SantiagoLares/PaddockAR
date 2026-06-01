@@ -398,4 +398,8 @@ calendarBoard.addEventListener("click", (event) => {
   }
 });
 
-loadCalendar();
+loadCalendar().then(() => {
+  try {
+    window.PaddockARAnalytics?.trackPageView?.('view_calendar');
+  } catch (e) {}
+}).catch(() => {});

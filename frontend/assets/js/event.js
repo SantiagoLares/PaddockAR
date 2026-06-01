@@ -100,6 +100,61 @@ function renderResultsTable(session) {
   `;
 }
 
+function updateEventSeo(event) {
+  try {
+    if (!window.PaddockARSeo) return;
+    
+    const title = `${cleanEventName(event.name)} | PaddockAR`;
+    const description = `${event.category?.name || 'Evento'} en ${event.circuit?.name || 'circuito'}, ${event.circuit?.city || event.circuit?.country || 'Argentina'}. Consultá sesiones y horarios en PaddockAR.`;
+    const url = `https://paddockar.com.ar/event.html?id=${event.id}`;
+    
+    window.PaddockARSeo.updatePageSeo({
+      title,
+      description,
+      url,
+      type: 'event',
+      image: '/assets/img/og-paddockar.png',
+    });
+
+    const jsonLdElement = document.getElementById('event-jsonld') || document.createElement('script');
+    jsonLdElement.id = 'event-jsonld';
+    jsonLdElement.type = 'application/ld+json';
+    
+    const primarySession = (event.sessions || []).find(s => s.primary === true);
+    const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'SportsEvent',
+      name: event.name,
+      description: description,
+      startDate: event.start_date,
+      endDate: event.end_date,
+      eventStatus: (event.status || 'scheduled').includes('live') ? 'EventScheduled' : (event.status === 'finished' ? 'EventCancelled' : 'EventScheduled'),
+      location: {
+        '@type': 'Place',
+        name: event.circuit?.name || 'Circuito',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: event.circuit?.city || '',
+          addressCountry: event.circuit?.country || '',
+        },
+      },
+      organizer: {
+        '@type': 'Organization',
+        name: 'PaddockAR',
+        url: 'https://paddockar.com.ar',
+      },
+      url: url,
+    };
+    
+    jsonLdElement.textContent = JSON.stringify(jsonLd);
+    if (!document.getElementById('event-jsonld')) {
+      document.head.appendChild(jsonLdElement);
+    }
+  } catch (e) {
+    logger.error('Update event SEO failed', e);
+  }
+}
+
 function renderEvent(event) {
   const category = event.category;
   const code = categoryCode(category);
@@ -190,6 +245,16 @@ async function loadEvent() {
     const event = await getJson(`/api/events/${id}`);
     logger.info("Event detail loaded", event.id, event.name);
     renderEvent(event);
+    updateEventSeo(event);
+    try {
+      window.PaddockARAnalytics?.trackEvent?.('view_event_detail', {
+        event_id: event.id,
+        event_name: event.name,
+        category: event.category?.name,
+        circuit: event.circuit?.name,
+        country: event.circuit?.country,
+      });
+    } catch (e) {}
   } catch (error) {
     logger.error("Event detail failed", error);
     renderLoadError();
