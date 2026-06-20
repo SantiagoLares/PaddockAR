@@ -2,11 +2,62 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=index.html#events" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR Admin | Redireccion</title>
+  <title>PaddockAR Admin | Eventos</title>
+
+  <link rel="stylesheet" href="../assets/css/base.css?v=20260519" />
+  <link rel="stylesheet" href="../assets/css/admin.css?v=202606admin" />
 </head>
-<body>
-  <p>Redireccionando al nuevo panel admin… <a href="index.html#events">Abrir admin</a></p>
+
+<body class="admin-v2">
+  <aside class="admin-v2-sidebar">
+    <a class="admin-v2-logo" href="../index.html">PADDOCK<span>AR</span></a>
+
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a class="active" href="events.html">Eventos</a>
+      <a href="index.html">Carga actual</a>
+      <a href="../calendar.html">Ver calendario</a>
+      <a href="../index.html">Volver al sitio</a>
+    </nav>
+  </aside>
+
+  <main class="admin-v2-main">
+    <header class="admin-v2-header">
+      <div>
+        <p class="admin-v2-eyebrow">Gestor de datos</p>
+        <h1>Eventos cargados</h1>
+        <span id="adminEventsState">Cargando eventos desde la API...</span>
+      </div>
+
+      <a class="admin-v2-primary" href="index.html">Nuevo evento</a>
+    </header>
+
+    <section class="admin-v2-toolbar">
+      <input id="adminEventSearch" type="search" placeholder="Buscar evento, categoría o circuito..." />
+
+      <select id="adminCategoryFilter">
+        <option value="all">Todas las categorías</option>
+      </select>
+
+      <select id="adminStatusFilter">
+        <option value="all">Todos los estados</option>
+        <option value="scheduled">Próximos</option>
+        <option value="live">En vivo</option>
+        <option value="finished">Finalizados</option>
+        <option value="cancelled">Cancelados</option>
+      </select>
+    </section>
+
+    <section class="admin-v2-card">
+      <div id="adminEventsTable" class="admin-v2-table-wrap" aria-live="polite">
+        <div class="admin-v2-empty">Cargando eventos...</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/js/common.js?v=20260506"></script>
+  <script src="../assets/js/api.js?v=20260501"></script>
+  <script src="../assets/js/admin-events.js?v=202606admin1"></script>
 </body>
 </html>

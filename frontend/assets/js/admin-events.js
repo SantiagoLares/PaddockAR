@@ -1,393 +1,279 @@
-const { renderCategoryBadge, createLogger } = window.PaddockARCommon;
-const { getJson, request, sendJson } = window.PaddockARApi;
-const { setHTML, setText, renderEmpty, renderError, showMessage } = window.PaddockARDom;
-const logger = createLogger("PaddockAR Admin");
-const TOKEN_KEY = "paddockar_admin_token";
+(function () {
+  const { getJson } = window.PaddockARApi;
+  const common = window.PaddockARCommon || {};
 
-const loginPanel = document.querySelector("#loginPanel");
-const adminPanel = document.querySelector("#adminPanel");
-const usernameInput = document.querySelector("#username");
-const passwordInput = document.querySelector("#password");
-const loginButton = document.querySelector("#loginButton");
-const logoutButton = document.querySelector("#logoutButton");
-const eventsContainer = document.querySelector("#events");
-const state = document.querySelector("#state");
-const messageBox = document.querySelector("#message");
-const categoryFilter = document.querySelector("#categoryFilter");
-const statusFilter = document.querySelector("#statusFilter");
-const createButton = document.querySelector("#createButton");
+  const stateText = document.querySelector("#adminEventsState");
+  const tableContainer = document.querySelector("#adminEventsTable");
+  const searchInput = document.querySelector("#adminEventSearch");
+  const categoryFilter = document.querySelector("#adminCategoryFilter");
+  const statusFilter = document.querySelector("#adminStatusFilter");
 
-const newNameInput = document.querySelector("#newName");
-const newCategorySelect = document.querySelector("#newCategoryId");
-const newCircuitSelect = document.querySelector("#newCircuitId");
-const newSeasonYearInput = document.querySelector("#newSeasonYear");
-const newRoundNumberInput = document.querySelector("#newRoundNumber");
-const newStartDateInput = document.querySelector("#newStartDate");
-const newEndDateInput = document.querySelector("#newEndDate");
-const newStatusSelect = document.querySelector("#newStatus");
-
-let allEvents = [];
-let categories = [];
-let circuits = [];
-
-function renderAdminLoadError() {
-  setHTML(
-    eventsContainer,
-    renderError("No se pudo cargar el panel de eventos. Revisá la conexión con la API y volvé a intentar.", {
-      retry: true,
-    }),
-  );
-  setText(state, "Error de API");
-}
-
-function getToken() {
-  return localStorage.getItem(TOKEN_KEY);
-}
-
-function setToken(token) {
-  localStorage.setItem(TOKEN_KEY, token);
-}
-
-function clearToken() {
-  localStorage.removeItem(TOKEN_KEY);
-}
-
-function authHeaders() {
-  return { Authorization: `Bearer ${getToken()}` };
-}
-
-function showLogin() {
-  loginPanel.hidden = false;
-  adminPanel.hidden = true;
-  logoutButton.hidden = true;
-  setText(state, "Login requerido");
-}
-
-function showAdmin() {
-  loginPanel.hidden = true;
-  adminPanel.hidden = false;
-  logoutButton.hidden = false;
-}
-
-function circuitLabel(circuitId) {
-  const circuit = circuits.find((item) => item.id === Number(circuitId));
-  if (!circuit) return "Circuito";
-  return circuit.city ? `${circuit.name} - ${circuit.city}, ${circuit.country}` : `${circuit.name} - ${circuit.country}`;
-}
-
-function selectOptions(items, selectedValue, labelKey = "name", emptyLabel = "") {
-  const emptyOption = emptyLabel ? `<option value="">${emptyLabel}</option>` : "";
-  return (
-    emptyOption +
-    items
-      .map((item) => `<option value="${item.id}" ${Number(selectedValue) === item.id ? "selected" : ""}>${item[labelKey]}</option>`)
-      .join("")
-  );
-}
-
-function fillLookups() {
-  categoryFilter.innerHTML =
-    '<option value="all">Todas las categorías</option>' +
-    categories.map((category) => `<option value="${category.id}">${category.short_name}</option>`).join("");
-
-  newCategorySelect.innerHTML = selectOptions(categories, categories[0]?.id, "name");
-  newCircuitSelect.innerHTML = selectOptions(circuits, circuits[0]?.id, "name");
-}
-
-function filteredEvents() {
-  return allEvents.filter((event) => {
-    const matchesCategory = categoryFilter.value === "all" || String(event.category_id) === categoryFilter.value;
-    const matchesStatus = statusFilter.value === "all" || event.status === statusFilter.value;
-    return matchesCategory && matchesStatus;
-  });
-}
-
-function renderEvents() {
-  const events = filteredEvents();
-  setText(state, `${events.length}/${allEvents.length} eventos`);
-
-  if (!events.length) {
-    setHTML(eventsContainer, renderEmpty("No hay eventos para los filtros seleccionados."));
-    return;
-  }
-
-  setHTML(
-    eventsContainer,
-    events
-      .map(
-        (event) => `
-          <article class="event-card" data-event-id="${event.id}">
-            <header class="event-head">
-              ${renderCategoryBadge(event.category, { extraClass: "admin-cat" })}
-              <div class="event-name">${event.name}</div>
-              <div class="event-meta mono">${circuitLabel(event.circuit_id)}</div>
-              <div class="event-id mono">ID ${event.id}</div>
-            </header>
-            <div class="edit-grid">
-              <div class="field">
-                <label class="mono">Nombre</label>
-                <input data-field="name" value="${event.name}" />
-              </div>
-              <div class="field">
-                <label class="mono">Categoría</label>
-                <select data-field="category_id">${selectOptions(categories, event.category_id, "name")}</select>
-              </div>
-              <div class="field">
-                <label class="mono">Circuito</label>
-                <select data-field="circuit_id">${selectOptions(circuits, event.circuit_id, "name")}</select>
-              </div>
-              <div class="field">
-                <label class="mono">Temporada</label>
-                <input data-field="season_year" type="number" min="2000" max="2100" value="${event.season_year}" />
-              </div>
-              <div class="field">
-                <label class="mono">Ronda</label>
-                <input data-field="round_number" type="number" min="1" value="${event.round_number || ""}" />
-              </div>
-              <div class="field">
-                <label class="mono">Inicio</label>
-                <input data-field="start_date" type="date" value="${event.start_date}" />
-              </div>
-              <div class="field">
-                <label class="mono">Fin</label>
-                <input data-field="end_date" type="date" value="${event.end_date}" />
-              </div>
-              <div class="field">
-                <label class="mono">Estado</label>
-                <select data-field="status">
-                  <option value="scheduled" ${event.status === "scheduled" ? "selected" : ""}>scheduled</option>
-                  <option value="live" ${event.status === "live" ? "selected" : ""}>live</option>
-                  <option value="finished" ${event.status === "finished" ? "selected" : ""}>finished</option>
-                  <option value="cancelled" ${event.status === "cancelled" ? "selected" : ""}>cancelled</option>
-                </select>
-              </div>
-              <button class="save-button mono" type="button" data-save>Guardar</button>
-            </div>
-          </article>
-        `,
-      )
-      .join(""),
-  );
-}
-
-function normalizePayload(source) {
-  const roundNumber = source.round_number === "" ? null : Number(source.round_number);
-  return {
-    name: source.name.trim(),
-    category_id: Number(source.category_id),
-    circuit_id: Number(source.circuit_id),
-    season_year: Number(source.season_year),
-    round_number: roundNumber,
-    start_date: source.start_date,
-    end_date: source.end_date,
-    status: source.status,
+  const state = {
+    events: [],
+    filtered: [],
   };
-}
 
-function createPayloadFromCard(card) {
-  const raw = {};
-  card.querySelectorAll("[data-field]").forEach((field) => {
-    raw[field.dataset.field] = field.value;
-  });
-  return normalizePayload(raw);
-}
+  function text(value, fallback = "") {
+    return common.repairText ? common.repairText(value || fallback) : value || fallback;
+  }
 
-function createPayloadFromForm() {
-  return normalizePayload({
-    name: newNameInput.value,
-    category_id: newCategorySelect.value,
-    circuit_id: newCircuitSelect.value,
-    season_year: newSeasonYearInput.value,
-    round_number: newRoundNumberInput.value,
-    start_date: newStartDateInput.value,
-    end_date: newEndDateInput.value,
-    status: newStatusSelect.value,
-  });
-}
+  function setState(message) {
+    if (stateText) stateText.textContent = message;
+  }
 
-function resetCreateForm() {
-  newNameInput.value = "";
-  newSeasonYearInput.value = String(new Date().getFullYear());
-  newRoundNumberInput.value = "";
-  newStartDateInput.value = "";
-  newEndDateInput.value = "";
-  newStatusSelect.value = "scheduled";
-  if (categories[0]) newCategorySelect.value = String(categories[0].id);
-  if (circuits[0]) newCircuitSelect.value = String(circuits[0].id);
-}
+  function eventName(event) {
+    if (common.eventDisplayName) return common.eventDisplayName(event);
+    return text(event.name || event.title || `Evento #${event.id}`);
+  }
 
-async function loadReferenceData() {
-  const [categoriesData, circuitsData] = await Promise.all([
-    getJson("/api/categories"),
-    getJson("/api/circuits"),
-  ]);
-  categories = categoriesData;
-  circuits = circuitsData;
-  fillLookups();
-  resetCreateForm();
-}
+  function categoryCode(event) {
+    const category = event.category || {};
+    return text(category.short_name || category.slug || category.name || "CAT").toUpperCase();
+  }
 
-async function loadEvents() {
-  setText(state, "Cargando");
-  showMessage(messageBox, "");
-  logger.info("Loading admin events", "/api/admin/events");
+  function categoryName(event) {
+    const category = event.category || {};
+    return text(category.name || category.short_name || category.slug || "Sin categoría");
+  }
 
-  try {
-    const response = await request("/api/admin/events", { headers: authHeaders() });
+  function circuitName(event) {
+    const circuit = event.circuit || {};
+    return text(circuit.name || event.circuit_name || "Circuito no cargado");
+  }
 
-    if (response.status === 401) {
-      logger.info("Admin events rejected with 401");
-      clearToken();
-      showLogin();
-      showMessage(messageBox, "Sesión vencida o inválida.", "error");
+  function locationText(event) {
+    const circuit = event.circuit || {};
+    const city = circuit.city || event.city;
+    const country = circuit.country || event.country;
+
+    return [city, country].filter(Boolean).map((item) => text(item)).join(", ");
+  }
+
+  function eventDate(event) {
+    const start = event.start_date || event.starts_at;
+    const end = event.end_date;
+
+    if (!start) return "Sin fecha";
+
+    try {
+      if (common.formatDate) {
+        const first = common.formatDate(start, { weekday: false, withYear: true });
+        const second = end && end !== start ? common.formatDate(end, { weekday: false, withYear: true }) : "";
+        return second ? `${first} – ${second}` : first;
+      }
+
+      return new Date(start).toLocaleDateString("es-AR");
+    } catch {
+      return start;
+    }
+  }
+
+  function statusLabel(status) {
+    const value = String(status || "scheduled").toLowerCase();
+
+    const labels = {
+      scheduled: "Próximo",
+      live: "En vivo",
+      finished: "Finalizado",
+      cancelled: "Cancelado",
+      postponed: "Postergado",
+      tbc: "A confirmar",
+    };
+
+    return labels[value] || value;
+  }
+
+  function statusClass(status) {
+    const value = String(status || "scheduled").toLowerCase();
+
+    if (value === "finished") return "state-ok";
+    if (value === "live") return "state-live";
+    if (value === "cancelled" || value === "postponed") return "state-danger";
+    return "state-draft";
+  }
+
+  function normalize(value) {
+    return String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function uniqueCategories(events) {
+    const map = new Map();
+
+    events.forEach((event) => {
+      const category = event.category || {};
+      const slug = category.slug || category.short_name || category.name;
+
+      if (!slug) return;
+
+      map.set(slug, {
+        slug,
+        label: category.name || category.short_name || slug,
+      });
+    });
+
+    return Array.from(map.values()).sort((a, b) => a.label.localeCompare(b.label));
+  }
+
+  function renderCategoryOptions() {
+    const categories = uniqueCategories(state.events);
+
+    categoryFilter.innerHTML = `
+      <option value="all">Todas las categorías</option>
+      ${categories
+        .map((category) => `<option value="${category.slug}">${text(category.label)}</option>`)
+        .join("")}
+    `;
+  }
+
+  function applyFilters() {
+    const query = normalize(searchInput.value);
+    const categoryValue = categoryFilter.value;
+    const statusValue = statusFilter.value;
+
+    state.filtered = state.events.filter((event) => {
+      const category = event.category || {};
+      const haystack = normalize([
+        eventName(event),
+        categoryName(event),
+        category.short_name,
+        category.slug,
+        circuitName(event),
+        locationText(event),
+      ].join(" "));
+
+      const matchesSearch = !query || haystack.includes(query);
+
+      const matchesCategory =
+        categoryValue === "all" ||
+        category.slug === categoryValue ||
+        category.short_name === categoryValue ||
+        category.name === categoryValue;
+
+      const matchesStatus =
+        statusValue === "all" ||
+        String(event.status || "scheduled").toLowerCase() === statusValue;
+
+      return matchesSearch && matchesCategory && matchesStatus;
+    });
+
+    renderTable();
+  }
+
+  function renderTable() {
+    if (!state.filtered.length) {
+      tableContainer.innerHTML = `
+        <div class="admin-v2-empty">
+          No hay eventos que coincidan con los filtros.
+        </div>
+      `;
       return;
     }
 
-    if (!response.ok) throw new Error(`API ${response.status}`);
+    tableContainer.innerHTML = `
+      <table class="admin-v2-table">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Evento</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
 
-    allEvents = await response.json();
-    logger.info("Admin events loaded", allEvents.length);
-    showAdmin();
-    renderEvents();
-  } catch (error) {
-    logger.error("Admin events failed", error);
-    showAdmin();
-    renderAdminLoadError();
+        <tbody>
+          ${state.filtered.map(renderRow).join("")}
+        </tbody>
+      </table>
+    `;
   }
-}
 
-async function loadAdmin() {
-  setText(state, "Cargando");
-  try {
-    await loadReferenceData();
-    await loadEvents();
-  } catch (error) {
-    logger.error("Admin reference data failed", error);
-    showAdmin();
-    renderAdminLoadError();
+  function renderRow(event) {
+    const status = event.status || "scheduled";
+
+    return `
+      <tr>
+        <td>
+          <span class="admin-v2-badge badge-${normalize(categoryCode(event))}">
+            ${categoryCode(event)}
+          </span>
+        </td>
+
+        <td>
+          <strong>${eventName(event)}</strong>
+          <small>${circuitName(event)}${locationText(event) ? ` · ${locationText(event)}` : ""}</small>
+        </td>
+
+        <td>${eventDate(event)}</td>
+
+        <td>
+          <span class="admin-v2-state ${statusClass(status)}">
+            ${statusLabel(status)}
+          </span>
+        </td>
+
+        <td>
+          <button type="button" data-action="view" data-id="${event.id}">Ver</button>
+          <button type="button" data-action="edit" data-id="${event.id}">Editar</button>
+        </td>
+      </tr>
+    `;
   }
-}
 
-async function createEvent() {
-  const payload = createPayloadFromForm();
+  function handleTableClick(event) {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
 
-  try {
-    logger.info("Creating event", payload.name);
-    const response = await sendJson("/api/admin/events", {
-      method: "POST",
-      headers: authHeaders(),
-      body: payload,
-    });
+    const id = button.dataset.id;
+    const action = button.dataset.action;
 
-    if (response.status === 401) {
-      clearToken();
-      showLogin();
-      showMessage(messageBox, "Sesión vencida o inválida.", "error");
+    if (action === "view") {
+      window.location.href = `../event.html?id=${encodeURIComponent(id)}`;
       return;
     }
 
-    if (!response.ok) throw new Error(`API ${response.status}`);
-
-    const created = await response.json();
-    allEvents = [...allEvents, created].sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-    showMessage(messageBox, `Evento ${created.id} creado correctamente.`, "ok");
-    resetCreateForm();
-    renderEvents();
-  } catch (error) {
-    logger.error("Create event failed", error);
-    showMessage(messageBox, "No se pudo crear el evento. Revisá los datos y volvé a intentar.", "error");
-  }
-}
-
-async function saveEvent(card) {
-  const id = card.dataset.eventId;
-  const payload = createPayloadFromCard(card);
-
-  try {
-    logger.info("Saving event", id, Object.keys(payload));
-    const response = await sendJson(`/api/admin/events/${id}`, {
-      method: "PUT",
-      headers: authHeaders(),
-      body: payload,
-    });
-
-    if (response.status === 401) {
-      clearToken();
-      showLogin();
-      showMessage(messageBox, "Sesión vencida o inválida.", "error");
-      return;
+    if (action === "edit") {
+      window.location.href = `index.html#events`;
     }
-
-    if (!response.ok) throw new Error(`API ${response.status}`);
-
-    const updated = await response.json();
-    allEvents = allEvents
-      .map((event) => (event.id === updated.id ? updated : event))
-      .sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-    showMessage(messageBox, `Evento ${id} guardado correctamente.`, "ok");
-    renderEvents();
-  } catch (error) {
-    logger.error("Save event failed", id, error);
-    showMessage(messageBox, `No se pudo guardar el evento ${id}.`, "error");
-  }
-}
-
-async function login() {
-  showMessage(messageBox, "");
-  setText(state, "Validando");
-  logger.info("Admin login attempt", usernameInput.value);
-
-  try {
-    const response = await sendJson("/api/auth/login", {
-      method: "POST",
-      body: {
-        username: usernameInput.value,
-        password: passwordInput.value,
-      },
-    });
-
-    if (!response.ok) throw new Error(`API ${response.status}`);
-
-    const data = await response.json();
-    setToken(data.access_token);
-    passwordInput.value = "";
-    showMessage(messageBox, "Login correcto.", "ok");
-    loadAdmin();
-  } catch (error) {
-    logger.error("Admin login failed", error);
-    showLogin();
-    showMessage(messageBox, "No se pudo iniciar sesión. Revisá los datos o la conexión con la API.", "error");
-  }
-}
-
-eventsContainer.addEventListener("click", (event) => {
-  if (event.target.closest("[data-retry]")) {
-    loadAdmin();
-    return;
   }
 
-  const button = event.target.closest("[data-save]");
-  if (!button) return;
-  saveEvent(button.closest(".event-card"));
-});
+  async function loadEvents() {
+    try {
+      setState("Cargando eventos desde la API...");
+      tableContainer.innerHTML = `<div class="admin-v2-empty">Cargando eventos...</div>`;
 
-categoryFilter.addEventListener("change", renderEvents);
-statusFilter.addEventListener("change", renderEvents);
-createButton.addEventListener("click", createEvent);
-loginButton.addEventListener("click", login);
-passwordInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") login();
-});
-logoutButton.addEventListener("click", () => {
-  clearToken();
-  allEvents = [];
-  setHTML(eventsContainer, "");
-  showLogin();
-  showMessage(messageBox, "Sesión cerrada.", "ok");
-});
+      const events = await getJson("/api/events");
 
-if (getToken()) {
-  loadAdmin();
-} else {
-  showLogin();
-}
+      state.events = Array.isArray(events)
+        ? events.slice().sort((a, b) => String(a.start_date || "").localeCompare(String(b.start_date || "")))
+        : [];
+
+      state.filtered = state.events;
+
+      renderCategoryOptions();
+      renderTable();
+
+      setState(`${state.events.length} eventos cargados`);
+    } catch (error) {
+      console.error("[PaddockAR Admin Events]", error);
+
+      tableContainer.innerHTML = `
+        <div class="admin-v2-empty">
+          No se pudieron cargar los eventos. Revisá la API o la sesión admin.
+        </div>
+      `;
+
+      setState("Error cargando eventos");
+    }
+  }
+
+  searchInput?.addEventListener("input", applyFilters);
+  categoryFilter?.addEventListener("change", applyFilters);
+  statusFilter?.addEventListener("change", applyFilters);
+  tableContainer?.addEventListener("click", handleTableClick);
+
+  loadEvents();
+})();
