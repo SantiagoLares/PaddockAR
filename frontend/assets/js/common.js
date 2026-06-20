@@ -1,6 +1,6 @@
 (function () {
   const PUBLIC_SITE_URL = "https://paddockar.com.ar";
-  const PROD_API_BASE_URL = "https://paddockar.onrender.com";
+  const PROD_API_BASE_URL = "https://api.paddockar.com.ar";
   const apiMode = new URLSearchParams(window.location.search).get("api");
   const PRIVATE_NETWORK_HOST_PATTERN = /^(localhost|127(?:\.\d{1,3}){3}|10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})$/;
 
