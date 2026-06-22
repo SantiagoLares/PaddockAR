@@ -3,283 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaddockAR Admin | Calendario</title>
+  <title>PaddockAR Admin | Login</title>
+
   <link rel="stylesheet" href="../assets/css/base.css?v=20260519" />
-  <link rel="stylesheet" href="../assets/css/components/topbar.css?v=20260501" />
-  <link rel="stylesheet" href="../assets/css/components/layout.css?v=20260504" />
-  <link rel="stylesheet" href="../assets/css/components/badges.css?v=20260519" />
-  <link rel="stylesheet" href="../assets/css/components/forms.css?v=20260501" />
-  <link rel="stylesheet" href="../assets/css/admin.css?v=20260523" />
+  <link rel="stylesheet" href="../assets/css/admin.css?v=202606admin" />
 </head>
-<body class="page-shell-1180 admin-unified">
-  <nav class="topbar">
-    <div class="topbar-inner">
-      <a class="logo-link" href="../index.html" aria-label="Ir a inicio">
-        <div class="logo">PADDOCK<span>AR</span></div>
+
+<body class="admin-login-page">
+  <main class="admin-login-shell">
+    <section class="admin-login-card">
+      <a class="admin-login-logo" href="../index.html">
+        PADDOCK<span>AR</span>
       </a>
-      <div class="nav-links mono" aria-label="Admin navegacion">
-        <a class="active" href="index.html">Admin</a>
-        <a href="../index.html">Inicio</a>
-        <a href="../calendar.html">Calendario</a>
-      </div>
-      <div class="admin-label mono">Panel unificado</div>
-    </div>
-  </nav>
 
-  <main>
-    <section class="summary admin-summary">
-      <div>
-        <h1>Admin PaddockAR</h1>
-        <div class="subtitle">Carga fines de semana completos, audita el calendario y controla la visibilidad publica.</div>
+      <div class="admin-login-copy">
+        <p>Panel de control</p>
+        <h1>Acceso admin</h1>
+        <span>Cargá eventos, sesiones y fines de semana del calendario público.</span>
       </div>
-      <div class="admin-summary__actions">
-        <div id="state" class="state mono">Login requerido</div>
-        <button id="logoutButton" class="logout-button mono" type="button" hidden>Logout</button>
+
+      <div class="admin-login-form">
+        <label>
+          <span>Usuario</span>
+          <input id="username" autocomplete="username" />
+        </label>
+
+        <label>
+          <span>Contraseña</span>
+          <input id="password" type="password" autocomplete="current-password" />
+        </label>
+
+        <button id="loginButton" type="button">Ingresar</button>
       </div>
+
+      <div id="state" class="admin-login-state">Login requerido</div>
+      <div id="message"></div>
     </section>
-
-    <section id="loginPanel" class="admin-login">
-      <article class="admin-card admin-login__card">
-        <div class="admin-eyebrow">Acceso admin</div>
-        <h2 class="admin-card__title">Ingresar al panel</h2>
-        <p class="admin-card__text">Usa las credenciales admin existentes para editar fines de semana, sesiones y visibilidad publica.</p>
-        <div class="admin-form-grid admin-form-grid--two">
-          <label class="field">
-            <span class="mono">Usuario</span>
-            <input id="username" autocomplete="username" />
-          </label>
-          <label class="field">
-            <span class="mono">Contrasena</span>
-            <input id="password" type="password" autocomplete="current-password" />
-          </label>
-        </div>
-        <div class="admin-actions">
-          <button id="loginButton" class="admin-primary mono" type="button">Ingresar</button>
-        </div>
-      </article>
-    </section>
-
-    <section id="adminPanel" class="admin-panel" hidden>
-      <div class="admin-layout">
-        <aside class="admin-sidebar">
-          <div class="admin-sidebar__title mono">Panel</div>
-          <button class="admin-nav-button active mono" type="button" data-view-target="create">Nuevo fin de semana</button>
-          <button class="admin-nav-button mono" type="button" data-view-target="events">Eventos cargados</button>
-          <button class="admin-nav-button mono" type="button" data-view-target="sessions">Sesiones</button>
-          <button class="admin-nav-button mono" type="button" data-view-target="categories">Categorias visibles</button>
-          <button class="admin-nav-button mono" type="button" data-action="logout">Logout</button>
-        </aside>
-
-        <div class="admin-content">
-          <section class="admin-view active" data-view="create">
-            <article class="admin-card">
-              <div class="admin-card__head">
-                <div>
-                  <div class="admin-eyebrow">Carga manual</div>
-                  <h2 class="admin-card__title">Crear fin de semana</h2>
-                </div>
-                <div id="qualityWarning" class="admin-warning" hidden></div>
-              </div>
-
-              <div class="admin-form-grid admin-form-grid--three">
-                <label class="field">
-                  <span class="mono">Categoria</span>
-                  <select id="weekendCategory"></select>
-                </label>
-                <label class="field">
-                  <span class="mono">Formato</span>
-                  <select id="weekendFormat">
-                    <option value="normal">normal</option>
-                    <option value="sprint">sprint</option>
-                    <option value="custom">custom</option>
-                  </select>
-                </label>
-                <label class="field">
-                  <span class="mono">Circuito cargado</span>
-                  <select id="existingCircuit">
-                    <option value="">Crear o editar manual</option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="admin-section-divider"></div>
-
-              <div class="admin-subsection">
-                <div class="admin-subsection__title mono">Circuito</div>
-                <div class="admin-form-grid admin-form-grid--three">
-                  <label class="field">
-                    <span class="mono">Nombre del circuito</span>
-                    <input id="circuitName" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Ciudad</span>
-                    <input id="circuitCity" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Pais</span>
-                    <input id="circuitCountry" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Timezone</span>
-                    <input id="circuitTimezone" value="America/Argentina/Buenos_Aires" />
-                  </label>
-                </div>
-              </div>
-
-              <div class="admin-subsection">
-                <div class="admin-subsection__title mono">Evento</div>
-                <div class="admin-form-grid admin-form-grid--three">
-                  <label class="field">
-                    <span class="mono">Nombre del evento</span>
-                    <input id="eventName" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Slug sugerido</span>
-                    <input id="eventSlug" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Round</span>
-                    <input id="eventRound" type="number" min="1" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Fecha inicio</span>
-                    <input id="eventStartDate" type="date" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Fecha fin</span>
-                    <input id="eventEndDate" type="date" />
-                  </label>
-                  <label class="field">
-                    <span class="mono">Estado</span>
-                    <select id="eventStatus">
-                      <option value="scheduled">scheduled</option>
-                      <option value="live">live</option>
-                      <option value="finished">finished</option>
-                      <option value="cancelled">cancelled</option>
-                    </select>
-                  </label>
-                  <label class="field">
-                    <span class="mono">source_url</span>
-                    <input id="eventSourceUrl" placeholder="https://..." />
-                  </label>
-                  <label class="field">
-                    <span class="mono">data_quality</span>
-                    <input id="eventDataQuality" list="dataQualityOptions" placeholder="official / verified" />
-                  </label>
-                  <label class="field field--full">
-                    <span class="mono">source_note</span>
-                    <textarea id="eventSourceNote" rows="2"></textarea>
-                  </label>
-                </div>
-              </div>
-
-              <datalist id="dataQualityOptions">
-                <option value="official"></option>
-                <option value="verified"></option>
-                <option value="tentative"></option>
-                <option value="manual"></option>
-              </datalist>
-
-              <div class="admin-section-divider"></div>
-
-              <div class="admin-card__head">
-                <div>
-                  <div class="admin-eyebrow">Template editable</div>
-                  <h3 class="admin-card__subtitle">Sesiones del fin de semana</h3>
-                </div>
-                <div class="admin-actions">
-                  <button id="generateTemplateButton" class="admin-secondary mono" type="button">Generar sesiones</button>
-                  <button id="addSessionButton" class="admin-secondary mono" type="button">Agregar sesion</button>
-                </div>
-              </div>
-
-              <div id="sessionEditor" class="session-editor" aria-live="polite"></div>
-
-              <div class="admin-actions admin-actions--end">
-                <button id="saveWeekendButton" class="admin-primary mono" type="button">Guardar fin de semana</button>
-              </div>
-            </article>
-          </section>
-
-          <section class="admin-view" data-view="events">
-            <article class="admin-card">
-              <div class="admin-card__head">
-                <div>
-                  <div class="admin-eyebrow">Base cargada</div>
-                  <h2 class="admin-card__title">Eventos cargados</h2>
-                </div>
-                <button id="refreshEventsButton" class="admin-secondary mono" type="button">Actualizar</button>
-              </div>
-              <div id="eventsSummary" class="admin-summary-pills"></div>
-              <div id="eventsList" class="admin-table-wrap" aria-live="polite"></div>
-            </article>
-          </section>
-
-          <section class="admin-view" data-view="sessions">
-            <article class="admin-card">
-              <div class="admin-card__head">
-                <div>
-                  <div class="admin-eyebrow">Detalle horario</div>
-                  <h2 class="admin-card__title">Sesiones</h2>
-                </div>
-                <button id="refreshSessionsButton" class="admin-secondary mono" type="button">Actualizar</button>
-              </div>
-              <div class="admin-form-grid admin-form-grid--two admin-filters">
-                <label class="field">
-                  <span class="mono">Categoria</span>
-                  <select id="sessionCategoryFilter">
-                    <option value="all">Todas</option>
-                  </select>
-                </label>
-                <label class="field">
-                  <span class="mono">Visibilidad</span>
-                  <select id="sessionVisibilityFilter">
-                    <option value="all">Todas</option>
-                    <option value="public">Publicas</option>
-                    <option value="hidden">Ocultas</option>
-                  </select>
-                </label>
-              </div>
-              <div id="sessionsList" class="admin-table-wrap" aria-live="polite"></div>
-            </article>
-          </section>
-
-          <section class="admin-view" data-view="categories">
-            <article class="admin-card">
-              <div class="admin-card__head">
-                <div>
-                  <div class="admin-eyebrow">Publicacion</div>
-                  <h2 class="admin-card__title">Categorias visibles</h2>
-                </div>
-                <button id="refreshCategoriesButton" class="admin-secondary mono" type="button">Actualizar</button>
-              </div>
-              <div id="categoriesList" class="admin-category-list" aria-live="polite"></div>
-            </article>
-
-            <article class="admin-card">
-              <div class="admin-card__head">
-                <div>
-                  <div class="admin-eyebrow">Auditoria</div>
-                  <h2 class="admin-card__title">Calendario oficial</h2>
-                </div>
-                <div class="admin-actions">
-                  <button id="auditButton" class="admin-secondary mono" type="button">Correr auditoria</button>
-                  <button id="cleanupButton" class="admin-danger mono" type="button">Ocultar no confiables</button>
-                </div>
-              </div>
-              <div id="auditSummary" class="admin-audit-grid" aria-live="polite"></div>
-            </article>
-          </section>
-        </div>
-      </div>
-    </section>
-
-    <div id="message"></div>
   </main>
 
   <script src="../assets/js/common.js?v=20260506"></script>
   <script src="../assets/js/api.js?v=20260501"></script>
   <script src="../assets/js/dom.js?v=20260504"></script>
-  <script src="../assets/js/admin-weekends.js?v=20260523"></script>
+  <script src="../assets/js/admin-login.js?v=202606admin"></script>
 </body>
 </html>

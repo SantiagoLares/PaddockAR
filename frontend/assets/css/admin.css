@@ -843,3 +843,141 @@
   background: rgba(239, 68, 68, 0.16);
   color: #fecaca;
 }
+
+.admin-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(225, 6, 0, 0.13), transparent 28%),
+    linear-gradient(180deg, #08080a 0%, #030304 100%);
+  color: #ffffff;
+}
+
+.admin-login-shell {
+  width: min(100%, 520px);
+  padding: 28px;
+}
+
+.admin-login-card {
+  padding: 36px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 24px;
+  background: #101014;
+  box-shadow: 0 24px 80px rgba(0,0,0,.45);
+}
+
+.admin-login-logo {
+  display: inline-block;
+  color: #ffffff;
+  font-family: var(--font-display, "Barlow Condensed", sans-serif);
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-decoration: none;
+}
+
+.admin-login-logo span {
+  color: #e10600;
+}
+
+.admin-login-copy {
+  margin-top: 42px;
+}
+
+.admin-login-copy p {
+  margin: 0 0 10px;
+  color: #e10600;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.admin-login-copy h1 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display, "Barlow Condensed", sans-serif);
+  font-size: clamp(48px, 8vw, 72px);
+  line-height: .9;
+  text-transform: uppercase;
+}
+
+.admin-login-copy span {
+  display: block;
+  margin-top: 16px;
+  color: #a1a1aa;
+  line-height: 1.6;
+}
+
+.admin-login-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.admin-login-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-login-form label span {
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.admin-login-form input {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  background: #08080a;
+  color: #fff;
+  font: inherit;
+}
+
+.admin-login-form input:focus {
+  outline: none;
+  border-color: rgba(225, 6, 0, .75);
+}
+
+.admin-login-form button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: #e10600;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.admin-login-form button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.admin-login-state {
+  margin-top: 18px;
+  color: #9ca3af;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+}
+
+.admin-login-message {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.admin-login-message--error {
+  color: #fecaca;
+}
+
+.admin-login-message--success {
+  color: #86efac;
+}
