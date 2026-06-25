@@ -4,16 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PaddockAR Admin | Dashboard</title>
+
   <link rel="stylesheet" href="../assets/css/base.css?v=20260519" />
   <link rel="stylesheet" href="../assets/css/admin.css?v=202606admin" />
 </head>
+
 <body class="admin-v2">
   <aside class="admin-v2-sidebar">
     <a class="admin-v2-logo" href="../index.html">PADDOCK<span>AR</span></a>
+
     <nav>
       <a class="active" href="dashboard.html">Dashboard</a>
       <a href="events.html">Eventos</a>
-      <a href="index.html">Carga actual</a>
+      <a href="create-weekend.html">Crear fin de semana</a>
       <a href="../calendar.html">Ver calendario</a>
       <a href="../index.html">Volver al sitio</a>
     </nav>
@@ -26,14 +29,34 @@
         <h1>Dashboard</h1>
         <span>Resumen operativo del calendario público.</span>
       </div>
-      <a class="admin-v2-primary" href="events.html">Gestionar eventos</a>
+
+      <a class="admin-v2-primary" href="create-weekend.html">Crear fin de semana</a>
     </header>
 
     <section class="admin-v2-metrics">
-      <article><span>Eventos totales</span><strong>86</strong><small>Calendario activo</small></article>
-      <article><span>Categorías</span><strong>12</strong><small>Visibles en la web</small></article>
-      <article><span>Resultados</span><strong>71</strong><small>Cargados</small></article>
-      <article><span>Próximos</span><strong>15</strong><small>Fines de semana</small></article>
+      <article>
+        <span>Eventos totales</span>
+        <strong>--</strong>
+        <small>Calendario activo</small>
+      </article>
+
+      <article>
+        <span>Categorías</span>
+        <strong>--</strong>
+        <small>Visibles en la web</small>
+      </article>
+
+      <article>
+        <span>Resultados</span>
+        <strong>--</strong>
+        <small>Cargados</small>
+      </article>
+
+      <article>
+        <span>Próximos</span>
+        <strong>--</strong>
+        <small>Fines de semana</small>
+      </article>
     </section>
 
     <section class="admin-v2-grid">
@@ -47,9 +70,11 @@
         </div>
 
         <div class="admin-v2-list">
-          <div><b>F1</b><span>GP de Canadá</span><small>15 Jun · Próximo</small></div>
-          <div><b>MOTOGP</b><span>GP de Catalunya</span><small>16 Jun · Próximo</small></div>
-          <div><b>TC</b><span>Posadas</span><small>22 Jun · A confirmar</small></div>
+          <div>
+            <b>INFO</b>
+            <span>Conectaremos este bloque a la API</span>
+            <small>Próximo paso</small>
+          </div>
         </div>
       </article>
 
@@ -62,7 +87,7 @@
         </div>
 
         <div class="admin-v2-actions">
-          <a href="index.html">Nuevo fin de semana</a>
+          <a href="create-weekend.html">Crear fin de semana</a>
           <a href="events.html">Editar eventos</a>
           <a href="../calendar.html">Ver calendario público</a>
         </div>

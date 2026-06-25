@@ -981,3 +981,73 @@
 .admin-login-message--success {
   color: #86efac;
 }
+
+.admin-create-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-create-copy {
+  margin: 0 0 18px;
+  color: #9ca3af;
+  line-height: 1.7;
+}
+
+.admin-session-list {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-session-row {
+  display: grid;
+  grid-template-columns: 1.2fr 150px 150px 110px 110px 140px 90px auto;
+  gap: 10px;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  background: #0f0f12;
+}
+
+.admin-feature-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: #d1d5db;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.admin-session-remove {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid rgba(239, 68, 68, .3);
+  border-radius: 10px;
+  background: rgba(239, 68, 68, .12);
+  color: #fecaca;
+  cursor: pointer;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.admin-create-message--success {
+  color: #86efac;
+}
+
+.admin-create-message--error {
+  color: #fecaca;
+}
+
+@media (max-width: 1180px) {
+  .admin-session-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-session-row {
+    grid-template-columns: 1fr;
+  }
+}
