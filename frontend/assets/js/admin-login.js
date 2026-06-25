@@ -31,8 +31,7 @@
     setMessage("");
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
+      const response = await fetch(`${window.PaddockARCommon.API_BASE_URL}/api/auth/login`, {
         headers: {
           "Content-Type": "application/json",
         },
