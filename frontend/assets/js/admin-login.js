@@ -5,13 +5,14 @@
   const state = document.querySelector("#state");
   const message = document.querySelector("#message");
 
+  const auth = window.PaddockARAdminAuth;
+
   function setState(text) {
     if (state) state.textContent = text;
   }
 
   function setMessage(text, type = "info") {
     if (!message) return;
-
     message.textContent = text;
     message.className = `admin-login-message admin-login-message--${type}`;
   }
@@ -27,58 +28,56 @@
 
     loginButton.disabled = true;
     setState("Validando credenciales...");
+    setMessage("");
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
+        body: JSON.stringify({ username, password }),
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        throw new Error(`Login ${response.status}`);
       }
 
       const data = await response.json();
+      const token = data.access_token || data.token;
 
-      if (data.access_token) {
-        localStorage.setItem(
-          "paddockar_admin_token",
-          data.access_token
-        );
+      if (!token) {
+        throw new Error("Token missing");
       }
 
+      auth.setToken(token);
+
       setState("Acceso correcto");
-      setMessage("Login exitoso.", "success");
+      setMessage("Ingresando al panel...", "success");
 
       setTimeout(() => {
         window.location.href = "dashboard.html";
-      }, 500);
+      }, 400);
     } catch (error) {
-      console.error(error);
-
+      console.error("[PaddockAR Admin Login]", error);
+      auth.clearToken();
       setState("Login requerido");
-      setMessage(
-        "No se pudo iniciar sesión. Revisá backend y credenciales.",
-        "error"
-      );
+      setMessage("Credenciales incorrectas o API no disponible.", "error");
     } finally {
       loginButton.disabled = false;
     }
   }
 
+  if (auth?.isLoggedIn()) {
+    window.location.href = "dashboard.html";
+    return;
+  }
+
   loginButton?.addEventListener("click", login);
 
   passwordInput?.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      login();
-    }
+    if (event.key === "Enter") login();
   });
 
-  console.log("[PaddockAR Admin] Login cargado");
+  console.log("[PaddockAR Admin] Login listo");
 })();
