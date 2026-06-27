@@ -500,7 +500,7 @@ function renderEventFeed(groups) {
     groups.map((group, index) => {
       const key = group.key;
       if (!eventExpansionState.has(key)) {
-        eventExpansionState.set(key, group.status === "live" || index === 0);
+        eventExpansionState.set(key, false);
       }
 
       const isOpen = eventExpansionState.get(key);
