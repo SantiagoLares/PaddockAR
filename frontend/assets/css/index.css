@@ -1184,3 +1184,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+@media (max-width: 760px) {
+  .home-index-v2 {
+    --topbar-h: 0px;
+  }
+
+  .shell {
+    display: block;
+    padding-top: 124px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .main-header,
+  .api-bar,
+  .spotlight {
+    padding-inline: 16px;
+  }
+}
