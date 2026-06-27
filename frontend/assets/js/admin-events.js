@@ -1,12 +1,16 @@
 (function () {
   const { getJson } = window.PaddockARApi;
   const common = window.PaddockARCommon || {};
+  const auth = window.PaddockARAdminAuth;
+
+  if (!auth.requireLogin()) return;
 
   const stateText = document.querySelector("#adminEventsState");
   const tableContainer = document.querySelector("#adminEventsTable");
   const searchInput = document.querySelector("#adminEventSearch");
   const categoryFilter = document.querySelector("#adminCategoryFilter");
   const statusFilter = document.querySelector("#adminStatusFilter");
+  const logoutButton = document.querySelector("[data-admin-logout]");
 
   const state = {
     events: [],
@@ -45,7 +49,6 @@
     const circuit = event.circuit || {};
     const city = circuit.city || event.city;
     const country = circuit.country || event.country;
-
     return [city, country].filter(Boolean).map((item) => text(item)).join(", ");
   }
 
@@ -105,7 +108,6 @@
     events.forEach((event) => {
       const category = event.category || {};
       const slug = category.slug || category.short_name || category.name;
-
       if (!slug) return;
 
       map.set(slug, {
@@ -122,9 +124,7 @@
 
     categoryFilter.innerHTML = `
       <option value="all">Todas las categorías</option>
-      ${categories
-        .map((category) => `<option value="${category.slug}">${text(category.label)}</option>`)
-        .join("")}
+      ${categories.map((category) => `<option value="${category.slug}">${text(category.label)}</option>`).join("")}
     `;
   }
 
@@ -145,7 +145,6 @@
       ].join(" "));
 
       const matchesSearch = !query || haystack.includes(query);
-
       const matchesCategory =
         categoryValue === "all" ||
         category.slug === categoryValue ||
@@ -236,7 +235,7 @@
     }
 
     if (action === "edit") {
-      window.location.href = `index.html#events`;
+      alert("Editor de evento pendiente. Próximo paso: crear edit-event.html");
     }
   }
 
@@ -274,6 +273,7 @@
   categoryFilter?.addEventListener("change", applyFilters);
   statusFilter?.addEventListener("change", applyFilters);
   tableContainer?.addEventListener("click", handleTableClick);
+  logoutButton?.addEventListener("click", auth.logout);
 
   loadEvents();
 })();

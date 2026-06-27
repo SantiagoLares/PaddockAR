@@ -1051,3 +1051,24 @@
     grid-template-columns: 1fr;
   }
 }
+
+.admin-v2-nav-button {
+  width: 100%;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.admin-v2-nav-button:hover {
+  color: #fff;
+  background: rgba(225,6,0,.16);
+}
